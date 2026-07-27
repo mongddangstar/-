@@ -1,6 +1,7 @@
 # 비밀키·인증정보 (DART OpenAPI crtfc_key 등) — 절대 커밋 금지
 .env
 .env.*
+!.env.example
 *.key
 *_key.txt
 dart_key*

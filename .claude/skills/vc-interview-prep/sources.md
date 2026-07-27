@@ -45,6 +45,14 @@
 - 담당 펀드는 모태/성장금융 GP 선정 결과·조합 공시에서 대표펀드매니저로 교차 확인.
 - **동명이인 주의**: 소속·직책·담당 섹터로 반드시 특정할 것.
 
+## DART OpenAPI 설정 (상장 VC 실적 정확화용)
+- **인증키**: 환경변수 `DART_API_KEY`(crtfc_key)로 주입. 저장소에 커밋 금지(`.env`는 gitignore, 문서는 `.env.example` 참고).
+  전사 사용은 Claude Code '환경 설정'의 Secrets에 `DART_API_KEY`를 등록(원격 컨테이너는 세션 종료 시 초기화됨).
+- **엔드포인트**: `https://opendart.fss.or.kr/api/fnlttSinglAcnt.json`, `corpCode.xml`, `fnlttSinglAcntAll.json`.
+- **egress 허용 필요**: 이 실행 환경의 네트워크 정책에 **`opendart.fss.or.kr`가 허용목록에 있어야** 호출된다.
+  미허용 시 프록시가 **403**으로 CONNECT를 차단하므로, 그때는 우회하지 말고 언론·공시 기반 수치로 폴백하고
+  결과물에 "DART API 미조회(정책 차단)"을 표기한다. (호출 절차 상세는 `SKILL.md` 참조)
+
 ## 접근 팁
 - DART·모태펀드 등은 검색보다 사이트 내 공고/보고서를 직접 여는 편이 정확.
 - HTTPS 프록시 경유 환경에서 특정 사이트 접근이 막히면, 대체 언론 보도로 보완하고 결과물에 "1차 출처 미확인"을 표기.
