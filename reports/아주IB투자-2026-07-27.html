@@ -1,0 +1,271 @@
+<meta charset="utf-8" />
+<title>아주IB투자 · 박세근 상무 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2f6df6; --accent-soft: #eaf1ff;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --c1b: #fdecec; --c2b: #e9f6ee; --c3b: #fbf1e0; --c4b: #f0ebfb;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #6f9dff; --accent-soft: #1e2a44;
+      --chip: #262c35; --chip-text: #aab4c1;
+      --c1b: #38221f; --c2b: #1c2f24; --c3b: #34291a; --c4b: #262036;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #6f9dff; --accent-soft: #1e2a44;
+    --chip: #262c35; --chip-text: #aab4c1;
+    --c1b: #38221f; --c2b: #1c2f24; --c3b: #34291a; --c4b: #262036;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2f6df6; --accent-soft: #eaf1ff;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1b: #fdecec; --c2b: #e9f6ee; --c3b: #fbf1e0; --c4b: #f0ebfb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 11px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-07-27</div>
+    <h1 class="title">아주IB투자 · 박세근 상무</h1>
+    <p class="subtitle">국내 1호 VC(1974)의 PE·글로벌·정책펀드 확장기 — 스페이스X 회수 모멘텀과 최대주주 블록딜이 겹친 국면</p>
+    <div class="meta-row">
+      <span class="meta-chip">유형: VC + PEF 겸영</span>
+      <span class="meta-chip">코스닥 027360</span>
+      <span class="meta-chip">담당: 콘텐츠·바이오·제조 등 멀티섹터</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>유형</dt><dd>벤처캐피탈(VC) + 사모투자(PE) 겸영 · 신기술사업금융업자</dd>
+        <dt>설립</dt><dd>1974년 — "국내 1호 VC" <sup class="ref"><a href="https://www.asiae.co.kr/article/2025061814465853296" target="_blank" rel="noopener">[1]</a></sup></dd>
+        <dt>상장</dt><dd>코스닥 상장, 종목코드 027360 (2018-11-21 재상장)</dd>
+        <dt>지배구조</dt><dd>아주그룹 ㈜아주가 최대주주 — 2026년 블록딜 후 지분 51.38% <sup class="ref"><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">[13]</a></sup></dd>
+        <dt>대표</dt><dd>김지원 대표 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202601201431129920106586" target="_blank" rel="noopener">[3]</a></sup></dd>
+        <dt>운용자산</dt><dd>2025년말 약 2.5조원 (2024년말 2.1조 → 20%↑), 2028년 3조원 목표 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">[5]</a></sup></dd>
+        <dt>주력섹터</dt><dd>바이오·헬스케어, AI반도체·AI앱, 로봇(피지컬 AI), 방산·항공우주, 글로벌(미국) <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></dd>
+      </dl>
+      <p class="src">스스로 "창업초기~Pre/Post IPO 전 생애주기 멀티스테이지 대체투자 전문운용사"를 표방. <span class="flag">※운용조합 개수 등 세부는 DART 사업보고서 대조 필요.</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 1~2년 동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2024. 05</div><div class="tl-body">'IBK혁신-아주 좋은 벤처펀드 3.0' 약 2,070억원 결성 (IBK혁신펀드 GP 선정) <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024 연간</div><div class="tl-body">연간 펀딩 약 5,000억원 성공, AUM 2.5조원 진입 발판</div></div>
+        <div class="tl-item"><div class="tl-date">2025. 12. 26</div><div class="tl-body">'아주 좋은 제4호 PEF' 약 3,130억원 결성 — 자사 역대 최대 단일 펀드 <sup class="ref"><a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202512291415290400109422" target="_blank" rel="noopener">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">아주 라이프사이언스 해외펀드 성공 청산 — 일부 10배+ 멀티플, '2026 한국벤처캐피탈대상 Best Exit Deal' 선정 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202602251417445880107940" target="_blank" rel="noopener">[14]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">미국 아르셀엑스 나스닥 급등·스페이스X IPO 기대 — 글로벌 유니콘 회수 모멘텀 부각 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202602241716580800102890" target="_blank" rel="noopener">[8]</a></sup> <sup class="ref"><a href="https://m.news.nate.com/view/20260226n37072" target="_blank" rel="noopener">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 03</div><div class="tl-body">기업가치 제고계획 발표(2028년 AUM 3조원 목표) <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">공항 라운지 운영사 '이브릿지' 지분 100% 인수(약 2,000억원) — 바이아웃 PE 마수걸이 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?code=0103&key=202604151351236240109369" target="_blank" rel="noopener">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">조직개편 — VC를 벤처투자/글로벌투자로 이원화, AC사업단→AC본부 격상 <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04~06</div><div class="tl-body">최대주주 ㈜아주 블록딜(약 1,586억원) → 지분 51.38%로 축소, 주가 급락·오버행 우려 <sup class="ref"><a href="https://v.daum.net/v/20260428172709008" target="_blank" rel="noopener">[12]</a></sup> <sup class="ref"><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 05</div><div class="tl-body">국민성장펀드 1차 간접투자 GP 선정 — 소형리그, 약 1,000억원 배정 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">[6]</a></sup> <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">[7]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 박세근 상무</h2>
+      <dl class="kv">
+        <dt>직책</dt><dd>투자상무(2022-03 승진). <span class="flag">※2023년까지 '상무' 확인, 2026년 현재 직책·소속 본부는 미확인 → 본인 확인 필요</span> <sup class="ref"><a href="https://www.seoulfn.com/news/articleView.html?idxno=450284" target="_blank" rel="noopener">[17]</a></sup></dd>
+        <dt>담당</dt><dd>IT서비스·콘텐츠·바이오·제조 등 멀티섹터 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></dd>
+        <dt>경력</dt><dd>삼성SDI, 엔씨소프트(NC소프트) 출신. <span class="flag">학력·아주IB 합류 연도 미확인</span></dd>
+        <dt>담당펀드</dt><dd>'아주좋은벤처펀드 2.0'(2,940억원, 2021-12) 핵심운용인력. <span class="flag">현재 대표운용 펀드는 확인 필요</span> <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></dd>
+      </dl>
+      <h3>대표 투자·회수</h3>
+      <ul class="tight">
+        <li>레진코믹스(콘텐츠) — 대표 포트폴리오 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></li>
+        <li>피엔티(Pnt, 제조) — 대표 포트폴리오 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></li>
+        <li>코어라인소프트(의료AI) — 투자·2023 인터뷰이. 2023-09 코스닥 상장, 아주IB 약 9배 회수 예상. <span class="flag">개인 귀속은 정황 근거(확인 필요)</span> <sup class="ref"><a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">[15]</a></sup></li>
+        <li>무신사 — 귀속 상충(박세근 vs 강웅태 상무), <span class="flag">확인 필요</span></li>
+      </ul>
+      <h3>최근 발언·인터뷰</h3>
+      <ul class="tight">
+        <li>2023-07 이코노미스트: 코어라인소프트에 대해 "풍부한 경험과 산업에 대한 이해가 가장 큰 강점"이라 평가 <sup class="ref"><a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">[15]</a></sup></li>
+        <li>2025~2026년 개인 명의 인터뷰·기고는 검색상 미확인(회사 발언은 김지원 대표 위주)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드·정책펀드 연관성</h2>
+      <ul class="tight">
+        <li><b>국민성장펀드(2026)</b>: 1차 간접투자 위탁운용사(GP) 11곳에 선정 — 소형리그, 파라투스인베스트먼트와 함께 각 약 1,000억원. 앵커 430억 기반 하드캡 2배 적용, 선정 후 사실상 조기 결성 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">[6]</a></sup> <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">[7]</a></sup></li>
+        <li><b>IBK혁신펀드</b>: 2024·2025 연속 GP 선정 <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></li>
+        <li><b>한국성장금융 밸류업펀드</b>: 2025 숏리스트 → '아주 좋은 제4호 PEF' 3,130억 결성, 성장금융 2025 결산 '2관왕 6곳' 포함 <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=20327" target="_blank" rel="noopener">[18]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※박세근 상무 개인의 정책펀드 담당·발언 여부는 미확인.</span> 일부 매체는 국민성장펀드 '탈락'으로 보도한 바 있어 라운드·시점 구분 확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>DART·실적 요약 <span style="font-size:12px;color:var(--muted);">(상장 VC)</span></h2>
+      <dl class="kv">
+        <dt>2025 매출</dt><dd>507.5억원 (전년比 −22.6%)</dd>
+        <dt>영업이익</dt><dd>118.9억원 (+41.7%)</dd>
+        <dt>당기순이익</dt><dd>83.2억원 (전년과 보합)</dd>
+        <dt>1Q25</dt><dd>성과보수 약 12억원 유입</dd>
+      </dl>
+      <p class="src">매출 감소는 관리보수·투자자산 수익 축소, 영업이익 개선은 비용절감·지분법이익 증가에 기인 <sup class="ref"><a href="https://www.datatooza.com/article/20260212182956762852ef358596_80" target="_blank" rel="noopener">[11]</a></sup>. 2025 사업보고서 원문(2026-03-19 제출)은 KRX KIND·DART에서 교차확인 <sup class="ref"><a href="https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260319001877" target="_blank" rel="noopener">[19]</a></sup>. <span class="flag">분기별 상세 손익은 원문 대조 권장.</span></p>
+    </div>
+
+    <p class="note">⚠️ 본 브리핑은 공개 자료(언론·공시) 기반이며, 원문 직접열람이 제한된 항목은 검색 요약을 교차검증했습니다. "미확인/확인 필요"로 표시한 항목은 취재 시 본인·회사에 재확인하시길 권합니다. 발행 시점(2026-07-27) 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">각 질문에 우선순위와 <b>근거(어느 사실에서 나온 질문인지)</b>가 붙어 있습니다. 근거의 [번호]는 하단 출처 목록과 연결됩니다.</p>
+
+    <!-- 카테고리 1 -->
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 이슈</h2></div>
+    <div class="q cat1"><p class="qtext">최대주주 ㈜아주가 4월 약 1,586억원 블록딜로 지분을 51.38%까지 낮췄습니다. 오버행 우려와 지배구조 안정성에 대한 시장 시각을 어떻게 보시나요? 추가 매각 가능성은?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: ㈜아주 블록딜·지분 51.38% <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">주가가 1년 새 400% 넘게 올랐고 스페이스X·아르셀엑스 등 미실현·추정 밸류가 상당히 반영됐습니다. 회수 배수의 실현 시점과 변동성 리스크는 어떻게 관리하십니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 스페이스X 테마 주가 급등 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602241716580800102890" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">이브릿지 2,000억 인수로 바이아웃 PE에 본격 진입했습니다. VC DNA를 가진 하우스가 경영권 인수·PMI에서 갖는 강점과 약점은 무엇이라고 보십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 이브릿지 인수 <a href="https://www.thebell.co.kr/front/newsview.asp?code=0103&key=202604151351236240109369" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2026년 조직을 벤처투자/글로벌투자로 이원화하고 AC본부를 격상했습니다. 이 개편이 노리는 목표와 인력·의사결정 체계 변화는?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 2026 조직개편 <a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <!-- 카테고리 2 -->
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자 개인 · 심사역 전략</h2></div>
+    <div class="q cat2"><p class="qtext">삼성SDI·엔씨소프트를 거쳐 VC로 오셨습니다. 산업 현장 경험이 심사역으로서 딜 발굴·판단에 구체적으로 어떻게 작용하나요?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 경력(삼성SDI·NC) <a href="https://www.seoulfn.com/news/articleView.html?idxno=450284" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">코어라인소프트 투자 때 "풍부한 경험과 산업 이해가 강점"이라고 하셨습니다. 의료AI 섹터를 지금 다시 본다면 어떤 기준으로 옥석을 가리시겠습니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 2023 이코노미스트 인터뷰 <a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">레진코믹스·피엔티 등 콘텐츠부터 제조까지 폭넓게 담당해오셨습니다. 멀티섹터 커버의 이점과, 요즘 개인적으로 집중하는 섹터는 무엇인가요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 대표 포트폴리오 <a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">'아주좋은벤처펀드 2.0'(2,940억) 핵심운용인력이셨습니다. 현재 대표운용 중인 펀드와 올해 결성·집행 계획을 알 수 있을까요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 담당펀드(확인 필요) <a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></span></div></div>
+
+    <!-- 카테고리 3 -->
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+    <div class="q cat3"><p class="qtext">아주IB가 국민성장펀드 1차 소형리그 GP로 선정됐습니다(약 1,000억). 앵커 대비 하드캡·민간 매칭을 어떻게 채웠고, 어떤 전략산업에 투입할 계획입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 국민성장펀드 GP 선정 <a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">선정 며칠 만에 결성이 사실상 마무리됐다는 보도가 있었습니다. LP 확보가 그렇게 빨랐던 배경과, 소형리그 특성상 투자 타깃(초기·전략산업)은?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 소형리그·조기 결성 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">IBK혁신펀드·성장금융 밸류업펀드 등 정책자금 GP로 반복 선정됐습니다. 정책펀드가 하우스 전략에서 차지하는 비중과, 민간 출자와의 균형은 어떻게 가져가십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: IBK혁신·밸류업 GP <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20327" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">국민성장펀드가 전략산업(AI·반도체·방산 등)에 집중하는데, 아주IB의 주력(바이오·AI·로봇)과 정책 방향의 정합성은 어떻게 보십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 주력섹터 × 국민성장펀드 <a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <!-- 카테고리 4 -->
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 전략 · 포트폴리오</h2></div>
+    <div class="q cat4"><p class="qtext">2028년 AUM 3조원 목표를 제시했습니다(현재 2.5조). VC·PE·글로벌 중 어디서 성장을 끌어올릴 계획이며, 목표의 현실성은?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: AUM 3조 목표 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">라이프사이언스 해외펀드가 10배+ 멀티플로 'Best Exit Deal'에 뽑혔습니다. 글로벌(미국) 투자 비중을 얼마나 더 키우실 것이며, 환·규제 리스크 관리는?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: Best Exit Deal <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602251417445880107940" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2025년 매출은 22.6% 줄었지만 영업이익은 41.7% 늘었습니다. 관리보수 축소 국면에서 성과보수·GP커밋 비중을 어떻게 가져가실 계획입니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 2025 실적 <a href="https://www.datatooza.com/article/20260212182956762852ef358596_80" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">'멀티스테이지 대체투자 전문운용사'를 표방하십니다. 창업초기부터 Pre/Post IPO까지 전 생애주기 커버가 실제 딜에서 어떤 시너지를 냅니까?</p><div class="qmeta"><span class="pri low">우선순위 하</span><span class="basis">근거: 멀티스테이지 표방 <a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <!-- 출처 목록 -->
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 아시아경제, 「상장 VC 대해부⑤ 1호 VC 아주IB투자」, 2025-06-18. <a href="https://www.asiae.co.kr/article/2025061814465853296" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 한국금융신문, 아주IB 2026 경영전략, 2026-04-19. <a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 더벨, 「2026 VC 로드맵」 김지원 대표, 2026-01-20. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601201431129920106586" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 더벨, 「아주IB, 역대 최대 PEF 결성」, 2025-12-29. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202512291415290400109422" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 더벨, 「3조 AUM 노리는 아주IB」, 2026-05-28. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 블로터, 「국민성장펀드 GP 11곳 낙점」, 2026. <a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 더벨, 「국민성장펀드 소형 리그 17곳 격돌」, 2026-05-07. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 더벨, 「Red&Blue — 아주IB·스페이스X」, 2026-02-24. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602241716580800102890" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 네이트/뉴스, 「11조원대 빅딜…美 바이오 잭팟(아르셀엑스)」, 2026-02-26. <a href="https://m.news.nate.com/view/20260226n37072" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 더벨, 「아주IB, 이브릿지 인수」, 2026-04-15. <a href="https://www.thebell.co.kr/front/newsview.asp?code=0103&key=202604151351236240109369" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 데이터투자, 아주IB 2025 실적, 2026-02-12. <a href="https://www.datatooza.com/article/20260212182956762852ef358596_80" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 다음/뉴스, ㈜아주 블록딜 공시, 2026-04-28. <a href="https://v.daum.net/v/20260428172709008" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 디지털투데이, ㈜아주 지분율 51.38% 변동 공시, 2026. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 더벨, 「Best Exit Deal — 600억 글로벌펀드 회수」, 2026-02-25. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602251417445880107940" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 이코노미스트, 박세근 상무 코어라인소프트 인터뷰, 2023-07-19. <a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 뉴스핌, 아주좋은벤처펀드 2.0 결성, 2021-12-16. <a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 서울파이낸스, 박세근 투자상무 승진(4인 동반), 2022-03-24. <a href="https://www.seoulfn.com/news/articleView.html?idxno=450284" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 넘버스, 「성장금융 2025 결산⑥」, 2025~2026. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20327" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> KRX KIND, 아주IB투자 2025 사업보고서, 2026-03-19 제출. <a href="https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260319001877" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 아시아경제, 국민성장펀드 회수 저울질(프로티나 등), 2026-02-27. <a href="https://www.asiae.co.kr/article/2026022710085757252" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">※ 원문 직접열람이 제한돼 일부 항목은 검색 요약을 교차검증했습니다. 수치·인물 귀속 등 핵심 사실은 취재 시 DART 사업보고서 및 본인·회사 확인을 권장합니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">VC 인터뷰 질문 준비 도구 · 공개 자료 기반 · 2026-07-27</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
