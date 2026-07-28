@@ -52,7 +52,9 @@
   label.field span.req{color:var(--accent)}
   input,select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);
     border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
-  input:focus,select:focus{outline:2px solid var(--brand);outline-offset:0}
+  textarea{resize:vertical;min-height:64px;line-height:1.55}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:0}
+  code{background:var(--chip);color:var(--chip-ink);border-radius:5px;padding:1px 6px;font-size:.85em}
   .chips{display:flex;flex-wrap:wrap;gap:9px}
   .chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);
     border-radius:999px;padding:9px 15px;font-size:.87rem;line-height:1.3;cursor:pointer;user-select:none;
@@ -91,6 +93,7 @@
   .stop::before{content:"";position:absolute;left:-31px;top:3px;width:12px;height:12px;
     border-radius:50%;background:var(--brand);border:3px solid var(--card);box-shadow:0 0 0 1px var(--line)}
   .stop.ev::before{background:var(--event);box-shadow:0 0 0 1px var(--event)}
+  .stop.fr::before{background:var(--accent);box-shadow:0 0 0 1px var(--accent)}
   .stop .t{font-size:.82rem;color:var(--brand);font-weight:700;letter-spacing:.02em;
     font-variant-numeric:tabular-nums}
   .stop .name{font-weight:600;font-size:1.04rem;line-height:1.45}
@@ -101,6 +104,8 @@
     border:1px solid var(--line);border-radius:9px;padding:8px 11px;align-self:flex-start;max-width:100%}
   .stop .why{display:flex;flex-wrap:wrap;gap:7px}
   .tagm{font-size:.75rem;background:var(--chip);color:var(--chip-ink);border-radius:6px;padding:3px 9px;line-height:1.4}
+  .tagm.friend{background:var(--accent);color:#fff;font-weight:600}
+  .eventBanner:last-child{margin-bottom:8px}
   .foot{color:var(--sub);font-size:.8rem;margin-top:8px;line-height:1.6}
   .src{color:var(--sub);font-size:.77rem;line-height:1.5}
   .note{font-size:.84rem;color:var(--sub);line-height:1.7;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
@@ -168,7 +173,7 @@
       </label>
     </div>
 
-    <div style="margin-top:14px">
+    <div style="margin-top:16px">
       <div class="field" style="color:var(--sub);font-size:.85rem;margin-bottom:6px">여행 스타일 (복수 선택)</div>
       <div class="chips" id="styleChips">
         <span class="chip on" data-v="감성카페">☕ 감성카페</span>
@@ -178,6 +183,14 @@
         <span class="chip" data-v="액티비티">🥾 액티비티·등산</span>
         <span class="chip" data-v="여유">🛋️ 여유·힐링</span>
       </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <label class="field" for="friendPlaces">친구 추천 맛집·장소 (한 줄에 하나씩, 선택)
+        <textarea id="friendPlaces" rows="3"
+          placeholder="예)&#10;봉포머구리집&#10;청초수물회 @중앙시장&#10;칠성조선소"></textarea>
+      </label>
+      <div class="field" style="font-size:.8rem;margin-top:6px">이름만 적어도 되고, <code>@지역</code>을 붙이면 동선에 더 잘 반영돼요. (예: <code>xxx식당 @대포항</code>)</div>
     </div>
 
     <div class="row-actions">
@@ -409,8 +422,28 @@ function readPrefs(){
     seorak: singleVal("seorak") || "no",
     luggage: singleVal("luggage") || "locker",
     pace: singleVal("pace") || "relax",
-    eventMode: singleVal("event") || "include"
+    eventMode: singleVal("event") || "include",
+    friendPlaces: parseFriendPlaces($("#friendPlaces") ? $("#friendPlaces").value : "")
   };
+}
+
+/* ----- 친구 추천 맛집 파싱: 한 줄에 하나, "이름 @지역" 형태로 지역 힌트 가능 ----- */
+function parseFriendPlaces(raw){
+  return (raw||"").split(/\r?\n/).map(line=>{
+    const t = line.trim();
+    if(!t) return null;
+    const m = t.match(/^(.*?)\s*@\s*(.+)$/);
+    return m ? { name:m[1].trim(), area:m[2].trim() } : { name:t, area:"" };
+  }).filter(Boolean);
+}
+
+/* ----- 지역 힌트/이름으로 zone 추론 ----- */
+function inferZone(city, text){
+  const rules = city.lodgingZoneByKeyword || [];
+  for(const r of rules){ if(r.kw.some(k=>text.includes(k))) return r.zone; }
+  if(/설악|케이블|신흥사|권금성/.test(text)) return "seorak";
+  if(/영금|등대|동명/.test(text)) return "donghae";
+  return null;
 }
 
 /* ----- 숙소 → zone 판별 ----- */
@@ -427,6 +460,8 @@ function scorePlace(p, prefs){
   s += m * 3.2;
   // 대중교통이면 설악산은 접근 부담 소폭 감점(선택 안 했을 때)
   if(prefs.transport==="transit" && p.zone==="seorak") s -= 1.5;
+  // 친구 추천은 최우선 반영
+  if(p.friend) s += 8;
   return s;
 }
 
@@ -446,6 +481,19 @@ function buildItinerary(prefs){
   if(prefs.seorak==="no")       pool = pool.filter(p=>p.zone!=="seorak");
   else if(prefs.seorak==="hike")  pool = pool.filter(p=>p.id!=="cable");
   else if(prefs.seorak==="cable") pool = pool.filter(p=>p.id!=="seorakPark");
+
+  // 친구 추천 맛집을 후보로 편입 (식사 슬롯 우선)
+  (prefs.friendPlaces||[]).forEach((f,i)=>{
+    const zone = inferZone(city, `${f.name} ${f.area}`) || homeZone;
+    const fp = { id:"friend"+i, name:f.name, zone, cat:"친구 추천 맛집", pop:5,
+      styles:["맛집"], slot:["lunch","dinner"], dur:70, friend:true,
+      desc:"친구가 추천해준 맛집이에요.",
+      transit: f.area ? `${f.area} 방면 · 네이버지도에서 위치·길찾기 확인` : "네이버지도에서 위치·길찾기 확인",
+      map: f.area ? `${f.name} ${f.area}` : f.name };
+    fp.score = scorePlace(fp, prefs);
+    pool.push(fp);
+  });
+
   pool.sort((a,b)=>b.score-a.score);
 
   const used = new Set();
@@ -497,8 +545,8 @@ function buildItinerary(prefs){
       if(opt.role==="dinner" && clock < toMin("18:00")) clock = toMin("18:00");
       const start=clock;
       stops.push({ time:toHHMM(start), name:p.name, cat:p.cat, desc:p.desc,
-        move, transit:p.transit, styles:p.styles, map:p.map, src:p.src,
-        event:!!opt.event, timeText:opt.timeText });
+        move, transit:p.transit, styles:p.styles, map:p.map,
+        event:!!opt.event, friend:!!p.friend, timeText:opt.timeText });
       clock += p.dur;
       prevZone=p.zone;
     };
@@ -590,9 +638,37 @@ function render(res){
         <span class="pill">${prefs.party}</span>
         <span class="pill">🏨 ${prefs.lodging}</span>
         <span class="pill">${styleTxt}</span>
-      </div>`;
+      </div>
+    </div>`;
 
-  // 특별 행사 배너
+  // 일자별 타임라인
+  days.forEach(day=>{
+    html += `<div class="dayHead"><span class="dn">${day.label}</span><span class="dd">${day.date}</span></div>`;
+    html += `<div class="card"><div class="timeline">`;
+    day.stops.forEach(s=>{
+      const nm = s.map ? `<a href="${mapUrl(s.map)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
+      const tags = (s.friend ? [`<span class="tagm friend">👥 친구 추천</span>`] : [])
+        .concat((s.styles||[]).map(t=>`<span class="tagm">#${t}</span>`));
+      html += `<div class="stop ${s.event?"ev":""} ${s.friend?"fr":""}">
+        <div class="t">${s.time}${s.timeText?` · ${s.timeText}`:""}</div>
+        <div class="name">${nm}</div>
+        <div class="cat">${s.cat}</div>
+        ${s.desc?`<div class="desc">${s.desc}</div>`:""}
+        ${s.move?`<div class="move">🚶 ${s.move}</div>`:""}
+        ${tags.length?`<div class="why">${tags.join("")}</div>`:""}
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  // 교통 팁 + 정보 수정
+  html += `<div class="card"><h2>🚌 대중교통 팁</h2><ul class="tips">`;
+  (city.transitTips||[]).forEach(t=> html += `<li>${t}</li>`);
+  html += `</ul>
+    <div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
+  </div>`;
+
+  // 특별 행사 — 최하단 배치 (강제 삽입 아님)
   overlappingEvents.forEach(e=>{
     const included = prefs.eventMode==="include" && prefs.returnTime==="late";
     html += `
@@ -604,39 +680,8 @@ function render(res){
         <div class="meta">${included
           ? "→ 마지막 날 오후 늦게 복귀 일정이라 코스에 넣어뒀어요."
           : "→ 코스에는 강제로 넣지 않았어요. 원하시면 마지막 날 오후에 추가하세요."}</div>
-        <div class="src">출처: ${e.src} · ${e.recency}</div>
       </div>`;
   });
-  html += `</div>`;
-
-  // 일자별 타임라인
-  days.forEach(day=>{
-    html += `<div class="dayHead"><span class="dn">${day.label}</span><span class="dd">${day.date}</span></div>`;
-    html += `<div class="card"><div class="timeline">`;
-    day.stops.forEach(s=>{
-      const nm = s.map ? `<a href="${mapUrl(s.map)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
-      html += `<div class="stop ${s.event?"ev":""}">
-        <div class="t">${s.time}${s.timeText?` · ${s.timeText}`:""}</div>
-        <div class="name">${nm}</div>
-        <div class="cat">${s.cat}</div>
-        ${s.desc?`<div class="desc">${s.desc}</div>`:""}
-        ${s.move?`<div class="move">🚶 ${s.move}</div>`:""}
-        ${s.styles&&s.styles.length?`<div class="why">${s.styles.map(t=>`<span class="tagm">#${t}</span>`).join("")}</div>`:""}
-        ${s.src?`<div class="src">근거: ${s.src}</div>`:""}
-      </div>`;
-    });
-    html += `</div>`;
-    html += `</div>`;
-  });
-
-  // 교통 팁
-  html += `<div class="card"><h2>🚌 대중교통 팁</h2><ul class="tips">`;
-  (city.transitTips||[]).forEach(t=> html += `<li>${t}</li>`);
-  html += `</ul>
-    <div class="note">데이터 근거: 웹검색으로 조사한 최근 1~3년 인기 장소 + 1년 이내 행사 자료를 큐레이션했습니다.
-    실시간 유튜브·인스타·네이버블로그 크롤링 연동은 향후 API 키 연결 시 확장 가능합니다.</div>
-    <div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
-  </div>`;
 
   $("#result").innerHTML = html;
   $("#editAgain").onclick = ()=>{ $("#result").innerHTML=""; $("#step2").classList.add("hidden");
