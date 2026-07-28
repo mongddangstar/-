@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>여행 코스 추천 · Trip Course</title>
+<style>
+  /* ---------- Theme (light/dark aware) ---------- */
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1c2330; --sub:#5b6472;
+    --line:#e6e9ef; --brand:#1f7a8c; --brand-ink:#fff; --accent:#f08a3c;
+    --event:#d64545; --chip:#eef3f5; --chip-ink:#1f7a8c; --shadow:0 2px 14px rgba(20,30,50,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12161d; --card:#1b212b; --ink:#eef1f6; --sub:#9aa5b4;
+      --line:#2a323f; --brand:#3fb0c7; --brand-ink:#06212a; --accent:#f5a45f;
+      --event:#ff6b6b; --chip:#22303a; --chip-ink:#7fd4e6; --shadow:0 2px 16px rgba(0,0,0,.35);}
+  }
+  :root[data-theme="dark"]{ --bg:#12161d; --card:#1b212b; --ink:#eef1f6; --sub:#9aa5b4;
+      --line:#2a323f; --brand:#3fb0c7; --brand-ink:#06212a; --accent:#f5a45f;
+      --event:#ff6b6b; --chip:#22303a; --chip-ink:#7fd4e6; --shadow:0 2px 16px rgba(0,0,0,.35);}
+  :root[data-theme="light"]{ --bg:#f5f6f8; --card:#ffffff; --ink:#1c2330; --sub:#5b6472;
+      --line:#e6e9ef; --brand:#1f7a8c; --brand-ink:#fff; --accent:#f08a3c;
+      --event:#d64545; --chip:#eef3f5; --chip-ink:#1f7a8c; --shadow:0 2px 14px rgba(20,30,50,.08);}
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-size:16px;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",
+      "Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%;
+    /* 한글은 단어 단위로 줄바꿈해야 가독성이 좋다 */
+    word-break:keep-all;overflow-wrap:anywhere;text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased}
+  h1,h2,h3{text-wrap:balance}
+  p{margin:0}
+  .wrap{max-width:720px;margin:0 auto;padding:24px 18px 76px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  header.top h1{font-size:1.4rem;margin:0;letter-spacing:-.02em;line-height:1.3}
+  header.top .tag{color:var(--sub);font-size:.85rem;margin-top:4px;line-height:1.5}
+  .themeBtn{border:1px solid var(--line);background:var(--card);color:var(--ink);
+    border-radius:999px;padding:7px 13px;font-size:.82rem;cursor:pointer;white-space:nowrap;flex:none}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:22px;box-shadow:var(--shadow);margin-bottom:18px}
+  .card h2{font-size:1.08rem;margin:0 0 6px;letter-spacing:-.01em;line-height:1.4}
+  .card .hint{color:var(--sub);font-size:.86rem;line-height:1.6;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  label.field{display:flex;flex-direction:column;gap:7px;font-size:.86rem;color:var(--sub);line-height:1.45}
+  label.field span.req{color:var(--accent)}
+  input,select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);
+    border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+  input:focus,select:focus{outline:2px solid var(--brand);outline-offset:0}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);
+    border-radius:999px;padding:9px 15px;font-size:.87rem;line-height:1.3;cursor:pointer;user-select:none;
+    transition:background .12s,border-color .12s}
+  .chip.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .row-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  button.primary{background:var(--brand);color:var(--brand-ink);border:none;border-radius:12px;
+    padding:13px 22px;font-size:.96rem;font-weight:600;cursor:pointer;line-height:1.3}
+  button.ghost{background:transparent;color:var(--brand);border:1px solid var(--brand);
+    border-radius:12px;padding:13px 20px;font-size:.96rem;cursor:pointer;line-height:1.3}
+  button:active{transform:translateY(1px)}
+  .hidden{display:none !important}
+  .q{margin-bottom:22px}
+  .q:last-of-type{margin-bottom:0}
+  .q p.ask{font-weight:600;font-size:.98rem;line-height:1.5;margin:0 0 11px}
+
+  /* ---------- Results ---------- */
+  .summary{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .pill{background:var(--chip);color:var(--chip-ink);border-radius:999px;
+    padding:6px 13px;font-size:.82rem;font-weight:600;line-height:1.3}
+  .eventBanner{border:1px solid var(--event);background:color-mix(in srgb,var(--event) 12%,transparent);
+    border-radius:14px;padding:16px 18px;margin:12px 0 4px;
+    display:flex;flex-direction:column;gap:7px}
+  .eventBanner .lead{color:var(--event);font-weight:700;font-size:.82rem;letter-spacing:.03em}
+  .eventBanner h3{margin:0;font-size:1.08rem;line-height:1.4}
+  .eventBanner .meta{color:var(--sub);font-size:.86rem;line-height:1.6}
+  .eventBanner .desc{font-size:.92rem;line-height:1.7;margin:0}
+  .eventBanner .src{margin-top:2px}
+  .dayHead{display:flex;align-items:baseline;gap:10px;margin:28px 2px 14px}
+  .dayHead .dn{font-size:1.18rem;font-weight:700;letter-spacing:-.01em}
+  .dayHead .dd{color:var(--sub);font-size:.87rem}
+  .timeline{position:relative;margin-left:8px;padding-left:24px;
+    border-left:2px dashed var(--line)}
+  .stop{position:relative;display:flex;flex-direction:column;gap:6px;margin-bottom:26px}
+  .stop:last-child{margin-bottom:2px}
+  .stop::before{content:"";position:absolute;left:-31px;top:3px;width:12px;height:12px;
+    border-radius:50%;background:var(--brand);border:3px solid var(--card);box-shadow:0 0 0 1px var(--line)}
+  .stop.ev::before{background:var(--event);box-shadow:0 0 0 1px var(--event)}
+  .stop .t{font-size:.82rem;color:var(--brand);font-weight:700;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums}
+  .stop .name{font-weight:600;font-size:1.04rem;line-height:1.45}
+  .stop .name a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--sub)}
+  .stop .cat{font-size:.79rem;color:var(--sub);line-height:1.4}
+  .stop .desc{font-size:.92rem;color:var(--ink);line-height:1.7}
+  .stop .move{font-size:.83rem;color:var(--sub);line-height:1.55;background:var(--bg);
+    border:1px solid var(--line);border-radius:9px;padding:8px 11px;align-self:flex-start;max-width:100%}
+  .stop .why{display:flex;flex-wrap:wrap;gap:7px}
+  .tagm{font-size:.75rem;background:var(--chip);color:var(--chip-ink);border-radius:6px;padding:3px 9px;line-height:1.4}
+  .foot{color:var(--sub);font-size:.8rem;margin-top:8px;line-height:1.6}
+  .src{color:var(--sub);font-size:.77rem;line-height:1.5}
+  .note{font-size:.84rem;color:var(--sub);line-height:1.7;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+  ul.tips{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+  ul.tips li{position:relative;padding-left:16px;font-size:.88rem;line-height:1.65;color:var(--ink)}
+  ul.tips li::before{content:"•";position:absolute;left:2px;color:var(--brand);font-weight:700}
+  a.maplink{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🧭 여행 코스 추천</h1>
+      <div class="tag">인기 장소 · 여행 스타일 · 동선 · 기간 중 특별 행사까지 고려</div>
+    </div>
+    <button class="themeBtn" id="themeBtn" type="button">🌗 테마</button>
+  </header>
+
+  <!-- ================= STEP 1: 초기 정보 등록 ================= -->
+  <section class="card" id="step1">
+    <h2>1) 여행 정보 등록</h2>
+    <p class="hint">“n월 n일부터 n박n일 000 방문” 정보를 입력하세요. (속초 예시가 미리 채워져 있습니다)</p>
+    <div class="grid">
+      <label class="field">여행지 <span class="req">*</span>
+        <input id="destination" value="속초" />
+      </label>
+      <label class="field">이동 수단
+        <select id="transport">
+          <option value="transit" selected>대중교통 (뚜벅이)</option>
+          <option value="car">자차</option>
+        </select>
+      </label>
+      <label class="field">시작일 <span class="req">*</span>
+        <input id="startDate" type="date" value="2026-07-29" />
+      </label>
+      <label class="field">종료일 <span class="req">*</span>
+        <input id="endDate" type="date" value="2026-07-31" />
+      </label>
+      <label class="field">출발 시각
+        <input id="departTime" type="time" value="09:10" />
+      </label>
+      <label class="field">출발 장소
+        <input id="departPlace" value="서울 고속버스터미널" />
+      </label>
+      <label class="field">이동 소요(분) · 편도
+        <input id="travelMin" type="number" value="140" min="0" step="10" />
+      </label>
+      <label class="field">숙소 이름 (동선 기준점)
+        <input id="lodging" value="홈 마리나 속초" />
+      </label>
+      <label class="field">동행 구성
+        <select id="party">
+          <option>혼자</option>
+          <option selected>커플·친구</option>
+          <option>가족</option>
+        </select>
+      </label>
+      <label class="field">마지막 날 복귀 시간대
+        <select id="returnTime">
+          <option value="early">이른 오후 (14~16시)</option>
+          <option value="late" selected>오후 늦게 (18시 이후)</option>
+          <option value="unknown">미정</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="field" style="color:var(--sub);font-size:.85rem;margin-bottom:6px">여행 스타일 (복수 선택)</div>
+      <div class="chips" id="styleChips">
+        <span class="chip on" data-v="감성카페">☕ 감성카페</span>
+        <span class="chip on" data-v="인생샷">📸 인생샷</span>
+        <span class="chip on" data-v="맛집">🍜 맛집·먹거리</span>
+        <span class="chip" data-v="자연">🌊 자연·풍경</span>
+        <span class="chip" data-v="액티비티">🥾 액티비티·등산</span>
+        <span class="chip" data-v="여유">🛋️ 여유·힐링</span>
+      </div>
+    </div>
+
+    <div class="row-actions">
+      <button class="primary" id="toStep2" type="button">다음: 몇 가지만 더 여쭤볼게요 →</button>
+    </div>
+  </section>
+
+  <!-- ================= STEP 2: 되묻는 질문 플로우 ================= -->
+  <section class="card hidden" id="step2">
+    <h2>2) 더 정확한 코스를 위한 질문</h2>
+    <p class="hint">답변에 따라 동선·장소·시간표가 달라집니다.</p>
+
+    <div class="q">
+      <p class="ask">Q1. 설악산에 오를 의향이 있나요?</p>
+      <div class="chips" data-single="seorak">
+        <span class="chip" data-v="hike">네, 반나절 산행(흔들바위·비룡폭포)</span>
+        <span class="chip" data-v="cable">케이블카(권금성)만 가볍게</span>
+        <span class="chip on" data-v="no">아니요, 이번엔 패스</span>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="ask">Q2. 첫날 도착 후 체크인(15시) 전, 짐은 어떻게 할까요?</p>
+      <div class="chips" data-single="luggage">
+        <span class="chip on" data-v="locker">터미널·시장 물품보관함에 맡기고 가볍게</span>
+        <span class="chip" data-v="carry">그냥 들고 다닐게요</span>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="ask">Q3. 하루 이동 강도는?</p>
+      <div class="chips" data-single="pace">
+        <span class="chip on" data-v="relax">여유롭게 (하루 3~4곳)</span>
+        <span class="chip" data-v="packed">알차게 (하루 5~6곳)</span>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="ask">Q4. 여행 기간 중 특별 행사가 있으면?</p>
+      <div class="chips" data-single="event">
+        <span class="chip on" data-v="include">일정에 넣어줘 (겹칠 때만)</span>
+        <span class="chip" data-v="show">알려만 주고 선택은 내가</span>
+      </div>
+    </div>
+
+    <div class="row-actions">
+      <button class="ghost" id="backStep1" type="button">← 이전</button>
+      <button class="primary" id="generate" type="button">✨ 코스 추천 받기</button>
+    </div>
+  </section>
+
+  <!-- ================= RESULT ================= -->
+  <section id="result"></section>
+</div>
+
+<script>
+/* =========================================================================
+ *  여행 코스 추천 엔진
+ *  - 데이터: 웹검색으로 조사한 실데이터 큐레이션 (최근 1~3년 인기 / 행사는 1년 이내)
+ *  - 실시간 크롤링(유튜브·인스타·네이버블로그)은 API 키·이용약관·네트워크 제약으로
+ *    이 버전에서는 미포함. dataSources 스텁에 확장 지점을 문서화해 둠 (파일 하단 참고).
+ * ========================================================================= */
+
+/* ----- 데이터: 여행지별 장소/행사/교통 ----- */
+const DATA = {
+  "속초": {
+    // 숙소 zone을 기준으로 동선을 묶기 위한 구역(zone) 정의
+    zones: {
+      city:      { label:"도심·중앙시장",   near:["oeongchi","donghae","yeongnang"] },
+      donghae:   { label:"동명항·영금정",   near:["city"] },
+      yeongnang: { label:"영랑호·카페",     near:["city"] },
+      oeongchi:  { label:"외옹치·대포항·해변", near:["city"] },
+      seorak:    { label:"설악산",          near:[] }
+    },
+    // 숙소 → 어느 zone에 속하는지 (동선 기준점). 홈마리나 속초 = 외옹치/대포항.
+    lodgingZoneByKeyword: [
+      { kw:["마리나","외옹치","대포"], zone:"oeongchi" },
+      { kw:["설악","한화","워터피아"], zone:"oeongchi" },
+      { kw:["영랑","장사항"], zone:"yeongnang" },
+      { kw:["엑스포","조양","중앙","시내"], zone:"city" }
+    ],
+    places: [
+      // ---- 도심·중앙시장 ----
+      { id:"market", name:"속초관광수산시장(중앙시장)", zone:"city", cat:"시장·먹거리",
+        pop:5, styles:["맛집","인생샷"], slot:["lunch","snack"], dur:70,
+        desc:"닭강정·씨앗호떡·대게빵으로 유명한 속초 대표 시장. 도착 첫 끼로 딱.",
+        transit:"터미널에서 도보 15분 또는 시내버스 3·7·9번", map:"속초관광수산시장",
+        src:"대한민국 구석구석·식신 (2024~2025)" },
+      { id:"abai", name:"아바이마을 & 갯배", zone:"city", cat:"관광·먹거리",
+        pop:4, styles:["맛집","인생샷"], slot:["snack","sight"], dur:70,
+        desc:"무동력 배 ‘갯배’로 청호동으로 건너가 아바이순대·오징어순대 맛보기.",
+        transit:"중앙시장 인근 갯배선착장에서 도보 이동", map:"아바이마을 갯배선착장",
+        src:"visitkorea 한국관광100선" },
+      { id:"chilseong", name:"칠성조선소 살롱", zone:"city", cat:"감성카페",
+        pop:5, styles:["감성카페","인생샷","여유"], slot:["cafe"], dur:60,
+        desc:"옛 조선소를 개조한 청초호변 감성 카페. 넓은 부지와 사진 스폿.",
+        transit:"중앙시장/청초호 방면, 시내버스 또는 도보", map:"칠성조선소 살롱",
+        src:"다이닝코드·블로그 (2024~2025)" },
+      { id:"cheongcho", name:"청초호 호수공원", zone:"city", cat:"자연·산책",
+        pop:3, styles:["여유","자연"], slot:["sight"], dur:45,
+        desc:"도심 속 잔잔한 호수 산책로. 저녁 노을과 야경이 좋다.",
+        transit:"도심권, 도보 접근", map:"청초호 호수공원", src:"visitkorea" },
+      { id:"bongbread", name:"봉브레드(속초 빵집)", zone:"city", cat:"베이커리·카페",
+        pop:4, styles:["맛집","감성카페"], slot:["cafe","snack"], dur:30,
+        desc:"속초식 마늘빵·소보로로 알려진 로컬 베이커리. 테이크아웃 간식.",
+        transit:"도심권", map:"봉브레드 속초", src:"블로그·다이닝코드 (2024~2025)" },
+      { id:"manseok", name:"만석닭강정(중앙시장)", zone:"city", cat:"먹거리·간식",
+        pop:5, styles:["맛집"], slot:["snack"], dur:25,
+        desc:"속초 닭강정의 대명사. 포장해서 다니며 먹기 좋은 국민 간식.",
+        transit:"중앙시장 내", map:"만석닭강정 본점", src:"식신·블로그 (2024~2025)" },
+      { id:"cheongchosu", name:"청초수물회", zone:"city", cat:"물회·해산물",
+        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60,
+        desc:"시원한 물회로 이름난 청초호변 맛집. 여름 점심으로 제격.",
+        transit:"청초호 인근, 도심권", map:"청초수물회", src:"다이닝코드 (2024~2025)" },
+      { id:"88fish", name:"88생선구이(아바이마을)", zone:"city", cat:"생선구이·백반",
+        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60,
+        desc:"모둠 생선구이 백반으로 유명한 아바이마을 노포. 든든한 한 끼.",
+        transit:"아바이마을 내", map:"88생선구이 속초", src:"블로그·다이닝코드 (2024~2025)" },
+
+      // ---- 동명항·영금정 ----
+      { id:"yeonggeum", name:"영금정 & 속초등대전망대", zone:"donghae", cat:"자연·전망",
+        pop:4, styles:["자연","인생샷"], slot:["sight"], dur:60,
+        desc:"파도가 부딪히는 바위 정자와 등대전망대. 속초 8경, 바다 인생샷.",
+        transit:"시내버스 1·7·9번(터미널·중앙시장·갯배입구 경유)", map:"영금정",
+        src:"나무위키·visitkorea" },
+      { id:"dongmyeong", name:"동명항", zone:"donghae", cat:"항구·회",
+        pop:3, styles:["맛집"], slot:["dinner","lunch"], dur:70,
+        desc:"활어회·물회를 즐기기 좋은 항구. 영금정과 함께 묶어 방문.",
+        transit:"영금정 도보권", map:"동명항", src:"블로그 (2024~2025)" },
+
+      // ---- 영랑호·카페 ----
+      { id:"yeongnangho", name:"영랑호 산책로 & 범바위", zone:"yeongnang", cat:"자연·산책",
+        pop:4, styles:["자연","여유","인생샷"], slot:["sight"], dur:70,
+        desc:"설악산·울산바위를 배경으로 한 호수 둘레길. 부담 없는 힐링 산책.",
+        transit:"시내버스 이용 후 도보", map:"영랑호", src:"트립닷컴 (2025)" },
+      { id:"sbYeongnang", name:"스타벅스 속초영랑호DT점", zone:"yeongnang", cat:"감성카페",
+        pop:5, styles:["감성카페","인생샷","여유"], slot:["cafe"], dur:50,
+        desc:"영랑호와 설악산 능선이 한눈에 담기는 대형 뷰 스타벅스. 인생샷 명소.",
+        transit:"영랑호 인근", map:"스타벅스 속초영랑호", src:"블로그 (2025)" },
+      { id:"bongpo", name:"봉포머구리집", zone:"yeongnang", cat:"물회·해산물",
+        pop:5, styles:["맛집"], slot:["lunch","dinner"], dur:70,
+        desc:"성게알 가득 물회로 전국적으로 유명한 맛집. 대기 있을 수 있음.",
+        transit:"영랑동/봉포 방면, 시내버스 또는 택시", map:"봉포머구리집", src:"식신·다이닝코드 (2024~2025)" },
+
+      // ---- 외옹치·대포항·해변 (숙소권) ----
+      { id:"oeongchi", name:"외옹치 바다향기로", zone:"oeongchi", cat:"자연·해안산책",
+        pop:4, styles:["자연","인생샷","여유"], slot:["sight"], dur:55,
+        desc:"바다 위 데크로 이어진 해안 산책로. 숙소(외옹치권)에서 도보로 접근.",
+        transit:"숙소 도보권 / 시내버스 대포항 방면", map:"외옹치 바다향기로",
+        src:"visitkorea (2024~2025)" },
+      { id:"daepo", name:"대포항", zone:"oeongchi", cat:"항구·회·대게",
+        pop:5, styles:["맛집"], slot:["dinner","lunch"], dur:80,
+        desc:"활어회·대게·새우튀김의 성지. 숙소 근처라 첫날/마지막날 식사로 최적.",
+        transit:"숙소 도보·버스 / 시내버스 1·7·9번", map:"속초 대포항",
+        src:"식신·다이닝코드 (2024~2025)" },
+      { id:"beach", name:"속초해수욕장", zone:"oeongchi", cat:"해변",
+        pop:4, styles:["여유","인생샷","자연"], slot:["sight"], dur:60,
+        desc:"넓은 백사장과 카페거리. 여름밤 축제·야간관광 무대가 되는 곳.",
+        transit:"시내버스 / 도심에서 접근", map:"속초해수욕장", src:"visitkorea" },
+
+      // ---- 설악산 ----
+      { id:"seorakPark", name:"설악산 소공원(신흥사·흔들바위)", zone:"seorak", cat:"자연·산행",
+        pop:5, styles:["자연","액티비티"], slot:["morning"], dur:200,
+        desc:"신흥사~흔들바위~비룡폭포 코스. 반나절 가볍게 걷기 좋은 국립공원.",
+        transit:"터미널에서 시내버스 7·7-1번(약 30~40분)", map:"설악산 소공원",
+        src:"나무위키·visitkorea" },
+      { id:"cable", name:"설악산 케이블카(권금성)", zone:"seorak", cat:"관광·전망",
+        pop:5, styles:["자연","인생샷"], slot:["morning","sight"], dur:110,
+        desc:"권금성까지 케이블카로 올라 설악 능선을 조망. 체력 부담 적은 코스.",
+        transit:"설악산 소공원 내", map:"설악산 케이블카", src:"visitkorea (2025)" }
+    ],
+    // ---- 특별 행사 (최근 1년 이내 자료) ----
+    events: [
+      { id:"summerfest", name:"2026 속초 썸머 페스티벌",
+        start:"2026-07-31", end:"2026-08-02", timeText:"매일 16:00~22:00",
+        zone:"oeongchi", place:"속초해수욕장 일원",
+        desc:"해변 무대의 음악 공연과 국내 유명 DJ의 ‘썸머 나잇 일렉트릭’, 화려한 조명이 어우러지는 여름밤 축제.",
+        src:"아주경제·설악타임즈 (2026-07 보도)", recency:"1년 이내" }
+    ],
+    transitTips:[
+      "시내버스는 강원여객·동해상사가 운행하며 배차 간격이 넓을 수 있어요(주요 노선 15~20분).",
+      "정확한 실시간 버스 번호·시간은 네이버지도/카카오맵 길찾기로 한 번 더 확인하세요.",
+      "갯배는 시내↔아바이마을을 잇는 명물 교통수단(소액)입니다."
+    ]
+  }
+};
+
+/* ----- 유틸 ----- */
+const $ = s => document.querySelector(s);
+const pad = n => String(n).padStart(2,"0");
+const toMin = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
+const toHHMM = m => `${pad(Math.floor((m%1440)/60))}:${pad(m%60)}`;
+const mapUrl = q => "https://map.naver.com/p/search/" + encodeURIComponent(q);
+function daysBetween(a,b){
+  const d1=new Date(a+"T00:00"), d2=new Date(b+"T00:00");
+  return Math.max(1, Math.round((d2-d1)/86400000)+1);
+}
+function dateLabel(startISO, offset){
+  const d=new Date(startISO+"T00:00"); d.setDate(d.getDate()+offset);
+  const wd=["일","월","화","수","목","금","토"][d.getDay()];
+  return `${d.getMonth()+1}월 ${d.getDate()}일 (${wd})`;
+}
+function isoPlus(startISO, offset){
+  const d=new Date(startISO+"T00:00"); d.setDate(d.getDate()+offset);
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+
+/* ----- 폼 상태 수집 ----- */
+function selectedStyles(){
+  return [...document.querySelectorAll("#styleChips .chip.on")].map(c=>c.dataset.v);
+}
+function singleVal(name){
+  const el=document.querySelector(`[data-single="${name}"] .chip.on`);
+  return el ? el.dataset.v : null;
+}
+function readPrefs(){
+  return {
+    destination: $("#destination").value.trim(),
+    transport: $("#transport").value,
+    startDate: $("#startDate").value,
+    endDate: $("#endDate").value,
+    departTime: $("#departTime").value || "09:10",
+    departPlace: $("#departPlace").value.trim(),
+    travelMin: parseInt($("#travelMin").value||"140",10),
+    lodging: $("#lodging").value.trim(),
+    party: $("#party").value,
+    returnTime: $("#returnTime").value,
+    styles: selectedStyles(),
+    seorak: singleVal("seorak") || "no",
+    luggage: singleVal("luggage") || "locker",
+    pace: singleVal("pace") || "relax",
+    eventMode: singleVal("event") || "include"
+  };
+}
+
+/* ----- 숙소 → zone 판별 ----- */
+function lodgingZone(city, lodging){
+  const rules = city.lodgingZoneByKeyword || [];
+  for(const r of rules){ if(r.kw.some(k=>lodging.includes(k))) return r.zone; }
+  return "city";
+}
+
+/* ----- 장소 스코어링 ----- */
+function scorePlace(p, prefs){
+  let s = p.pop * 2;
+  const m = p.styles.filter(t=>prefs.styles.includes(t)).length;
+  s += m * 3.2;
+  // 대중교통이면 설악산은 접근 부담 소폭 감점(선택 안 했을 때)
+  if(prefs.transport==="transit" && p.zone==="seorak") s -= 1.5;
+  return s;
+}
+
+/* ----- 코스 생성 핵심 ----- */
+function buildItinerary(prefs){
+  const city = DATA[prefs.destination] || DATA["속초"];
+  const nDays = daysBetween(prefs.startDate, prefs.endDate);
+  const homeZone = lodgingZone(city, prefs.lodging);
+  const arrival = toMin(prefs.departTime) + (prefs.travelMin||140);
+
+  // 겹치는 행사 찾기
+  const tripStart=prefs.startDate, tripEnd=prefs.endDate;
+  const overlappingEvents = (city.events||[]).filter(e=> e.start<=tripEnd && e.end>=tripStart);
+
+  // 후보 풀 (설악산 의향 반영)
+  let pool = city.places.map(p=>({...p, score:scorePlace(p,prefs)}));
+  if(prefs.seorak==="no")       pool = pool.filter(p=>p.zone!=="seorak");
+  else if(prefs.seorak==="hike")  pool = pool.filter(p=>p.id!=="cable");
+  else if(prefs.seorak==="cable") pool = pool.filter(p=>p.id!=="seorakPark");
+  pool.sort((a,b)=>b.score-a.score);
+
+  const used = new Set();
+  const take = (filterFn) => {
+    const cand = pool.filter(p=>!used.has(p.id) && filterFn(p));
+    if(!cand.length) return null;
+    const pick = cand[0];
+    used.add(pick.id);
+    return pick;
+  };
+  const bySlot = slot => p => p.slot.includes(slot);
+  const inZones = zs => p => zs.includes(p.zone);
+
+  // zone 방문 우선순위: 숙소 zone 이웃 → 점수순
+  const zoneOrder = () => {
+    const order=[];
+    const push=z=>{ if(z && !order.includes(z)) order.push(z); };
+    (city.zones[homeZone]?.near||[]).forEach(push);
+    push(homeZone);
+    Object.keys(city.zones).forEach(push);
+    return order;
+  };
+
+  const perDayTarget = prefs.pace==="packed" ? 6 : 4;
+  const buffer = 25;         // zone 간 이동 버퍼(분)
+  const withinBuffer = 12;   // 같은 zone 내 이동(분)
+
+  const days=[];
+  const zoneQueue = zoneOrder().filter(z=>z!=="seorak"); // 설악은 별도 배정
+  let zi=0;
+  const seorakChosen = prefs.seorak!=="no" && pool.some(p=>p.zone==="seorak");
+  let seorakScheduled=false;
+
+  for(let d=0; d<nDays; d++){
+    const isFirst = d===0;
+    const isLast  = d===nDays-1 && nDays>1;
+    const stops=[];
+    let clock; let prevZone=null;
+
+    const add = (p, opt={}) => {
+      if(!p) return;
+      const move = prevZone==null
+        ? (opt.moveText || "")
+        : (prevZone===p.zone ? `도보/근거리 이동 약 ${withinBuffer}분`
+                             : `${prefs.transport==="car"?"차량":"시내버스"} 이동 약 ${buffer}분 · ${p.transit}`);
+      if(prevZone!=null) clock += (prevZone===p.zone?withinBuffer:buffer);
+      // 식사 시간 앵커링(현실적인 타임라인)
+      if(opt.role==="lunch"  && clock < toMin("12:00")) clock = toMin("12:00");
+      if(opt.role==="dinner" && clock < toMin("18:00")) clock = toMin("18:00");
+      const start=clock;
+      stops.push({ time:toHHMM(start), name:p.name, cat:p.cat, desc:p.desc,
+        move, transit:p.transit, styles:p.styles, map:p.map, src:p.src,
+        event:!!opt.event, timeText:opt.timeText });
+      clock += p.dur;
+      prevZone=p.zone;
+    };
+    const addEvent = (e)=>{
+      const start=Math.max(clock, toMin("16:00"));
+      clock=start;
+      stops.push({ time:toHHMM(start), name:"🎉 "+e.name, cat:"특별 행사", desc:e.desc,
+        move:prevZone && prevZone!==e.zone?`시내버스 이동 · ${e.place}`:"",
+        transit:e.place, styles:[], map:e.place, src:e.src, event:true, timeText:e.timeText });
+      clock += 120; prevZone=e.zone;
+    };
+
+    if(isFirst && nDays>1){
+      // 도착일: 늦은 오전 도착 → 도심에서 시작, 15시 체크인, 저녁은 숙소권
+      clock = arrival + 10;
+      stops.push({ time:toHHMM(clock), name:`🚌 ${prefs.destination} 도착`, cat:"이동",
+        desc:`${prefs.departPlace} ${prefs.departTime} 출발 → 약 ${Math.round(prefs.travelMin/60*10)/10}시간 소요.`+
+             (prefs.luggage==="locker"?" 짐은 물품보관함에 맡기고 가볍게 출발.":""),
+        move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
+      clock += 20; prevZone="city";
+      add(take(p=> bySlot("lunch")(p) && inZones(["city"])(p)) || take(bySlot("lunch")), {role:"lunch"});
+      add(take(p=> inZones(["city","donghae"])(p) && (bySlot("snack")(p)||bySlot("cafe")(p))));
+      add(take(p=> inZones(["city","donghae"])(p) && bySlot("sight")(p)));
+      // 15시 체크인
+      clock=Math.max(clock+buffer, toMin("15:00"));
+      stops.push({ time:toHHMM(clock), name:`🏨 숙소 체크인 · ${prefs.lodging}`, cat:"숙소",
+        desc:"짐 풀고 잠시 휴식 후 저녁 일정.", move:`${prefs.transport==="car"?"차량":"시내버스/택시"}로 숙소 이동`,
+        transit:"", styles:[], map:prefs.lodging, src:"", event:false });
+      clock+=40; prevZone=homeZone;
+      add(take(p=> bySlot("dinner")(p) && inZones([homeZone,...(city.zones[homeZone]?.near||[])])(p)) || take(bySlot("dinner")), {role:"dinner"});
+    }
+    else if(isLast){
+      clock = toMin("09:30");
+      stops.push({ time:toHHMM(clock), name:"🧳 체크아웃 & 짐 보관", cat:"숙소",
+        desc:"체크아웃 후 짐을 맡기고 마지막 코스 시작.", move:"", transit:"", styles:[], map:prefs.lodging, src:"", event:false });
+      clock+=20; prevZone=homeZone;
+      add(take(p=> inZones([homeZone])(p) && bySlot("sight")(p)) || take(bySlot("sight")));
+      add(take(p=> bySlot("cafe")(p)) );
+      add(take(p=> bySlot("lunch")(p) && inZones([homeZone,"city"])(p)) || take(bySlot("lunch")), {role:"lunch"});
+      // 마지막날 겹치는 행사 + 늦은 복귀면 포함
+      const ev = overlappingEvents.find(e=> e.start<=isoPlus(prefs.startDate,d) && e.end>=isoPlus(prefs.startDate,d));
+      if(ev && prefs.eventMode==="include" && prefs.returnTime==="late"){
+        addEvent(ev);
+      }
+      stops.push({ time: prefs.returnTime==="late"?"이후":"—", name:`🚌 ${prefs.destination} 출발`, cat:"이동",
+        desc: prefs.returnTime==="late"
+              ? "축제를 즐긴 뒤 저녁 버스로 복귀."
+              : (prefs.returnTime==="early"?"이른 오후 버스로 복귀.":"복귀 시간에 맞춰 터미널로."),
+        move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
+    }
+    else {
+      // 중간 날: 풀데이. 설악산 우선 배정(선택 시)
+      clock = toMin("09:30");
+      if(seorakChosen && !seorakScheduled){
+        add(take(p=>p.zone==="seorak"), {moveText:"터미널/숙소에서 시내버스 7·7-1번"});
+        seorakScheduled=true;
+        add(take(p=> bySlot("lunch")(p)) || take(bySlot("dinner")), {role:"lunch"});
+        add(take(p=> bySlot("cafe")(p)) );
+        add(take(p=> bySlot("sight")(p)) );
+        add(take(p=> bySlot("dinner")(p)) || take(bySlot("cafe")), {role:"dinner"});
+      } else {
+        // 카페·인생샷 중심 하루
+        let z = zoneQueue[zi++ % zoneQueue.length];
+        add(take(p=> p.zone===z && bySlot("sight")(p)) || take(bySlot("sight")));
+        add(take(p=> bySlot("cafe")(p)) );
+        add(take(p=> bySlot("lunch")(p)), {role:"lunch"} );
+        add(take(p=> bySlot("sight")(p)) );
+        if(perDayTarget>=5) add(take(p=> bySlot("cafe")(p)||bySlot("snack")(p)) );
+        add(take(p=> bySlot("dinner")(p)), {role:"dinner"} );
+      }
+    }
+
+    days.push({ label:`Day ${d+1}`, date:dateLabel(prefs.startDate,d), stops });
+  }
+
+  return { nDays, homeZone, days, overlappingEvents, city, prefs };
+}
+
+/* ----- 렌더링 ----- */
+function render(res){
+  const {prefs, days, overlappingEvents, city} = res;
+  const styleTxt = prefs.styles.join(" · ") || "밸런스";
+  let html = `
+    <div class="card">
+      <h2>🗺️ ${prefs.destination} ${res.nDays-1>0?res.nDays-1+"박":""}${res.nDays}일 추천 코스</h2>
+      <div class="summary">
+        <span class="pill">${prefs.startDate} ~ ${prefs.endDate}</span>
+        <span class="pill">${prefs.transport==="car"?"자차":"대중교통"}</span>
+        <span class="pill">${prefs.party}</span>
+        <span class="pill">🏨 ${prefs.lodging}</span>
+        <span class="pill">${styleTxt}</span>
+      </div>`;
+
+  // 특별 행사 배너
+  overlappingEvents.forEach(e=>{
+    const included = prefs.eventMode==="include" && prefs.returnTime==="late";
+    html += `
+      <div class="eventBanner">
+        <div class="lead">🎉 여행 기간 중 특별 행사</div>
+        <h3>${e.name}</h3>
+        <div class="meta">📅 ${e.start} ~ ${e.end} · ⏰ ${e.timeText} · 📍 ${e.place}</div>
+        <div class="desc">${e.desc}</div>
+        <div class="meta">${included
+          ? "→ 마지막 날 오후 늦게 복귀 일정이라 코스에 넣어뒀어요."
+          : "→ 코스에는 강제로 넣지 않았어요. 원하시면 마지막 날 오후에 추가하세요."}</div>
+        <div class="src">출처: ${e.src} · ${e.recency}</div>
+      </div>`;
+  });
+  html += `</div>`;
+
+  // 일자별 타임라인
+  days.forEach(day=>{
+    html += `<div class="dayHead"><span class="dn">${day.label}</span><span class="dd">${day.date}</span></div>`;
+    html += `<div class="card"><div class="timeline">`;
+    day.stops.forEach(s=>{
+      const nm = s.map ? `<a href="${mapUrl(s.map)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
+      html += `<div class="stop ${s.event?"ev":""}">
+        <div class="t">${s.time}${s.timeText?` · ${s.timeText}`:""}</div>
+        <div class="name">${nm}</div>
+        <div class="cat">${s.cat}</div>
+        ${s.desc?`<div class="desc">${s.desc}</div>`:""}
+        ${s.move?`<div class="move">🚶 ${s.move}</div>`:""}
+        ${s.styles&&s.styles.length?`<div class="why">${s.styles.map(t=>`<span class="tagm">#${t}</span>`).join("")}</div>`:""}
+        ${s.src?`<div class="src">근거: ${s.src}</div>`:""}
+      </div>`;
+    });
+    html += `</div>`;
+    html += `</div>`;
+  });
+
+  // 교통 팁
+  html += `<div class="card"><h2>🚌 대중교통 팁</h2><ul class="tips">`;
+  (city.transitTips||[]).forEach(t=> html += `<li>${t}</li>`);
+  html += `</ul>
+    <div class="note">데이터 근거: 웹검색으로 조사한 최근 1~3년 인기 장소 + 1년 이내 행사 자료를 큐레이션했습니다.
+    실시간 유튜브·인스타·네이버블로그 크롤링 연동은 향후 API 키 연결 시 확장 가능합니다.</div>
+    <div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
+  </div>`;
+
+  $("#result").innerHTML = html;
+  $("#editAgain").onclick = ()=>{ $("#result").innerHTML=""; $("#step2").classList.add("hidden");
+    $("#step1").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); };
+  window.scrollTo({top:$("#result").offsetTop-10, behavior:"smooth"});
+}
+
+/* =========================================================================
+ *  dataSources — 실데이터 확장 지점(스텁)
+ *  실제 배포 시 아래 어댑터를 구현해 크롤링/공식 API 결과를 places/events로 병합.
+ *  ⚠️ 인스타그램은 공식 공개 콘텐츠 API가 없고 스크래핑은 이용약관 위반 소지가 있어
+ *     수동 큐레이션을 권장합니다.
+ * ========================================================================= */
+const dataSources = {
+  // 유튜브 Data API v3 (검색 → 최근 1~3년 여행 영상에서 장소 언급 추출)
+  async fetchYouTube({ apiKey, query, publishedAfter }){
+    // GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=...&publishedAfter=...
+    throw new Error("YouTube Data API 키가 필요합니다. (확장 지점)");
+  },
+  // 네이버 검색 API (블로그) — 최근 1~3년 후기에서 장소/키워드 빈도 집계
+  async fetchNaverBlog({ clientId, clientSecret, query }){
+    // GET https://openapi.naver.com/v1/search/blog.json?query=...
+    throw new Error("네이버 검색 API 인증정보가 필요합니다. (확장 지점)");
+  },
+  // 지역 축제·행사 (공공데이터포털 / 한국관광공사 TourAPI) — 1년 이내 이벤트
+  async fetchEvents({ serviceKey, area, from, to }){
+    throw new Error("행사 데이터 API 키가 필요합니다. (확장 지점)");
+  }
+};
+
+/* ----- 이벤트 바인딩 ----- */
+document.querySelectorAll("#styleChips .chip").forEach(c=>{
+  c.onclick=()=>c.classList.toggle("on");
+});
+document.querySelectorAll("[data-single]").forEach(g=>{
+  g.querySelectorAll(".chip").forEach(c=>{
+    c.onclick=()=>{ g.querySelectorAll(".chip").forEach(x=>x.classList.remove("on")); c.classList.add("on"); };
+  });
+});
+$("#toStep2").onclick=()=>{
+  if(!$("#destination").value.trim() || !$("#startDate").value || !$("#endDate").value){
+    alert("여행지·시작일·종료일을 입력해 주세요."); return;
+  }
+  $("#step1").classList.add("hidden"); $("#step2").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+$("#backStep1").onclick=()=>{ $("#step2").classList.add("hidden"); $("#step1").classList.remove("hidden"); };
+$("#generate").onclick=()=>{ render(buildItinerary(readPrefs())); };
+
+// 테마 토글
+$("#themeBtn").onclick=()=>{
+  const cur=document.documentElement.getAttribute("data-theme");
+  const next = cur==="dark" ? "light" : (cur==="light" ? "dark" :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light":"dark"));
+  document.documentElement.setAttribute("data-theme", next);
+};
+</script>
+</body>
+</html>
