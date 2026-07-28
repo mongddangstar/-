@@ -186,11 +186,12 @@
     </div>
 
     <div style="margin-top:16px">
-      <label class="field" for="friendPlaces">친구 추천 맛집·장소 (한 줄에 하나씩, 선택)
-        <textarea id="friendPlaces" rows="3"
-          placeholder="예)&#10;봉포머구리집&#10;청초수물회 @중앙시장&#10;칠성조선소"></textarea>
+      <label class="field" for="friendPlaces">친구 추천 맛집·명소 (한 줄에 하나씩, 선택)
+        <textarea id="friendPlaces" rows="4"
+          placeholder="예)&#10;봉포머구리집 @영랑동&#10;속초등대전망대 #명소&#10;칠성조선소 #카페&#10;영금정"></textarea>
       </label>
-      <div class="field" style="font-size:.8rem;margin-top:6px">이름만 적어도 되고, <code>@지역</code>을 붙이면 동선에 더 잘 반영돼요. (예: <code>xxx식당 @대포항</code>)</div>
+      <div class="field" style="font-size:.8rem;margin-top:6px">맛집뿐 아니라 <b>랜드마크·가볼 만한 곳</b>도 적을 수 있어요. 이름만 적으면 유형을 자동 분류하고,
+        <code>@지역</code>·<code>#맛집</code>·<code>#카페</code>·<code>#명소</code>를 붙이면 더 정확해요. 입력한 곳은 <b>동선에 맞는 것만 골라</b> 코스에 넣습니다.</div>
     </div>
 
     <div class="row-actions">
@@ -427,22 +428,49 @@ function readPrefs(){
   };
 }
 
-/* ----- 친구 추천 맛집 파싱: 한 줄에 하나, "이름 @지역" 형태로 지역 힌트 가능 ----- */
+/* ----- 친구 추천 장소 파싱 -----
+ * 한 줄에 하나. "이름 @지역 #유형" 형태로 지역/유형 힌트 가능.
+ * 유형(#): 맛집 | 카페 | 명소  (없으면 이름으로 자동 분류) */
 function parseFriendPlaces(raw){
   return (raw||"").split(/\r?\n/).map(line=>{
-    const t = line.trim();
+    let t = line.trim();
     if(!t) return null;
-    const m = t.match(/^(.*?)\s*@\s*(.+)$/);
-    return m ? { name:m[1].trim(), area:m[2].trim() } : { name:t, area:"" };
+    let type="";
+    const tm = t.match(/#\s*(맛집|카페|명소|관광|장소|랜드마크)/);
+    if(tm){ type = ({관광:"명소",장소:"명소",랜드마크:"명소"})[tm[1]] || tm[1]; t = t.replace(tm[0],"").trim(); }
+    let area="";
+    const am = t.match(/@\s*([^#]+)$/);
+    if(am){ area = am[1].trim(); t = t.replace(am[0],"").trim(); }
+    const name = t.trim();
+    if(!name) return null;
+    return { name, area, type: type || classifyFriend(name) };
   }).filter(Boolean);
 }
 
-/* ----- 지역 힌트/이름으로 zone 추론 ----- */
+/* 이름으로 유형 자동 분류 (맛집/카페/명소) */
+function classifyFriend(name){
+  if(/카페|커피|로스터|베이커리|빵|디저트|브런치|티하우스/.test(name)) return "카페";
+  if(/식당|맛집|횟집|회|물회|막국수|국밥|칼국수|고기|갈비|불고기|해산물|대게|정식|백반|순대|닭강정|짬뽕|분식|버거|피자|파스타|식육|국수|찜|탕/.test(name)) return "맛집";
+  return "명소";
+}
+
+/* 유형 → 슬롯/카테고리/스타일 매핑 */
+function friendSpec(type){
+  if(type==="카페") return { slot:["cafe"], cat:"친구 추천 카페", styles:["감성카페"], dur:55 };
+  if(type==="명소") return { slot:["sight"], cat:"친구 추천 명소", styles:["인생샷"], dur:60 };
+  return { slot:["lunch","dinner"], cat:"친구 추천 맛집", styles:["맛집"], dur:70 }; // 맛집(기본)
+}
+
+/* ----- 지역 힌트/이름으로 zone 추론 (장소용 랜드마크 패턴을 우선) ----- */
 function inferZone(city, text){
+  if(/설악|케이블|권금성|신흥사|울산바위|흔들바위|비룡/.test(text)) return "seorak";
+  if(/영금|등대|동명/.test(text)) return "donghae";
+  if(/영랑|장사항|봉포/.test(text)) return "yeongnang";
+  if(/대포|외옹치|바다향기|해수욕장|롯데리조트/.test(text)) return "oeongchi";
+  if(/중앙시장|수산시장|아바이|갯배|청초|칠성조선소/.test(text)) return "city";
+  // 마지막으로 숙소 키워드 규칙 참고
   const rules = city.lodgingZoneByKeyword || [];
   for(const r of rules){ if(r.kw.some(k=>text.includes(k))) return r.zone; }
-  if(/설악|케이블|신흥사|권금성/.test(text)) return "seorak";
-  if(/영금|등대|동명/.test(text)) return "donghae";
   return null;
 }
 
@@ -460,8 +488,8 @@ function scorePlace(p, prefs){
   s += m * 3.2;
   // 대중교통이면 설악산은 접근 부담 소폭 감점(선택 안 했을 때)
   if(prefs.transport==="transit" && p.zone==="seorak") s -= 1.5;
-  // 친구 추천은 최우선 반영
-  if(p.friend) s += 8;
+  // 친구 추천은 '선호' 가중치만(동선에 맞을 때 우선 채택, 강제 삽입 아님)
+  if(p.friend) s += 3;
   return s;
 }
 
@@ -482,12 +510,22 @@ function buildItinerary(prefs){
   else if(prefs.seorak==="hike")  pool = pool.filter(p=>p.id!=="cable");
   else if(prefs.seorak==="cable") pool = pool.filter(p=>p.id!=="seorakPark");
 
-  // 친구 추천 맛집을 후보로 편입 (식사 슬롯 우선)
+  // 이번 여행에서 실제로 방문 가능한 구역만 (설악산은 선택했을 때만)
+  const seorakOn = prefs.seorak!=="no";
+  const visitableZones = Object.keys(city.zones).filter(z=> z!=="seorak" || seorakOn);
+
+  // 친구 추천 장소를 후보로 편입 (맛집/카페/명소 자동 분류, 동선 밖이면 제외)
+  const friendDropped = [];
   (prefs.friendPlaces||[]).forEach((f,i)=>{
+    // 이미 데이터에 있는 곳이면 중복 추가 대신 '친구 추천'으로 승격
+    const dup = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
+    if(dup){ dup.friend=true; dup.score=scorePlace(dup,prefs); return; }
+    const spec = friendSpec(f.type);
     const zone = inferZone(city, `${f.name} ${f.area}`) || homeZone;
-    const fp = { id:"friend"+i, name:f.name, zone, cat:"친구 추천 맛집", pop:5,
-      styles:["맛집"], slot:["lunch","dinner"], dur:70, friend:true,
-      desc:"친구가 추천해준 맛집이에요.",
+    if(!visitableZones.includes(zone)){ friendDropped.push(f.name); return; } // 동선 밖 → 제외
+    const fp = { id:"friend"+i, name:f.name, zone, cat:spec.cat, pop:4,
+      styles:spec.styles, slot:spec.slot, dur:spec.dur, friend:true,
+      desc:"친구가 추천해준 곳이에요.",
       transit: f.area ? `${f.area} 방면 · 네이버지도에서 위치·길찾기 확인` : "네이버지도에서 위치·길찾기 확인",
       map: f.area ? `${f.name} ${f.area}` : f.name };
     fp.score = scorePlace(fp, prefs);
@@ -506,6 +544,10 @@ function buildItinerary(prefs){
   };
   const bySlot = slot => p => p.slot.includes(slot);
   const inZones = zs => p => zs.includes(p.zone);
+  // 동선 우선 선택: 선호 zone 안에서 먼저 고르고, 없으면 전체에서 고른다.
+  // (pool은 점수 내림차순 정렬 상태 → 친구 추천은 같은 zone 내에서 우선 채택됨)
+  const takePref = (slot, prefZones) => take(p=> bySlot(slot)(p) && prefZones.includes(p.zone))
+                                     || take(bySlot(slot));
 
   // zone 방문 우선순위: 숙소 zone 이웃 → 점수순
   const zoneOrder = () => {
@@ -608,21 +650,23 @@ function buildItinerary(prefs){
         add(take(p=> bySlot("sight")(p)) );
         add(take(p=> bySlot("dinner")(p)) || take(bySlot("cafe")), {role:"dinner"});
       } else {
-        // 카페·인생샷 중심 하루
-        let z = zoneQueue[zi++ % zoneQueue.length];
-        add(take(p=> p.zone===z && bySlot("sight")(p)) || take(bySlot("sight")));
-        add(take(p=> bySlot("cafe")(p)) );
-        add(take(p=> bySlot("lunch")(p)), {role:"lunch"} );
-        add(take(p=> bySlot("sight")(p)) );
-        if(perDayTarget>=5) add(take(p=> bySlot("cafe")(p)||bySlot("snack")(p)) );
-        add(take(p=> bySlot("dinner")(p)), {role:"dinner"} );
+        // 카페·인생샷 중심 하루 — 하루를 한 zone(+이웃)으로 묶어 동선 최소화
+        const z = zoneQueue[zi++ % zoneQueue.length];
+        const pref = [z, ...(city.zones[z]?.near||[])];
+        add(takePref("sight", [z]) || take(bySlot("sight")));
+        add(takePref("cafe", pref));
+        add(takePref("lunch", pref), {role:"lunch"});
+        add(takePref("sight", pref));
+        if(perDayTarget>=5) add(take(p=>(bySlot("cafe")(p)||bySlot("snack")(p)) && inZones(pref)(p))
+                                 || take(p=>bySlot("cafe")(p)||bySlot("snack")(p)));
+        add(takePref("dinner", pref), {role:"dinner"});
       }
     }
 
     days.push({ label:`Day ${d+1}`, date:dateLabel(prefs.startDate,d), stops });
   }
 
-  return { nDays, homeZone, days, overlappingEvents, city, prefs };
+  return { nDays, homeZone, days, overlappingEvents, city, prefs, friendDropped };
 }
 
 /* ----- 렌더링 ----- */
@@ -664,8 +708,11 @@ function render(res){
   // 교통 팁 + 정보 수정
   html += `<div class="card"><h2>🚌 대중교통 팁</h2><ul class="tips">`;
   (city.transitTips||[]).forEach(t=> html += `<li>${t}</li>`);
-  html += `</ul>
-    <div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
+  html += `</ul>`;
+  if(res.friendDropped && res.friendDropped.length){
+    html += `<div class="note">친구 추천 중 <b>${res.friendDropped.join(", ")}</b>는 이번 동선과 멀어 코스에서 제외했어요.</div>`;
+  }
+  html += `<div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
   </div>`;
 
   // 특별 행사 — 최하단 배치 (강제 삽입 아님)
