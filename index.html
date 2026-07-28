@@ -48,8 +48,10 @@
   .card .hint{color:var(--sub);font-size:.86rem;line-height:1.6;margin:0 0 18px}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media (max-width:560px){.grid{grid-template-columns:1fr}}
-  label.field{display:flex;flex-direction:column;gap:7px;font-size:.86rem;color:var(--sub);line-height:1.45}
-  label.field span.req{color:var(--accent)}
+  /* 라벨 캡션은 한 줄(인라인)로, 입력칸만 아래 블록으로 배치 (flex 열 배치 시 '*'가 줄바꿈되던 문제 방지) */
+  label.field{display:block;font-size:.86rem;color:var(--sub);line-height:1.45}
+  label.field span.req{color:var(--accent);margin-left:1px}
+  label.field > input,label.field > select,label.field > textarea{display:block;margin-top:7px}
   input,select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);
     border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
   textarea{resize:vertical;min-height:64px;line-height:1.55}
