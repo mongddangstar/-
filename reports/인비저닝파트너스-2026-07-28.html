@@ -1,0 +1,260 @@
+<meta charset="utf-8" />
+<title>인비저닝파트너스 · 우수미 매니저 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #159a6b; --accent-soft: #e6f6ee;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4bbd8a; --accent-soft: #16311f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4bbd8a; --accent-soft: #16311f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #159a6b; --accent-soft: #e6f6ee;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.warn { border-color: var(--c3); background: color-mix(in srgb, var(--c3) 8%, var(--card)); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 11px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-07-28</div>
+    <h1 class="title">인비저닝파트너스 · 우수미 매니저</h1>
+    <p class="subtitle">임팩트·기후테크 전문 VC의 PE 진출 전환기 — 단, 관계자 개인정보는 공개 소스로 확인 불가(대면 확인 필요)</p>
+    <div class="meta-row">
+      <span class="meta-chip">유형: 임팩트·기후테크 VC (비상장)</span>
+      <span class="meta-chip">설립 2021</span>
+      <span class="meta-chip">담당: 확인 필요</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>유형</dt><dd>임팩트 투자 전문 VC(기후테크 최우선). 2025년 PE 라이선스 취득으로 VC→PE 확장 <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup></dd>
+        <dt>설립</dt><dd>2021년 8월. 1세대 임팩트 투자사 옐로우독 구성원·자산 이관 계승 <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
+        <dt>공동대표</dt><dd>제현주(전 옐로우독 대표)·김용현(전 한화자산운용 대표) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
+        <dt>지배구조</dt><dd>운용역이 소유·경영하는 거버넌스 지향(옐로우독 신념 계승) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
+        <dt>운용자산</dt><dd>약 2,110억원 (2024-01 기준) <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></dd>
+        <dt>누적투자</dt><dd>한·미·싱가포르 등 46개사 약 1,170억원 투자, 기후테크 비중 ~60% <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></dd>
+        <dt>임팩트영역</dt><dd>기후변화·웰니스·교육·미래의 노동 (기후 우선) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
+        <dt>소재지</dt><dd>서울 성동구 성수동 <sup class="ref"><a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=34530" target="_blank" rel="noopener">[7]</a></sup></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 1~2년 동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2021. 09</div><div class="tl-body">클라이밋 솔루션 펀드 667억원 결성 — 국내 최초 100% 민간자본 기후테크 특화 펀드(한화솔루션·GS·무신사 등 출자) <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.eroun.net/news/articleView.html?idxno=26339" target="_blank" rel="noopener">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022. 02</div><div class="tl-body">해당 기후 펀드 $64M 규모로 해외 소개 <sup class="ref"><a href="https://techcrunch.com/2022/02/08/envisioning-partners-closes-on-64m-fund-to-back-climate-tech-startups/" target="_blank" rel="noopener">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 01. 30</div><div class="tl-body">'인비저닝 임팩트 솔루션 펀드' 약 440억원 결성 — 해외 LP(싱가포르 파빌리온캐피탈) 첫 유치, AUM 2,110억 달성 <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup> <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 01</div><div class="tl-body">KAIST 녹색성장지속가능대학원과 업무협약(기후테크 인재 양성) <span class="flag">※연도 확인필요</span> <sup class="ref"><a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=34530" target="_blank" rel="noopener">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025 초</div><div class="tl-body">PE 라이선스 취득 — 임팩트 투자기관 국내 최초 VC→PE 자산군 확대 <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 07</div><div class="tl-body">첫 PE 딜 — 자동차 부품사 씨티알(CTR)에 약 700억원 투자(헤임달PE 공동, 전환사채 매입, 기업가치 ~4,000억) <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup> <sup class="ref"><a href="https://futurechosun.com/archives/127354" target="_blank" rel="noopener">[9]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card warn">
+      <h2><span class="dot" style="background:var(--c3)"></span>관계자 프로필 — 우수미 매니저</h2>
+      <p><span class="flag">⚠️ 공개 소스로 개인 프로필을 확정하지 못했습니다.</span> 언론 인터뷰·기고·담당 딜을 개인명으로 특정한 자료가 없고, 공식 팀페이지·링크드인은 직접 접근이 차단(403)됐습니다.</p>
+      <ul class="tight">
+        <li>유일한 실마리: 링크드인 <b>"Sue Woo — External Relations Director(대외협력)"</b>. 다만 직책이 '매니저/투자심사역' 전제와 어긋나 <span class="flag">동일인 미확정</span> <sup class="ref"><a href="https://www.linkedin.com/in/sue-woo-a978a5164/" target="_blank" rel="noopener">[13]</a></sup></li>
+        <li>인비저닝의 공개 딜 발언 주체는 주로 대표(제현주)로 확인됨 <sup class="ref"><a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></sup></li>
+      </ul>
+      <h3>대면 확인 필요(질문지 ②로 연결)</h3>
+      <ul class="tight">
+        <li>정확한 직책·소속 팀, 담당 투자 섹터, 학력·경력, 합류 시점, 주도한 딜</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책펀드 연관성</h2>
+      <ul class="tight">
+        <li><b>한국성장금융 사회투자펀드 GP</b> 선정 — 성장금융 출자 140억을 앵커로 440억 임팩트펀드 결성 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">[4]</a></sup> <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></li>
+        <li>성장금융은 포트폴리오사 <b>에이치투 시리즈C(230억)</b>에도 신규 투자자로 참여 <sup class="ref"><a href="https://www.seoul.co.kr/news/newsView.php?id=20230105500032" target="_blank" rel="noopener">[8]</a></sup></li>
+        <li>모태펀드 직접 위탁운용(GP) 이력: <span class="flag">미확인/확인필요</span></li>
+        <li>2026년 국민성장펀드·기후대응기금 직접 연관 근거 없음 <span class="flag">→ 참여 여부 확인 질문</span> <sup class="ref"><a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680205.html" target="_blank" rel="noopener">[14]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · 출자자(LP) 구조 <span style="font-size:12px;color:var(--muted);">(비상장 — DART 실적 공시 대상 아님)</span></h2>
+      <h3>클라이밋 솔루션 펀드 (2021, 약 667억)</h3>
+      <p>100% 민간자본. 출자자: 한화솔루션·GS·무신사·아이에스동서·예스코홀딩스·옐로우독·한국카본·인선이엔티 <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.eroun.net/news/articleView.html?idxno=26339" target="_blank" rel="noopener">[15]</a></sup></p>
+      <h3>임팩트 솔루션 펀드 (2024, 약 440억)</h3>
+      <p>LP: 한국성장금융, 파빌리온캐피탈(싱가포르), 대상㈜·대상홀딩스, 세아제강, 카카오임팩트, 아산나눔재단 등 <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup> <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">[5]</a></sup></p>
+      <p class="src">팀: 파트너 3인 포함 약 7인 규모(영문 DB 기준) <sup class="ref"><a href="https://tracxn.com/d/venture-capital/envisioning-partners/" target="_blank" rel="noopener">[12]</a></sup>. 대표 포트폴리오: 에이치투(ESS)·에바(EV충전)·엔츠(탄소회계)·피닉스테일링스(희소광물 회수·美) 등 <sup class="ref"><a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup> 각주 번호와 아래 목록이 1:1로 대응합니다. 번호를 눌러 원문을 확인하세요. <span class="flag">※공식 홈페이지·링크드인·일부 매체는 직접 접근(403) 제한으로 검색 요약을 교차검증했으며, 핵심 수치는 원문 재확인을 권장합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 와우테일, 인비저닝 440억 임팩트펀드·AUM 2,110억, 2024-01-30. <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 유니콘팩토리, PE 라이선스·첫 PE 딜(씨티알), 2025-07-25. <a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 파이낸셜뉴스, 667억 클라이밋 솔루션 펀드 결성, 2021-09-27. <a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 블로터, 440억 임팩트펀드·성장금융 140억 GP. <a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 넘버스, 440억 임팩트펀드 해외 LP 첫 유치. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 넥스트유니콘, 인비저닝파트너스(옐로우독 계승·임팩트 영역·공동대표). <a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> KAIST 뉴스, 녹색성장지속가능대학원-인비저닝 MOU. <a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=34530" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 서울신문, 에이치투 시리즈C 230억(성장금융 참여), 2023-01-05. <a href="https://www.seoul.co.kr/news/newsView.php?id=20230105500032" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 더나은미래, 인비저닝 첫 PE 딜 씨티알. <a href="https://futurechosun.com/archives/127354" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> TechCrunch, Envisioning $64M climate fund, 2022-02-08. <a href="https://techcrunch.com/2022/02/08/envisioning-partners-closes-on-64m-fund-to-back-climate-tech-startups/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> THE VC, 인비저닝파트너스 포트폴리오. <a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> Tracxn, Envisioning Partners 투자사 프로필(팀 규모). <a href="https://tracxn.com/d/venture-capital/envisioning-partners/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> LinkedIn, "Sue Woo — External Relations Director" (동일인 미확정). <a href="https://www.linkedin.com/in/sue-woo-a978a5164/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 인베스트조선, 국민성장펀드 운용사(인비저닝 언급 없음), 2026-02-26. <a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680205.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 이로운넷, 667억 기후 펀드 출자자 구성. <a href="https://www.eroun.net/news/articleView.html?idxno=26339" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 본 브리핑은 공개 자료 기반이며, 원문 직접열람이 제한된 항목은 검색 요약을 교차검증했습니다. 특히 <b>관계자(우수미 매니저) 개인정보는 확정하지 못해</b> 대면 확인이 필요합니다. 발행 시점(2026-07-28) 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">각 질문에 우선순위와 <b>근거</b>가 붙어 있습니다. 근거의 [번호]는 하단 출처와 연결됩니다. 관계자 개인정보가 확인되지 않아 ②는 <b>확인형 질문</b> 위주로 구성했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 이슈</h2></div>
+    <div class="q cat1"><p class="qtext">2025년 PE 라이선스를 얻고 씨티알에 700억을 전환사채로 투자하셨습니다. 임팩트·기후테크 VC가 자동차 부품사 바이아웃성 딜에 들어간 논리와, 임팩트 정합성은 어떻게 설명하십니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 씨티알 PE 딜 <a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">VC에서 PE로 자산군을 넓히며 운용 조직·의사결정·인력은 어떻게 재편했습니까? 임팩트 원칙이 PE 딜에서도 유지되는 구조인가요?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: PE 라이선스 취득 <a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2024년 440억 펀드에서 파빌리온캐피탈 등 해외 LP를 처음 유치하셨습니다. 글로벌 LP 확대 로드맵과, 국내 임팩트 자금 시장의 한계는 무엇이라고 보십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 해외 LP 첫 유치 <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">차기 펀드(2호 클라이밋 또는 PE 블라인드) 결성 계획이 있습니까? 규모·타깃·출자자 구성은 어떻게 그리고 계십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 펀드 로드맵(미확인) <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자 개인 · 심사역 전략 <span style="font-size:12px;color:var(--muted);">(확인형)</span></h2></div>
+    <div class="q cat2"><p class="qtext">먼저 매니저님의 현재 담당(투자 섹터·팀)과 인비저닝 합류 전 경력을 여쭤도 될까요? 그동안 어떤 딜을 주도해오셨는지 궁금합니다.</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 개인 공개정보 확인 불가 <a href="https://www.linkedin.com/in/sue-woo-a978a5164/" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">기후테크 딜을 볼 때 임팩트(온실가스 감축효과 등)와 재무 수익을 어떤 순서·기준으로 저울질하십니까? 최근 가장 확신을 가졌던 투자와 그 이유는?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 기후테크 60% 전략 <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">초기(시리즈 A 전후) 기후테크는 기술 검증·정책 의존도가 큽니다. 딜 소싱과 리스크 판단에서 매니저님만의 방식이 있다면요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 투자 단계(시리즈A 전후) <a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">창업자 대표(제현주·김용현)의 색이 뚜렷한 하우스인데, 실무 심사역의 재량과 판단은 어디까지 발휘됩니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 대표 중심 발언구조 <a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+    <div class="q cat3"><p class="qtext">성장금융 사회투자펀드 GP로 140억을 받아 440억 펀드를 만드셨습니다. 임팩트 목적의 정책자금 심사에서 일반 민간 출자와 달랐던 요구는 무엇이었나요?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 성장금융 사회투자펀드 GP <a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">모태펀드나 기후대응기금 등 다른 정책자금의 위탁운용 이력이나 계획이 있으신가요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 모태 이력 미확인 <a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2026년 국민성장펀드가 전략산업 중심으로 대규모 조성됐는데, 기후테크·임팩트 영역이 여기서 소외될 위험은 없다고 보십니까? 참여 의향은 있으신지요.</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 국민성장펀드 직접연관 없음 <a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680205.html" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">100% 민간자본 기후펀드(2021)와 정책자금 매칭 펀드(2024)를 모두 운용해보셨습니다. 임팩트 투자에서 민간·정책 자금의 바람직한 배합은?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 민간·정책 펀드 이력 <a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 전략 · 포트폴리오</h2></div>
+    <div class="q cat4"><p class="qtext">포트폴리오의 약 60%가 기후테크입니다. 그중 지금 가장 유망하게 보는 세부 영역(에너지·소재·순환경제·모빌리티)은 무엇인가요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 기후테크 60% <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">에이치투(ESS)·에바(EV충전)·엔츠(탄소회계)·피닉스테일링스(희소광물) 등 대표 포트폴리오의 후속투자·회수(엑싯) 전망은 어떻습니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 대표 포트폴리오 <a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">임팩트 투자사로서 온실가스 감축량 등 임팩트 성과를 어떻게 측정·검증해 LP에 보고하십니까? '그린워싱' 논란과는 어떻게 선을 긋나요?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 임팩트 지향 정체성 <a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">미국·싱가포르·베트남 등 해외 투자 비중이 있습니다. 국내 대비 해외 기후테크의 매력과, 크로스보더 딜의 어려움은 무엇인가요?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 해외 46개사 투자 <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 와우테일, 인비저닝 440억 임팩트펀드·AUM 2,110억, 2024-01-30. <a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 유니콘팩토리, PE 라이선스·첫 PE 딜(씨티알), 2025-07-25. <a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 파이낸셜뉴스, 667억 클라이밋 솔루션 펀드, 2021-09-27. <a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 블로터, 440억 임팩트펀드·성장금융 140억 GP. <a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 넘버스, 440억 임팩트펀드 해외 LP 첫 유치. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 넥스트유니콘, 인비저닝파트너스 개요. <a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 서울신문, 에이치투 시리즈C 230억, 2023-01-05. <a href="https://www.seoul.co.kr/news/newsView.php?id=20230105500032" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> THE VC, 인비저닝파트너스 포트폴리오. <a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> LinkedIn, "Sue Woo — External Relations Director"(동일인 미확정). <a href="https://www.linkedin.com/in/sue-woo-a978a5164/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 인베스트조선, 국민성장펀드 운용사, 2026-02-26. <a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680205.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록은 보고서 탭 하단 "출처"([1]~[15])를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">VC 인터뷰 질문 준비 도구 · 공개 자료 기반 · 2026-07-28</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>

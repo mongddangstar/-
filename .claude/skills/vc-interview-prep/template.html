@@ -1,0 +1,299 @@
+<meta charset="utf-8" />
+<title>{{하우스}} · {{관계자}} 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2f6df6; --accent-soft: #eaf1ff;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c1b: #fdecec; /* 현안/이슈 */
+    --c2: #2f8f5b; --c2b: #e9f6ee; /* 개인/심사역 */
+    --c3: #b9791f; --c3b: #fbf1e0; /* 국민성장펀드/정책 */
+    --c4: #6b46c1; --c4b: #f0ebfb; /* 하우스 전략 */
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #6f9dff; --accent-soft: #1e2a44;
+      --chip: #262c35; --chip-text: #aab4c1;
+      --c1b: #38221f; --c2b: #1c2f24; --c3b: #34291a; --c4b: #262036;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #6f9dff; --accent-soft: #1e2a44;
+    --chip: #262c35; --chip-text: #aab4c1;
+    --c1b: #38221f; --c2b: #1c2f24; --c3b: #34291a; --c4b: #262036;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2f6df6; --accent-soft: #eaf1ff;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1b: #fdecec; --c2b: #e9f6ee; --c3b: #fbf1e0; --c4b: #f0ebfb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+
+  header.hero {
+    padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent);
+  }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+
+  /* sticky tab bar */
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 15px 16px; margin-bottom: 14px;
+  }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 92px 1fr; gap: 4px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+
+  /* source footnote / link */
+  .src { font-size: 12px; color: var(--muted); }
+  .src a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; }
+
+  /* timeline */
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+
+  /* question cards */
+  .qcat { margin-bottom: 8px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 18px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q {
+    background: var(--card); border: 1px solid var(--line); border-left-width: 4px;
+    border-radius: 12px; padding: 12px 13px; margin-bottom: 10px;
+  }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; }
+
+  .cat1 { border-left-color: var(--c1); } .cat1 .bar { background: var(--c1); } .cat1-bg { background: var(--c1b); }
+  .cat2 { border-left-color: var(--c2); } .cat2 .bar { background: var(--c2); } .cat2-bg { background: var(--c2b); }
+  .cat3 { border-left-color: var(--c3); } .cat3 .bar { background: var(--c3); } .cat3-bg { background: var(--c3b); }
+  .cat4 { border-left-color: var(--c4); } .cat4 .bar { background: var(--c4); } .cat4-bg { background: var(--c4b); }
+
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 7px 0; padding-left: 22px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · {{생성일자}}</div>
+    <h1 class="title">{{하우스}}{{관계자구분}}{{관계자}}</h1>
+    <p class="subtitle">{{한줄요약}}</p>
+    <div class="meta-row">
+      <span class="meta-chip">유형: {{하우스유형}}</span>
+      <span class="meta-chip">{{상장정보}}</span>
+      <span class="meta-chip">담당: {{담당섹터}}</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>유형</dt><dd>{{하우스유형}}</dd>
+        <dt>설립</dt><dd>{{설립}}</dd>
+        <dt>상장</dt><dd>{{상장상세}}</dd>
+        <dt>지배구조</dt><dd>{{지배구조}}</dd>
+        <dt>대표</dt><dd>{{대표이사}}</dd>
+        <dt>운용자산</dt><dd>{{AUM}}</dd>
+        <dt>주력섹터</dt><dd>{{주력섹터}}</dd>
+      </dl>
+      <p class="src">{{개요출처}}</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 1~2년 동향</h2>
+      <div class="timeline">
+        <!-- 반복: 각 타임라인 항목 -->
+        <div class="tl-item">
+          <div class="tl-date">{{동향_날짜}}</div>
+          <div class="tl-body">{{동향_내용}} <sup class="ref"><a href="{{동향_URL}}" target="_blank" rel="noopener">[출처]</a></sup></div>
+        </div>
+        {{동향_반복}}
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — {{관계자}}</h2>
+      <dl class="kv">
+        <dt>직책</dt><dd>{{직책}}</dd>
+        <dt>담당</dt><dd>{{담당}}</dd>
+        <dt>경력</dt><dd>{{경력}}</dd>
+        <dt>담당펀드</dt><dd>{{담당펀드}}</dd>
+      </dl>
+      <h3>대표 투자·회수</h3>
+      <ul class="tight">{{대표딜_리스트}}</ul>
+      <h3>최근 발언·인터뷰</h3>
+      <ul class="tight">{{발언_리스트}}</ul>
+      <p class="src">{{관계자출처}}</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드·정책펀드 연관성</h2>
+      {{정책펀드_내용}}
+      <p class="src">{{정책펀드출처}}</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>DART·실적 요약 {{DART설명}}</h2>
+      <!-- 상장 VC: DART OpenAPI(fnlttSinglAcnt) 주요계정 기반. 연결/별도(fs_div)·보고서종류·조회일 표기 -->
+      <dl class="kv">
+        <dt>기준</dt><dd>{{DART_기준}} <!-- 예: 연결(CFS)·2025 사업보고서 --></dd>
+        <dt>영업수익</dt><dd>{{DART_영업수익}}</dd>
+        <dt>영업이익</dt><dd>{{DART_영업이익}}</dd>
+        <dt>당기순이익</dt><dd>{{DART_당기순이익}}</dd>
+        <dt>자산총계</dt><dd>{{DART_자산총계}}</dd>
+        <dt>자본총계</dt><dd>{{DART_자본총계}}</dd>
+      </dl>
+      {{DART_내용}}
+      <p class="src">출처: DART 전자공시 OpenAPI(fnlttSinglAcnt) · {{DART_보고서종류}} · 조회일 {{조회일}}. {{DART출처}}</p>
+    </div>
+
+    <!-- 보고서 탭 하단 미주: 인라인 [n] 각주와 번호 1:1 대응. 각 li에 id="src-n" 부여 -->
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup> 각주 번호와 아래 목록이 1:1로 대응합니다. 번호를 눌러 원문을 확인하세요.</p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> {{미주1}}</li>
+        {{미주_반복}}
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 본 브리핑은 공개 자료 기반이며, 미확인 항목은 별도 표시했습니다. 발행 시점({{생성일자}}) 기준이므로 최신 사실은 재확인이 필요합니다.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">각 질문에는 우선순위와 <b>근거(어느 사실에서 나온 질문인지)</b>가 붙어 있습니다. 근거의 출처 번호는 하단 출처 목록과 연결됩니다.</p>
+
+    <!-- 카테고리 1: 하우스 현안/이슈 -->
+    <div class="qcat">
+      <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 이슈</h2></div>
+      <!-- 반복: 질문 카드 -->
+      <div class="q cat1">
+        <p class="qtext">{{질문}}</p>
+        <div class="qmeta">
+          <span class="pri high">{{우선순위}}</span>
+          <span class="basis">근거: {{근거}} <a href="{{근거URL}}" target="_blank" rel="noopener">[{{출처번호}}]</a></span>
+        </div>
+      </div>
+      {{질문_카테고리1_반복}}
+    </div>
+
+    <!-- 카테고리 2: 관계자 개인/심사역 전략 -->
+    <div class="qcat">
+      <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자 개인 · 심사역 전략</h2></div>
+      <div class="q cat2">
+        <p class="qtext">{{질문}}</p>
+        <div class="qmeta">
+          <span class="pri mid">{{우선순위}}</span>
+          <span class="basis">근거: {{근거}} <a href="{{근거URL}}" target="_blank" rel="noopener">[{{출처번호}}]</a></span>
+        </div>
+      </div>
+      {{질문_카테고리2_반복}}
+    </div>
+
+    <!-- 카테고리 3: 국민성장펀드/정책펀드 -->
+    <div class="qcat">
+      <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+      <div class="q cat3">
+        <p class="qtext">{{질문}}</p>
+        <div class="qmeta">
+          <span class="pri high">{{우선순위}}</span>
+          <span class="basis">근거: {{근거}} <a href="{{근거URL}}" target="_blank" rel="noopener">[{{출처번호}}]</a></span>
+        </div>
+      </div>
+      {{질문_카테고리3_반복}}
+    </div>
+
+    <!-- 카테고리 4: 하우스 전략/포트폴리오 -->
+    <div class="qcat">
+      <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 전략 · 포트폴리오</h2></div>
+      <div class="q cat4">
+        <p class="qtext">{{질문}}</p>
+        <div class="qmeta">
+          <span class="pri mid">{{우선순위}}</span>
+          <span class="basis">근거: {{근거}} <a href="{{근거URL}}" target="_blank" rel="noopener">[{{출처번호}}]</a></span>
+        </div>
+      </div>
+      {{질문_카테고리4_반복}}
+    </div>
+
+    <!-- 출처 목록 -->
+    <div class="card" style="margin-top:18px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> {{출처1}}</li>
+        {{출처_반복}}
+      </ul>
+    </div>
+  </section>
+
+  <p class="foot">VC 인터뷰 질문 준비 도구 · 공개 자료 기반 · {{생성일자}}</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
