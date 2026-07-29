@@ -545,7 +545,9 @@ function readPrefs(){
     luggage: singleVal("luggage") || "locker",
     pace: singleVal("pace") || "relax",
     eventMode: singleVal("event") || "include",
-    friendPlaces: parseFriendPlaces($("#friendPlaces") ? $("#friendPlaces").value : "")
+    // Claude(챗)가 만든 구조화 코스가 링크로 들어오면 그대로 사용, 아니면 입력칸 텍스트를 규칙 파싱
+    friendPlaces: (_fpOverride && _fpOverride.length) ? _fpOverride
+                : parseFriendPlaces($("#friendPlaces") ? $("#friendPlaces").value : "")
   };
 }
 
@@ -1308,6 +1310,7 @@ function fpUpdateBar(){
 const LS_KEY = "tripCourse.v1";
 const LS_KEY_API = "tripCourse.apiKey";   // API 키는 이 기기에만 저장 — 공유 링크/collectState 절대 미포함
 let _lastGen = false;
+let _fpOverride = null;   // Claude(챗)가 만든 구조화 코스(fpParsed)를 링크로 받으면 여기에 — 입력칸 수정 시 해제
 function collectState(){
   return {
     v:1,
@@ -1320,6 +1323,7 @@ function collectState(){
     singles:{ seorak:singleVal("seorak"), luggage:singleVal("luggage"),
               pace:singleVal("pace"), event:singleVal("event") },
     friendPlaces:($("#friendPlaces")?$("#friendPlaces").value:""),
+    fpParsed: (_fpOverride && _fpOverride.length) ? _fpOverride : undefined,   // Claude가 만든 코스 링크 전달용
     generated:_lastGen
   };
 }
@@ -1342,6 +1346,8 @@ function applyStateObj(s){
     g.querySelectorAll(".chip").forEach(c=> c.classList.toggle("on", c.dataset.v===val));
   });
   if($("#friendPlaces") && typeof s.friendPlaces==="string"){ $("#friendPlaces").value=s.friendPlaces; fpRenderHighlight(); }
+  // Claude(챗)가 만든 구조화 코스가 링크에 실려오면 그대로 사용 (입력칸을 고치면 해제됨)
+  _fpOverride = (Array.isArray(s.fpParsed) && s.fpParsed.length) ? s.fpParsed : null;
   _lastGen = !!s.generated;
   if(s.generated){ try{ render(buildItinerary(readPrefs())); }catch(e){} }
 }
@@ -1379,6 +1385,7 @@ document.querySelectorAll("[data-single]").forEach(g=>{
   });
 });
 ["input","change"].forEach(evt=> document.addEventListener(evt, e=>{
+  if(e.target && e.target.id==="friendPlaces") _fpOverride=null;   // 입력칸을 직접 고치면 Claude 코스 override 해제
   if(e.target.closest && e.target.closest("#step1,#step2")) debouncedSave();
 }));
 /* 여행지에 맞춰 2단계 Q1(설악산→일반화) 문구 조정 */
@@ -1505,7 +1512,7 @@ $("#generate").onclick = async ()=>{
   const btn=$("#generate"), orig=btn.textContent;
   const prefs = readPrefs();   // 기본(규칙) 파서 결과가 prefs.friendPlaces에 담김
   const raw = $("#friendPlaces") ? $("#friendPlaces").value : "";
-  if((localStorage.getItem(LS_KEY_API)||"").trim() && raw.trim()){
+  if(!_fpOverride && (localStorage.getItem(LS_KEY_API)||"").trim() && raw.trim()){   // Claude 코스가 있으면 그대로
     btn.disabled=true; btn.textContent="🧠 문장 해석 중…";
     try{
       const parsed = await llmParse(raw, prefs);
