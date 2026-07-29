@@ -271,7 +271,9 @@
 
     <div class="row-actions">
       <button class="primary" id="toStep2" type="button">다음: 몇 가지만 더 여쭤볼게요 →</button>
+      <button class="ghost" id="resetSaved" type="button">🗑 저장 내용 지우기</button>
     </div>
+    <p class="fp-help" style="margin-top:12px">💾 입력과 만든 코스는 <b>이 기기(브라우저)에 자동 저장</b>돼요. 다시 들어오면 이어서 볼 수 있어요.</p>
   </section>
 
   <!-- ================= STEP 2: 되묻는 질문 플로우 ================= -->
@@ -360,10 +362,10 @@ const DATA = {
         desc:"무동력 배 ‘갯배’로 청호동으로 건너가 아바이순대·오징어순대 맛보기.",
         transit:"중앙시장 인근 갯배선착장에서 도보 이동", map:"아바이마을 갯배선착장",
         src:"visitkorea 한국관광100선" },
-      { id:"chilseong", name:"칠성조선소 살롱", zone:"city", cat:"감성카페",
+      { id:"chilseong", name:"칠성조선소(동그란책)", zone:"city", cat:"감성카페·문화공간",
         pop:5, styles:["감성카페","인생샷","여유"], slot:["cafe"], dur:60,
-        desc:"옛 조선소를 개조한 청초호변 감성 카페. 넓은 부지와 사진 스폿.",
-        transit:"중앙시장/청초호 방면, 시내버스 또는 도보", map:"칠성조선소 살롱",
+        desc:"옛 조선소를 개조한 청초호변 감성 공간. 현재 네이버지도에는 ‘동그란책’으로 등록돼 있어요.",
+        transit:"중앙시장/청초호 방면, 시내버스 또는 도보", map:"속초 동그란책",
         src:"다이닝코드·블로그 (2024~2025)" },
       { id:"cheongcho", name:"청초호 호수공원", zone:"city", cat:"자연·산책",
         pop:3, styles:["여유","자연"], slot:["sight"], dur:45,
@@ -766,7 +768,8 @@ function render(res){
     html += `<div class="dayHead"><span class="dn">${day.label}</span><span class="dd">${day.date}</span></div>`;
     html += `<div class="card"><div class="timeline">`;
     day.stops.forEach(s=>{
-      const q = s.map;
+      // 지도 검색어에 여행지를 넣어 다른 지역/동명 장소로 새는 걸 줄인다
+      const q = s.map ? (s.map.includes(prefs.destination) ? s.map : `${prefs.destination} ${s.map}`) : "";
       const nm = q ? `<a href="${mapUrl(q)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
       const maps = q ? `<div class="maps">🗺️ <a href="${mapUrl(q)}" target="_blank" rel="noopener">네이버지도</a>
         <a href="${gmapUrl(q)}" target="_blank" rel="noopener">구글맵스</a></div>` : "";
@@ -911,24 +914,77 @@ function fpUpdateBar(){
   fpRenderHighlight();
 })();
 
+/* ============================ 기기 내 저장(localStorage) ============================ */
+const LS_KEY = "tripCourse.v1";
+let _lastGen = false;
+function collectState(){
+  return {
+    v:1,
+    destination:$("#destination").value, transport:$("#transport").value,
+    startDate:$("#startDate").value, endDate:$("#endDate").value,
+    departTime:$("#departTime").value, departPlace:$("#departPlace").value,
+    travelMin:$("#travelMin").value, lodging:$("#lodging").value,
+    party:$("#party").value, returnTime:$("#returnTime").value,
+    styles:selectedStyles(),
+    singles:{ seorak:singleVal("seorak"), luggage:singleVal("luggage"),
+              pace:singleVal("pace"), event:singleVal("event") },
+    friendPlaces:($("#friendPlaces")?$("#friendPlaces").value:""),
+    generated:_lastGen
+  };
+}
+function saveState(generated){
+  if(generated!==undefined) _lastGen = generated;
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(collectState())); }catch(e){}
+}
+function setVal(sel,val){ const el=$(sel); if(el && val!=null) el.value=val; }
+function loadState(){
+  let s=null; try{ s=JSON.parse(localStorage.getItem(LS_KEY)); }catch(e){}
+  if(!s) return;
+  setVal("#destination",s.destination); setVal("#transport",s.transport);
+  setVal("#startDate",s.startDate); setVal("#endDate",s.endDate);
+  setVal("#departTime",s.departTime); setVal("#departPlace",s.departPlace);
+  setVal("#travelMin",s.travelMin); setVal("#lodging",s.lodging);
+  setVal("#party",s.party); setVal("#returnTime",s.returnTime);
+  if(Array.isArray(s.styles))
+    document.querySelectorAll("#styleChips .chip").forEach(c=> c.classList.toggle("on", s.styles.includes(c.dataset.v)));
+  if(s.singles) Object.entries(s.singles).forEach(([name,val])=>{
+    const g=document.querySelector(`[data-single="${name}"]`); if(!g||val==null) return;
+    g.querySelectorAll(".chip").forEach(c=> c.classList.toggle("on", c.dataset.v===val));
+  });
+  if($("#friendPlaces") && typeof s.friendPlaces==="string"){ $("#friendPlaces").value=s.friendPlaces; fpRenderHighlight(); }
+  _lastGen = !!s.generated;
+  if(s.generated){ try{ render(buildItinerary(readPrefs())); }catch(e){} }
+}
+let _saveTimer;
+function debouncedSave(){ clearTimeout(_saveTimer); _saveTimer=setTimeout(()=>saveState(), 400); }
+
 /* ----- 이벤트 바인딩 ----- */
 document.querySelectorAll("#styleChips .chip").forEach(c=>{
-  c.onclick=()=>c.classList.toggle("on");
+  c.onclick=()=>{ c.classList.toggle("on"); saveState(); };
 });
 document.querySelectorAll("[data-single]").forEach(g=>{
   g.querySelectorAll(".chip").forEach(c=>{
-    c.onclick=()=>{ g.querySelectorAll(".chip").forEach(x=>x.classList.remove("on")); c.classList.add("on"); };
+    c.onclick=()=>{ g.querySelectorAll(".chip").forEach(x=>x.classList.remove("on")); c.classList.add("on"); saveState(); };
   });
 });
+["input","change"].forEach(evt=> document.addEventListener(evt, e=>{
+  if(e.target.closest && e.target.closest("#step1,#step2")) debouncedSave();
+}));
 $("#toStep2").onclick=()=>{
   if(!$("#destination").value.trim() || !$("#startDate").value || !$("#endDate").value){
     alert("여행지·시작일·종료일을 입력해 주세요."); return;
   }
   $("#step1").classList.add("hidden"); $("#step2").classList.remove("hidden");
+  saveState();
   window.scrollTo({top:0,behavior:"smooth"});
 };
 $("#backStep1").onclick=()=>{ $("#step2").classList.add("hidden"); $("#step1").classList.remove("hidden"); };
-$("#generate").onclick=()=>{ render(buildItinerary(readPrefs())); };
+$("#generate").onclick=()=>{ render(buildItinerary(readPrefs())); saveState(true); };
+$("#resetSaved").onclick=()=>{
+  if(!confirm("이 기기에 저장된 입력과 코스를 모두 지울까요?")) return;
+  try{ localStorage.removeItem(LS_KEY); }catch(e){}
+  location.reload();
+};
 
 // 테마 토글
 $("#themeBtn").onclick=()=>{
@@ -937,6 +993,9 @@ $("#themeBtn").onclick=()=>{
     (window.matchMedia("(prefers-color-scheme: dark)").matches ? "light":"dark"));
   document.documentElement.setAttribute("data-theme", next);
 };
+
+// 저장된 상태 복원 (마지막에)
+loadState();
 </script>
 </body>
 </html>
