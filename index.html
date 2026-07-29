@@ -271,11 +271,7 @@
 
     <div class="row-actions">
       <button class="primary" id="toStep2" type="button">다음: 몇 가지만 더 여쭤볼게요 →</button>
-      <button class="ghost" id="shareLink" type="button">🔗 다른 기기로 가져가기</button>
-      <button class="ghost" id="resetSaved" type="button">🗑 지우기</button>
     </div>
-    <p class="fp-help" style="margin-top:12px">💾 입력과 만든 코스는 <b>이 기기(브라우저)에 자동 저장</b>돼요.
-      기기 간 이동은 <b>🔗 다른 기기로 가져가기</b>로 링크를 복사해 메일·메신저로 자신에게 보내면, 그 링크를 연 기기에서 그대로 불러와집니다.</p>
   </section>
 
   <!-- ================= STEP 2: 되묻는 질문 플로우 ================= -->
@@ -283,9 +279,9 @@
     <h2>2) 더 정확한 코스를 위한 질문</h2>
     <p class="hint">답변에 따라 동선·장소·시간표가 달라집니다.</p>
 
-    <div class="q">
-      <p class="ask">Q1. 설악산에 오를 의향이 있나요?</p>
-      <div class="chips" data-single="seorak">
+    <div class="q" id="qSeorak">
+      <p class="ask" id="qSeorakAsk">Q1. 설악산에 오를 의향이 있나요?</p>
+      <div class="chips" data-single="seorak" id="qSeorakChips">
         <span class="chip" data-v="hike">네, 반나절 산행(흔들바위·비룡폭포)</span>
         <span class="chip" data-v="cable">케이블카(권금성)만 가볍게</span>
         <span class="chip on" data-v="no">아니요, 이번엔 패스</span>
@@ -592,11 +588,27 @@ function inferZone(city, text){
   return null;
 }
 
+/* ----- 여행지 데이터 가져오기 (내장 DB 없으면 범용 모드) ----- */
+function getCity(dest){
+  if(DATA[dest]) return DATA[dest];
+  return {
+    generic:true,
+    zones:{ all:{ label:"전체", near:[] } },
+    lodgingZoneByKeyword:[],
+    places:[], events:[],
+    transitTips:[
+      "이 여행지는 내장 추천 데이터가 아직 없어, <b>직접 추가한 장소 위주</b>로 코스를 짰어요.",
+      "위 입력칸에 네이버지도·구글맵스에서 찾은 맛집·명소를 추가하면 코스에 더 촘촘히 반영돼요.",
+      "이동 시간·교통편은 지도 앱 길찾기로 확인하세요."
+    ]
+  };
+}
+
 /* ----- 숙소 → zone 판별 ----- */
 function lodgingZone(city, lodging){
   const rules = city.lodgingZoneByKeyword || [];
   for(const r of rules){ if(r.kw.some(k=>lodging.includes(k))) return r.zone; }
-  return "city";
+  return Object.keys(city.zones)[0] || "city";
 }
 
 /* ----- 장소 스코어링 ----- */
@@ -613,7 +625,7 @@ function scorePlace(p, prefs){
 
 /* ----- 코스 생성 핵심 ----- */
 function buildItinerary(prefs){
-  const city = DATA[prefs.destination] || DATA["속초"];
+  const city = getCity(prefs.destination);
   const nDays = daysBetween(prefs.startDate, prefs.endDate);
   const homeZone = lodgingZone(city, prefs.lodging);
   const arrival = toMin(prefs.departTime) + (prefs.travelMin||140);
@@ -749,7 +761,7 @@ function buildItinerary(prefs){
       stops.push({ time:toHHMM(arrival), name:`🚌 ${prefs.destination} 도착`, cat:"이동",
         desc:`${prefs.departPlace} ${prefs.departTime} 출발 → 약 ${Math.round(prefs.travelMin/60*10)/10}시간 뒤 도착.`+
              (prefs.luggage==="locker"?" 짐은 물품보관함에 맡기고 가볍게 출발.":""),
-        move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
+        move:"", transit:"", styles:[], map:prefs.destination, src:"", event:false });
       clock += 20; prevZone="city";
       add(pickMeal("lunch",["city"]), {role:"lunch"});
       add(take(p=> inZones(["city","donghae"])(p) && (bySlot("snack")(p)||bySlot("cafe")(p))));
@@ -779,7 +791,7 @@ function buildItinerary(prefs){
         desc: prefs.returnTime==="late"
               ? "축제를 즐긴 뒤 저녁 버스로 복귀."
               : (prefs.returnTime==="early"?"이른 오후 버스로 복귀.":"복귀 시간에 맞춰 터미널로."),
-        move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
+        move:"", transit:"", styles:[], map:prefs.destination, src:"", event:false });
     }
     else {
       // 중간 날: 풀데이. 설악산 우선 배정(선택 시)
@@ -870,7 +882,12 @@ function render(res){
   if(res.friendDropped && res.friendDropped.length){
     html += `<div class="note">추가한 곳 중 <b>${res.friendDropped.join(", ")}</b>는 이번 동선과 멀어 코스에서 제외했어요.</div>`;
   }
-  html += `<div class="row-actions"><button class="ghost" id="editAgain" type="button">← 정보 수정</button></div>
+  html += `<div class="note">💾 이 코스와 입력은 <b>이 기기에 자동 저장</b>됐어요. 다른 기기(폰↔PC)로 옮기려면 <b>🔗 다른 기기로 저장/이동</b>으로 링크를 복사해 메일·메신저로 보내세요.</div>`;
+  html += `<div class="row-actions">
+    <button class="primary" id="shareLink" type="button">🔗 다른 기기로 저장/이동</button>
+    <button class="ghost" id="editAgain" type="button">← 정보 수정</button>
+    <button class="ghost" id="resetSaved" type="button">🗑 저장 지우기</button>
+  </div>
   </div>`;
 
   // 특별 행사 — 최하단 배치 (강제 삽입 아님)
@@ -891,6 +908,8 @@ function render(res){
   $("#result").innerHTML = html;
   $("#editAgain").onclick = ()=>{ $("#result").innerHTML=""; $("#step2").classList.add("hidden");
     $("#step1").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); };
+  const sb=$("#shareLink"); if(sb) sb.onclick=shareCurrent;
+  const rb=$("#resetSaved"); if(rb) rb.onclick=resetSaved;
   window.scrollTo({top:$("#result").offsetTop-10, behavior:"smooth"});
 }
 
@@ -1065,28 +1084,49 @@ document.querySelectorAll("[data-single]").forEach(g=>{
 ["input","change"].forEach(evt=> document.addEventListener(evt, e=>{
   if(e.target.closest && e.target.closest("#step1,#step2")) debouncedSave();
 }));
+/* 여행지에 맞춰 2단계 Q1(설악산→일반화) 문구 조정 */
+function adaptStep2(){
+  const dest = $("#destination").value.trim();
+  const generic = !DATA[dest];
+  const ask = $("#qSeorakAsk");
+  const chips = document.querySelectorAll('#qSeorakChips .chip');
+  if(!ask) return;
+  if(generic){
+    ask.textContent = "Q1. 근교 산·자연·전망대 같은 야외 코스도 넣을까요?";
+    if(chips[0]) chips[0].textContent = "네, 하이킹·자연 명소 포함";
+    if(chips[1]) chips[1].textContent = "가벼운 전망대 정도만";
+    if(chips[2]) chips[2].textContent = "아니요, 도심 위주로";
+  } else {
+    ask.textContent = "Q1. 설악산에 오를 의향이 있나요?";
+    if(chips[0]) chips[0].textContent = "네, 반나절 산행(흔들바위·비룡폭포)";
+    if(chips[1]) chips[1].textContent = "케이블카(권금성)만 가볍게";
+    if(chips[2]) chips[2].textContent = "아니요, 이번엔 패스";
+  }
+}
+function resetSaved(){
+  if(!confirm("이 기기에 저장된 입력과 코스를 모두 지울까요?")) return;
+  try{ localStorage.removeItem(LS_KEY); }catch(e){}
+  location.reload();
+}
+async function shareCurrent(){
+  saveState();
+  const url = location.origin + location.pathname + location.search + "#d=" + encodeURIComponent(encodeState());
+  try{ await navigator.clipboard.writeText(url);
+    alert("✅ 저장/이동용 링크를 복사했어요.\n\n메일·카카오톡 등으로 자신에게 보내두면, 다른 기기(폰↔PC)에서 그 링크를 열 때 입력과 코스가 그대로 이어집니다."); }
+  catch(e){ prompt("아래 링크를 복사해 다른 기기에서 여세요:", url); }
+}
+
 $("#toStep2").onclick=()=>{
   if(!$("#destination").value.trim() || !$("#startDate").value || !$("#endDate").value){
     alert("여행지·시작일·종료일을 입력해 주세요."); return;
   }
+  adaptStep2();
   $("#step1").classList.add("hidden"); $("#step2").classList.remove("hidden");
   saveState();
   window.scrollTo({top:0,behavior:"smooth"});
 };
 $("#backStep1").onclick=()=>{ $("#step2").classList.add("hidden"); $("#step1").classList.remove("hidden"); };
 $("#generate").onclick=()=>{ render(buildItinerary(readPrefs())); saveState(true); };
-$("#resetSaved").onclick=()=>{
-  if(!confirm("이 기기에 저장된 입력과 코스를 모두 지울까요?")) return;
-  try{ localStorage.removeItem(LS_KEY); }catch(e){}
-  location.reload();
-};
-$("#shareLink").onclick=async ()=>{
-  saveState();
-  const url = location.origin + location.pathname + location.search + "#d=" + encodeURIComponent(encodeState());
-  const msg = "다른 기기로 가져가기\n\n아래 링크를 복사해 메일·카카오톡 등으로 자신에게 보내세요.\n그 링크를 다른 기기(폰↔PC)에서 열면 입력과 코스가 그대로 불러와집니다.";
-  try{ await navigator.clipboard.writeText(url); alert("✅ 동기화 링크를 복사했어요.\n\n메일·메신저로 자신에게 보내두면, 다른 기기에서 그 링크를 열 때 그대로 이어집니다."); }
-  catch(e){ prompt(msg, url); }
-};
 
 // 테마 토글
 $("#themeBtn").onclick=()=>{
