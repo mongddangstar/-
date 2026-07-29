@@ -178,6 +178,22 @@
   .stop .maps a{color:var(--brand);text-decoration:none;border-bottom:1px solid transparent}
   .stop .maps a:hover{border-bottom-color:var(--brand)}
   .stop .why{display:flex;flex-wrap:wrap;gap:7px}
+  /* 겹친 시간대 '한 곳 고르기' 선택지 */
+  .stop.choice::before{background:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .choice-lead{font-size:.88rem;color:var(--ink);font-weight:600;line-height:1.5}
+  .choice-lead .choice-sub{color:var(--sub);font-weight:400;font-size:.82rem}
+  .opts{display:flex;flex-direction:column;gap:10px;margin-top:3px}
+  .opt{position:relative;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;
+    border:1.5px solid var(--line);border-radius:12px;padding:12px 13px;background:var(--card);color:var(--ink);
+    transition:border-color .12s,opacity .12s,background .12s;-webkit-tap-highlight-color:transparent}
+  .opt:hover{border-color:var(--brand)}
+  .opt:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 22%,transparent)}
+  .opt.selected{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 8%,var(--card));
+    box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 20%,transparent)}
+  .opt.selected::after{content:"✓ 선택됨";position:absolute;top:10px;right:12px;font-size:.74rem;color:var(--brand);font-weight:700}
+  .opt.dimmed{opacity:.5}
+  .opt.dimmed .name{text-decoration:line-through;text-decoration-color:var(--sub)}
+  .opt .name{padding-right:60px}
   .tagm{font-size:.75rem;background:var(--chip);color:var(--chip-ink);border-radius:6px;padding:3px 9px;line-height:1.4}
   .tagm.friend{background:var(--accent);color:#fff;font-weight:600}
   .eventBanner:last-child{margin-bottom:8px}
@@ -1001,28 +1017,55 @@ function render(res){
       </div>
     </div>`;
 
+  // 장소 카드 내부(시각 제외) — 일반 스톱과 '선택지' 옵션에서 공용
+  const stopBody = (s)=>{
+    // 지도 검색어에 여행지를 넣어 다른 지역/동명 장소로 새는 걸 줄인다
+    const q = s.map ? (s.map.includes(prefs.destination) ? s.map : `${prefs.destination} ${s.map}`) : "";
+    const nm = q ? `<a href="${mapUrl(q)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
+    const maps = q ? `<div class="maps">🗺️ <a href="${mapUrl(q)}" target="_blank" rel="noopener">네이버지도</a>
+      <a href="${gmapUrl(q)}" target="_blank" rel="noopener">구글맵스</a></div>` : "";
+    const tags = (s.friend ? [`<span class="tagm friend">⭐ 내가 추가</span>`] : [])
+      .concat((s.styles||[]).map(t=>`<span class="tagm">#${t}</span>`));
+    return `<div class="name">${nm}</div>
+      <div class="cat">${s.cat}</div>
+      ${s.desc?`<div class="desc">${s.desc}</div>`:""}
+      ${s.move?`<div class="move">🚶 ${s.move}</div>`:""}
+      ${maps}
+      ${tags.length?`<div class="why">${tags.join("")}</div>`:""}`;
+  };
+  // 도착/체크인/출발/행사 등 구조 스톱은 '선택지' 대상에서 제외
+  const isStructural = s => s.event || /이동|숙소|특별 행사/.test(s.cat) || /^[📍🏨🧳🎉]/.test((s.name||"").trim());
+
   // 일자별 타임라인
   days.forEach(day=>{
     html += `<div class="dayHead"><span class="dn">${day.label}</span><span class="dd">${day.date}</span></div>`;
     html += `<div class="card"><div class="timeline">`;
-    day.stops.forEach(s=>{
-      // 지도 검색어에 여행지를 넣어 다른 지역/동명 장소로 새는 걸 줄인다
-      const q = s.map ? (s.map.includes(prefs.destination) ? s.map : `${prefs.destination} ${s.map}`) : "";
-      const nm = q ? `<a href="${mapUrl(q)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
-      const maps = q ? `<div class="maps">🗺️ <a href="${mapUrl(q)}" target="_blank" rel="noopener">네이버지도</a>
-        <a href="${gmapUrl(q)}" target="_blank" rel="noopener">구글맵스</a></div>` : "";
-      const tags = (s.friend ? [`<span class="tagm friend">⭐ 내가 추가</span>`] : [])
-        .concat((s.styles||[]).map(t=>`<span class="tagm">#${t}</span>`));
+    // 같은 시각에 겹친 방문 스톱(2개 이상)은 '한 곳 고르기' 선택지로 묶는다
+    let i=0;
+    while(i < day.stops.length){
+      const s = day.stops[i];
+      if(!isStructural(s)){
+        let j=i+1;
+        while(j<day.stops.length && !isStructural(day.stops[j]) && day.stops[j].time===s.time) j++;
+        if(j-i>=2){
+          const opts = day.stops.slice(i,j);
+          html += `<div class="stop choice">
+            <div class="t">${s.time}</div>
+            <div class="choice-lead">⚖️ 같은 시간대예요 · <b>한 곳</b>을 골라보세요 <span class="choice-sub">(나머지는 대안으로 남겨둬요)</span></div>
+            <div class="opts">`;
+          opts.forEach((o,k)=>{
+            html += `<div class="opt ${k===0?"selected":"dimmed"} ${o.friend?"fr":""}" role="button" tabindex="0">${stopBody(o)}</div>`;
+          });
+          html += `</div></div>`;
+          i=j; continue;
+        }
+      }
       html += `<div class="stop ${s.event?"ev":""} ${s.friend?"fr":""}">
         <div class="t">${s.time}${s.timeText?` · ${s.timeText}`:""}</div>
-        <div class="name">${nm}</div>
-        <div class="cat">${s.cat}</div>
-        ${s.desc?`<div class="desc">${s.desc}</div>`:""}
-        ${s.move?`<div class="move">🚶 ${s.move}</div>`:""}
-        ${maps}
-        ${tags.length?`<div class="why">${tags.join("")}</div>`:""}
+        ${stopBody(s)}
       </div>`;
-    });
+      i++;
+    }
     html += `</div></div>`;
   });
 
@@ -1061,6 +1104,16 @@ function render(res){
   });
 
   $("#result").innerHTML = html;
+  // 겹친 시간대 '선택지': 한 옵션을 고르면 그 곳이 선택되고 나머지는 대안으로 흐려짐
+  $("#result").querySelectorAll(".choice").forEach(ch=>{
+    const opts = [...ch.querySelectorAll(".opt")];
+    const pick = op=>{ opts.forEach(x=>{ x.classList.remove("selected"); x.classList.add("dimmed"); });
+      op.classList.add("selected"); op.classList.remove("dimmed"); };
+    opts.forEach(op=>{
+      op.addEventListener("click", e=>{ if(e.target.closest("a")) return; pick(op); });   // 지도 링크는 통과
+      op.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(op); } });
+    });
+  });
   $("#editAgain").onclick = ()=>{ $("#result").innerHTML=""; $("#step2").classList.add("hidden");
     $("#step1").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"}); };
   const sb=$("#shareLink"); if(sb) sb.onclick=shareCurrent;
