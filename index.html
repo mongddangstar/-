@@ -284,34 +284,12 @@
     <div style="margin-top:16px">
       <label class="field" for="friendPlaces">가고 싶은 곳 · 하고 싶은 일정 <span style="color:var(--sub);font-weight:400">(자유 입력)</span></label>
       <p class="fp-help">문장으로 편하게 적어도 돼요. 예: <b>“도착하자마자 교동짬뽕”</b>, <b>“2일차 오후 해수욕장”</b>, <b>“가볼만한 명소 1~2곳 추천”</b>.
-        날짜·시간을 붙이면 그 시점에 배치돼요. (아래 <code>#</code>·<code>@</code> 태그는 선택)</p>
+        날짜·시간을 붙이면 그 시점에 배치돼요.</p>
       <div class="fp-wrap">
         <div class="fp-hl" id="fpHl" aria-hidden="true"></div>
         <textarea id="friendPlaces" rows="5"
-          placeholder="예) 자유롭게 적어보세요&#10;2일차 오후 해수욕장&#10;3일차 오전 호텔 수영장&#10;스시로 #맛집 @시부야&#10;블루보틀 카페&#10;○○국밥"></textarea>
+          placeholder="예) 자유롭게 적어보세요&#10;도착하자마자 교동짬뽕&#10;2일차 오후 해수욕장&#10;가볼만한 명소 1~2곳 추천&#10;○○국밥"></textarea>
       </div>
-      <div class="tagbar" id="tagbar">
-        <div class="taggrp" data-grp="type">
-          <span class="lbl">태그(선택) #유형</span>
-          <span class="tagchip" data-ins="#맛집">🍜 맛집</span>
-          <span class="tagchip" data-ins="#카페">☕ 카페</span>
-          <span class="tagchip" data-ins="#명소">📸 명소</span>
-        </div>
-        <div class="taggrp" data-grp="area">
-          <span class="lbl">태그(선택) @지역</span>
-          <span class="muted">장소 이름 뒤에 지역을 붙이면 동선에 더 잘 반영돼요 — 예: <code>○○식당 @홍대</code></span>
-        </div>
-      </div>
-      <details class="llm-box">
-        <summary>✨ 더 정확히 해석하기 <span class="opt-tag">선택</span></summary>
-        <p class="fp-help"><b>위 자유 입력</b>은 키 없이도 그대로 해석돼요. 여기에 Claude API 키를 넣으면 <b>같은 입력을 AI가 더 정확히</b> 해석합니다(복잡한 문장·도착 시점·추천 요청 등).
-          <b>키는 이 기기(브라우저)에만 저장</b>되고 <b>공유 링크엔 포함되지 않아요.</b> 브라우저 보안 정책상 <b>배포 사이트(github.io)에서만</b> 호출돼요.</p>
-        <input id="llmKey" type="password" autocomplete="off" placeholder="sk-ant-... (선택)">
-        <span class="llm-status" id="llmStatus"></span>
-        <p class="fp-help llm-guide">🔑 키 발급: <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>
-          → 로그인 → <b>API Keys → Create Key</b> → 복사(<code>sk-ant-…</code>). 사용량 종량제(유료)라 <b>Billing</b>에서 결제수단·크레딧 등록이 필요해요.
-          저렴한 <code>claude-haiku-4-5</code> 모델로 호출해 문장 파싱 비용은 매우 작습니다.</p>
-      </details>
     </div>
 
     <div class="row-actions">
@@ -1296,13 +1274,15 @@ function fpUpdateBar(){
   });
 }
 (function bindTagbar(){
-  const el = $("#friendPlaces"), bar = $("#tagbar"); if(!el || !bar) return;
-  bar.querySelectorAll(".tagchip").forEach(c=>{
-    // mousedown: 텍스트영역 포커스/커서 위치를 잃기 전에 삽입
-    c.addEventListener("mousedown", ev=>{ ev.preventDefault(); fpInsert(c.dataset.ins); });
-  });
-  ["input","keyup","click","focus"].forEach(evt=> el.addEventListener(evt, fpUpdateBar));
-  ["input","scroll"].forEach(evt=> el.addEventListener(evt, fpRenderHighlight));
+  const el = $("#friendPlaces"); if(!el) return;
+  const bar = $("#tagbar");
+  if(bar){   // 태그 칩 UI가 있을 때만(현재는 제거됨)
+    bar.querySelectorAll(".tagchip").forEach(c=>{
+      c.addEventListener("mousedown", ev=>{ ev.preventDefault(); fpInsert(c.dataset.ins); });
+    });
+    ["input","keyup","click","focus"].forEach(evt=> el.addEventListener(evt, fpUpdateBar));
+  }
+  ["input","scroll"].forEach(evt=> el.addEventListener(evt, fpRenderHighlight));   // 네온 하이라이트는 항상
   fpRenderHighlight();
 })();
 
