@@ -210,7 +210,7 @@
         <input id="departTime" type="time" value="09:10" />
       </label>
       <label class="field">출발 장소
-        <input id="departPlace" value="서울 고속버스터미널" />
+        <input id="departPlace" value="" placeholder="예: 출발지 (역·공항·터미널 등)" />
       </label>
       <label class="field">이동 소요(분) · 편도
         <input id="travelMin" type="number" value="140" min="0" step="10" />
@@ -291,7 +291,7 @@
     <div class="q">
       <p class="ask">Q2. 첫날 도착 후 체크인(15시) 전, 짐은 어떻게 할까요?</p>
       <div class="chips" data-single="luggage">
-        <span class="chip on" data-v="locker">터미널·시장 물품보관함에 맡기고 가볍게</span>
+        <span class="chip on" data-v="locker">코인락커·짐 보관소에 맡기고 가볍게</span>
         <span class="chip" data-v="carry">그냥 들고 다닐게요</span>
       </div>
     </div>
@@ -734,7 +734,7 @@ function buildItinerary(prefs){
       const move = prevZone==null
         ? (opt.moveText || "")
         : (prevZone===p.zone ? `도보/근거리 이동 약 ${withinBuffer}분`
-                             : `${prefs.transport==="car"?"차량":"시내버스"} 이동 약 ${buffer}분 · ${p.transit}`);
+                             : `${prefs.transport==="car"?"차량":"대중교통"} 이동 약 ${buffer}분 · ${p.transit}`);
       if(prevZone!=null) clock += (prevZone===p.zone?withinBuffer:buffer);
       // 식사 시간 앵커링(현실적인 타임라인)
       if(opt.role==="lunch"  && clock < toMin("12:00")) clock = toMin("12:00");
@@ -758,9 +758,9 @@ function buildItinerary(prefs){
     if(isFirst && nDays>1){
       // 도착일: 늦은 오전 도착 → 도심에서 시작, 15시 체크인, 저녁은 숙소권
       clock = arrival + 10;
-      stops.push({ time:toHHMM(arrival), name:`🚌 ${prefs.destination} 도착`, cat:"이동",
-        desc:`${prefs.departPlace} ${prefs.departTime} 출발 → 약 ${Math.round(prefs.travelMin/60*10)/10}시간 뒤 도착.`+
-             (prefs.luggage==="locker"?" 짐은 물품보관함에 맡기고 가볍게 출발.":""),
+      stops.push({ time:toHHMM(arrival), name:`📍 ${prefs.destination} 도착`, cat:"이동",
+        desc:`${prefs.departPlace?prefs.departPlace+" ":""}${prefs.departTime} 출발 → 약 ${Math.round(prefs.travelMin/60*10)/10}시간 뒤 도착.`+
+             (prefs.luggage==="locker"?" 짐은 코인락커·보관소에 맡기고 가볍게 출발.":""),
         move:"", transit:"", styles:[], map:prefs.destination, src:"", event:false });
       clock += 20; prevZone="city";
       add(pickMeal("lunch",["city"]), {role:"lunch"});
@@ -769,7 +769,7 @@ function buildItinerary(prefs){
       // 15시 체크인
       clock=Math.max(clock+buffer, toMin("15:00"));
       stops.push({ time:toHHMM(clock), name:`🏨 숙소 체크인 · ${prefs.lodging}`, cat:"숙소",
-        desc:"짐 풀고 잠시 휴식 후 저녁 일정.", move:`${prefs.transport==="car"?"차량":"시내버스/택시"}로 숙소 이동`,
+        desc:"짐 풀고 잠시 휴식 후 저녁 일정.", move:`${prefs.transport==="car"?"차량":"대중교통/택시"}로 숙소 이동`,
         transit:"", styles:[], map:prefs.lodging, src:"", event:false });
       clock+=40; prevZone=homeZone;
       add(pickMeal("dinner",[homeZone,...(city.zones[homeZone]?.near||[])]), {role:"dinner"});
@@ -787,10 +787,10 @@ function buildItinerary(prefs){
       if(ev && prefs.eventMode==="include" && prefs.returnTime==="late"){
         addEvent(ev);
       }
-      stops.push({ time: prefs.returnTime==="late"?"이후":"—", name:`🚌 ${prefs.destination} 출발`, cat:"이동",
+      stops.push({ time: prefs.returnTime==="late"?"이후":"—", name:`📍 ${prefs.destination} 출발`, cat:"이동",
         desc: prefs.returnTime==="late"
-              ? "축제를 즐긴 뒤 저녁 버스로 복귀."
-              : (prefs.returnTime==="early"?"이른 오후 버스로 복귀.":"복귀 시간에 맞춰 터미널로."),
+              ? "마지막 일정을 즐긴 뒤 저녁에 복귀."
+              : (prefs.returnTime==="early"?"이른 오후에 복귀.":"복귀 시간에 맞춰 출발."),
         move:"", transit:"", styles:[], map:prefs.destination, src:"", event:false });
     }
     else {
@@ -876,7 +876,7 @@ function render(res){
   });
 
   // 교통 팁 + 정보 수정
-  html += `<div class="card"><h2>🚌 대중교통 팁</h2><ul class="tips">`;
+  html += `<div class="card"><h2>🗺️ 이동·교통 팁</h2><ul class="tips">`;
   (city.transitTips||[]).forEach(t=> html += `<li>${t}</li>`);
   html += `</ul>`;
   if(res.friendDropped && res.friendDropped.length){
