@@ -113,6 +113,17 @@
     transition:opacity .12s,border-color .12s,color .12s}
   .tagchip:hover{border-color:var(--brand);color:var(--brand)}
   .tagchip.dim{opacity:.32}
+  .llm-box{margin-top:11px;border:1px dashed var(--line);border-radius:12px;padding:2px 12px 12px}
+  .llm-box>summary{cursor:pointer;list-style:none;font-size:.86rem;font-weight:700;color:var(--sub);padding:9px 0}
+  .llm-box>summary::-webkit-details-marker{display:none}
+  .llm-box[open]>summary{color:var(--brand)}
+  .llm-box .fp-help{margin-top:0}
+  .llm-box #llmKey{width:100%;margin-top:9px;padding:10px 12px;border:1px solid var(--line);
+    border-radius:10px;background:var(--bg);color:var(--ink);font-size:.9rem;box-sizing:border-box;
+    -webkit-appearance:none;appearance:none}
+  .llm-box #llmKey:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 22%,transparent)}
+  .llm-status{display:block;font-size:.8rem;color:var(--sub);margin-top:7px;min-height:1em}
+  .llm-status.ok{color:var(--brand)}
   .chips{display:flex;flex-wrap:wrap;gap:9px}
   .chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);
     border-radius:999px;padding:9px 15px;font-size:.87rem;line-height:1.3;cursor:pointer;user-select:none;
@@ -248,8 +259,8 @@
 
     <div style="margin-top:16px">
       <label class="field" for="friendPlaces">가고 싶은 곳 · 하고 싶은 일정 <span style="color:var(--sub);font-weight:400">(자유 입력)</span></label>
-      <p class="fp-help">한 줄에 하나씩. <b>“2일차 오후 해수욕장”</b>처럼 날짜·시간을 붙이면 그 시간에 배치돼요.
-        (아래 <code>#</code>·<code>@</code> 태그는 선택)</p>
+      <p class="fp-help">문장으로 편하게 적어도 돼요. 예: <b>“도착하자마자 교동짬뽕”</b>, <b>“2일차 오후 해수욕장”</b>, <b>“가볼만한 명소 1~2곳 추천”</b>.
+        날짜·시간을 붙이면 그 시점에 배치돼요. (아래 <code>#</code>·<code>@</code> 태그는 선택)</p>
       <div class="fp-wrap">
         <div class="fp-hl" id="fpHl" aria-hidden="true"></div>
         <textarea id="friendPlaces" rows="5"
@@ -267,6 +278,13 @@
           <span class="muted">장소 이름 뒤에 지역을 붙이면 동선에 더 잘 반영돼요 — 예: <code>○○식당 @홍대</code></span>
         </div>
       </div>
+      <details class="llm-box">
+        <summary>🤖 문장 스마트 해석 (선택 · Claude API 키)</summary>
+        <p class="fp-help">키를 넣으면 위 문장을 AI가 더 정확히 해석해요(도착 시점·추천 요청 등). 키가 없어도 기본 해석은 그대로 동작합니다.
+          <b>키는 이 기기(브라우저)에만 저장</b>되고 <b>공유 링크엔 포함되지 않아요.</b> 브라우저 보안 정책상 <b>배포 사이트(github.io)에서만</b> 호출돼요.</p>
+        <input id="llmKey" type="password" autocomplete="off" placeholder="sk-ant-... (선택)">
+        <span class="llm-status" id="llmStatus"></span>
+      </details>
     </div>
 
     <div class="row-actions">
@@ -518,16 +536,31 @@ function parseFriendPlaces(raw){
     const am = t.match(/@\s*([^\s#@]+)/);
     if(am){ area = am[1].trim(); t = t.replace(am[0]," "); }
     const pin = parsePin(t); t = pin.cleaned;
-    const name = t.replace(/\s+/g," ").trim();
+    // 추천 요청("가볼만한 명소 1~2개 넣어줘")은 리터럴 스톱이 아니라 '요청'으로 처리
+    const req = detectRequest(t);
+    if(req){
+      return { kind:"request", name:"", area, type: type || req.reqType,
+               reqType: type || req.reqType, count: req.count,
+               pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor };
+    }
+    // 문장에서 서술어·조사 꼬리를 떼고 핵심 장소명만 추출
+    const name = stripVerbTail(t.replace(/\s+/g," ").trim());
     if(!name) return null;
-    return { name, area, type: type || classifyFriend(name),
+    return { kind:"place", name, area, type: type || classifyFriend(name),
              pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor };
   }).filter(Boolean);
 }
 
-/* 날짜(첫날/둘째날/3일차/마지막날) + 시간대(오전/점심/오후/저녁/밤) 추출 */
+/* 날짜(첫날/둘째날/3일차/마지막날) + 시간대(오전/점심/오후/저녁/밤) + 도착 시점 추출 */
 function parsePin(text){
   let dayIdx=null, when=null, whenKor="", t=text;
+  // "도착하자마자/도착 후/오자마자" → 첫날 도착 직후 (앞의 '속초 터미널 …' 접두부까지 제거)
+  const arr = t.match(/(도착\s*하자마자|도착하자\s*마자|도착\s*직후|도착\s*후|도착하면|도착해서|도착하는\s*대로|오자마자)/);
+  if(arr){
+    dayIdx=0; when="arrival"; whenKor="도착 직후";
+    const esc = arr[0].replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    t = t.replace(new RegExp("^[\\s\\S]*?"+esc), " ");
+  }
   if(/마지막\s*날/.test(t)){ dayIdx="last"; t=t.replace(/마지막\s*날/," "); }
   else {
     let m=t.match(/(\d+)\s*일\s*(차|째|날)/);
@@ -537,16 +570,53 @@ function parsePin(text){
       if(m){ const map={"첫":0,"둘":1,"이튿":1,"셋":2,"넷":3,"다섯":4}; dayIdx=map[m[1]]; t=t.replace(m[0]," "); }
     }
   }
-  const wm=t.match(/오전|아침|점심|오후|저녁|밤|낮/);
-  if(wm){ const w=wm[0];
-    when = (w==="아침"||w==="오전")?"morning" : w==="점심"?"noon" : (w==="오후"||w==="낮")?"afternoon" : w==="저녁"?"evening" : "night";
-    whenKor = w; t=t.replace(w," ");
+  if(when==null){
+    const wm=t.match(/오전|아침|점심|오후|저녁|밤|낮/);
+    if(wm){ const w=wm[0];
+      when = (w==="아침"||w==="오전")?"morning" : w==="점심"?"noon" : (w==="오후"||w==="낮")?"afternoon" : w==="저녁"?"evening" : "night";
+      whenKor = w; t=t.replace(w," ");
+    }
   }
   return { dayIdx, when, whenKor, cleaned:t };
 }
 
+/* 문장 끝의 서술어/조사를 떼어 핵심 장소명만 남긴다 (예: "교동짬뽕을 먹으러 갈 거야" → "교동짬뽕") */
+function stripVerbTail(name){
+  let s = (name||"").trim();
+  const tails = [
+    /\s*(을|를|에|에서|으로|로)?\s*(먹으러|먹으로|보러|들르러|가려고|들르려고|구경하러|방문하러)\s*(갈\s*거야|갈래|가자|가고\s*싶어|갈까|가야지|갈\s*예정|들를\s*거야)?\s*[.!~]*$/,
+    /\s*(에|에서)?\s*(갈\s*거야|갈래|가자|가고\s*싶어|가고\s*싶다|가야지|갈\s*예정|들를\s*거야|들르자|가볼래|가보고\s*싶어|구경할\s*거야|방문할\s*거야|보고\s*싶어|먹고\s*싶어|먹을\s*거야)\s*[.!~]*$/,
+    /\s*(을|를|에|에서|으로|로|은|는|이|가|도|만|랑|이랑|과|와)\s*[.!~]*$/
+  ];
+  let prev;
+  do{ prev=s; for(const re of tails){ s = s.replace(re,"").trim(); } }while(s!==prev && s.length);
+  s = s.replace(/[.,!?~\s]+$/,"").trim();
+  return s || (name||"").trim();
+}
+
+/* 자연어 추천 요청인지 감지 → {reqType, count} 또는 null (요청이면 리터럴 스톱을 만들지 않음) */
+function detectRequest(text){
+  const t = (text||"").trim();
+  const hasReqVerb = /(추천|넣어\s*줘|넣어\s*주라|넣어\s*줄래|골라\s*줘|알아서\s*(넣|골|추천)|가\s*볼\s*만한|가볼\s*만한|볼\s*만한|유명한|괜찮은\s*곳|좀\s*넣|좀\s*추천|찾아\s*줘)/.test(t);
+  if(!hasReqVerb) return null;
+  const typeWord = t.match(/(맛집|카페|커피|디저트|명소|관광지|랜드마크|전망대?|자연|산책|해변|해수욕장|바다|경치)/);
+  let reqType = "명소";
+  if(typeWord){
+    const w = typeWord[1];
+    reqType = /카페|커피|디저트/.test(w) ? "카페" : /맛집|먹|음식|식당/.test(w) ? "맛집" : "명소";
+  }
+  let count = 2;
+  const cm = t.match(/(\d+)\s*~\s*(\d+)\s*(개|곳|군데|가지)?/) || t.match(/(\d+)\s*(개|곳|군데|가지)/);
+  if(cm){
+    const a=parseInt(cm[1],10); const b=cm[2] && /^\d+$/.test(cm[2]) ? parseInt(cm[2],10) : a;
+    count = Math.max(1, Math.min(4, Math.round((a+b)/2)));
+  }
+  return { reqType, count };
+}
+
 /* 시간대 → 대략 시각(분) */
 function whenMin(when){
+  if(when==="arrival") return 0;   // 도착 직후 — buildItinerary에서 도착시각 기준으로 보정
   return ({morning:630, noon:720, afternoon:870, evening:1110, night:1200})[when] ?? 900;
 }
 
@@ -646,16 +716,19 @@ function buildItinerary(prefs){
 
   // 직접 입력 장소: 날짜/시간대가 지정된 것은 '고정 일정'으로, 나머지는 후보 풀로
   const friendDropped = [];
+  const requestsUnmet = [];       // 채우지 못한 추천 요청
+  const requests = [];            // "명소 1~2개 넣어줘" 같은 자연어 요청
   const pinnedByDay = {};   // dayIndex → [{...}]
   const resolveDay = pd => pd==="last" ? (nDays-1) : (typeof pd==="number" ? Math.max(0, Math.min(nDays-1, pd)) : null);
   (prefs.friendPlaces||[]).forEach((f,i)=>{
+    if(f.kind==="request"){ requests.push(f); return; }   // 요청은 뒤에서 별도 처리
     const spec = friendSpec(f.type);
     const zone = inferZone(city, `${f.name} ${f.area}`) || homeZone;
     const map  = f.area ? `${f.name} ${f.area}` : f.name;
     const cuisine = f.type==="맛집" ? classifyCuisine(f.name) : "";
     const day = resolveDay(f.pinDay);
     if(day!=null){
-      // 사용자가 날짜/시간대를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
+      // 사용자가 날짜/시간대(또는 도착 직후)를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
       (pinnedByDay[day] = pinnedByDay[day] || []).push({
         name:f.name, cat:spec.cat, styles:spec.styles, zone, map, when:f.pinWhen, whenKor:f.pinWhenKor });
       return;
@@ -671,6 +744,16 @@ function buildItinerary(prefs){
       map };
     fp.score = scorePlace(fp, prefs);
     pool.push(fp);
+  });
+
+  // 자연어 추천 요청 처리: 내장 DB가 있으면 해당 유형 인기 장소를 count개 '추천'으로 승격
+  requests.forEach(r=>{
+    const spec = friendSpec(r.reqType);
+    if(city.generic){ requestsUnmet.push(r); return; }
+    const cand = pool.filter(p=> !p.friend && p.slot.some(s=>spec.slot.includes(s)) && visitableZones.includes(p.zone));
+    if(!cand.length){ requestsUnmet.push(r); return; }
+    cand.sort((a,b)=> b.pop-a.pop);
+    cand.slice(0, r.count||2).forEach(p=>{ p.friend=true; p.score=scorePlace(p,prefs); });
   });
 
   pool.sort((a,b)=>b.score-a.score);
@@ -716,6 +799,9 @@ function buildItinerary(prefs){
   const perDayTarget = prefs.pace==="packed" ? 6 : 4;
   const buffer = 25;         // zone 간 이동 버퍼(분)
   const withinBuffer = 12;   // 같은 zone 내 이동(분)
+
+  // 도착 직후에 맛집을 고정했으면 첫날 자동 점심은 생략(밥 중복 방지)
+  const day0ArrivalMeal = (pinnedByDay[0]||[]).some(pp=> pp.when==="arrival" && pp.cat==="맛집");
 
   const days=[];
   const zoneQueue = zoneOrder().filter(z=>z!=="seorak"); // 설악은 별도 배정
@@ -763,7 +849,7 @@ function buildItinerary(prefs){
              (prefs.luggage==="locker"?" 짐은 코인락커·보관소에 맡기고 가볍게 출발.":""),
         move:"", transit:"", styles:[], map:prefs.destination, src:"", event:false });
       clock += 20; prevZone="city";
-      add(pickMeal("lunch",["city"]), {role:"lunch"});
+      if(!day0ArrivalMeal) add(pickMeal("lunch",["city"]), {role:"lunch"});
       add(take(p=> inZones(["city","donghae"])(p) && (bySlot("snack")(p)||bySlot("cafe")(p))));
       add(take(p=> inZones(["city","donghae"])(p) && bySlot("sight")(p)));
       // 15시 체크인
@@ -819,8 +905,9 @@ function buildItinerary(prefs){
 
     // 사용자가 날짜/시간대를 지정한 '고정 일정' 삽입 후 시간순 정렬
     (pinnedByDay[d]||[]).forEach(pp=>{
-      let t = whenMin(pp.when);
-      if(isFirst && nDays>1) t = Math.max(t, arrival + 40);   // 도착 전으로 가지 않게
+      let t;
+      if(pp.when==="arrival"){ t = (arrival||toMin("10:00")) + 40; }   // 도착 스톱 직후
+      else { t = whenMin(pp.when); if(isFirst && nDays>1) t = Math.max(t, arrival + 40); }
       stops.push({ time:toHHMM(t), name:pp.name, cat:pp.cat,
         desc:`✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.`,
         move:"", transit:"", styles:pp.styles, map:pp.map, event:false, friend:true, pinned:true });
@@ -831,7 +918,7 @@ function buildItinerary(prefs){
     days.push({ label:`Day ${d+1}`, date:dateLabel(prefs.startDate,d), stops });
   }
 
-  return { nDays, homeZone, days, overlappingEvents, city, prefs, friendDropped };
+  return { nDays, homeZone, days, overlappingEvents, city, prefs, friendDropped, requestsUnmet };
 }
 
 /* ----- 렌더링 ----- */
@@ -881,6 +968,10 @@ function render(res){
   html += `</ul>`;
   if(res.friendDropped && res.friendDropped.length){
     html += `<div class="note">추가한 곳 중 <b>${res.friendDropped.join(", ")}</b>는 이번 동선과 멀어 코스에서 제외했어요.</div>`;
+  }
+  if(res.requestsUnmet && res.requestsUnmet.length){
+    const kinds=[...new Set(res.requestsUnmet.map(r=>r.reqType))].join("·");
+    html += `<div class="note">‘${kinds} 추천’ 요청은 이 여행지의 내장 추천 데이터가 없어 자동으로 채우지 못했어요. 원하는 곳을 직접 한 줄씩 적어주시면 코스에 넣어드릴게요.</div>`;
   }
   html += `<div class="note">💾 이 코스와 입력은 <b>이 기기에 자동 저장</b>됐어요. 다른 기기(폰↔PC)로 옮기려면 <b>🔗 다른 기기로 저장/이동</b>으로 링크를 복사해 메일·메신저로 보내세요.</div>`;
   html += `<div class="row-actions">
@@ -1010,6 +1101,7 @@ function fpUpdateBar(){
 
 /* ============================ 기기 내 저장(localStorage) ============================ */
 const LS_KEY = "tripCourse.v1";
+const LS_KEY_API = "tripCourse.apiKey";   // API 키는 이 기기에만 저장 — 공유 링크/collectState 절대 미포함
 let _lastGen = false;
 function collectState(){
   return {
@@ -1141,7 +1233,83 @@ $("#toStep2").onclick=()=>{
   window.scrollTo({top:0,behavior:"smooth"});
 };
 $("#backStep1").onclick=()=>{ $("#step2").classList.add("hidden"); $("#step1").classList.remove("hidden"); };
-$("#generate").onclick=()=>{ render(buildItinerary(readPrefs())); saveState(true); };
+
+/* ----- 선택적 LLM 해석: 사용자가 넣은 Claude API 키로 자유입력 문장을 정밀 파싱 ----- */
+async function llmParse(raw, prefs){
+  const key = (localStorage.getItem(LS_KEY_API)||"").trim();
+  if(!key || !(raw||"").trim()) return null;
+  const nDays = daysBetween(prefs.startDate, prefs.endDate);
+  const sys =
+`너는 여행 일정 입력 파서다. 사용자가 자유롭게 쓴 한국어 메모를 분석해 JSON 배열만 출력한다(설명·코드펜스 금지).
+각 원소:
+{"kind":"place"|"request","name":"장소명(요청이면 빈문자열)","area":"지역 힌트 또는 빈문자열","type":"맛집"|"카페"|"명소","pinDay":정수(0부터)|"last"|null,"pinWhen":"morning"|"noon"|"afternoon"|"evening"|"night"|"arrival"|null,"reqType":"맛집"|"카페"|"명소","count":정수}
+규칙:
+- 문장에서 실제 장소명만 name에 담아라. "교동짬뽕을 먹으러 갈 거야" → name:"교동짬뽕".
+- "도착하자마자/도착 후"는 pinDay:0, pinWhen:"arrival".
+- "2일차/둘째날"→pinDay:1, "3일차"→pinDay:2, "마지막날"→pinDay:"last". "오전/아침"→morning, "점심"→noon, "오후/낮"→afternoon, "저녁"→evening, "밤"→night.
+- "가볼만한 명소 1~2개 넣어줘"처럼 추천을 요청하면 kind:"request", name:"", reqType/count 설정. 리터럴 장소로 만들지 마라.
+여행지:${prefs.destination||"미정"}, 여행일수:${nDays}일.`;
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method:"POST",
+    headers:{ "content-type":"application/json", "x-api-key":key,
+      "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
+    body: JSON.stringify({ model:"claude-haiku-4-5", max_tokens:1024,
+      system:sys, messages:[{ role:"user", content:raw }] })
+  });
+  if(!res.ok) throw new Error("api "+res.status);
+  const data = await res.json();
+  let txt = (data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("").trim();
+  const m = txt.match(/\[[\s\S]*\]/); if(m) txt = m[0];
+  const arr = JSON.parse(txt);
+  const T = ["맛집","카페","명소"], W = ["morning","noon","afternoon","evening","night","arrival"];
+  const wk = {morning:"오전",noon:"점심",afternoon:"오후",evening:"저녁",night:"밤",arrival:"도착 직후"};
+  return arr.map(o=>{
+    const type = T.includes(o.type) ? o.type : (o.name ? classifyFriend(o.name) : "명소");
+    return {
+      kind: o.kind==="request" ? "request" : "place",
+      name: (o.name||"").trim(), area:(o.area||"").trim(), type,
+      reqType: T.includes(o.reqType) ? o.reqType : type,
+      count: Math.max(1, Math.min(4, parseInt(o.count,10)||2)),
+      pinDay: o.pinDay==="last" ? "last" : (o.pinDay==null ? null : parseInt(o.pinDay,10)),
+      pinWhen: W.includes(o.pinWhen) ? o.pinWhen : null,
+      pinWhenKor: wk[o.pinWhen] || ""
+    };
+  }).filter(o=> o.kind==="request" || o.name);
+}
+
+/* API 키: 이 기기에만 저장 (공유 링크·collectState 미포함) */
+function llmKeyStatus(){
+  const st=$("#llmStatus"); if(!st) return;
+  const has=!!(localStorage.getItem(LS_KEY_API)||"").trim();
+  st.textContent = has ? "✅ 키 저장됨 (이 기기에서만 사용)" : "";
+  st.classList.toggle("ok", has);
+}
+(function initLlmKey(){
+  const el=$("#llmKey"); if(!el) return;
+  el.value = localStorage.getItem(LS_KEY_API) || "";
+  llmKeyStatus();
+  el.addEventListener("input", ()=>{
+    const v=el.value.trim();
+    try{ if(v) localStorage.setItem(LS_KEY_API, v); else localStorage.removeItem(LS_KEY_API); }catch(e){}
+    llmKeyStatus();
+  });
+})();
+
+$("#generate").onclick = async ()=>{
+  const btn=$("#generate"), orig=btn.textContent;
+  const prefs = readPrefs();   // 기본(규칙) 파서 결과가 prefs.friendPlaces에 담김
+  const raw = $("#friendPlaces") ? $("#friendPlaces").value : "";
+  if((localStorage.getItem(LS_KEY_API)||"").trim() && raw.trim()){
+    btn.disabled=true; btn.textContent="🧠 문장 해석 중…";
+    try{
+      const parsed = await llmParse(raw, prefs);
+      if(parsed && parsed.length) prefs.friendPlaces = parsed;   // 성공 시 교체
+    }catch(e){ /* 실패/CSP 차단/네트워크 → 규칙 파서 결과로 폴백 */ }
+    btn.disabled=false; btn.textContent=orig;
+  }
+  render(buildItinerary(prefs));
+  saveState(true);
+};
 
 // 테마 토글
 $("#themeBtn").onclick=()=>{
