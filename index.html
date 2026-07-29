@@ -66,8 +66,10 @@
   input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:0}
   code{background:var(--chip);color:var(--chip-ink);border-radius:5px;padding:1px 6px;font-size:.85em}
 
-  /* 추천 입력: @/# 토큰 야광 하이라이트 (투명 textarea + 뒤 오버레이) */
-  .fp-wrap{position:relative;margin-top:7px}
+  /* 추천 입력 안내 + @/# 토큰 야광 하이라이트 */
+  .fp-help{font-size:.82rem;color:var(--sub);line-height:1.6;margin:7px 0 0}
+  .fp-help code{font-size:.9em}
+  .fp-wrap{position:relative;margin-top:9px}
   .fp-wrap textarea{position:relative;z-index:2;background:transparent;color:transparent;
     caret-color:var(--ink)}
   .fp-wrap textarea::placeholder{color:var(--sub)}
@@ -207,9 +209,6 @@
       <label class="field">출발 시각
         <input id="departTime" type="time" value="09:10" />
       </label>
-      <label class="field">도착 시각 (선택)
-        <input id="arriveTime" type="time" />
-      </label>
       <label class="field">출발 장소
         <input id="departPlace" value="서울 고속버스터미널" />
       </label>
@@ -249,21 +248,23 @@
 
     <div style="margin-top:16px">
       <label class="field" for="friendPlaces">추천 맛집 · 랜드마크 · 가볼 만한 곳</label>
+      <p class="fp-help">한 줄에 <b>한 곳</b>씩 적어요. <b>장소 이름</b> 뒤에 <b><code>#유형</code></b>(맛집·카페·명소)과
+        <b><code>@지역</code></b>을 붙이면 더 정확해요. 안 붙이면 이름으로 <b>자동 분류</b>합니다.</p>
       <div class="fp-wrap">
         <div class="fp-hl" id="fpHl" aria-hidden="true"></div>
         <textarea id="friendPlaces" rows="4"
-          placeholder="한 줄에 하나씩 · 예) 라멘집 @시부야  ·  전망대 #명소"></textarea>
+          placeholder="예)&#10;스시로 #맛집 @시부야&#10;블루보틀 #카페&#10;시부야스카이 #명소&#10;○○국밥"></textarea>
       </div>
       <div class="tagbar" id="tagbar">
         <div class="taggrp" data-grp="type">
-          <span class="lbl"># 유형</span>
+          <span class="lbl">#유형 넣기</span>
           <span class="tagchip" data-ins="#맛집">🍜 맛집</span>
           <span class="tagchip" data-ins="#카페">☕ 카페</span>
           <span class="tagchip" data-ins="#명소">📸 명소</span>
         </div>
         <div class="taggrp" data-grp="area">
-          <span class="lbl">@ 지역</span>
-          <span class="muted">이름 뒤에 <code>@지역</code>을 적으면 동선에 더 잘 반영돼요 (예: @홍대, @시부야)</span>
+          <span class="lbl">@지역 넣기</span>
+          <span class="muted">장소 이름 뒤에 지역을 붙여요 — 예: <code>○○식당 @홍대</code>, <code>○○카페 @시부야</code></span>
         </div>
       </div>
     </div>
@@ -489,7 +490,6 @@ function readPrefs(){
     startDate: $("#startDate").value,
     endDate: $("#endDate").value,
     departTime: $("#departTime").value || "09:10",
-    arriveTime: $("#arriveTime") ? $("#arriveTime").value : "",
     departPlace: $("#departPlace").value.trim(),
     travelMin: parseInt($("#travelMin").value||"140",10),
     lodging: $("#lodging").value.trim(),
@@ -574,9 +574,7 @@ function buildItinerary(prefs){
   const city = DATA[prefs.destination] || DATA["속초"];
   const nDays = daysBetween(prefs.startDate, prefs.endDate);
   const homeZone = lodgingZone(city, prefs.lodging);
-  // 도착 시각을 직접 입력하면 그대로, 아니면 출발+이동소요로 추정
-  const arrival = prefs.arriveTime ? toMin(prefs.arriveTime)
-                                   : toMin(prefs.departTime) + (prefs.travelMin||140);
+  const arrival = toMin(prefs.departTime) + (prefs.travelMin||140);
 
   // 겹치는 행사 찾기
   const tripStart=prefs.startDate, tripEnd=prefs.endDate;
@@ -683,8 +681,7 @@ function buildItinerary(prefs){
       // 도착일: 늦은 오전 도착 → 도심에서 시작, 15시 체크인, 저녁은 숙소권
       clock = arrival + 10;
       stops.push({ time:toHHMM(arrival), name:`🚌 ${prefs.destination} 도착`, cat:"이동",
-        desc:`${prefs.departPlace} ${prefs.departTime} 출발 → `+
-             (prefs.arriveTime ? `${prefs.arriveTime} 도착.` : `약 ${Math.round(prefs.travelMin/60*10)/10}시간 뒤 도착.`)+
+        desc:`${prefs.departPlace} ${prefs.departTime} 출발 → 약 ${Math.round(prefs.travelMin/60*10)/10}시간 뒤 도착.`+
              (prefs.luggage==="locker"?" 짐은 물품보관함에 맡기고 가볍게 출발.":""),
         move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
       clock += 20; prevZone="city";
