@@ -170,6 +170,7 @@
     border-radius:50%;background:var(--brand);border:3px solid var(--card);box-shadow:0 0 0 1px var(--line)}
   .stop.ev::before{background:var(--event);box-shadow:0 0 0 1px var(--event)}
   .stop.fr::before{background:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .stop.rc::before{background:var(--brand);box-shadow:0 0 0 1px var(--brand)}
   .stop .t{font-size:.82rem;color:var(--brand);font-weight:700;letter-spacing:.02em;
     font-variant-numeric:tabular-nums}
   .stop .name{font-weight:600;font-size:1.04rem;line-height:1.45}
@@ -200,6 +201,7 @@
   .opt .name{padding-right:60px}
   .tagm{font-size:.75rem;background:var(--chip);color:var(--chip-ink);border-radius:6px;padding:3px 9px;line-height:1.4}
   .tagm.friend{background:var(--accent);color:#fff;font-weight:600}
+  .tagm.rec{background:var(--brand);color:var(--brand-ink);font-weight:600}
   .eventBanner:last-child{margin-bottom:8px}
   .foot{color:var(--sub);font-size:.8rem;margin-top:8px;line-height:1.6}
   .src{color:var(--sub);font-size:.77rem;line-height:1.5}
@@ -550,45 +552,61 @@ function readPrefs(){
 /* ----- 추천/직접입력 장소 파싱 -----
  * 한 줄에 하나. "이름 @지역 #유형" + 자유표현("둘째날 오후 해수욕장")도 인식.
  * #유형: 맛집|카페|명소 · @지역 · 날짜/시간대는 자동 감지해 해당 시점에 고정 배치 */
+// 한 줄에 여러 장소("A 갔다가 3시에 B에 왔어")를 접속어로 분리
+function splitSegments(line){
+  return (line||"")
+    .split(/\s*(?:그리고|그\s*다음에?|그\s*뒤에?|그\s*후에?|→|;|\/|,)\s*|\s*(?:갔다가|들렀다가|다녀와서|다녀온\s*뒤에?|들러서|들른\s*뒤에?|하고\s*나서|한\s*뒤에?|한\s*다음에?)\s+/g)
+    .map(s=>s.trim()).filter(Boolean);
+}
+
+// 한 조각(segment)을 파싱해 place/request 항목 하나로
+function parseOneItem(seg){
+  let t = (seg||"").trim();
+  if(!t) return null;
+  let type="";
+  const tm = t.match(/#\s*(맛집|카페|명소|관광|장소|랜드마크)/);
+  if(tm){ type = ({관광:"명소",장소:"명소",랜드마크:"명소"})[tm[1]] || tm[1]; t = t.replace(tm[0]," "); }
+  let area="";
+  const am = t.match(/@\s*([^\s#@]+)/);
+  if(am){ area = am[1].trim(); t = t.replace(am[0]," "); }
+  const pin = parsePin(t); t = pin.cleaned;
+  const checkinCtx = /입실|체크\s*인|숙소\s*들어|도착/.test(seg);
+  const raw0 = seg.trim();
+  const asRequest = (reqType, count) => {
+    let pinDay = pin.dayIdx;
+    if(pinDay==null && checkinCtx && (pin.atMin!=null || pin.when)) pinDay = 0;
+    return { kind:"request", name:"", area, type: type || reqType, reqType: type || reqType,
+             count, pinDay, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
+  };
+
+  // 추천/질문형 요청("가볼만한 명소 어디일까", "맛집 추천해줘")은 리터럴 스톱이 아니라 '요청'으로
+  const req = detectRequest(t);
+  if(req) return asRequest(req.reqType, req.count);
+
+  // 문장에서 서술어·조사 꼬리를 떼고 핵심 장소명만 추출
+  let name = stripVerbTail(t.replace(/\s+/g," ").trim());
+  // 안전망: 질문/요청 잔재가 남거나 '가볼만한 명소'처럼 일반명사 유형만이면 요청으로 전환
+  const looksQuestion = /(어디|어때|없을까|일까|좋을까|추천|어느|무엇|뭐가)/.test(name);
+  const genericOnly = /^((가볼만한|가볼\s*만한|볼만한|갈만한|먹을만한|유명한|괜찮은|좋은|핫한|인기)\s*)+(맛집|카페|커피|디저트|명소|관광지?|랜드마크|전망대?|자연|해변|해수욕장|바다|경치|스팟|곳|데|장소)\s*$/.test(name);
+  if(looksQuestion || genericOnly){
+    const w = name.match(/(카페|커피|디저트|맛집|먹|음식|식당)/);
+    const rt = type || (w ? (/카페|커피|디저트/.test(w[1])?"카페":"맛집") : "명소");
+    return asRequest(rt, 2);
+  }
+  if(!name) return null;
+  let pinDay = pin.dayIdx;
+  if(pinDay==null && pin.atMin!=null) pinDay = 0;   // 명시 시각("오후 3시반")이 있으면 첫날에 고정
+  return { kind:"place", name, area, type: type || classifyFriend(name),
+           pinDay, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
+}
+
 function parseFriendPlaces(raw){
-  return (raw||"").split(/\r?\n/).map(line=>{
-    let t = line.trim();
-    if(!t) return null;
-    let type="";
-    const tm = t.match(/#\s*(맛집|카페|명소|관광|장소|랜드마크)/);
-    if(tm){ type = ({관광:"명소",장소:"명소",랜드마크:"명소"})[tm[1]] || tm[1]; t = t.replace(tm[0]," "); }
-    let area="";
-    const am = t.match(/@\s*([^\s#@]+)/);
-    if(am){ area = am[1].trim(); t = t.replace(am[0]," "); }
-    const pin = parsePin(t); t = pin.cleaned;
-    // 문장에 '입실/체크인/도착' 맥락이 있으면(날짜 미지정 요청은) 첫날로 본다
-    const checkinCtx = /입실|체크\s*인|숙소\s*들어|도착/.test(line);
-    const raw0 = line.trim();
-    const asRequest = (reqType, count) => {
-      let pinDay = pin.dayIdx;
-      if(pinDay==null && checkinCtx && (pin.atMin!=null || pin.when)) pinDay = 0;
-      return { kind:"request", name:"", area, type: type || reqType, reqType: type || reqType,
-               count, pinDay, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
-    };
-
-    // 추천/질문형 요청("가볼만한 명소 어디일까", "맛집 추천해줘")은 리터럴 스톱이 아니라 '요청'으로
-    const req = detectRequest(t);
-    if(req) return asRequest(req.reqType, req.count);
-
-    // 문장에서 서술어·조사 꼬리를 떼고 핵심 장소명만 추출
-    let name = stripVerbTail(t.replace(/\s+/g," ").trim());
-    // 안전망: 질문/요청 잔재가 남거나 '가볼만한 명소'처럼 일반명사 유형만이면 요청으로 전환
-    const looksQuestion = /(어디|어때|없을까|일까|좋을까|추천|어느|무엇|뭐가)/.test(name);
-    // 추천 수식어(가볼만한/괜찮은…)가 하나 이상 있을 때만 '유형만' 요청으로 (해수욕장·수영장 등 구체 목적지는 place 유지)
-    const genericOnly = /^((가볼만한|가볼\s*만한|볼만한|갈만한|먹을만한|유명한|괜찮은|좋은|핫한|인기)\s*)+(맛집|카페|커피|디저트|명소|관광지?|랜드마크|전망대?|자연|해변|해수욕장|바다|경치|스팟|곳|데|장소)\s*$/.test(name);
-    if(looksQuestion || genericOnly){
-      const w = name.match(/(카페|커피|디저트|맛집|먹|음식|식당)/);
-      const rt = type || (w ? (/카페|커피|디저트/.test(w[1])?"카페":"맛집") : "명소");
-      return asRequest(rt, 2);
-    }
-    if(!name) return null;
-    return { kind:"place", name, area, type: type || classifyFriend(name),
-             pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
+  return (raw||"").split(/\r?\n/).flatMap(line=>{
+    const items = splitSegments(line).map(parseOneItem).map(refineParsedItem).filter(Boolean);
+    // 같은 줄 안에서 한 조각에만 날짜가 있으면(예: "칠성조선소 갔다가 3시반에 청초호") 형제에 날짜 전파
+    const dayFound = items.map(it=>it.pinDay).find(d=>d!=null);
+    if(dayFound!=null) items.forEach(it=>{ if(it.pinDay==null && it.kind==="place") it.pinDay=dayFound; });
+    return items;
   }).filter(Boolean);
 }
 
@@ -649,6 +667,7 @@ function stripVerbTail(name){
   const tails = [
     /\s*(을|를|에|에서|으로|로)?\s*(먹으러|먹으로|보러|들르러|가려고|들르려고|구경하러|방문하러|타러)\s*(갈\s*거야|갈래|가자|가고\s*싶어|갈까|가야지|갈\s*예정|들를\s*거야)?\s*[.!~]*$/,
     /\s*(에|에서)?\s*(갈\s*거야|갈래|가자|가고\s*싶어|가고\s*싶다|가야지|갈\s*예정|들를\s*거야|들르자|가볼래|가보고\s*싶어|구경할?\s*거야|방문할?\s*거야|보고\s*싶어|먹고\s*싶어|먹을\s*거야|타고\s*싶어|타고\s*싶다|타\s*보고\s*싶어|즐기고\s*싶어)\s*[.!~]*$/,
+    /\s*(에|에서)?\s*(왔어|왔다|왔음|왔고|갔어|갔다|갔음|갔고|다녀왔어|다녀왔다|들렀어|들렀다|도착)\s*[.!~]*$/,   // 과거형(왔어/갔어)
     /\s*(물놀이|물놀|해수욕|산책|구경|힐링|인증샷|사진\s*찍기?|나들이|드라이브|먹방|먹기)\s*[.!~]*$/,   // 끝에 남은 활동 표현
     /\s*(을|를|에|에서|으로|로|랑|이랑|과|와)\s*[.!~]*$/                                        // 조사(단, 은/는/이/가/도/만은 어절 끝과 헷갈려 제외)
   ];
@@ -782,8 +801,9 @@ function scorePlace(p, prefs){
   s += m * 3.2;
   // 대중교통이면 설악산은 접근 부담 소폭 감점(선택 안 했을 때)
   if(prefs.transport==="transit" && p.zone==="seorak") s -= 1.5;
-  // 친구 추천은 '선호' 가중치만(동선에 맞을 때 우선 채택, 강제 삽입 아님)
+  // 직접 추가/추천 장소는 '선호' 가중치만(동선에 맞을 때 우선 채택, 강제 삽입 아님)
   if(p.friend) s += 3;
+  if(p.rec) s += 2;
   return s;
 }
 
@@ -823,8 +843,12 @@ function buildItinerary(prefs){
     const day = resolveDay(f.pinDay);
     if(day!=null){
       // 사용자가 날짜/시간대(또는 도착 직후)를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
+      const dupP = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
       (pinnedByDay[day] = pinnedByDay[day] || []).push({
-        name:f.name, cat:spec.cat, styles:spec.styles, zone, map, when:f.pinWhen, whenKor:f.pinWhenKor, at:f.pinAt, raw:f.raw });
+        name: dupP?dupP.name:f.name, cat:(dupP?dupP.cat:spec.cat), styles:(dupP?dupP.styles:spec.styles),
+        zone:(dupP?dupP.zone:zone), map:(dupP?dupP.map:map), desc:(dupP?dupP.desc:""),
+        when:f.pinWhen, whenKor:f.pinWhenKor, at:f.pinAt, raw:f.raw });
+      if(dupP) pool = pool.filter(p=> p.id!==dupP.id);   // 같은 곳이 자동으로 또 뽑히지 않게 제거
       return;
     }
     // 이미 데이터에 있는 곳이면 중복 추가 대신 '추천'으로 승격
@@ -841,26 +865,33 @@ function buildItinerary(prefs){
     pool.push(fp);
   });
 
-  // 자연어 추천 요청 처리: 내장 DB의 해당 유형 인기 장소를 count개 선택
+  // 추천 요청은 사용자가 이미 정한 곳들의 '동선(zone)'을 고려해 고른다 — 아무거나 top-pop이 아니라
+  const anchorZones = new Set();
+  Object.values(pinnedByDay).forEach(list=> list.forEach(pp=>{ if(pp.zone) anchorZones.add(pp.zone); }));
+  pool.filter(p=>p.friend).forEach(p=> anchorZones.add(p.zone));
+  const nearAnchor = z => anchorZones.has(z) || (city.zones[z]?.near||[]).some(n=>anchorZones.has(n));
+
+  // 자연어 추천 요청 처리: 내장 DB의 해당 유형에서 '동선 우선 → 인기순'으로 count개 선택
   //  - 날짜가 정해진 요청은 그 시각/날짜에 '고정', 아니면 '추천'으로 승격(부스트)
   requests.forEach(r=>{
     const spec = friendSpec(r.reqType);
     if(city.generic){ requestsUnmet.push(r); return; }
-    const cand = pool.filter(p=> !p.friend && p.slot.some(s=>spec.slot.includes(s)) && visitableZones.includes(p.zone));
+    const cand = pool.filter(p=> !p.friend && !p.rec && p.slot.some(s=>spec.slot.includes(s)) && visitableZones.includes(p.zone));
     if(!cand.length){ requestsUnmet.push(r); return; }
-    cand.sort((a,b)=> b.pop-a.pop);
+    // 사용자가 정한 장소와 같은/이웃 zone을 우선, 그다음 인기순 (동선 고려한 추천)
+    cand.sort((a,b)=> (nearAnchor(b.zone)-nearAnchor(a.zone)) || (b.pop-a.pop));
     const picks = cand.slice(0, r.count||2);
     const day = resolveDay(r.pinDay);
     if(day!=null){
       // 시각/날짜가 있는 요청 → 그 시점에 고정 (pool에서 제거해 중복 방지)
       picks.forEach(p=>{
         (pinnedByDay[day] = pinnedByDay[day] || []).push({
-          name:p.name, cat:p.cat, styles:p.styles, zone:p.zone, map:p.map,
-          when:r.pinWhen, whenKor:r.pinWhenKor, at:r.pinAt });
+          name:p.name, cat:p.cat, styles:p.styles, zone:p.zone, map:p.map, desc:p.desc,
+          when:r.pinWhen, whenKor:r.pinWhenKor, at:r.pinAt, rec:true });
         pool = pool.filter(x=> x.id!==p.id);
       });
     } else {
-      picks.forEach(p=>{ p.friend=true; p.score=scorePlace(p,prefs); });
+      picks.forEach(p=>{ p.rec=true; p.score=scorePlace(p,prefs); });
     }
   });
 
@@ -936,7 +967,7 @@ function buildItinerary(prefs){
       const start=clock;
       stops.push({ time:toHHMM(start), name:p.name, cat:p.cat, desc:p.desc,
         move, transit:p.transit, styles:p.styles, map:p.map,
-        event:!!opt.event, friend:!!p.friend, timeText:opt.timeText });
+        event:!!opt.event, friend:!!p.friend, rec:!!p.rec, timeText:opt.timeText });
       clock += p.dur;
       prevZone=p.zone;
     };
@@ -1018,9 +1049,12 @@ function buildItinerary(prefs){
       else if(pp.when==="arrival"){ t = (arrival||toMin("10:00")) + 40; }   // 도착 스톱 직후
       else { t = whenMin(pp.when); if(isFirst && nDays>1) t = Math.max(t, arrival + 40); }
       const pEcho = (pp.raw && pp.raw.replace(/\s/g,"")!==(pp.name||"").replace(/\s/g,"")) ? ` — 적은 내용: “${pp.raw}”` : "";
-      stops.push({ time:toHHMM(t), name:pp.name, cat:pp.cat,
-        desc:`✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.${pEcho}`,
-        move:"", transit:"", styles:pp.styles, map:pp.map, event:false, friend:true, pinned:true });
+      const pDesc = pp.rec
+        ? `✨ 요청하신 추천으로 골랐어요${pp.whenKor?(" · "+pp.whenKor):""}.${pp.desc?(" "+pp.desc):""}`
+        : `✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.${pEcho}`;
+      stops.push({ time:toHHMM(t), name:pp.name, cat:pp.cat, desc:pDesc,
+        move:"", transit:"", styles:pp.styles, map:pp.map, event:false,
+        friend:!pp.rec, rec:!!pp.rec, pinned:true });
     });
     const tkey = s => /^\d/.test(s.time) ? toMin(s.time) : 99999;   // '이후'/'—'는 맨 뒤
     stops.sort((a,b)=> tkey(a)-tkey(b));
@@ -1054,7 +1088,8 @@ function render(res){
     const nm = q ? `<a href="${mapUrl(q)}" target="_blank" rel="noopener">${s.name}</a>` : s.name;
     const maps = q ? `<div class="maps">🗺️ <a href="${mapUrl(q)}" target="_blank" rel="noopener">네이버지도</a>
       <a href="${gmapUrl(q)}" target="_blank" rel="noopener">구글맵스</a></div>` : "";
-    const tags = (s.friend ? [`<span class="tagm friend">⭐ 내가 추가</span>`] : [])
+    const tags = (s.rec ? [`<span class="tagm rec">✨ 추천</span>`]
+                        : s.friend ? [`<span class="tagm friend">⭐ 내가 추가</span>`] : [])
       .concat((s.styles||[]).map(t=>`<span class="tagm">#${t}</span>`));
     return `<div class="name">${nm}</div>
       <div class="cat">${s.cat}</div>
@@ -1084,13 +1119,13 @@ function render(res){
             <div class="choice-lead">⚖️ 같은 시간대예요 · <b>한 곳</b>을 골라보세요 <span class="choice-sub">(나머지는 대안으로 남겨둬요)</span></div>
             <div class="opts">`;
           opts.forEach((o,k)=>{
-            html += `<div class="opt ${k===0?"selected":"dimmed"} ${o.friend?"fr":""}" role="button" tabindex="0">${stopBody(o)}</div>`;
+            html += `<div class="opt ${k===0?"selected":"dimmed"} ${o.friend?"fr":""} ${o.rec?"rc":""}" role="button" tabindex="0">${stopBody(o)}</div>`;
           });
           html += `</div></div>`;
           i=j; continue;
         }
       }
-      html += `<div class="stop ${s.event?"ev":""} ${s.friend?"fr":""}">
+      html += `<div class="stop ${s.event?"ev":""} ${s.friend?"fr":""} ${s.rec?"rc":""}">
         <div class="t">${s.time}${s.timeText?` · ${s.timeText}`:""}</div>
         ${stopBody(s)}
       </div>`;
