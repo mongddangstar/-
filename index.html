@@ -271,9 +271,11 @@
 
     <div class="row-actions">
       <button class="primary" id="toStep2" type="button">다음: 몇 가지만 더 여쭤볼게요 →</button>
-      <button class="ghost" id="resetSaved" type="button">🗑 저장 내용 지우기</button>
+      <button class="ghost" id="shareLink" type="button">🔗 다른 기기로 가져가기</button>
+      <button class="ghost" id="resetSaved" type="button">🗑 지우기</button>
     </div>
-    <p class="fp-help" style="margin-top:12px">💾 입력과 만든 코스는 <b>이 기기(브라우저)에 자동 저장</b>돼요. 다시 들어오면 이어서 볼 수 있어요.</p>
+    <p class="fp-help" style="margin-top:12px">💾 입력과 만든 코스는 <b>이 기기(브라우저)에 자동 저장</b>돼요.
+      기기 간 이동은 <b>🔗 다른 기기로 가져가기</b>로 링크를 복사해 메일·메신저로 자신에게 보내면, 그 링크를 연 기기에서 그대로 불러와집니다.</p>
   </section>
 
   <!-- ================= STEP 2: 되묻는 질문 플로우 ================= -->
@@ -353,12 +355,12 @@ const DATA = {
     places: [
       // ---- 도심·중앙시장 ----
       { id:"market", name:"속초관광수산시장(중앙시장)", zone:"city", cat:"시장·먹거리",
-        pop:5, styles:["맛집","인생샷"], slot:["lunch","snack"], dur:70,
+        pop:5, styles:["맛집","인생샷"], slot:["lunch","snack"], dur:70, cuisine:"분식·시장",
         desc:"닭강정·씨앗호떡·대게빵으로 유명한 속초 대표 시장. 도착 첫 끼로 딱.",
         transit:"터미널에서 도보 15분 또는 시내버스 3·7·9번", map:"속초관광수산시장",
         src:"대한민국 구석구석·식신 (2024~2025)" },
       { id:"abai", name:"아바이마을 & 갯배", zone:"city", cat:"관광·먹거리",
-        pop:4, styles:["맛집","인생샷"], slot:["snack","sight"], dur:70,
+        pop:4, styles:["맛집","인생샷"], slot:["snack","sight"], dur:70, cuisine:"순대",
         desc:"무동력 배 ‘갯배’로 청호동으로 건너가 아바이순대·오징어순대 맛보기.",
         transit:"중앙시장 인근 갯배선착장에서 도보 이동", map:"아바이마을 갯배선착장",
         src:"visitkorea 한국관광100선" },
@@ -380,11 +382,11 @@ const DATA = {
         desc:"속초 닭강정의 대명사. 포장해서 다니며 먹기 좋은 국민 간식.",
         transit:"중앙시장 내", map:"만석닭강정 본점", src:"식신·블로그 (2024~2025)" },
       { id:"cheongchosu", name:"청초수물회", zone:"city", cat:"물회·해산물",
-        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60,
+        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60, cuisine:"물회",
         desc:"시원한 물회로 이름난 청초호변 맛집. 여름 점심으로 제격.",
         transit:"청초호 인근, 도심권", map:"청초수물회", src:"다이닝코드 (2024~2025)" },
       { id:"88fish", name:"88생선구이(아바이마을)", zone:"city", cat:"생선구이·백반",
-        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60,
+        pop:4, styles:["맛집"], slot:["lunch","dinner"], dur:60, cuisine:"생선구이",
         desc:"모둠 생선구이 백반으로 유명한 아바이마을 노포. 든든한 한 끼.",
         transit:"아바이마을 내", map:"88생선구이 속초", src:"블로그·다이닝코드 (2024~2025)" },
 
@@ -395,7 +397,7 @@ const DATA = {
         transit:"시내버스 1·7·9번(터미널·중앙시장·갯배입구 경유)", map:"영금정",
         src:"나무위키·visitkorea" },
       { id:"dongmyeong", name:"동명항", zone:"donghae", cat:"항구·회",
-        pop:3, styles:["맛집"], slot:["dinner","lunch"], dur:70,
+        pop:3, styles:["맛집"], slot:["dinner","lunch"], dur:70, cuisine:"회",
         desc:"활어회·물회를 즐기기 좋은 항구. 영금정과 함께 묶어 방문.",
         transit:"영금정 도보권", map:"동명항", src:"블로그 (2024~2025)" },
 
@@ -409,7 +411,7 @@ const DATA = {
         desc:"영랑호와 설악산 능선이 한눈에 담기는 대형 뷰 스타벅스. 인생샷 명소.",
         transit:"영랑호 인근", map:"스타벅스 속초영랑호", src:"블로그 (2025)" },
       { id:"bongpo", name:"봉포머구리집", zone:"yeongnang", cat:"물회·해산물",
-        pop:5, styles:["맛집"], slot:["lunch","dinner"], dur:70,
+        pop:5, styles:["맛집"], slot:["lunch","dinner"], dur:70, cuisine:"물회",
         desc:"성게알 가득 물회로 전국적으로 유명한 맛집. 대기 있을 수 있음.",
         transit:"영랑동/봉포 방면, 시내버스 또는 택시", map:"봉포머구리집", src:"식신·다이닝코드 (2024~2025)" },
 
@@ -420,7 +422,7 @@ const DATA = {
         transit:"숙소 도보권 / 시내버스 대포항 방면", map:"외옹치 바다향기로",
         src:"visitkorea (2024~2025)" },
       { id:"daepo", name:"대포항", zone:"oeongchi", cat:"항구·회·대게",
-        pop:5, styles:["맛집"], slot:["dinner","lunch"], dur:80,
+        pop:5, styles:["맛집"], slot:["dinner","lunch"], dur:80, cuisine:"회·대게",
         desc:"활어회·대게·새우튀김의 성지. 숙소 근처라 첫날/마지막날 식사로 최적.",
         transit:"숙소 도보·버스 / 시내버스 1·7·9번", map:"속초 대포항",
         src:"식신·다이닝코드 (2024~2025)" },
@@ -506,23 +508,61 @@ function readPrefs(){
   };
 }
 
-/* ----- 친구 추천 장소 파싱 -----
- * 한 줄에 하나. "이름 @지역 #유형" 형태로 지역/유형 힌트 가능.
- * 유형(#): 맛집 | 카페 | 명소  (없으면 이름으로 자동 분류) */
+/* ----- 추천/직접입력 장소 파싱 -----
+ * 한 줄에 하나. "이름 @지역 #유형" + 자유표현("둘째날 오후 해수욕장")도 인식.
+ * #유형: 맛집|카페|명소 · @지역 · 날짜/시간대는 자동 감지해 해당 시점에 고정 배치 */
 function parseFriendPlaces(raw){
   return (raw||"").split(/\r?\n/).map(line=>{
     let t = line.trim();
     if(!t) return null;
     let type="";
     const tm = t.match(/#\s*(맛집|카페|명소|관광|장소|랜드마크)/);
-    if(tm){ type = ({관광:"명소",장소:"명소",랜드마크:"명소"})[tm[1]] || tm[1]; t = t.replace(tm[0],"").trim(); }
+    if(tm){ type = ({관광:"명소",장소:"명소",랜드마크:"명소"})[tm[1]] || tm[1]; t = t.replace(tm[0]," "); }
     let area="";
-    const am = t.match(/@\s*([^#]+)$/);
-    if(am){ area = am[1].trim(); t = t.replace(am[0],"").trim(); }
-    const name = t.trim();
+    const am = t.match(/@\s*([^\s#@]+)/);
+    if(am){ area = am[1].trim(); t = t.replace(am[0]," "); }
+    const pin = parsePin(t); t = pin.cleaned;
+    const name = t.replace(/\s+/g," ").trim();
     if(!name) return null;
-    return { name, area, type: type || classifyFriend(name) };
+    return { name, area, type: type || classifyFriend(name),
+             pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor };
   }).filter(Boolean);
+}
+
+/* 날짜(첫날/둘째날/3일차/마지막날) + 시간대(오전/점심/오후/저녁/밤) 추출 */
+function parsePin(text){
+  let dayIdx=null, when=null, whenKor="", t=text;
+  if(/마지막\s*날/.test(t)){ dayIdx="last"; t=t.replace(/마지막\s*날/," "); }
+  else {
+    let m=t.match(/(\d+)\s*일\s*(차|째|날)/);
+    if(m){ dayIdx=parseInt(m[1],10)-1; t=t.replace(m[0]," "); }
+    else{
+      m=t.match(/(첫|둘|이튿|셋|넷|다섯)째?\s*날/);
+      if(m){ const map={"첫":0,"둘":1,"이튿":1,"셋":2,"넷":3,"다섯":4}; dayIdx=map[m[1]]; t=t.replace(m[0]," "); }
+    }
+  }
+  const wm=t.match(/오전|아침|점심|오후|저녁|밤|낮/);
+  if(wm){ const w=wm[0];
+    when = (w==="아침"||w==="오전")?"morning" : w==="점심"?"noon" : (w==="오후"||w==="낮")?"afternoon" : w==="저녁"?"evening" : "night";
+    whenKor = w; t=t.replace(w," ");
+  }
+  return { dayIdx, when, whenKor, cleaned:t };
+}
+
+/* 시간대 → 대략 시각(분) */
+function whenMin(when){
+  return ({morning:630, noon:720, afternoon:870, evening:1110, night:1200})[when] ?? 900;
+}
+
+/* 이름으로 메뉴(요리) 추정 — 같은 메뉴 반복 방지용 */
+function classifyCuisine(name){
+  const map=[["물회","물회"],["막국수","막국수"],["국밥","국밥"],["칼국수","칼국수"],["라멘|라면","라멘"],
+    ["스시|초밥|오마카세","스시"],["횟집|사시미|생선회|활어","회"],["회","회"],["대게|킹크랩|게","대게"],
+    ["고기|갈비|불고기|삼겹|정육|스테이크","고기"],["햄버거|버거","버거"],["피자","피자"],["파스타|이탈리","파스타"],
+    ["순대","순대"],["닭강정|치킨|닭","치킨"],["생선구이|구이","구이"],["국수","국수"],["쌀국수|반미|분짜","베트남"],
+    ["짜장|짬뽕|중식|마라","중식"],["초밥","스시"]];
+  for(const [pat,c] of map){ if(new RegExp(pat).test(name)) return c; }
+  return "";
 }
 
 /* 이름으로 유형 자동 분류 (맛집/카페/명소) */
@@ -592,20 +632,31 @@ function buildItinerary(prefs){
   const seorakOn = prefs.seorak!=="no";
   const visitableZones = Object.keys(city.zones).filter(z=> z!=="seorak" || seorakOn);
 
-  // 친구 추천 장소를 후보로 편입 (맛집/카페/명소 자동 분류, 동선 밖이면 제외)
+  // 직접 입력 장소: 날짜/시간대가 지정된 것은 '고정 일정'으로, 나머지는 후보 풀로
   const friendDropped = [];
+  const pinnedByDay = {};   // dayIndex → [{...}]
+  const resolveDay = pd => pd==="last" ? (nDays-1) : (typeof pd==="number" ? Math.max(0, Math.min(nDays-1, pd)) : null);
   (prefs.friendPlaces||[]).forEach((f,i)=>{
-    // 이미 데이터에 있는 곳이면 중복 추가 대신 '친구 추천'으로 승격
-    const dup = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
-    if(dup){ dup.friend=true; dup.score=scorePlace(dup,prefs); return; }
     const spec = friendSpec(f.type);
     const zone = inferZone(city, `${f.name} ${f.area}`) || homeZone;
+    const map  = f.area ? `${f.name} ${f.area}` : f.name;
+    const cuisine = f.type==="맛집" ? classifyCuisine(f.name) : "";
+    const day = resolveDay(f.pinDay);
+    if(day!=null){
+      // 사용자가 날짜/시간대를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
+      (pinnedByDay[day] = pinnedByDay[day] || []).push({
+        name:f.name, cat:spec.cat, styles:spec.styles, zone, map, when:f.pinWhen, whenKor:f.pinWhenKor });
+      return;
+    }
+    // 이미 데이터에 있는 곳이면 중복 추가 대신 '추천'으로 승격
+    const dup = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
+    if(dup){ dup.friend=true; dup.score=scorePlace(dup,prefs); return; }
     if(!visitableZones.includes(zone)){ friendDropped.push(f.name); return; } // 동선 밖 → 제외
-    const fp = { id:"friend"+i, name:f.name, zone, cat:spec.cat, pop:4,
+    const fp = { id:"friend"+i, name:f.name, zone, cat:spec.cat, pop:4, cuisine,
       styles:spec.styles, slot:spec.slot, dur:spec.dur, friend:true,
       desc:"직접 추가한 장소예요.",
       transit: f.area ? `${f.area} 방면 · 네이버지도에서 위치·길찾기 확인` : "네이버지도에서 위치·길찾기 확인",
-      map: f.area ? `${f.name} ${f.area}` : f.name };
+      map };
     fp.score = scorePlace(fp, prefs);
     pool.push(fp);
   });
@@ -626,6 +677,19 @@ function buildItinerary(prefs){
   // (pool은 점수 내림차순 정렬 상태 → 친구 추천은 같은 zone 내에서 우선 채택됨)
   const takePref = (slot, prefZones) => take(p=> bySlot(slot)(p) && prefZones.includes(p.zone))
                                      || take(bySlot(slot));
+  // 식사 선택: 같은 메뉴(cuisine) 반복을 피하고, 가능하면 선호 zone 우선
+  const usedCuisine = new Set();
+  const pickMeal = (slot, prefZones) => {
+    let cand = pool.filter(p=> !used.has(p.id) && p.slot.includes(slot));
+    if(prefZones){ const inz = cand.filter(p=> prefZones.includes(p.zone)); if(inz.length) cand = inz; }
+    if(!cand.length) cand = pool.filter(p=> !used.has(p.id) && (p.slot.includes("lunch")||p.slot.includes("dinner")));
+    if(!cand.length) return null;
+    const fresh = cand.filter(p=> !p.cuisine || !usedCuisine.has(p.cuisine));  // 새 메뉴 우선
+    const pick = (fresh.length ? fresh : cand)[0];                              // pool은 점수순 정렬
+    used.add(pick.id);
+    if(pick.cuisine) usedCuisine.add(pick.cuisine);
+    return pick;
+  };
 
   // zone 방문 우선순위: 숙소 zone 이웃 → 점수순
   const zoneOrder = () => {
@@ -687,7 +751,7 @@ function buildItinerary(prefs){
              (prefs.luggage==="locker"?" 짐은 물품보관함에 맡기고 가볍게 출발.":""),
         move:"", transit:"", styles:[], map:prefs.destination+" 고속버스터미널", src:"", event:false });
       clock += 20; prevZone="city";
-      add(take(p=> bySlot("lunch")(p) && inZones(["city"])(p)) || take(bySlot("lunch")), {role:"lunch"});
+      add(pickMeal("lunch",["city"]), {role:"lunch"});
       add(take(p=> inZones(["city","donghae"])(p) && (bySlot("snack")(p)||bySlot("cafe")(p))));
       add(take(p=> inZones(["city","donghae"])(p) && bySlot("sight")(p)));
       // 15시 체크인
@@ -696,7 +760,7 @@ function buildItinerary(prefs){
         desc:"짐 풀고 잠시 휴식 후 저녁 일정.", move:`${prefs.transport==="car"?"차량":"시내버스/택시"}로 숙소 이동`,
         transit:"", styles:[], map:prefs.lodging, src:"", event:false });
       clock+=40; prevZone=homeZone;
-      add(take(p=> bySlot("dinner")(p) && inZones([homeZone,...(city.zones[homeZone]?.near||[])])(p)) || take(bySlot("dinner")), {role:"dinner"});
+      add(pickMeal("dinner",[homeZone,...(city.zones[homeZone]?.near||[])]), {role:"dinner"});
     }
     else if(isLast){
       clock = toMin("09:30");
@@ -705,7 +769,7 @@ function buildItinerary(prefs){
       clock+=20; prevZone=homeZone;
       add(take(p=> inZones([homeZone])(p) && bySlot("sight")(p)) || take(bySlot("sight")));
       add(take(p=> bySlot("cafe")(p)) );
-      add(take(p=> bySlot("lunch")(p) && inZones([homeZone,"city"])(p)) || take(bySlot("lunch")), {role:"lunch"});
+      add(pickMeal("lunch",[homeZone,"city"]), {role:"lunch"});
       // 마지막날 겹치는 행사 + 늦은 복귀면 포함
       const ev = overlappingEvents.find(e=> e.start<=isoPlus(prefs.startDate,d) && e.end>=isoPlus(prefs.startDate,d));
       if(ev && prefs.eventMode==="include" && prefs.returnTime==="late"){
@@ -723,23 +787,34 @@ function buildItinerary(prefs){
       if(seorakChosen && !seorakScheduled){
         add(take(p=>p.zone==="seorak"), {moveText:"터미널/숙소에서 시내버스 7·7-1번"});
         seorakScheduled=true;
-        add(take(p=> bySlot("lunch")(p)) || take(bySlot("dinner")), {role:"lunch"});
+        add(pickMeal("lunch",null), {role:"lunch"});
         add(take(p=> bySlot("cafe")(p)) );
         add(take(p=> bySlot("sight")(p)) );
-        add(take(p=> bySlot("dinner")(p)) || take(bySlot("cafe")), {role:"dinner"});
+        add(pickMeal("dinner",null), {role:"dinner"});
       } else {
         // 카페·인생샷 중심 하루 — 하루를 한 zone(+이웃)으로 묶어 동선 최소화
         const z = zoneQueue[zi++ % zoneQueue.length];
         const pref = [z, ...(city.zones[z]?.near||[])];
         add(takePref("sight", [z]) || take(bySlot("sight")));
         add(takePref("cafe", pref));
-        add(takePref("lunch", pref), {role:"lunch"});
+        add(pickMeal("lunch", pref), {role:"lunch"});
         add(takePref("sight", pref));
         if(perDayTarget>=5) add(take(p=>(bySlot("cafe")(p)||bySlot("snack")(p)) && inZones(pref)(p))
                                  || take(p=>bySlot("cafe")(p)||bySlot("snack")(p)));
-        add(takePref("dinner", pref), {role:"dinner"});
+        add(pickMeal("dinner", pref), {role:"dinner"});
       }
     }
+
+    // 사용자가 날짜/시간대를 지정한 '고정 일정' 삽입 후 시간순 정렬
+    (pinnedByDay[d]||[]).forEach(pp=>{
+      let t = whenMin(pp.when);
+      if(isFirst && nDays>1) t = Math.max(t, arrival + 40);   // 도착 전으로 가지 않게
+      stops.push({ time:toHHMM(t), name:pp.name, cat:pp.cat,
+        desc:`✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.`,
+        move:"", transit:"", styles:pp.styles, map:pp.map, event:false, friend:true, pinned:true });
+    });
+    const tkey = s => /^\d/.test(s.time) ? toMin(s.time) : 99999;   // '이후'/'—'는 맨 뒤
+    stops.sort((a,b)=> tkey(a)-tkey(b));
 
     days.push({ label:`Day ${d+1}`, date:dateLabel(prefs.startDate,d), stops });
   }
@@ -937,8 +1012,7 @@ function saveState(generated){
   try{ localStorage.setItem(LS_KEY, JSON.stringify(collectState())); }catch(e){}
 }
 function setVal(sel,val){ const el=$(sel); if(el && val!=null) el.value=val; }
-function loadState(){
-  let s=null; try{ s=JSON.parse(localStorage.getItem(LS_KEY)); }catch(e){}
+function applyStateObj(s){
   if(!s) return;
   setVal("#destination",s.destination); setVal("#transport",s.transport);
   setVal("#startDate",s.startDate); setVal("#endDate",s.endDate);
@@ -955,8 +1029,29 @@ function loadState(){
   _lastGen = !!s.generated;
   if(s.generated){ try{ render(buildItinerary(readPrefs())); }catch(e){} }
 }
+function loadState(){
+  let s=null; try{ s=JSON.parse(localStorage.getItem(LS_KEY)); }catch(e){}
+  applyStateObj(s);
+}
 let _saveTimer;
 function debouncedSave(){ clearTimeout(_saveTimer); _saveTimer=setTimeout(()=>saveState(), 400); }
+
+/* ----- 기기 간 이동: 상태를 링크(#d=...)로 인코딩 ----- */
+function encodeState(){
+  try{ return btoa(unescape(encodeURIComponent(JSON.stringify(collectState())))); }catch(e){ return ""; }
+}
+function bootState(){
+  const m = (location.hash||"").match(/[#&]d=([^&]+)/);
+  if(m){
+    try{
+      const s = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+      applyStateObj(s); _lastGen = !!s.generated; saveState();
+      history.replaceState(null,"",location.pathname+location.search);  // 링크 정리
+      return;
+    }catch(e){}
+  }
+  loadState();
+}
 
 /* ----- 이벤트 바인딩 ----- */
 document.querySelectorAll("#styleChips .chip").forEach(c=>{
@@ -985,6 +1080,13 @@ $("#resetSaved").onclick=()=>{
   try{ localStorage.removeItem(LS_KEY); }catch(e){}
   location.reload();
 };
+$("#shareLink").onclick=async ()=>{
+  saveState();
+  const url = location.origin + location.pathname + location.search + "#d=" + encodeURIComponent(encodeState());
+  const msg = "다른 기기로 가져가기\n\n아래 링크를 복사해 메일·카카오톡 등으로 자신에게 보내세요.\n그 링크를 다른 기기(폰↔PC)에서 열면 입력과 코스가 그대로 불러와집니다.";
+  try{ await navigator.clipboard.writeText(url); alert("✅ 동기화 링크를 복사했어요.\n\n메일·메신저로 자신에게 보내두면, 다른 기기에서 그 링크를 열 때 그대로 이어집니다."); }
+  catch(e){ prompt(msg, url); }
+};
 
 // 테마 토글
 $("#themeBtn").onclick=()=>{
@@ -994,8 +1096,8 @@ $("#themeBtn").onclick=()=>{
   document.documentElement.setAttribute("data-theme", next);
 };
 
-// 저장된 상태 복원 (마지막에)
-loadState();
+// 링크(#d=) 또는 기기 저장에서 복원 (마지막에)
+bootState();
 </script>
 </body>
 </html>
