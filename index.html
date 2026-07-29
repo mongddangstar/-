@@ -563,11 +563,12 @@ function parseFriendPlaces(raw){
     const pin = parsePin(t); t = pin.cleaned;
     // 문장에 '입실/체크인/도착' 맥락이 있으면(날짜 미지정 요청은) 첫날로 본다
     const checkinCtx = /입실|체크\s*인|숙소\s*들어|도착/.test(line);
+    const raw0 = line.trim();
     const asRequest = (reqType, count) => {
       let pinDay = pin.dayIdx;
       if(pinDay==null && checkinCtx && (pin.atMin!=null || pin.when)) pinDay = 0;
       return { kind:"request", name:"", area, type: type || reqType, reqType: type || reqType,
-               count, pinDay, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin };
+               count, pinDay, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
     };
 
     // 추천/질문형 요청("가볼만한 명소 어디일까", "맛집 추천해줘")은 리터럴 스톱이 아니라 '요청'으로
@@ -587,7 +588,7 @@ function parseFriendPlaces(raw){
     }
     if(!name) return null;
     return { kind:"place", name, area, type: type || classifyFriend(name),
-             pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin };
+             pinDay: pin.dayIdx, pinWhen: pin.when, pinWhenKor: pin.whenKor, pinAt: pin.atMin, raw: raw0 };
   }).filter(Boolean);
 }
 
@@ -637,18 +638,24 @@ function parsePin(text){
   return { dayIdx, when, whenKor, atMin, cleaned:t };
 }
 
-/* 문장 끝의 서술어/조사를 떼어 핵심 장소명만 남긴다 (예: "교동짬뽕을 먹으러 갈 거야" → "교동짬뽕") */
+/* 문장 끝의 서술어/조사·활동표현을 떼어 핵심 장소명만 남긴다
+ * (예: "교동짬뽕을 먹으러 갈 거야"→"교동짬뽕", "대포항에서 회 먹기"→"대포항", "속초해수욕장에서 물놀이"→"속초해수욕장") */
 function stripVerbTail(name){
   let s = (name||"").trim();
+  const orig = s;
+  // "<장소>에서/에(서) <활동> …" → 장소만 (활동 표현이 뒤따를 때만)
+  s = s.replace(/\s*(에서|에)\s*(물놀이|물놀|해수욕|수영|회\s*먹|밥\s*먹|점심\s*먹|저녁\s*먹|먹기|먹으려|먹고|산책|구경|놀기|놀려고|사진|인증샷|커피\s*마시|커피|차\s*마시|타기|타고|보기|쉬기|힐링|즐기|산책하)[\s\S]*$/,"").trim();
+  // 끝에 붙은 활동/서술 표현 (에서 없이) 제거
   const tails = [
-    /\s*(을|를|에|에서|으로|로)?\s*(먹으러|먹으로|보러|들르러|가려고|들르려고|구경하러|방문하러)\s*(갈\s*거야|갈래|가자|가고\s*싶어|갈까|가야지|갈\s*예정|들를\s*거야)?\s*[.!~]*$/,
-    /\s*(에|에서)?\s*(갈\s*거야|갈래|가자|가고\s*싶어|가고\s*싶다|가야지|갈\s*예정|들를\s*거야|들르자|가볼래|가보고\s*싶어|구경할\s*거야|방문할\s*거야|보고\s*싶어|먹고\s*싶어|먹을\s*거야)\s*[.!~]*$/,
-    /\s*(을|를|에|에서|으로|로|은|는|이|가|도|만|랑|이랑|과|와)\s*[.!~]*$/
+    /\s*(을|를|에|에서|으로|로)?\s*(먹으러|먹으로|보러|들르러|가려고|들르려고|구경하러|방문하러|타러)\s*(갈\s*거야|갈래|가자|가고\s*싶어|갈까|가야지|갈\s*예정|들를\s*거야)?\s*[.!~]*$/,
+    /\s*(에|에서)?\s*(갈\s*거야|갈래|가자|가고\s*싶어|가고\s*싶다|가야지|갈\s*예정|들를\s*거야|들르자|가볼래|가보고\s*싶어|구경할?\s*거야|방문할?\s*거야|보고\s*싶어|먹고\s*싶어|먹을\s*거야|타고\s*싶어|타고\s*싶다|타\s*보고\s*싶어|즐기고\s*싶어)\s*[.!~]*$/,
+    /\s*(물놀이|물놀|해수욕|산책|구경|힐링|인증샷|사진\s*찍기?|나들이|드라이브|먹방|먹기)\s*[.!~]*$/,   // 끝에 남은 활동 표현
+    /\s*(을|를|에|에서|으로|로|랑|이랑|과|와)\s*[.!~]*$/                                        // 조사(단, 은/는/이/가/도/만은 어절 끝과 헷갈려 제외)
   ];
   let prev;
   do{ prev=s; for(const re of tails){ s = s.replace(re,"").trim(); } }while(s!==prev && s.length);
   s = s.replace(/[.,!?~\s]+$/,"").trim();
-  return s || (name||"").trim();
+  return s || orig;
 }
 
 /* 자연어 추천/질문형 요청인지 감지 → {reqType, count} 또는 null (요청이면 리터럴 스톱을 만들지 않음) */
@@ -696,7 +703,7 @@ function refineParsedItem(it){
              : (w ? (/카페|커피|디저트/.test(w[1])?"카페":"맛집") : "명소");
     return { kind:"request", name:"", area:it.area||"", type:rt, reqType:rt, count:it.count||2,
              pinDay:(it.pinDay!==undefined?it.pinDay:null), pinWhen:(it.pinWhen||null),
-             pinWhenKor:(it.pinWhenKor||""), pinAt:(it.pinAt!=null?it.pinAt:null) };
+             pinWhenKor:(it.pinWhenKor||""), pinAt:(it.pinAt!=null?it.pinAt:null), raw:it.raw };
   }
   return it;
 }
@@ -817,16 +824,17 @@ function buildItinerary(prefs){
     if(day!=null){
       // 사용자가 날짜/시간대(또는 도착 직후)를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
       (pinnedByDay[day] = pinnedByDay[day] || []).push({
-        name:f.name, cat:spec.cat, styles:spec.styles, zone, map, when:f.pinWhen, whenKor:f.pinWhenKor, at:f.pinAt });
+        name:f.name, cat:spec.cat, styles:spec.styles, zone, map, when:f.pinWhen, whenKor:f.pinWhenKor, at:f.pinAt, raw:f.raw });
       return;
     }
     // 이미 데이터에 있는 곳이면 중복 추가 대신 '추천'으로 승격
     const dup = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
     if(dup){ dup.friend=true; dup.score=scorePlace(dup,prefs); return; }
     if(!visitableZones.includes(zone)){ friendDropped.push(f.name); return; } // 동선 밖 → 제외
+    const echo = (f.raw && f.raw.replace(/\s/g,"")!==f.name.replace(/\s/g,"")) ? ` — 적은 내용: “${f.raw}”` : "";
     const fp = { id:"friend"+i, name:f.name, zone, cat:spec.cat, pop:4, cuisine,
       styles:spec.styles, slot:spec.slot, dur:spec.dur, friend:true,
-      desc:"직접 추가한 장소예요.",
+      desc:`✍️ 직접 추가한 곳이에요.${echo}`,
       transit: f.area ? `${f.area} 방면 · 네이버지도에서 위치·길찾기 확인` : "네이버지도에서 위치·길찾기 확인",
       map };
     fp.score = scorePlace(fp, prefs);
@@ -1009,8 +1017,9 @@ function buildItinerary(prefs){
       if(pp.at!=null){ t = pp.at; if(isFirst && nDays>1) t = Math.max(t, arrival + 40); }  // 명시 시각(예: 오후 3시)
       else if(pp.when==="arrival"){ t = (arrival||toMin("10:00")) + 40; }   // 도착 스톱 직후
       else { t = whenMin(pp.when); if(isFirst && nDays>1) t = Math.max(t, arrival + 40); }
+      const pEcho = (pp.raw && pp.raw.replace(/\s/g,"")!==(pp.name||"").replace(/\s/g,"")) ? ` — 적은 내용: “${pp.raw}”` : "";
       stops.push({ time:toHHMM(t), name:pp.name, cat:pp.cat,
-        desc:`✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.`,
+        desc:`✅ 직접 지정한 일정${pp.whenKor?(" · "+pp.whenKor):""}.${pEcho}`,
         move:"", transit:"", styles:pp.styles, map:pp.map, event:false, friend:true, pinned:true });
     });
     const tkey = s => /^\d/.test(s.time) ? toMin(s.time) : 99999;   // '이후'/'—'는 맨 뒤
