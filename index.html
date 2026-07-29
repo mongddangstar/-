@@ -113,10 +113,14 @@
     transition:opacity .12s,border-color .12s,color .12s}
   .tagchip:hover{border-color:var(--brand);color:var(--brand)}
   .tagchip.dim{opacity:.32}
-  .llm-box{margin-top:11px;border:1px dashed var(--line);border-radius:12px;padding:2px 12px 12px}
-  .llm-box>summary{cursor:pointer;list-style:none;font-size:.86rem;font-weight:700;color:var(--sub);padding:9px 0}
+  .llm-box{margin-top:12px;border-top:1px solid var(--line);padding-top:2px}
+  .llm-box>summary{cursor:pointer;list-style:none;font-size:.86rem;font-weight:700;color:var(--sub);padding:10px 0;display:flex;align-items:center;gap:7px}
   .llm-box>summary::-webkit-details-marker{display:none}
+  .llm-box>summary::before{content:"›";font-size:1.1rem;line-height:1;transition:transform .15s;color:var(--sub)}
+  .llm-box[open]>summary::before{transform:rotate(90deg)}
   .llm-box[open]>summary{color:var(--brand)}
+  .opt-tag{font-size:.7rem;font-weight:600;color:var(--sub);background:var(--chip);border-radius:6px;padding:2px 7px}
+  .llm-box[open]>summary .opt-tag{color:var(--chip-ink)}
   .llm-box .fp-help{margin-top:0}
   .llm-box #llmKey{width:100%;margin-top:9px;padding:10px 12px;border:1px solid var(--line);
     border-radius:10px;background:var(--bg);color:var(--ink);font-size:.9rem;box-sizing:border-box;
@@ -297,8 +301,8 @@
         </div>
       </div>
       <details class="llm-box">
-        <summary>🤖 문장 스마트 해석 (선택 · Claude API 키)</summary>
-        <p class="fp-help">키를 넣으면 위 문장을 AI가 더 정확히 해석해요(도착 시점·추천 요청 등). 키가 없어도 기본 해석은 그대로 동작합니다.
+        <summary>✨ 더 정확히 해석하기 <span class="opt-tag">선택</span></summary>
+        <p class="fp-help"><b>위 자유 입력</b>은 키 없이도 그대로 해석돼요. 여기에 Claude API 키를 넣으면 <b>같은 입력을 AI가 더 정확히</b> 해석합니다(복잡한 문장·도착 시점·추천 요청 등).
           <b>키는 이 기기(브라우저)에만 저장</b>되고 <b>공유 링크엔 포함되지 않아요.</b> 브라우저 보안 정책상 <b>배포 사이트(github.io)에서만</b> 호출돼요.</p>
         <input id="llmKey" type="password" autocomplete="off" placeholder="sk-ant-... (선택)">
         <span class="llm-status" id="llmStatus"></span>
@@ -678,6 +682,23 @@ function detectRequest(text){
     count = Math.max(1, Math.min(4, Math.round((a+b)/2)));
   }
   return { reqType, count };
+}
+
+/* 안전망: 어떤 경로(규칙/LLM)로 왔든, 요청·질문 문구가 장소명으로 새어 들어오면 '요청'으로 교정 */
+function refineParsedItem(it){
+  if(!it || it.kind!=="place") return it;
+  const name = (it.name||"").trim();
+  const looksQuestion = /(어디|어때|없을까|일까|좋을까|추천|넣어\s*줘|넣어\s*주|골라|알아서|어느|무엇|뭐가|찾아\s*줘)/.test(name);
+  const genericOnly = /^((가볼만한|가볼\s*만한|볼만한|갈만한|먹을만한|유명한|괜찮은|좋은|핫한|인기)\s*)+(맛집|카페|커피|디저트|명소|관광지?|랜드마크|전망대?|자연|해변|해수욕장|바다|경치|스팟|곳|데|장소)\s*$/.test(name);
+  if(looksQuestion || genericOnly){
+    const w = name.match(/(카페|커피|디저트|맛집|먹|음식|식당)/);
+    const rt = ["맛집","카페","명소"].includes(it.type) ? it.type
+             : (w ? (/카페|커피|디저트/.test(w[1])?"카페":"맛집") : "명소");
+    return { kind:"request", name:"", area:it.area||"", type:rt, reqType:rt, count:it.count||2,
+             pinDay:(it.pinDay!==undefined?it.pinDay:null), pinWhen:(it.pinWhen||null),
+             pinWhenKor:(it.pinWhenKor||""), pinAt:(it.pinAt!=null?it.pinAt:null) };
+  }
+  return it;
 }
 
 /* 시간대 → 대략 시각(분) */
@@ -1389,9 +1410,10 @@ async function llmParse(raw, prefs){
       count: Math.max(1, Math.min(4, parseInt(o.count,10)||2)),
       pinDay: o.pinDay==="last" ? "last" : (o.pinDay==null ? null : parseInt(o.pinDay,10)),
       pinWhen: W.includes(o.pinWhen) ? o.pinWhen : null,
-      pinWhenKor: wk[o.pinWhen] || ""
+      pinWhenKor: wk[o.pinWhen] || "",
+      pinAt: (o.pinAt!=null && !isNaN(parseInt(o.pinAt,10))) ? parseInt(o.pinAt,10) : null
     };
-  }).filter(o=> o.kind==="request" || o.name);
+  }).map(refineParsedItem).filter(o=> o.kind==="request" || o.name);   // 요청·질문 문구가 장소로 새면 교정
 }
 
 /* API 키: 이 기기에만 저장 (공유 링크·collectState 미포함) */
@@ -1424,6 +1446,8 @@ $("#generate").onclick = async ()=>{
     }catch(e){ /* 실패/CSP 차단/네트워크 → 규칙 파서 결과로 폴백 */ }
     btn.disabled=false; btn.textContent=orig;
   }
+  // 최종 안전망: 어떤 경로로든 요청·질문 문구가 장소로 남지 않게 교정
+  prefs.friendPlaces = (prefs.friendPlaces||[]).map(refineParsedItem);
   render(buildItinerary(prefs));
   saveState(true);
 };
