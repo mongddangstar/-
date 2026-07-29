@@ -552,11 +552,21 @@ function readPrefs(){
 /* ----- 추천/직접입력 장소 파싱 -----
  * 한 줄에 하나. "이름 @지역 #유형" + 자유표현("둘째날 오후 해수욕장")도 인식.
  * #유형: 맛집|카페|명소 · @지역 · 날짜/시간대는 자동 감지해 해당 시점에 고정 배치 */
-// 한 줄에 여러 장소("A 갔다가 3시에 B에 왔어")를 접속어로 분리
+// 한 줄에 여러 장소("A 갔다가 3시에 B에 왔어. 4시반 C에 왔고")를 접속어·문장경계로 분리
 function splitSegments(line){
-  return (line||"")
-    .split(/\s*(?:그리고|그\s*다음에?|그\s*뒤에?|그\s*후에?|→|;|\/|,)\s*|\s*(?:갔다가|들렀다가|다녀와서|다녀온\s*뒤에?|들러서|들른\s*뒤에?|하고\s*나서|한\s*뒤에?|한\s*다음에?)\s+/g)
-    .map(s=>s.trim()).filter(Boolean);
+  // 1차: 문장경계(. )·접속어·과거 연결어(왔고/갔고)로 분리
+  const parts = (line||"")
+    .split(/\s*(?:\.\s+|그리고|그\s*다음에?|그\s*뒤에?|그\s*후에?|→|;|\/|,)\s*|\s*(?:갔다가|들렀다가|다녀와서|다녀온\s*뒤에?|들러서|들른\s*뒤에?|하고\s*나서|한\s*뒤에?|한\s*다음에?|왔고|갔고|했고|왔으며|갔으며)\s+/g);
+  // 2차: 장소 나열 "A과/와/랑 B" 분리 (룩비하인드 미사용 — 구형 사파리 호환)
+  const out=[];
+  parts.forEach(seg=>{
+    if(!seg) return;
+    seg.split(/(?:이랑|과|와|랑)\s+/g).forEach(s=>{
+      s = s.trim().replace(/[.\s]+$/,"").trim();
+      if(s) out.push(s);
+    });
+  });
+  return out;
 }
 
 // 한 조각(segment)을 파싱해 place/request 항목 하나로
@@ -661,15 +671,18 @@ function parsePin(text){
 function stripVerbTail(name){
   let s = (name||"").trim();
   const orig = s;
+  // 앞머리 잡음 제거 ("아직 중앙시장" → "중앙시장")
+  s = s.replace(/^(아직|아까|이제|막상|그냥|우선|일단|먼저|그리고|또)\s+/,"").trim();
   // "<장소>에서/에(서) <활동> …" → 장소만 (활동 표현이 뒤따를 때만)
   s = s.replace(/\s*(에서|에)\s*(물놀이|물놀|해수욕|수영|회\s*먹|밥\s*먹|점심\s*먹|저녁\s*먹|먹기|먹으려|먹고|산책|구경|놀기|놀려고|사진|인증샷|커피\s*마시|커피|차\s*마시|타기|타고|보기|쉬기|힐링|즐기|산책하)[\s\S]*$/,"").trim();
-  // 끝에 붙은 활동/서술 표현 (에서 없이) 제거
+  // 끝에 붙은 활동/서술 표현 제거
   const tails = [
     /\s*(을|를|에|에서|으로|로)?\s*(먹으러|먹으로|보러|들르러|가려고|들르려고|구경하러|방문하러|타러)\s*(갈\s*거야|갈래|가자|가고\s*싶어|갈까|가야지|갈\s*예정|들를\s*거야)?\s*[.!~]*$/,
+    /\s*(은|는|을|를|에|에서)?\s*(가지\s*(않았어|못했어|않았다|못했다|않음)|안\s*갔어|못\s*갔어|안\s*가봤어|못\s*가봤어|안\s*가\s*봤어)\s*[.!~]*$/,  // 부정("아직 ~ 가지 않았어")
     /\s*(에|에서)?\s*(갈\s*거야|갈래|가자|가고\s*싶어|가고\s*싶다|가야지|갈\s*예정|들를\s*거야|들르자|가볼래|가보고\s*싶어|구경할?\s*거야|방문할?\s*거야|보고\s*싶어|먹고\s*싶어|먹을\s*거야|타고\s*싶어|타고\s*싶다|타\s*보고\s*싶어|즐기고\s*싶어)\s*[.!~]*$/,
-    /\s*(에|에서)?\s*(왔어|왔다|왔음|왔고|갔어|갔다|갔음|갔고|다녀왔어|다녀왔다|들렀어|들렀다|도착)\s*[.!~]*$/,   // 과거형(왔어/갔어)
+    /\s*(에|에서)?\s*(왔어|왔다|왔음|왔고|왔는데|갔어|갔다|갔음|갔고|갔는데|다녀왔어|다녀왔다|들렀어|들렀다|도착)\s*[.!~]*$/,   // 과거형(왔어/갔어)
     /\s*(물놀이|물놀|해수욕|산책|구경|힐링|인증샷|사진\s*찍기?|나들이|드라이브|먹방|먹기)\s*[.!~]*$/,   // 끝에 남은 활동 표현
-    /\s*(을|를|에|에서|으로|로|랑|이랑|과|와)\s*[.!~]*$/                                        // 조사(단, 은/는/이/가/도/만은 어절 끝과 헷갈려 제외)
+    /\s*(에서|으로|에|로|랑|이랑|과|와)\s*[.!~]*$/                                        // 조사(을/를/은/는/이/가/도/만은 '마을·거리' 등 어절 끝과 헷갈려 제외)
   ];
   let prev;
   do{ prev=s; for(const re of tails){ s = s.replace(re,"").trim(); } }while(s!==prev && s.length);
@@ -794,6 +807,16 @@ function lodgingZone(city, lodging){
   return Object.keys(city.zones)[0] || "city";
 }
 
+/* 두 장소명이 사실상 같은 곳인지(줄임말 대응): 공백 제거 후 완전일치 또는 포함관계(3자 이상)
+ * 예) "중앙시장"⊂"속초관광수산시장(중앙시장)", "칠성조선소"⊂"칠성조선소(동그란책)", "아바이마을"⊂"아바이마을 & 갯배" */
+function samePlaceName(a, b){
+  const na=(a||"").replace(/\s/g,""), nb=(b||"").replace(/\s/g,"");
+  if(!na || !nb) return false;
+  if(na===nb) return true;
+  const short = na.length<=nb.length?na:nb, long = na.length<=nb.length?nb:na;
+  return short.length>=3 && long.includes(short);
+}
+
 /* ----- 장소 스코어링 ----- */
 function scorePlace(p, prefs){
   let s = p.pop * 2;
@@ -843,7 +866,7 @@ function buildItinerary(prefs){
     const day = resolveDay(f.pinDay);
     if(day!=null){
       // 사용자가 날짜/시간대(또는 도착 직후)를 지정 → 그 시점에 고정 배치 (동선 필터 무시)
-      const dupP = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
+      const dupP = pool.find(p=> samePlaceName(p.name, f.name));
       (pinnedByDay[day] = pinnedByDay[day] || []).push({
         name: dupP?dupP.name:f.name, cat:(dupP?dupP.cat:spec.cat), styles:(dupP?dupP.styles:spec.styles),
         zone:(dupP?dupP.zone:zone), map:(dupP?dupP.map:map), desc:(dupP?dupP.desc:""),
@@ -851,8 +874,8 @@ function buildItinerary(prefs){
       if(dupP) pool = pool.filter(p=> p.id!==dupP.id);   // 같은 곳이 자동으로 또 뽑히지 않게 제거
       return;
     }
-    // 이미 데이터에 있는 곳이면 중복 추가 대신 '추천'으로 승격
-    const dup = pool.find(p=> p.name.replace(/\s/g,"")===f.name.replace(/\s/g,""));
+    // 이미 데이터에 있는 곳이면(줄임말 포함) 중복 추가 대신 '직접 추가'로 승격
+    const dup = pool.find(p=> samePlaceName(p.name, f.name));
     if(dup){ dup.friend=true; dup.score=scorePlace(dup,prefs); return; }
     if(!visitableZones.includes(zone)){ friendDropped.push(f.name); return; } // 동선 밖 → 제외
     const echo = (f.raw && f.raw.replace(/\s/g,"")!==f.name.replace(/\s/g,"")) ? ` — 적은 내용: “${f.raw}”` : "";
