@@ -128,6 +128,7 @@
     <h1 class="title">{{하우스}}{{관계자구분}}{{관계자}}</h1>
     <p class="subtitle">{{한줄요약}}</p>
     <div class="meta-row">
+      <span class="meta-chip">주체: {{대상유형}}</span><!-- 투자사 / LP기관 / 스타트업 -->
       <span class="meta-chip">유형: {{하우스유형}}</span>
       <span class="meta-chip">{{상장정보}}</span>
       <span class="meta-chip">담당: {{담당섹터}}</span>
@@ -139,11 +140,24 @@
     <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
   </nav>
 
+  <!--
+    ┌─ 주체 유형별 치환 안내 (투자사 / LP기관 / 스타트업) ─────────────────────────────
+    │ 이 템플릿의 기본 라벨은 '투자사(GP)' 기준이다. LP기관·스타트업이면 아래대로 카드 제목/카테고리명을 치환한다.
+    │ [보고서 5카드]  1 개요 · 2 동향 · 3 관계자 · 4 정책/투자유치 · 5 실적(대체)
+    │   · 투자사 : 하우스 개요 / 최근 동향 / 심사역·임원 / 국민성장펀드·정책펀드 / DART·실적(상장)·펀드·LP구조(비상장)
+    │   · LP기관 : 기관 개요 / 출자사업·GP선정 동향 / 출자담당 / 정책·출자 프로그램 / 자산배분·출자 포트폴리오
+    │   · 스타트업: 회사 개요 / 투자유치·제품 동향 / 창업자·경영진 / 투자유치·주주·정부지원 / 성장지표·재무(외감 or 비공개)
+    │ [질문 4카테고리]  c1 현안 · c2 개인 · c3 정책 · c4 전략
+    │   · 투자사 : 하우스 현안·이슈 / 관계자 개인·심사역 전략 / 국민성장펀드·정책펀드 / 하우스 전략·포트폴리오
+    │   · LP기관 : 기관 현안·출자 이슈 / 관계자(출자담당) 개인·운용 관점 / 국민성장펀드·정책 출자 방향 / 자산배분·GP 선정·출자 프로그램
+    │   · 스타트업: 회사 현안·이슈 / 창업자·경영진 개인·비전 / 투자유치·자본조달(+정부지원) / 사업·제품 전략·성장·회수
+    └───────────────────────────────────────────────────────────────────────── -->
+
   <!-- ================= 보고서 탭 ================= -->
   <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
 
     <div class="card">
-      <h2><span class="dot"></span>하우스 개요</h2>
+      <h2><span class="dot"></span>하우스 개요</h2><!-- LP기관=기관 개요 / 스타트업=회사 개요 -->
       <dl class="kv">
         <dt>유형</dt><dd>{{하우스유형}}</dd>
         <dt>설립</dt><dd>{{설립}}</dd>
@@ -184,14 +198,18 @@
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>국민성장펀드·정책펀드 연관성</h2>
+      <h2><span class="dot"></span>국민성장펀드·정책펀드 연관성</h2><!-- LP기관=정책·출자 프로그램 / 스타트업=투자유치·주주(VC)·정부지원 -->
       {{정책펀드_내용}}
       <p class="src">{{정책펀드출처}}</p>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>DART·실적 요약 {{DART설명}}</h2>
-      <!-- 상장 VC: DART OpenAPI(fnlttSinglAcnt) 주요계정 기반. 연결/별도(fs_div)·보고서종류·조회일 표기 -->
+      <!-- 5번째 카드는 주체별 대체형:
+           · 투자사(상장): DART OpenAPI(fnlttSinglAcnt) 주요계정. 연결/별도(fs_div)·보고서종류·조회일 표기
+           · 투자사(비상장): "펀드·출자자(LP) 구조" 카드로 대체 (예: 인비저닝파트너스 샘플)
+           · LP기관: "자산배분·출자 포트폴리오(주요 GP)" 카드로 대체
+           · 스타트업: "성장지표·재무" 카드로 대체 (외감대상이면 DART 감사보고서, 아니면 '비공개/미공시') -->
       <dl class="kv">
         <dt>기준</dt><dd>{{DART_기준}} <!-- 예: 연결(CFS)·2025 사업보고서 --></dd>
         <dt>영업수익</dt><dd>{{DART_영업수익}}</dd>
@@ -223,7 +241,7 @@
 
     <!-- 카테고리 1: 하우스 현안/이슈 -->
     <div class="qcat">
-      <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 이슈</h2></div>
+      <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 이슈</h2></div><!-- LP기관=기관 현안·출자 이슈 / 스타트업=회사 현안·이슈(시장·경쟁·규제) -->
       <!-- 반복: 질문 카드 -->
       <div class="q cat1">
         <p class="qtext">{{질문}}</p>
@@ -237,7 +255,7 @@
 
     <!-- 카테고리 2: 관계자 개인/심사역 전략 -->
     <div class="qcat">
-      <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자 개인 · 심사역 전략</h2></div>
+      <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자 개인 · 심사역 전략</h2></div><!-- LP기관=관계자(출자담당) 개인·운용 관점 / 스타트업=창업자·경영진 개인·비전 -->
       <div class="q cat2">
         <p class="qtext">{{질문}}</p>
         <div class="qmeta">
@@ -250,7 +268,7 @@
 
     <!-- 카테고리 3: 국민성장펀드/정책펀드 -->
     <div class="qcat">
-      <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+      <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div><!-- LP기관=국민성장펀드·정책 출자 방향 / 스타트업=투자유치·자본조달(+정부지원·모태 피투자) -->
       <div class="q cat3">
         <p class="qtext">{{질문}}</p>
         <div class="qmeta">
@@ -263,7 +281,7 @@
 
     <!-- 카테고리 4: 하우스 전략/포트폴리오 -->
     <div class="qcat">
-      <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 전략 · 포트폴리오</h2></div>
+      <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 전략 · 포트폴리오</h2></div><!-- LP기관=자산배분·GP 선정 기준·출자 프로그램 / 스타트업=사업·제품 전략·성장·회수(IPO/M&A) -->
       <div class="q cat4">
         <p class="qtext">{{질문}}</p>
         <div class="qmeta">
