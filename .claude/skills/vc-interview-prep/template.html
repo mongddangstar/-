@@ -81,7 +81,7 @@
   /* source footnote / link */
   .src { font-size: 12px; color: var(--muted); }
   .src a { color: var(--accent); text-decoration: none; word-break: break-all; }
-  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
 
   /* timeline */
   .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
@@ -107,7 +107,7 @@
   .pri.mid { background: #b9791f; }
   .pri.low { background: #7a8593; }
   .basis { font-size: 12px; color: var(--muted); }
-  .basis a { color: var(--accent); text-decoration: none; }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
 
   .cat1 { border-left-color: var(--c1); } .cat1 .bar { background: var(--c1); } .cat1-bg { background: var(--c1b); }
   .cat2 { border-left-color: var(--c2); } .cat2 .bar { background: var(--c2); } .cat2-bg { background: var(--c2b); }
@@ -118,7 +118,7 @@
   .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
   .srclist li { font-size: 12.5px; margin: 7px 0; padding-left: 22px; position: relative; }
   .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
-  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
   .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
 </style>
 
@@ -176,7 +176,7 @@
         <!-- 반복: 각 타임라인 항목 -->
         <div class="tl-item">
           <div class="tl-date">{{동향_날짜}}</div>
-          <div class="tl-body">{{동향_내용}} <sup class="ref"><a href="{{동향_URL}}" target="_blank" rel="noopener">[출처]</a></sup></div>
+          <div class="tl-body">{{동향_내용}} <sup class="ref"><a href="#src-{{동향_번호}}">[{{동향_번호}}]</a></sup></div><!-- 인라인 [n]은 같은 탭 하단 출처(#src-n)로 점프. 원문 링크는 하단 목록의 '링크'가 담당 -->
         </div>
         {{동향_반복}}
       </div>

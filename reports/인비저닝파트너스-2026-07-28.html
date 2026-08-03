@@ -64,7 +64,7 @@
   ul.tight li { margin: 5px 0; font-size: 14.5px; }
   .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
   .src a { color: var(--accent); text-decoration: none; }
-  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 11px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
   .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
   .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
   .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
@@ -83,7 +83,7 @@
   .pri.mid { background: #b9791f; }
   .pri.low { background: #7a8593; }
   .basis { font-size: 12px; color: var(--muted); }
-  .basis a { color: var(--accent); text-decoration: none; }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
   .cat1 { border-left-color: var(--c1); }
   .cat2 { border-left-color: var(--c2); }
   .cat3 { border-left-color: var(--c3); }
@@ -92,7 +92,7 @@
   .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
   .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
   .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
-  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
   .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
 </style>
 
@@ -119,56 +119,56 @@
     <div class="card">
       <h2><span class="dot"></span>하우스 개요</h2>
       <dl class="kv">
-        <dt>유형</dt><dd>임팩트 투자 전문 VC(기후테크 최우선). 2025년 PE 라이선스 취득으로 VC→PE 확장 <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup></dd>
-        <dt>설립</dt><dd>2021년 8월. 1세대 임팩트 투자사 옐로우독 구성원·자산 이관 계승 <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
-        <dt>공동대표</dt><dd>제현주(전 옐로우독 대표)·김용현(전 한화자산운용 대표) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
-        <dt>지배구조</dt><dd>운용역이 소유·경영하는 거버넌스 지향(옐로우독 신념 계승) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
-        <dt>운용자산</dt><dd>약 2,110억원 (2024-01 기준) <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></dd>
-        <dt>누적투자</dt><dd>한·미·싱가포르 등 46개사 약 1,170억원 투자, 기후테크 비중 ~60% <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></dd>
-        <dt>임팩트영역</dt><dd>기후변화·웰니스·교육·미래의 노동 (기후 우선) <sup class="ref"><a href="https://www.nextunicorn.kr/company/7af6e3a9de64335b" target="_blank" rel="noopener">[6]</a></sup></dd>
-        <dt>소재지</dt><dd>서울 성동구 성수동 <sup class="ref"><a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=34530" target="_blank" rel="noopener">[7]</a></sup></dd>
+        <dt>유형</dt><dd>임팩트 투자 전문 VC(기후테크 최우선). 2025년 PE 라이선스 취득으로 VC→PE 확장 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>설립</dt><dd>2021년 8월. 1세대 임팩트 투자사 옐로우독 구성원·자산 이관 계승 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+        <dt>공동대표</dt><dd>제현주(전 옐로우독 대표)·김용현(전 한화자산운용 대표) <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+        <dt>지배구조</dt><dd>운용역이 소유·경영하는 거버넌스 지향(옐로우독 신념 계승) <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+        <dt>운용자산</dt><dd>약 2,110억원 (2024-01 기준) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>누적투자</dt><dd>한·미·싱가포르 등 46개사 약 1,170억원 투자, 기후테크 비중 ~60% <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>임팩트영역</dt><dd>기후변화·웰니스·교육·미래의 노동 (기후 우선) <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+        <dt>소재지</dt><dd>서울 성동구 성수동 <sup class="ref"><a href="#src-7">[7]</a></sup></dd>
       </dl>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>최근 1~2년 동향</h2>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-date">2021. 09</div><div class="tl-body">클라이밋 솔루션 펀드 667억원 결성 — 국내 최초 100% 민간자본 기후테크 특화 펀드(한화솔루션·GS·무신사 등 출자) <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.eroun.net/news/articleView.html?idxno=26339" target="_blank" rel="noopener">[15]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2022. 02</div><div class="tl-body">해당 기후 펀드 $64M 규모로 해외 소개 <sup class="ref"><a href="https://techcrunch.com/2022/02/08/envisioning-partners-closes-on-64m-fund-to-back-climate-tech-startups/" target="_blank" rel="noopener">[10]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2024. 01. 30</div><div class="tl-body">'인비저닝 임팩트 솔루션 펀드' 약 440억원 결성 — 해외 LP(싱가포르 파빌리온캐피탈) 첫 유치, AUM 2,110억 달성 <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup> <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">[5]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2025. 01</div><div class="tl-body">KAIST 녹색성장지속가능대학원과 업무협약(기후테크 인재 양성) <span class="flag">※연도 확인필요</span> <sup class="ref"><a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=34530" target="_blank" rel="noopener">[7]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2025 초</div><div class="tl-body">PE 라이선스 취득 — 임팩트 투자기관 국내 최초 VC→PE 자산군 확대 <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2025. 07</div><div class="tl-body">첫 PE 딜 — 자동차 부품사 씨티알(CTR)에 약 700억원 투자(헤임달PE 공동, 전환사채 매입, 기업가치 ~4,000억) <sup class="ref"><a href="https://www.unicornfactory.co.kr/article/2025072509193560559" target="_blank" rel="noopener">[2]</a></sup> <sup class="ref"><a href="https://futurechosun.com/archives/127354" target="_blank" rel="noopener">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2021. 09</div><div class="tl-body">클라이밋 솔루션 펀드 667억원 결성 — 국내 최초 100% 민간자본 기후테크 특화 펀드(한화솔루션·GS·무신사 등 출자) <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022. 02</div><div class="tl-body">해당 기후 펀드 $64M 규모로 해외 소개 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 01. 30</div><div class="tl-body">'인비저닝 임팩트 솔루션 펀드' 약 440억원 결성 — 해외 LP(싱가포르 파빌리온캐피탈) 첫 유치, AUM 2,110억 달성 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 01</div><div class="tl-body">KAIST 녹색성장지속가능대학원과 업무협약(기후테크 인재 양성) <span class="flag">※연도 확인필요</span> <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025 초</div><div class="tl-body">PE 라이선스 취득 — 임팩트 투자기관 국내 최초 VC→PE 자산군 확대 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 07</div><div class="tl-body">첫 PE 딜 — 자동차 부품사 씨티알(CTR)에 약 700억원 투자(헤임달PE 공동, 전환사채 매입, 기업가치 ~4,000억) <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
       </div>
     </div>
 
     <div class="card">
       <h2><span class="dot" style="background:var(--c3)"></span>관계자 프로필 — 우수미</h2>
-      <p>링크드인상 <b>"Sue Woo — 인비저닝파트너스 External Relations Director(대외협력 디렉터)"</b>로 확인됩니다. 대외협력은 투자심사역이 아니라 <b>LP 관계·IR·펀드레이징·파트너십·임팩트 커뮤니케이션</b>을 담당하는 역할로, 인비저닝처럼 해외 LP 유치(파빌리온캐피탈)와 PE 전환기를 맞은 하우스에서는 핵심 접점입니다. <sup class="ref"><a href="https://www.linkedin.com/in/sue-woo-a978a5164/" target="_blank" rel="noopener">[13]</a></sup></p>
+      <p>링크드인상 <b>"Sue Woo — 인비저닝파트너스 External Relations Director(대외협력 디렉터)"</b>로 확인됩니다. 대외협력은 투자심사역이 아니라 <b>LP 관계·IR·펀드레이징·파트너십·임팩트 커뮤니케이션</b>을 담당하는 역할로, 인비저닝처럼 해외 LP 유치(파빌리온캐피탈)와 PE 전환기를 맞은 하우스에서는 핵심 접점입니다. <sup class="ref"><a href="#src-13">[13]</a></sup></p>
       <dl class="kv">
         <dt>직책(유력)</dt><dd>대외협력(External Relations) 디렉터 — LinkedIn 기준</dd>
         <dt>담당(추정)</dt><dd>LP·IR·펀드레이징, 파트너십(예: KAIST MOU), 임팩트 커뮤니케이션</dd>
       </dl>
-      <p class="src"><span class="flag">※ 신원은 링크드인 단일 출처 기준(유력)이며, 세부 경력·정확한 담당 범위는 대면 확인을 권합니다.</span> 인비저닝의 공개 딜 발언은 주로 대표(제현주)로 확인돼, 개인명 딜 기록은 제한적입니다 <sup class="ref"><a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></sup>.</p>
+      <p class="src"><span class="flag">※ 신원은 링크드인 단일 출처 기준(유력)이며, 세부 경력·정확한 담당 범위는 대면 확인을 권합니다.</span> 인비저닝의 공개 딜 발언은 주로 대표(제현주)로 확인돼, 개인명 딜 기록은 제한적입니다 <sup class="ref"><a href="#src-11">[11]</a></sup>.</p>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>정책펀드 연관성</h2>
       <ul class="tight">
-        <li><b>한국성장금융 사회투자펀드 GP</b> 선정 — 성장금융 출자 140억을 앵커로 440억 임팩트펀드 결성 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">[4]</a></sup> <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup></li>
-        <li>성장금융은 포트폴리오사 <b>에이치투 시리즈C(230억)</b>에도 신규 투자자로 참여 <sup class="ref"><a href="https://www.seoul.co.kr/news/newsView.php?id=20230105500032" target="_blank" rel="noopener">[8]</a></sup></li>
+        <li><b>한국성장금융 사회투자펀드 GP</b> 선정 — 성장금융 출자 140억을 앵커로 440억 임팩트펀드 결성 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+        <li>성장금융은 포트폴리오사 <b>에이치투 시리즈C(230억)</b>에도 신규 투자자로 참여 <sup class="ref"><a href="#src-8">[8]</a></sup></li>
         <li>모태펀드 직접 위탁운용(GP) 이력: <span class="flag">미확인/확인필요</span></li>
-        <li>2026년 국민성장펀드·기후대응기금 직접 연관 근거 없음 <span class="flag">→ 참여 여부 확인 질문</span> <sup class="ref"><a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680205.html" target="_blank" rel="noopener">[14]</a></sup></li>
+        <li>2026년 국민성장펀드·기후대응기금 직접 연관 근거 없음 <span class="flag">→ 참여 여부 확인 질문</span> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
       </ul>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>펀드 · 출자자(LP) 구조 <span style="font-size:12px;color:var(--muted);">(비상장 — DART 실적 공시 대상 아님)</span></h2>
       <h3>클라이밋 솔루션 펀드 (2021, 약 667억)</h3>
-      <p>100% 민간자본. 출자자: 한화솔루션·GS·무신사·아이에스동서·예스코홀딩스·옐로우독·한국카본·인선이엔티 <sup class="ref"><a href="https://www.fnnews.com/news/202109271429296659" target="_blank" rel="noopener">[3]</a></sup> <sup class="ref"><a href="https://www.eroun.net/news/articleView.html?idxno=26339" target="_blank" rel="noopener">[15]</a></sup></p>
+      <p>100% 민간자본. 출자자: 한화솔루션·GS·무신사·아이에스동서·예스코홀딩스·옐로우독·한국카본·인선이엔티 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></p>
       <h3>임팩트 솔루션 펀드 (2024, 약 440억)</h3>
-      <p>LP: 한국성장금융, 파빌리온캐피탈(싱가포르), 대상㈜·대상홀딩스, 세아제강, 카카오임팩트, 아산나눔재단 등 <sup class="ref"><a href="https://wowtale.net/2024/01/30/70930/" target="_blank" rel="noopener">[1]</a></sup> <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=3396" target="_blank" rel="noopener">[5]</a></sup></p>
-      <p class="src">팀: 파트너 3인 포함 약 7인 규모(영문 DB 기준) <sup class="ref"><a href="https://tracxn.com/d/venture-capital/envisioning-partners/" target="_blank" rel="noopener">[12]</a></sup>. 대표 포트폴리오: 에이치투(ESS)·에바(EV충전)·엔츠(탄소회계)·피닉스테일링스(희소광물 회수·美) 등 <sup class="ref"><a href="https://thevc.kr/envisioningpartners" target="_blank" rel="noopener">[11]</a></sup>.</p>
+      <p>LP: 한국성장금융, 파빌리온캐피탈(싱가포르), 대상㈜·대상홀딩스, 세아제강, 카카오임팩트, 아산나눔재단 등 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></p>
+      <p class="src">팀: 파트너 3인 포함 약 7인 규모(영문 DB 기준) <sup class="ref"><a href="#src-12">[12]</a></sup>. 대표 포트폴리오: 에이치투(ESS)·에바(EV충전)·엔츠(탄소회계)·피닉스테일링스(희소광물 회수·美) 등 <sup class="ref"><a href="#src-11">[11]</a></sup>.</p>
     </div>
 
     <div class="card" id="report-endnotes" style="margin-top:6px;">

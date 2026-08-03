@@ -67,7 +67,7 @@
   ul.tight li { margin: 5px 0; font-size: 14.5px; }
   .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
   .src a { color: var(--accent); text-decoration: none; }
-  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 11px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
   .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
   .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
   .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
@@ -86,7 +86,7 @@
   .pri.mid { background: #b9791f; }
   .pri.low { background: #7a8593; }
   .basis { font-size: 12px; color: var(--muted); }
-  .basis a { color: var(--accent); text-decoration: none; }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
   .cat1 { border-left-color: var(--c1); }
   .cat2 { border-left-color: var(--c2); }
   .cat3 { border-left-color: var(--c3); }
@@ -95,7 +95,7 @@
   .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
   .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
   .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
-  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
   .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
 </style>
 
@@ -123,12 +123,12 @@
       <h2><span class="dot"></span>하우스 개요</h2>
       <dl class="kv">
         <dt>유형</dt><dd>벤처캐피탈(VC) + 사모투자(PE) 겸영 · 신기술사업금융업자</dd>
-        <dt>설립</dt><dd>1974년 — "국내 1호 VC" <sup class="ref"><a href="https://www.asiae.co.kr/article/2025061814465853296" target="_blank" rel="noopener">[1]</a></sup></dd>
+        <dt>설립</dt><dd>1974년 — "국내 1호 VC" <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
         <dt>상장</dt><dd>코스닥 상장, 종목코드 027360 (2018-11-21 재상장)</dd>
-        <dt>지배구조</dt><dd>아주그룹 ㈜아주가 최대주주 — 2026년 블록딜 후 지분 51.38% <sup class="ref"><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">[13]</a></sup></dd>
-        <dt>대표</dt><dd>김지원 대표 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202601201431129920106586" target="_blank" rel="noopener">[3]</a></sup></dd>
-        <dt>운용자산</dt><dd>2025년말 약 2.5조원 (2024년말 2.1조 → 20%↑), 2028년 3조원 목표 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">[5]</a></sup></dd>
-        <dt>주력섹터</dt><dd>바이오·헬스케어, AI반도체·AI앱, 로봇(피지컬 AI), 방산·항공우주, 글로벌(미국) <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></dd>
+        <dt>지배구조</dt><dd>아주그룹 ㈜아주가 최대주주 — 2026년 블록딜 후 지분 51.38% <sup class="ref"><a href="#src-13">[13]</a></sup></dd>
+        <dt>대표</dt><dd>김지원 대표 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>운용자산</dt><dd>2025년말 약 2.5조원 (2024년말 2.1조 → 20%↑), 2028년 3조원 목표 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>주력섹터</dt><dd>바이오·헬스케어, AI반도체·AI앱, 로봇(피지컬 AI), 방산·항공우주, 글로벌(미국) <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
       </dl>
       <p class="src">스스로 "창업초기~Pre/Post IPO 전 생애주기 멀티스테이지 대체투자 전문운용사"를 표방. <span class="flag">※운용조합 개수 등 세부는 DART 사업보고서 대조 필요.</span></p>
     </div>
@@ -136,37 +136,37 @@
     <div class="card">
       <h2><span class="dot"></span>최근 1~2년 동향</h2>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-date">2024. 05</div><div class="tl-body">'IBK혁신-아주 좋은 벤처펀드 3.0' 약 2,070억원 결성 (IBK혁신펀드 GP 선정) <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 05</div><div class="tl-body">'IBK혁신-아주 좋은 벤처펀드 3.0' 약 2,070억원 결성 (IBK혁신펀드 GP 선정) <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
         <div class="tl-item"><div class="tl-date">2024 연간</div><div class="tl-body">연간 펀딩 약 5,000억원 성공, AUM 2.5조원 진입 발판</div></div>
-        <div class="tl-item"><div class="tl-date">2025. 12. 26</div><div class="tl-body">'아주 좋은 제4호 PEF' 약 3,130억원 결성 — 자사 역대 최대 단일 펀드 <sup class="ref"><a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202512291415290400109422" target="_blank" rel="noopener">[4]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">아주 라이프사이언스 해외펀드 성공 청산 — 일부 10배+ 멀티플, '2026 한국벤처캐피탈대상 Best Exit Deal' 선정 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202602251417445880107940" target="_blank" rel="noopener">[14]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">미국 아르셀엑스 나스닥 급등·스페이스X IPO 기대 — 글로벌 유니콘 회수 모멘텀 부각 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202602241716580800102890" target="_blank" rel="noopener">[8]</a></sup> <sup class="ref"><a href="https://m.news.nate.com/view/20260226n37072" target="_blank" rel="noopener">[9]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 03</div><div class="tl-body">기업가치 제고계획 발표(2028년 AUM 3조원 목표) <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605280906502860108684" target="_blank" rel="noopener">[5]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">공항 라운지 운영사 '이브릿지' 지분 100% 인수(약 2,000억원) — 바이아웃 PE 마수걸이 <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?code=0103&key=202604151351236240109369" target="_blank" rel="noopener">[10]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">조직개편 — VC를 벤처투자/글로벌투자로 이원화, AC사업단→AC본부 격상 <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 04~06</div><div class="tl-body">최대주주 ㈜아주 블록딜(약 1,586억원) → 지분 51.38%로 축소, 주가 급락·오버행 우려 <sup class="ref"><a href="https://v.daum.net/v/20260428172709008" target="_blank" rel="noopener">[12]</a></sup> <sup class="ref"><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=675986" target="_blank" rel="noopener">[13]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026. 05</div><div class="tl-body">국민성장펀드 1차 간접투자 GP 선정 — 소형리그, 약 1,000억원 배정 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">[6]</a></sup> <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 12. 26</div><div class="tl-body">'아주 좋은 제4호 PEF' 약 3,130억원 결성 — 자사 역대 최대 단일 펀드 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">아주 라이프사이언스 해외펀드 성공 청산 — 일부 10배+ 멀티플, '2026 한국벤처캐피탈대상 Best Exit Deal' 선정 <sup class="ref"><a href="#src-14">[14]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body">미국 아르셀엑스 나스닥 급등·스페이스X IPO 기대 — 글로벌 유니콘 회수 모멘텀 부각 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 03</div><div class="tl-body">기업가치 제고계획 발표(2028년 AUM 3조원 목표) <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">공항 라운지 운영사 '이브릿지' 지분 100% 인수(약 2,000억원) — 바이아웃 PE 마수걸이 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04</div><div class="tl-body">조직개편 — VC를 벤처투자/글로벌투자로 이원화, AC사업단→AC본부 격상 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04~06</div><div class="tl-body">최대주주 ㈜아주 블록딜(약 1,586억원) → 지분 51.38%로 축소, 주가 급락·오버행 우려 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 05</div><div class="tl-body">국민성장펀드 1차 간접투자 GP 선정 — 소형리그, 약 1,000억원 배정 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
       </div>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>관계자 프로필 — 박세근 상무</h2>
       <dl class="kv">
-        <dt>직책</dt><dd>투자상무(2022-03 승진). <span class="flag">※2023년까지 '상무' 확인, 2026년 현재 직책·소속 본부는 미확인 → 본인 확인 필요</span> <sup class="ref"><a href="https://www.seoulfn.com/news/articleView.html?idxno=450284" target="_blank" rel="noopener">[17]</a></sup></dd>
-        <dt>담당</dt><dd>IT서비스·콘텐츠·바이오·제조 등 멀티섹터 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></dd>
+        <dt>직책</dt><dd>투자상무(2022-03 승진). <span class="flag">※2023년까지 '상무' 확인, 2026년 현재 직책·소속 본부는 미확인 → 본인 확인 필요</span> <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+        <dt>담당</dt><dd>IT서비스·콘텐츠·바이오·제조 등 멀티섹터 <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
         <dt>경력</dt><dd>삼성SDI, 엔씨소프트(NC소프트) 출신. <span class="flag">학력·아주IB 합류 연도 미확인</span></dd>
-        <dt>담당펀드</dt><dd>'아주좋은벤처펀드 2.0'(2,940억원, 2021-12) 핵심운용인력. <span class="flag">현재 대표운용 펀드는 확인 필요</span> <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></dd>
+        <dt>담당펀드</dt><dd>'아주좋은벤처펀드 2.0'(2,940억원, 2021-12) 핵심운용인력. <span class="flag">현재 대표운용 펀드는 확인 필요</span> <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
       </dl>
       <h3>대표 투자·회수</h3>
       <ul class="tight">
-        <li>레진코믹스(콘텐츠) — 대표 포트폴리오 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></li>
-        <li>피엔티(Pnt, 제조) — 대표 포트폴리오 <sup class="ref"><a href="https://m.newspim.com/news/view/20211216000338" target="_blank" rel="noopener">[16]</a></sup></li>
-        <li>코어라인소프트(의료AI) — 투자·2023 인터뷰이. 2023-09 코스닥 상장, 아주IB 약 9배 회수 예상. <span class="flag">개인 귀속은 정황 근거(확인 필요)</span> <sup class="ref"><a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">[15]</a></sup></li>
+        <li>레진코믹스(콘텐츠) — 대표 포트폴리오 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li>피엔티(Pnt, 제조) — 대표 포트폴리오 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li>코어라인소프트(의료AI) — 투자·2023 인터뷰이. 2023-09 코스닥 상장, 아주IB 약 9배 회수 예상. <span class="flag">개인 귀속은 정황 근거(확인 필요)</span> <sup class="ref"><a href="#src-15">[15]</a></sup></li>
         <li>무신사 — 귀속 상충(박세근 vs 강웅태 상무), <span class="flag">확인 필요</span></li>
       </ul>
       <h3>최근 발언·인터뷰</h3>
       <ul class="tight">
-        <li>2023-07 이코노미스트: 코어라인소프트에 대해 "풍부한 경험과 산업에 대한 이해가 가장 큰 강점"이라 평가 <sup class="ref"><a href="https://economist.co.kr/article/view/ecn202307190004" target="_blank" rel="noopener">[15]</a></sup></li>
+        <li>2023-07 이코노미스트: 코어라인소프트에 대해 "풍부한 경험과 산업에 대한 이해가 가장 큰 강점"이라 평가 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
         <li>2025~2026년 개인 명의 인터뷰·기고는 검색상 미확인(회사 발언은 김지원 대표 위주)</li>
       </ul>
     </div>
@@ -174,9 +174,9 @@
     <div class="card">
       <h2><span class="dot"></span>국민성장펀드·정책펀드 연관성</h2>
       <ul class="tight">
-        <li><b>국민성장펀드(2026)</b>: 1차 간접투자 위탁운용사(GP) 11곳에 선정 — 소형리그, 파라투스인베스트먼트와 함께 각 약 1,000억원. 앵커 430억 기반 하드캡 2배 적용, 선정 후 사실상 조기 결성 <sup class="ref"><a href="https://www.bloter.net/news/articleView.html?idxno=663684" target="_blank" rel="noopener">[6]</a></sup> <sup class="ref"><a href="https://www.thebell.co.kr/front/newsview.asp?key=202605071340338840105694" target="_blank" rel="noopener">[7]</a></sup></li>
-        <li><b>IBK혁신펀드</b>: 2024·2025 연속 GP 선정 <sup class="ref"><a href="https://www.fntimes.com/html/view.php?ud=202604190759073733dd55077bc2_18" target="_blank" rel="noopener">[2]</a></sup></li>
-        <li><b>한국성장금융 밸류업펀드</b>: 2025 숏리스트 → '아주 좋은 제4호 PEF' 3,130억 결성, 성장금융 2025 결산 '2관왕 6곳' 포함 <sup class="ref"><a href="https://www.numbers.co.kr/news/articleView.html?idxno=20327" target="_blank" rel="noopener">[18]</a></sup></li>
+        <li><b>국민성장펀드(2026)</b>: 1차 간접투자 위탁운용사(GP) 11곳에 선정 — 소형리그, 파라투스인베스트먼트와 함께 각 약 1,000억원. 앵커 430억 기반 하드캡 2배 적용, 선정 후 사실상 조기 결성 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>IBK혁신펀드</b>: 2024·2025 연속 GP 선정 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>한국성장금융 밸류업펀드</b>: 2025 숏리스트 → '아주 좋은 제4호 PEF' 3,130억 결성, 성장금융 2025 결산 '2관왕 6곳' 포함 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
       </ul>
       <p class="src"><span class="flag">※박세근 상무 개인의 정책펀드 담당·발언 여부는 미확인.</span> 일부 매체는 국민성장펀드 '탈락'으로 보도한 바 있어 라운드·시점 구분 확인 권장.</p>
     </div>
@@ -189,7 +189,7 @@
         <dt>당기순이익</dt><dd>83.2억원 (전년과 보합)</dd>
         <dt>1Q25</dt><dd>성과보수 약 12억원 유입</dd>
       </dl>
-      <p class="src">매출 감소는 관리보수·투자자산 수익 축소, 영업이익 개선은 비용절감·지분법이익 증가에 기인 <sup class="ref"><a href="https://www.datatooza.com/article/20260212182956762852ef358596_80" target="_blank" rel="noopener">[11]</a></sup>. 2025 사업보고서 원문(2026-03-19 제출)은 KRX KIND·DART에서 교차확인 <sup class="ref"><a href="https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20260319001877" target="_blank" rel="noopener">[19]</a></sup>. <span class="flag">위 수치는 언론·공시 기반이며, DART OpenAPI 자동조회는 현재 실행 환경의 네트워크 정책상 opendart.fss.or.kr 접근 차단으로 미적용. 정책 허용 시 API 공식값(연결/별도·보고서종류·조회일 명기)으로 자동 교체됩니다.</span></p>
+      <p class="src">매출 감소는 관리보수·투자자산 수익 축소, 영업이익 개선은 비용절감·지분법이익 증가에 기인 <sup class="ref"><a href="#src-11">[11]</a></sup>. 2025 사업보고서 원문(2026-03-19 제출)은 KRX KIND·DART에서 교차확인 <sup class="ref"><a href="#src-19">[19]</a></sup>. <span class="flag">위 수치는 언론·공시 기반이며, DART OpenAPI 자동조회는 현재 실행 환경의 네트워크 정책상 opendart.fss.or.kr 접근 차단으로 미적용. 정책 허용 시 API 공식값(연결/별도·보고서종류·조회일 명기)으로 자동 교체됩니다.</span></p>
     </div>
 
     <div class="card" id="report-endnotes" style="margin-top:6px;">
