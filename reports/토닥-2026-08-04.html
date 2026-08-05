@@ -1,0 +1,263 @@
+<meta charset="utf-8" />
+<title>토닥(TODOC) · 민규식 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0e8f83; --accent-soft: #e2f4f1;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4cc7bb; --accent-soft: #123b37;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4cc7bb; --accent-soft: #123b37;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0e8f83; --accent-soft: #e2f4f1;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-04</div>
+    <h1 class="title">토닥(TODOC) · 민규식 대표</h1>
+    <p class="subtitle">인공와우 국산화 딥테크 — 세계 최초 32채널 '설리번' 식약처 허가 후 2026년 6월 국내 출시</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 스타트업(비상장)</span>
+      <span class="meta-chip">분야: 의료기기·전자신경(인공와우)</span>
+      <span class="meta-chip">단계: 시리즈B</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 개요</h2>
+      <dl class="kv">
+        <dt>법인</dt><dd>주식회사 토닥 (TODOC Co., Ltd.) <sup class="ref"><a href="#src-14">[14]</a></sup></dd>
+        <dt>설립</dt><dd>2015년 10월 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>대표</dt><dd>민규식 (공동창업자 CTO는 <span class="flag">실명 미확인</span>) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>본사</dt><dd>서울 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>사업</dt><dd>반도체 공정 기반 <b>인공와우(cochlear implant) 국산화</b> — 전자신경 인터페이스 의료기기 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>인력</dt><dd>약 35명 (2025.9) <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+        <dt>투자단계</dt><dd>시리즈B (일부 DB는 그 이상 언급 — <span class="flag">미확인</span>) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 주의:</span> 심리상담 앱 '토닥', 마사지 '토닥이', 호흡재활기기 '토닥이 CAREWAY' 등과 <b>무관</b>합니다(본 건은 인공와우 ㈜토닥).</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 마일스톤</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2015. 10</div><div class="tl-body">㈜토닥 설립(서울). 민규식 대표, 삼성전자 종합기술원 퇴사 후 창업 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2017. 11</div><div class="tl-body">첫 VC 대상 투자유치(IR) 추진 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2018</div><div class="tl-body">시드 약 14억원 — 이노폴리스파트너스·쎄트렉아이·카이트창업가재단·블루포인트파트너스 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2021~2022</div><div class="tl-body">세계 창업가 대회 글로벌 Top25 <sup class="ref"><a href="#src-6">[6]</a></sup>, <b>세계 최초 32채널 인공와우 '설리번' 개발</b> · CES 2022 'Top10 Korean Products' <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024</div><div class="tl-body"><b>식약처 품목허가 + GMP 인증</b>, 범부처 '의료기기 10대 R&amp;D 대표성과' 선정, 중기부 아기유니콘 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024</div><div class="tl-body">시리즈B 약 63억원 <span class="flag">(수치 상충 — 원문 확인 필요)</span> <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body">국내 첫 임상시험 착수 <sup class="ref"><a href="#src-8">[8]</a></sup> · 말레이시아 사라왁(Sarawak) 인공와우 도입 MOU <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 06. 01</div><div class="tl-body"><b>설리번 국내 공식 출시</b> — 세계 최대 32채널 인공와우 상용화 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>창업자 프로필 — 민규식 대표</h2>
+      <dl class="kv">
+        <dt>학력</dt><dd>서울대 물리학 학사 → 서울대 전기·컴퓨터공학부 석·박사(인공와우 전극 연구) <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>경력</dt><dd>前 삼성전자 종합기술원 연구원, 前 뉴로바이오시스 연구원 <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+        <dt>창업 배경</dt><dd>"안정된 대기업·교수직 대신 창업" — 인공와우 국산화 문제의식으로 2015년 창업 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src">주요 인터뷰: 이코노미조선 「외산보다 정밀·대량생산 가능한 인공와우」(2024-11-29) <sup class="ref"><a href="#src-2">[2]</a></sup>, 라포르시안 「인공와우 국산화 넘어 사회·경제적 가치」 <sup class="ref"><a href="#src-10">[10]</a></sup>. <span class="flag">직접 인용문 원문은 접근 제한으로 미확보 — 기사화 전 재확인 권장.</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>투자유치 · 주주 · 정부지원</h2>
+      <h3>투자유치</h3>
+      <ul class="tight">
+        <li>시드(2018, 약 14억): <b>이노폴리스파트너스 · 쎄트렉아이 · 카이트창업가재단(KITE) · 블루포인트파트너스</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li>시리즈B 약 63억(2024) — <span class="flag">투자사 명단·정확 금액 미확인</span>. 라운드 수도 출처 간 상충(THE VC '4건' vs 혁신의숲 '6회') <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li>누적 민간 투자 ~50억대 + 정부과제 ~수십억 규모 <span class="flag">(수치 엇갈림 — 원문 대조 필요)</span></li>
+      </ul>
+      <h3>정부지원</h3>
+      <ul class="tight">
+        <li><b>TIPS</b> 선정, 중기부 <b>아기유니콘</b>(바이오헬스), 2024 범부처 <b>의료기기 10대 R&amp;D 대표성과</b> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li>모태펀드 피투자·이노비즈·벤처확인 세부: <span class="flag">미확인</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>성장지표 · 재무 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <dl class="kv">
+        <dt>인력</dt><dd>약 35명 (2025.9) <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+        <dt>매출·손익</dt><dd><span class="flag">비공개/미공시</span> — 2026년 6월에야 첫 제품 출시라 매출 본격화 이전 단계. DART 감사보고서·외감대상 여부 미확인</dd>
+        <dt>제품 상태</dt><dd>설리번 식약처 허가·GMP 완료, 국내 임상 진행, 2026.6 출시 <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+      </dl>
+      <p class="src">인공와우 글로벌 시장은 코클리어(호주)·메드엘(오스트리아)·어드밴스드바이오닉스(미국) 등 소수 과점. 토닥은 반도체 공정 기반 <b>32채널(기존 최대 22채널)</b>·대량생산으로 후발 국산 도전 <sup class="ref"><a href="#src-5">[5]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 각 항목의 <b>'링크'</b>로 열립니다. <span class="flag">※ 이 세션은 네트워크 정책상 대부분의 원문(THE VC·혁신의숲·언론)이 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. 특히 투자 라운드·금액·투자사·재무 수치는 게재 전 원문 재확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> THE VC, 토닥(TODOC) 기업정보(설립·투자·본사). <a href="https://thevc.kr/todoc" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 이코노미조선, [Interview] "외산보다 정밀·대량생산 가능한 인공 와우 개발"(민규식), 2024-11-29. <a href="https://economychosun.com/site/data/html_dir/2024/11/29/2024112900023.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 벤처스퀘어, "안정된 교수직 대신 꿈 따라 창업…인공와우 스타트업 토닥". <a href="https://www.venturesquare.net/724930/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴스1, "세계 최대 32채널 인공달팽이관(설리번) 국내 공식 출시", 2026. <a href="https://www.news1.kr/bio/healthcare/6185794" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 메디게이트뉴스, 토닥의 인공와우 시장 도전(반도체 공정·국산화). <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 메디게이트뉴스, "토닥, 세계 스타트업 창업가 대회 글로벌 Top25". <a href="https://m.medigatenews.com/news/2242693233" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 더벨, "인공와우 제작 토닥, VC투자 유치 추진", 2017-11-10. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201711100100019180001182" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 혁신의숲, 토닥 기업정보(투자이력·인력·임상). <a href="https://www.innoforest.co.kr/company/CP00000451/%ED%86%A0%EB%8B%A5" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 벤처스퀘어, "인공와우 기업 토닥, 휴젤 오픈이노베이션 데모데이 대상". <a href="https://www.venturesquare.net/722676" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 라포르시안, [in-터뷰] "인공와우 국산화 넘어 사회·경제적 가치 창출". <a href="https://www.rapportian.com/news/articleView.html?idxno=156893" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 라포르시안, "토닥, 말레이시아 사라왁 인공와우 도입 MOU". <a href="https://www.rapportian.com/news/articleView.html?idxno=230631" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 청년의사/의학신문, 범부처 '의료기기 10대 R&amp;D 대표성과'(32채널 인공와우 전극), 2024. <a href="https://www.bosa.co.kr/news/articleView.html?idxno=2217911" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> THE VC, 카이트창업가재단(KITE) 투자 포트폴리오. <a href="https://thevc.kr/kiteef" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 법인 기업정보(사업자 258-87-00293). <a href="https://moneypin.biz/bizno/detail/2588700293/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> zerotoonemedia, "서울대 박사, 삼성전자 퇴사 후 인공와우 창업". <a href="https://zerotoonemedia.com/archives/12449" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 본 브리핑은 공개 자료 기반이며, 원문 직접열람이 제한된 항목은 검색 요약을 교차검증했습니다. <b>투자 라운드·금액·투자사·매출은 '미확인'으로 표시</b>했으니 취재 시 본인·THE VC·DART로 확정하시길 권합니다. 발행 시점(2026-08-04) 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">각 질문에 우선순위와 <b>근거</b>가 붙어 있습니다. 근거의 [번호]는 하단 출처와 연결됩니다. 스타트업(비상장) 취재 세트로 구성했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 회사 현안 · 이슈(시장·경쟁·규제)</h2></div>
+    <div class="q cat1"><p class="qtext">'세계 최초 32채널'을 강조하시는데, 채널 수 증가가 실제 환자의 어음 변별·소리 해상도에서 어떤 임상적 차이를 만드나요? 코클리어·메드엘 등 글로벌 강자 대비 입증된 우위는 무엇입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 32채널 설리번 <a href="https://www.news1.kr/bio/healthcare/6185794" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">6월 국내 출시로 판매가 시작됩니다. 인공와우는 건강보험 급여·수가가 관건인데, 국산 제품의 보험 등재·병원 채택에서 지금 가장 큰 장벽은 무엇입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 2026.6 국내 출시 <a href="https://www.news1.kr/bio/healthcare/6185794" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">국내 임상시험이 진행 중입니다. 허가는 받았지만 임상 데이터 축적이 시장 신뢰의 핵심입니다. 현재 임상 규모·경과와, 안전성·유효성 입증 로드맵은 어떻게 됩니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 국내 첫 임상 착수 <a href="https://www.innoforest.co.kr/company/CP00000451/%ED%86%A0%EB%8B%A5" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">반도체 공정 기반 대량생산을 강점으로 내세우십니다. 실제 양산 캐파와 수율은 어느 수준이며, 외산 대비 가격을 얼마나 낮출 수 있습니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 반도체 공정·대량생산 <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 창업자 · 경영진 개인 · 비전</h2></div>
+    <div class="q cat2"><p class="qtext">삼성전자 종합기술원과 교수직이라는 안정된 길을 두고 2015년 창업하셨습니다. 그 결정의 결정적 계기와, 10년 가까이 딥테크를 버틴 원동력은 무엇이었나요?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 대기업·교수직 대신 창업 <a href="https://www.venturesquare.net/724930/" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">인공와우 전극을 직접 연구한 공학자 출신 창업자십니다. 기술 리더십과 경영(허가·생산·판매·자금)을 병행하면서, 공동창업자·팀과 역할을 어떻게 나누십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 전극 연구·창업 배경 <a href="https://economychosun.com/site/data/html_dir/2024/11/29/2024112900023.html" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">인공와우를 시작으로 '전자신경 솔루션'으로 확장하겠다고 하셨습니다. 미주신경 조절 등 다음 파이프라인에서 그리는 5년 뒤 토닥의 모습은?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 전자신경 확장 비전 <a href="https://www.rapportian.com/news/articleView.html?idxno=156893" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">"국산화 넘어 사회·경제적 가치"를 말씀하셨습니다. 난청 환자 접근성 측면에서 토닥이 만들고 싶은 사회적 변화는 구체적으로 무엇입니까?</p><div class="qmeta"><span class="pri low">우선순위 하</span><span class="basis">근거: 사회·경제적 가치 발언 <a href="https://www.rapportian.com/news/articleView.html?idxno=156893" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 투자유치 · 자본조달(+정부지원)</h2></div>
+    <div class="q cat3"><p class="qtext">2024년 시리즈B(약 63억원으로 알려짐)를 유치하셨습니다. 정확한 규모와 참여 투자사, 그리고 그 자금을 출시·양산·임상 중 어디에 우선 배분하셨는지 궁금합니다.</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 시리즈B(수치 확인 필요) <a href="https://www.innoforest.co.kr/company/CP00000451/%ED%86%A0%EB%8B%A5" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">이노폴리스·블루포인트·쎄트렉아이·카이트 등 초기 투자사가 딥테크·우주/부품 색채가 강합니다. 이들이 토닥에 준 전략적 도움과, 다음 라운드에서 원하는 투자자상은?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 시드 투자사 <a href="https://thevc.kr/todoc" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">TIPS·아기유니콘·범부처 10대 R&amp;D 등 정부과제 비중이 큽니다. 정부자금과 민간투자의 균형, 그리고 정부 의존 리스크는 어떻게 관리하십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 정부지원 이력 <a href="https://www.bosa.co.kr/news/articleView.html?idxno=2217911" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">출시·해외 진출에는 대규모 자금이 필요합니다. 다음 라운드(시리즈C) 계획과 규모, 그리고 중장기적으로 IPO·M&amp;A 중 어떤 회수 경로를 그리십니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 상용화·해외 확장 <a href="https://www.rapportian.com/news/articleView.html?idxno=230631" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 사업 · 제품 전략 · 성장 · 회수</h2></div>
+    <div class="q cat4"><p class="qtext">국내 출시 첫해 판매 전략이 궁금합니다. 이비인후과·이식 병원 채널 확보, 의료진 교육, 초기 목표 이식 건수는 어떻게 잡고 계십니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 2026.6 국내 출시 <a href="https://www.news1.kr/bio/healthcare/6185794" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">말레이시아 사라왁 MOU 등 해외를 겨냥하십니다. 인공와우는 국가별 인허가(FDA·CE)가 관문인데, 우선 진출 시장과 인증 로드맵은 어떻게 됩니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 말레이시아 MOU <a href="https://www.rapportian.com/news/articleView.html?idxno=230631" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">글로벌 시장은 코클리어·메드엘·AB의 오랜 과점입니다. 이들의 임상 레퍼런스·유통망을 후발 국산이 어떻게 파고들 계획입니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 글로벌 과점 시장 <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">인공와우 다음으로 미주신경 조절기 등 파이프라인을 예고하셨습니다. 단일 제품 회사를 넘어 플랫폼 기업으로 가는 우선순위와 시점은 어떻게 보십니까?</p><div class="qmeta"><span class="pri low">우선순위 하</span><span class="basis">근거: 파이프라인 확장 <a href="https://www.rapportian.com/news/articleView.html?idxno=156893" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> THE VC, 토닥 기업정보. <a href="https://thevc.kr/todoc" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 이코노미조선, 민규식 인터뷰, 2024-11-29. <a href="https://economychosun.com/site/data/html_dir/2024/11/29/2024112900023.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 벤처스퀘어, 교수직 대신 창업. <a href="https://www.venturesquare.net/724930/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 뉴스1, 32채널 설리번 국내 출시, 2026. <a href="https://www.news1.kr/bio/healthcare/6185794" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 메디게이트뉴스, 인공와우 시장 도전. <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 혁신의숲, 토닥 기업정보(투자·인력·임상). <a href="https://www.innoforest.co.kr/company/CP00000451/%ED%86%A0%EB%8B%A5" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 라포르시안, in-터뷰(국산화·사회적 가치). <a href="https://www.rapportian.com/news/articleView.html?idxno=156893" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 라포르시안, 말레이시아 사라왁 MOU. <a href="https://www.rapportian.com/news/articleView.html?idxno=230631" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 청년의사/의학신문, 범부처 의료기기 10대 R&amp;D, 2024. <a href="https://www.bosa.co.kr/news/articleView.html?idxno=2217911" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[15])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-04</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
