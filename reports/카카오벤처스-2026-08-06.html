@@ -1,0 +1,255 @@
+<meta charset="utf-8" />
+<title>카카오벤처스 · 이예화 팀장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #b8860b; --accent-soft: #fbf2d8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #e6c34d; --accent-soft: #332b12;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #e6c34d; --accent-soft: #332b12;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #b8860b; --accent-soft: #fbf2d8;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-06</div>
+    <h1 class="title">카카오벤처스 · 이예화 팀장</h1>
+    <p class="subtitle">'CVC 아닌 VC'를 표방하지만 4년간 외부출자 공백 — 국민성장펀드 탈락·임지훈 소송·두나무 대박 귀속 논쟁의 초기 전문 VC</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·CVC)</span>
+      <span class="meta-chip">유형: 초기(시드~프리A) VC</span>
+      <span class="meta-chip">담당: 커뮤니케이션팀 수석(추정)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>2012 케이큐브벤처스로 설립 → 2018 <b>카카오벤처스</b> 개명. 카카오 <b>지분 100%</b>(CVC 성격) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>대표</dt><dd><b>김기준</b>(2024-03 취임, 테크투자 1세대 심사역). 前 정신아 대표는 <b>카카오 대표</b>로 이동 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>본사·규모</dt><dd>성남. <b>AUM 약 3,900억+, 패밀리(포트폴리오) 250+, 누적펀드 10개+</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>전략</dt><dd>시드~프리A <b>초기 집중</b> — 딥테크·게임·디지털헬스케어·콘텐츠·AI <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+        <dt>대표 딜</dt><dd>두나무·당근·루닛·한국신용데이터·리벨리온·왓챠. 1호 펀드 '수익률 100배'로 회자 <sup class="ref"><a href="#src-9">[9]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 정체성 논쟁:</span> 회사는 "카카오 자금만 받는 CVC가 아니라 외부 LP도 있는 VC"라 규정하지만, <b>2021년 이후 사실상 외부출자 없이 카카오 자금 위주로 펀드를 조성</b>해왔다 <sup class="ref"><a href="#src-4">[4]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 쟁점</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2024. 03</div><div class="tl-body">대표 교체 — 정신아 카카오 대표로, <b>김기준 신임 대표</b> 취임 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024</div><div class="tl-body">투자 21건 140억(시드 다수) <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 03</div><div class="tl-body"><b>임지훈 前 대표 589억 성과급 소송</b>(1호 펀드 성과보수) — 서울고법 화해권고로 확정(조건 비공개) <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body">투자 27건 207억(신규 19건, <b>신규 90%에 첫 기관투자자</b>), 회수 약 1,300억. <b>11번째 펀드 '코파일럿 펀드' 440억</b>(약 4년 만 외부출자) <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><b>국민성장펀드 2차 GP 도전(AI·반도체 소형) → 탈락</b>(SL인베스트먼트 선정). '독립 못하는 카카오벤처스' 프레임 <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-body">전략: 제조·반도체·이차전지, 글로벌 소비재, 디지털헬스케어 + 우주·양자 등 원천기술 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 이예화 팀장</h2>
+      <dl class="kv">
+        <dt>직책(유력)</dt><dd>카카오벤처스 <b>커뮤니케이션팀 수석(팀 리드급, 영문 Emma)</b> — 스타트업 PR·브랜드 커뮤니케이션 총괄 <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+        <dt>경력</dt><dd>벤처스퀘어 기자(2016~2020) → 집토스 PR 매니저(2021~2022) → 카카오벤처스(2022~) <sup class="ref"><a href="#src-12">[12]</a></sup></dd>
+        <dt>콘텐츠</dt><dd>블로그 "스타트업 PR, 이것만 보세요", 사내 핵심가치 TF, PR 팟캐스트 출연 <sup class="ref"><a href="#src-13">[13]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 투자심사역이 아니라 PR·브랜드 계열입니다.</span> ⚠️ <b>동명 '벤처스퀘어 이예화 기자'</b> 및 투자팀 '이화영 선임매니저'와 별개 — 혼동 주의. 정확한 팀명·직함은 공식 프로필(kakao.vc) 접근 제한으로 대면 확인 권장 <sup class="ref"><a href="#src-11">[11]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드 · 정책펀드 연관</h2>
+      <ul class="tight">
+        <li><b>국민성장펀드 2차(AI·반도체 소형 리그) GP 도전 → 탈락</b>. 출자금 540억·자펀드 목표 1,000억(최대 2,000억)으로 8:1 경쟁, SL인베스트먼트에 밀림 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>약점 지목: <b>대형펀드 운용경험·결성 안정성 부족</b>, 그리고 카카오 <b>오너 리스크</b>(김범수 SM 시세조종 항소심)라는 간접 부담 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li>2020 '카카오그로스해킹펀드' 1,044억이 마지막 외부출자였고, 2025 코파일럿펀드 440억으로 외부 LP 재유치 시도 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · 포트폴리오 · 성과 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <ul class="tight">
+        <li><b>1호 펀드</b>(케이큐브-1호, 2012 결성·2021 청산): '국내 최초 100배 수익률'로 회자 <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>두나무</b>: 2013년 1호 조합이 2억 시드 → 지분이 2022년 <b>카카오인베스트먼트로 이관</b>, 그룹 전체로 35억 투입→약 2.2조 회수(~600배) <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>회수: 최근 5년 연평균 ~1,500억, 2025년 약 1,300억 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 논점:</span> '두나무 대박'을 카카오벤처스 성과로 뭉뚱그리는 경우가 있으나, 실제 <b>펀드 LP에 귀속된 몫과 회계 주체(카카오벤처스/카카오인베스트먼트/본사)가 뒤섞여</b> 있어 구분이 필요합니다(임지훈 성과급 소송과 직결) <sup class="ref"><a href="#src-14">[14]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(kakao.vc·언론·THE VC 등)이 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. 이예화 팀장 정확 직함, 펀드 규모·두나무 회수 귀속·소송 조건은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 플래텀, 카카오벤처스 지배구조·CVC 논쟁. <a href="https://platum.kr/archives/145970" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 벤처스퀘어, 카카오벤처스 신임 대표 김기준 취임, 2024. <a href="https://www.venturesquare.net/918965/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 플래텀, 카카오벤처스 2025 결산·11번째 펀드(코파일럿 440억), 2026-01-20. <a href="https://platum.kr/archives/279894" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 더벨, 카카오벤처스 외부출자 4년 공백·코파일럿펀드, 2025-02-27. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202502271704430080107751" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 디지털데일리, 임지훈 前 대표 성과급 소송 화해 확정, 2025-03-13. <a href="https://www.ddaily.co.kr/page/view/2025031223563319543" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 블로터, 국민성장펀드 2차 GP 선정(카카오벤처스 탈락). <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, '독립 못하는 카카오벤처스'·오너 리스크 프레임. <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 블로터, 카카오벤처스 2024 투자·전략(딥테크·게임·헬스케어). <a href="https://www.bloter.net/news/articleView.html?idxno=629739" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 아주경제, 카카오벤처스 대표 포트폴리오·1호 펀드 100배, 2021-06-01. <a href="https://www.ajunews.com/view/20210601154256409" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 아이뉴스24, 카카오벤처스 2026 투자전략(제조·반도체·글로벌·우주/양자). <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 카카오벤처스 팀 소개(이예화 커뮤니케이션팀). <a href="https://www.kakao.vc/team/leeyehwa" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> Tracxn, Kakao Ventures 인물 프로필(이예화 경력). <a href="https://tracxn.com/d/venture-capital/kakao-ventures" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 카카오벤처스 블로그, "스타트업 PR, 이것만 보세요". <a href="https://www.kakao.vc/blog/startup-pr-essentials" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 뉴스1/ZDNet, 두나무 지분 회수(카카오벤처스·카카오인베스트먼트·그룹 ~2.2조), 2026. <a href="https://www.news1.kr/it-science/general-it/6168360" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 아시아경제 CORE, 임지훈 소송·카카오벤처스 배경, 2025-01-13. <a href="https://core.asiae.co.kr/article/2025011312343650960" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>이예화 팀장 정확 직함·펀드 수치·두나무 귀속·소송 조건은 '미확인/확인 필요'</b>로 표시. 발행 2026-08-06 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">확보한 수치·모순·빈틈을 근거로 파고드는 <b>심층 질문</b>입니다. <span class="tag">태그</span>는 질문 기법, [번호]는 근거. 관계자가 커뮤니케이션(비투자) 직무라 ②는 <b>PR·브랜드·평판 관점</b>으로 구성했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 정체성</h2></div>
+    <div class="q cat1"><p class="qtext">카카오벤처스는 "카카오 자금만 받는 CVC가 아니라 VC"라고 규정해왔습니다. 그런데 2021년 이후 사실상 외부출자 없이 카카오 자금으로만 펀드를 만들어 왔고, 2025년 코파일럿펀드가 '4년 만의 외부출자'였습니다 — 스스로를 VC라 부를 근거는 지금도 유효합니까?</p><div class="qmeta"><span class="tag">모순</span><span class="pri high">상</span><span class="basis">근거: 외부출자 4년 공백 <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202502271704430080107751" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">국민성장펀드 2차 소형 리그에서 SL인베스트먼트에 밀려 탈락하며 '독립 못하는 카카오벤처스'라는 평가가 나왔습니다. 심사에서 지적된 '대형펀드 운용경험·결성 안정성 부족'을 인정하십니까, 아니면 다른 이유라고 보십니까?</p><div class="qmeta"><span class="tag">반론·압박</span><span class="pri high">상</span><span class="basis">근거: 국민성장펀드 탈락 <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">모회사 카카오의 오너 리스크(김범수 SM 시세조종 항소심)가 정책자금 심사에서 간접 부담이 된다는 프레임이 있습니다. 그룹 사법리스크가 펀드 결성·외부 LP 유치에 실제로 얼마나 영향을 줬습니까?</p><div class="qmeta"><span class="tag">빈틈·민감</span><span class="pri mid">중</span><span class="basis">근거: 오너 리스크 프레임 <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">한때 취득한 액셀러레이터 자격을 '의무투자 비율 부담'을 이유로 자진 반납하셨습니다. 초기 전문을 표방하면서 초기기업 의무투자가 부담이었다는 건, 실제 포트폴리오가 표방만큼 초기가 아니라는 뜻은 아닙니까?</p><div class="qmeta"><span class="tag">모순</span><span class="pri low">하</span><span class="basis">근거: AC 자격 반납 <a href="https://platum.kr/archives/145970" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(커뮤니케이션) · 브랜드 · 평판</h2></div>
+    <div class="q cat2"><p class="qtext">먼저 팀장님이 맡으신 커뮤니케이션팀의 범위를 여쭙니다 — 카카오벤처스 브랜딩·대외 커뮤니케이션과 포트폴리오사 PR 지원 중 어디에 무게가 있습니까? (그에 맞춰 이야기를 좁히겠습니다.)</p><div class="qmeta"><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 커뮤니케이션팀 수석 <a href="https://www.kakao.vc/team/leeyehwa" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">최근 1년 카카오벤처스를 둘러싼 서사가 임지훈 소송·국민성장펀드 탈락·'독립 못하는 VC' 같은 부정 프레임에 쏠렸습니다. 커뮤니케이션 책임자로서 이 내러티브를 어떻게 관리하고 계시며, 반박하고 싶은 오해는 무엇입니까?</p><div class="qmeta"><span class="tag">평판·압박</span><span class="pri high">상</span><span class="basis">근거: 소송·탈락 프레임 <a href="https://www.ddaily.co.kr/page/view/2025031223563319543" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">기자 출신으로 VC 커뮤니케이션에 계십니다. 국내 VC의 홍보가 대개 '대박 회수 자랑'에 치우친다는 비판이 있는데, 초기 투자사의 커뮤니케이션은 무엇을 다르게 해야 한다고 보십니까?</p><div class="qmeta"><span class="tag">개방·생각거리</span><span class="pri mid">중</span><span class="basis">근거: 기자 출신·PR 총괄 <a href="https://www.kakao.vc/blog/startup-pr-essentials" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">'스타트업 PR' 콘텐츠를 직접 만드셨습니다. 초기 스타트업이 가장 많이 하는 PR 실수, 그리고 투자 유치 전후로 커뮤니케이션에서 반드시 챙겨야 할 한 가지를 꼽는다면요?</p><div class="qmeta"><span class="tag">개방·실무</span><span class="pri low">하</span><span class="basis">근거: 스타트업 PR 콘텐츠 <a href="https://www.kakao.vc/blog/startup-pr-essentials" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+    <div class="q cat3"><p class="qtext">국민성장펀드 재도전 계획이 있습니까? 있다면 이번 탈락에서 무엇을 보완하시겠습니까 — 결성 실적을 쌓기 위해 카카오 밖 외부 LP를 먼저 확보하는 게 순서 아닌가요?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 탈락·외부출자 과제 <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">정책자금(국민성장펀드·모태)이 갈수록 대형화·전략산업 중심으로 가는데, 시드~프리A 초기 전문 하우스가 이런 대형 정책펀드에서 설 자리는 점점 좁아지지 않습니까? 초기 VC의 정책자금 접근 전략은?</p><div class="qmeta"><span class="tag">빈틈·구조</span><span class="pri mid">중</span><span class="basis">근거: 정책펀드 대형화 <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">코파일럿펀드로 외부 LP를 다시 받으셨는데, 카카오 100% 자회사라는 지배구조 자체가 외부 LP·정책자금 유치에서 이해상충·독립성 의심을 부르는 구조적 한계 아닙니까?</p><div class="qmeta"><span class="tag">반론</span><span class="pri mid">중</span><span class="basis">근거: 카카오 100%·외부출자 <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202502271704430080107751" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 포트폴리오 · 성과</h2></div>
+    <div class="q cat4"><p class="qtext">'두나무 600배', '1호 펀드 100배'가 카카오벤처스의 상징처럼 쓰입니다. 그런데 두나무 지분은 카카오인베스트먼트로 이관됐고 회계 주체가 뒤섞여 있습니다 — 실제로 카카오벤처스 '펀드 LP'에 귀속된 회수 성과는 어느 정도입니까?</p><div class="qmeta"><span class="tag">질 검증·압박</span><span class="pri high">상</span><span class="basis">근거: 두나무 귀속 논점 <a href="https://www.news1.kr/it-science/general-it/6168360" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2025년 신규 27건에 207억, 신규의 90%가 첫 기관투자입니다. 건당 규모가 작은 '진짜 초기' 전략은 선명하지만, 후속 라운드에서 실탄이 부족해 좋은 포트폴리오의 지분을 지키지 못하는 문제는 어떻게 푸십니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 소형·초기 집중 <a href="https://platum.kr/archives/279894" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2026년 제조·반도체·이차전지에 더해 우주·양자컴퓨팅 같은 원천기술을 선제 발굴하겠다고 하셨습니다. 회수까지 10년 넘게 걸릴 딥테크를, 회수 압박이 있는 펀드 구조에서 어떻게 감당하십니까?</p><div class="qmeta"><span class="tag">모순·시나리오</span><span class="pri mid">중</span><span class="basis">근거: 2026 원천기술 전략 <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">임지훈 前 대표의 성과급 소송은 결국 '대박 성과를 누가 얼마나 가져가느냐'의 문제였습니다. 이 사건 이후 카카오벤처스의 성과보수·핵심 운용역 유인 체계는 무엇이 바뀌었습니까?</p><div class="qmeta"><span class="tag">빈틈·민감</span><span class="pri mid">중</span><span class="basis">근거: 임지훈 성과급 소송 <a href="https://core.asiae.co.kr/article/2025011312343650960" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 플래텀, 카카오벤처스 지배구조·CVC 논쟁. <a href="https://platum.kr/archives/145970" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 플래텀, 2025 결산·코파일럿펀드 440억, 2026-01-20. <a href="https://platum.kr/archives/279894" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 더벨, 외부출자 4년 공백, 2025-02-27. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202502271704430080107751" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 디지털데일리, 임지훈 성과급 소송 화해, 2025-03-13. <a href="https://www.ddaily.co.kr/page/view/2025031223563319543" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 블로터, 국민성장펀드 GP 탈락. <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 딜사이트, '독립 못하는 카카오벤처스'. <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 아이뉴스24, 2026 투자전략. <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 카카오벤처스 팀 소개(이예화). <a href="https://www.kakao.vc/team/leeyehwa" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 카카오벤처스 블로그, 스타트업 PR. <a href="https://www.kakao.vc/blog/startup-pr-essentials" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 뉴스1/ZDNet, 두나무 지분 회수 귀속, 2026. <a href="https://www.news1.kr/it-science/general-it/6168360" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 아시아경제 CORE, 임지훈 소송 배경, 2025-01-13. <a href="https://core.asiae.co.kr/article/2025011312343650960" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[15])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-06</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
