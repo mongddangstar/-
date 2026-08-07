@@ -56,11 +56,15 @@
   .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
   .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
   .card p { margin: 6px 0; font-size: 14.5px; }
-  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv { display: grid; grid-template-columns: 100px 1fr; gap: 6px 10px; font-size: 14px; }
   .kv dt { color: var(--muted); }
   .kv dd { margin: 0; }
   ul.tight { margin: 6px 0; padding-left: 18px; }
   ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  table.fin { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 6px 0 2px; }
+  table.fin th, table.fin td { text-align: right; padding: 6px 6px; border-bottom: 1px solid var(--line); }
+  table.fin th:first-child, table.fin td:first-child { text-align: left; }
+  table.fin thead th { color: var(--muted); font-weight: 700; }
   .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
   .src a { color: var(--accent); text-decoration: none; }
   sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
@@ -77,6 +81,7 @@
   .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
   .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
   .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
   .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
   .pri.high { background: var(--pri); }
   .pri.mid { background: #b9791f; }
@@ -89,7 +94,7 @@
   .cat4 { border-left-color: var(--c4); }
   .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
   .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
-  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
   .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
   .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
   .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
@@ -99,7 +104,7 @@
   <header class="hero">
     <div class="kicker">취재 브리핑 · 2026-08-06</div>
     <h1 class="title">BNK캐피탈 · 이상룡 전무</h1>
-    <p class="subtitle">지주계 여전사의 신기술금융(신기사) 기반 투자 — 여전사 벤처투자 위축 국면 속 '생산적 금융' 역주행, 그러나 부동산PF 부담과 함께</p>
+    <p class="subtitle">지주계 여전사의 신기술금융 기반 투자 — 여전사 벤처투자 위축 국면 속 '생산적 금융' 역주행, 그러나 부동산PF·자본 여력의 딜레마</p>
     <div class="meta-row">
       <span class="meta-chip">주체: 민간 금융기관(캐피탈)</span>
       <span class="meta-chip">유형: 여신전문금융 · 신기사</span>
@@ -118,23 +123,23 @@
     <div class="card">
       <h2><span class="dot"></span>기관 개요</h2>
       <dl class="kv">
-        <dt>성격</dt><dd>BNK금융지주 계열 종합 여신전문금융사(캐피탈). 비상장. 본사 부산 <sup class="ref"><a href="#src-10">[10]</a></sup></dd>
-        <dt>설립·인허가</dt><dd>2010-07 설립, 2010-09 시설대여·할부, <b>2013-09 신기술사업금융업(신기사) 등록</b> <span class="flag">(원문 확인 권장)</span></dd>
-        <dt>대표</dt><dd>손대진 대표(2026-01 취임) <span class="flag">(보도 종합·확인 필요)</span></dd>
-        <dt>규모</dt><dd>총자산 약 10.3조원, 자기자본 약 1.48조원(2025) <span class="flag">(영업보고서 원문 확인)</span></dd>
-        <dt>지주 내 위치</dt><dd>비은행 계열 순익 상위. 2025 상반기 지주계 캐피탈 순익 <b>3위권(약 696억)</b> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>성격</dt><dd>BNK금융지주 <b>완전자회사</b>인 종합 여신전문금융사(캐피탈). 비상장. 본사 부산. 그룹 <b>비은행 순익 1위</b> <sup class="ref"><a href="#src-10">[10]</a></sup></dd>
+        <dt>설립·인허가</dt><dd>2010-07 설립(옛 'BS캐피탈'→2015 'BNK캐피탈'), <b>2013-09 신기술사업금융업(신기사) 등록</b> <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>대표</dt><dd>손대진(2026-01 취임, 부산은행 부행장 출신 '영업통'). 과제=건전성 제고+투자금융 신수익원 <sup class="ref"><a href="#src-22">[22]</a></sup></dd>
+        <dt>규모</dt><dd>총자산 <b>10.3조</b>(2025 3Q, 첫 10조 돌파), 자본금 2,180억 <span class="flag">(원문 확인)</span> <sup class="ref"><a href="#src-19">[19]</a></sup></dd>
       </dl>
-      <p class="src"><span class="flag">※ 반드시 구분:</span> BNK캐피탈의 '벤처투자'는 별도 창투사가 아니라 <b>신기사 기반 투자금융</b>입니다. 그룹의 전업 VC는 <b>BNK벤처투자(별도 창투사, 2009 설립)</b> — 250억 지역펀드·5년 775억 투자·부울경 벤처투자센터 운영 <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup>.</p>
+      <p class="src"><span class="flag">※ 반드시 구분:</span> BNK캐피탈의 '벤처투자'는 별도 창투사가 아니라 <b>신기사 기반 투자금융</b>. 그룹 전업 VC는 <b>BNK벤처투자(별도)</b> <sup class="ref"><a href="#src-11">[11]</a></sup>. 또한 초대(이상춘)·2대(김일수) 대표가 각각 사기대출·주가조작 연루로 사임한 이력이 있고, 최근 지주 지배구조('셀프연임') 논란도 있었다 <span class="flag">(맥락 참고)</span> <sup class="ref"><a href="#src-23">[23]</a></sup>.</p>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>최근 투자 · 동향</h2>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-date">2013. 09</div><div class="tl-body">신기술사업금융업 등록 — 시설대여에 더해 <b>지분·조합 투자(신기사)</b> 영위 근거 확보 <span class="flag">(확인 권장)</span></div></div>
-        <div class="tl-item"><div class="tl-date">2024. 12. 31</div><div class="tl-body">임원 인사 — <b>이상룡 전무 '기업금융2본부'</b> 담당(이찬일·송치원·오성호 전무 등과 함께) <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2025. 06</div><div class="tl-body">카자흐스탄 법인 흑자전환·<b>은행업 예비인가</b> 획득(글로벌 확장) <span class="flag">(보도 종합)</span></div></div>
-        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-body"><b>'BNK 생산적금융 전략펀드' 500억원</b> — 부산·경남은행+BNK캐피탈+BNK벤처투자 공동출자(운용 GP=BNK벤처투자), 1호 투자처 해양산업 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-body">BNK캐피탈 자체 <b>연 4,000억+ 투자</b> 방침 — 해양·조선·방산·항공·데이터센터 시설대여+투자, 은행 연계 중견 M&amp;A·인수금융 <span class="flag">(보도 종합·확인 필요)</span></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 12. 31</div><div class="tl-body">임원 인사 — <b>이상룡 전무 '기업금융2본부'</b> 담당(이찬일·송치원·오성호 전무 등과) <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 04</div><div class="tl-body">1분기 <b>총자산 10조 돌파</b>(2023 1Q 8.51조 → 2025 1Q 10.14조). 가계·오토금융이 견인 <sup class="ref"><a href="#src-24">[24]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 06. 25</div><div class="tl-body">카자흐 법인 <b>은행업 본인가</b> — 한국 금융사 해외 소액금융→은행 전환 첫 사례(카자흐 외국계 인가 16년 만) <sup class="ref"><a href="#src-20">[20]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 01. 02</div><div class="tl-body"><b>손대진 대표 취임</b>(임기 2년). 경영방침 '미래금융으로의 전환', 기업·투자금융 강화 <sup class="ref"><a href="#src-22">[22]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 01</div><div class="tl-body"><b>'BNK 생산적금융 전략펀드' 500억</b> 결성(부산·경남은행+캐피탈+벤처투자 100% 공동출자, GP=BNK벤처투자, 1호 해양산업) <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body">외화 <b>신디케이트론 1.11억 달러</b> 유치(KDB+대만계, 3·4년) — 여전채 부담에 조달 다변화 <sup class="ref"><a href="#src-19">[19]</a></sup></div></div>
       </div>
     </div>
 
@@ -142,100 +147,136 @@
       <h2><span class="dot"></span>관계자 프로필 — 이상룡 전무</h2>
       <dl class="kv">
         <dt>직책</dt><dd>BNK캐피탈 전무 · <b>기업금융2본부</b> 담당(2024-12-31 인사) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
-        <dt>담당(확인要)</dt><dd>기업금융2본부가 <b>투자금융·신기사 조합</b>을 관장하는지, 아니면 여신·기업대출 중심인지 <span class="flag">공개 소스로 미확정 — 대면 확인</span></dd>
-        <dt>경력·발언</dt><dd><span class="flag">미확인</span>(공개 프로필·인터뷰 확인 실패)</dd>
+        <dt>담당(확인要)</dt><dd>기업금융2본부가 <b>투자금융·신기사 조합</b>을 관장하는지, 여신·인수금융 중심인지 <span class="flag">공개 소스 미확정 — 대면 확인</span></dd>
+        <dt>경력·발언</dt><dd><span class="flag">미확인</span></dd>
       </dl>
-      <p class="src">※ 참고: 대표이사 <b>손대진</b> 체제(2026~). 취재 시 이상룡 전무 본부의 <b>투자(신기사) vs 여신</b> 소관을 먼저 확정하면 질문 ①·②를 그에 맞춰 조일 수 있습니다.</p>
+      <p class="src">※ 취재 시 본부 소관(투자 vs 여신)을 먼저 확정하면 질문 ①·②를 그에 맞춰 조일 수 있음.</p>
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>VC·투자금융 구조 · 정책펀드 연관</h2>
+      <h2><span class="dot"></span>VC · 투자금융 구조</h2>
       <ul class="tight">
-        <li><b>신기사 투자금융</b>: 시설대여+지분·신기술투자조합. 캐피탈 업권에서 신기사는 사실상 VC — <b>신기사가 전체 벤처투자의 약 46%</b>를 차지 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
-        <li><b>그룹 협업</b>: '생산적금융 전략펀드 500억'을 은행·캐피탈·벤처투자가 공동출자, 동남권 전략산업(조선·해양·항공우주·방산·에너지) 혁신기업에 투자 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
-        <li><b>모태펀드·성장금융·국민성장펀드</b> 참여/GP 이력: <span class="flag">BNK캐피탈 명의로는 미확인</span>(그룹 차원 BNK벤처투자가 지역펀드 운용) <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>신기술금융 자산 비중 약 5.2%</b>(영업자산 기준). 신기사는 업권에서 사실상 VC — 전체 벤처투자의 46% 차지 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>2026 방침: 해양·조선·방산·항공·데이터센터 등 지역특화에 <b>연 4,000억+ 시설대여·투자</b>, 은행 연계 중견 M&amp;A·인수금융 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>구분</b>: 500억 전략펀드도 운용은 BNK벤처투자. 모태·부산 지자체 펀드 GP 역시 BNK벤처투자·BNK투자증권 명의 → <b>BNK캐피탈 명의 신기술조합·직접 회수(엑싯) 사례는 미확인</b> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
       </ul>
-      <p class="src">업계 맥락: 여전사 신기술금융 투자잔액은 <b>8.3조(2021) → 5.3조(2024)로 감소</b>('생산적 금융' 역행 지적) <sup class="ref"><a href="#src-6">[6]</a></sup>. 2025 모태펀드 출자 2.43조(+34%)로 벤처 LP 환경은 회복 <sup class="ref"><a href="#src-7">[7]</a></sup>.</p>
+      <p class="src">업계 맥락: 여전사 신기술금융 잔액 <b>8.3조(2021)→5.3조(2024) 감소</b>('생산적 금융 역행' 지적) <sup class="ref"><a href="#src-6">[6]</a></sup>. 반면 모태펀드는 2.43조(+34%)로 벤처 LP 환경은 회복 <sup class="ref"><a href="#src-7">[7]</a></sup>.</p>
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>실적 · 건전성 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
-      <dl class="kv">
-        <dt>순이익</dt><dd>2024 상반기 약 769억(+8%), 2025 상반기 약 696억(지주계 3위) <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
-        <dt>건전성</dt><dd>고정이하여신 2024-09 3.7% → 2025-03 4.2%, 연체율 3%대(개인신용대출 연체 급등) <span class="flag">(보도 종합)</span></dd>
-        <dt>부동산PF</dt><dd>2024-09 약 1.1조(영업자산 ~12%, 자기자본 대비 ~80%, 중·후순위 비중 높음) <span class="flag">(확인 필요)</span></dd>
+      <h2><span class="dot"></span>실적 · 자본 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <div style="overflow-x:auto;">
+        <table class="fin">
+          <thead><tr><th>순이익(별도, 억원)</th><th>금액</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>2022</td><td>1,710</td><td>설립 후 최대</td></tr>
+            <tr><td>2023</td><td>1,118</td><td>−34.6% (PF 충당금 급증)</td></tr>
+            <tr><td>2024</td><td>~1,300</td><td>+16% <span class="flag">*별도/연결 상충</span></td></tr>
+            <tr><td>2025</td><td>1,285</td><td>연결 +14.5% (배당 기사)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="kv" style="margin-top:8px;">
+        <dt>수익의 질</dt><dd>2025 3Q 영업익 1,364억(+21.5%)엔 <b>주가 상승 유가증권 평가이익</b>이 크게 반영 <sup class="ref"><a href="#src-19">[19]</a></sup></dd>
+        <dt>지주계 순위</dt><dd>1H2025 순익 787억 — 8개 지주계 캐피탈 중 <b>하위권</b>(JB우리 1,768억·KB 1,241억). 단 그룹 비은행 1위 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>등급</dt><dd>한기평·한신평 <b>AA-/안정적</b> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>배당·자본</dt><dd>2025 순익 중 <b>배당성향 ~50%</b>(642억) → <b>레버리지 한도(8배→강화) 근접</b>, 신종자본증권 발행 검토 <sup class="ref"><a href="#src-21">[21]</a></sup></dd>
       </dl>
-      <p class="src">업계 전반: 캐피탈 2024 순익 −14.5% → 2025 반등(4대 지주 캐피탈 +52%), 부동산PF 연체율 4.4%(2025.3), 여전채 조달금리 하락 후 2026 재상승 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>자산건전성 · 부동산PF (핵심 리스크)</h2>
+      <dl class="kv">
+        <dt>연체율</dt><dd>2024 3Q 3.19% → 2025 3Q 3.34%. <b>고정이하여신 2024 3Q 3.7% → 2025 1Q 4.2%</b> <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+        <dt>부실 집중</dt><dd><b>개인신용대출 연체 2.6%→3.9%</b>(부문 NPL 6.2%), <b>부동산PF 부문 NPL 15.9%</b> <sup class="ref"><a href="#src-18">[18]</a></sup></dd>
+        <dt>PF 익스포저</dt><dd>잔액 ~1조787억(본PF 9,852억+브릿지 934억), 영업자산 ~10.5%. <b>자기자본 대비 본PF 46.4%</b>(AA 평균 41% 상회), 비수도권 편중, <b>충당금 적립률 저조</b> <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup></dd>
+        <dt>해외 리스크</dt><dd>카자흐 은행 전환 초기 손실로 <b>~149억 증자</b>(2026), <b>캄보디아 적자 고착</b>·미얀마 정정불안 <sup class="ref"><a href="#src-20">[20]</a></sup></dd>
+      </dl>
+      <p class="src">사업 구성(영업자산): 자동차금융 ~39.8%·가계 ~27%·기업(PF포함) ~24%·리스/할부 6%·신기술금융 5.2% <sup class="ref"><a href="#src-24">[24]</a></sup>. ⚠️ <b>4,136억 PF 횡령은 BNK'경남은행' 사건이지 캐피탈이 아님</b>. 캐피탈 자체 금감원 제재 이력은 미확인.</p>
     </div>
 
     <div class="card" id="report-endnotes" style="margin-top:6px;">
       <h2><span class="dot"></span>출처</h2>
-      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 각 항목의 <b>'링크'</b>로 열립니다. <span class="flag">※ 이 세션은 네트워크 정책상 원문(BNK·언론·공시)이 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. BNK캐피탈 자체 수치(자산·순익·PF·생산적금융 펀드)와 이상룡 전무 이력·손대진 대표 취임은 게재 전 원문(BNK 홈페이지·영업보고서·여신금융협회 공시) 재확인이 필요합니다.</span></p>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(BNK·언론·공시)이 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. BNK캐피탈 자체 수치(순익 별도/연결·PF·배당·레버리지)·이상룡 전무 이력은 게재 전 DART·여신금융협회 공시 원문 재확인이 필요합니다.</span></p>
       <ul class="srclist">
         <li id="src-1"><span class="n">[1]</span> 서울경제TV, BNK캐피탈 임원 인사(이상룡 기업금융2본부), 2024-12-31. <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-2"><span class="n">[2]</span> 한국금융신문, 2025 상반기 캐피탈 리그테이블(BNK 순익 약 696억·3위), 2025-08-06. <a href="https://www.fntimes.com/html/view.php?ud=2025080616015376476a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국금융신문, 2025 상반기 캐피탈 리그테이블(순위), 2025-08-06. <a href="https://www.fntimes.com/html/view.php?ud=2025080616015376476a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
         <li id="src-3"><span class="n">[3]</span> 한국금융신문, 할부·리스사 순익 −14.49%(2024.9), 2025-01-05. <a href="https://www.fntimes.com/html/view.php?ud=202501050932035322dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-4"><span class="n">[4]</span> 한국금융신문, 2025 캐피탈 신용등급 전망(부동산PF 연체율 4.4%·여전채 조달), 2025-07-14. <a href="https://www.fntimes.com/html/view.php?ud=2025071419261736866a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-5"><span class="n">[5]</span> 아주경제, 4대 지주 캐피탈 순익 +52%(PF 정리 효과), 2026-07-27. <a href="https://www.ajunews.com/view/20260727144340468" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 한국금융신문, 2025 캐피탈 신용등급 전망(부동산PF 연체율 4.4%·등급), 2025-07-14. <a href="https://www.fntimes.com/html/view.php?ud=2025071419261736866a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 아주경제, 4대 지주 캐피탈 순익 +52%, 2026-07-27. <a href="https://www.ajunews.com/view/20260727144340468" target="_blank" rel="noopener">링크</a></li>
         <li id="src-6"><span class="n">[6]</span> 인사이트코리아, 여전사 신기술금융 잔액 감소·신기사=벤처투자 46%. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=232753" target="_blank" rel="noopener">링크</a></li>
         <li id="src-7"><span class="n">[7]</span> 넘버스, 2025 모태펀드 출자 2.43조(+34.4%). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20200" target="_blank" rel="noopener">링크</a></li>
         <li id="src-8"><span class="n">[8]</span> 뉴스1, 캐피탈 레버리지 배율 축소(10→9→8배). <a href="https://www.news1.kr/finance/general-finance/4217181" target="_blank" rel="noopener">링크</a></li>
         <li id="src-9"><span class="n">[9]</span> 더벨, CVC(기업형 벤처캐피탈) 규제완화 논의, 2025-12-26. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512261420576480105951" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-10"><span class="n">[10]</span> BNK금융지주, 자회사·동남권 전략산업 공동투자 소개. <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> BNK금융지주, 자회사·동남권 공동투자·생산적금융 500억 펀드 소개. <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">링크</a></li>
         <li id="src-11"><span class="n">[11]</span> THE VC, BNK벤처투자(별도 창투사) 기업정보. <a href="https://thevc.kr/bnkventurecapital" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-12"><span class="n">[12]</span> 금융위원회, 국민성장펀드 조성방안 보도자료. <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 금융위원회, 국민성장펀드 조성방안. <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">링크</a></li>
         <li id="src-13"><span class="n">[13]</span> 뉴스핌, 2026 카드·캐피탈 조달 비상(여전채 금리 재상승), 2026-07-20. <a href="https://www.newspim.com/news/view/20260720001000" target="_blank" rel="noopener">링크</a></li>
         <li id="src-14"><span class="n">[14]</span> 브릿지경제, 국민성장펀드 150조 확대·출범, 2025-09-10. <a href="https://www.viva100.com/article/20250910501078" target="_blank" rel="noopener">링크</a></li>
         <li id="src-15"><span class="n">[15]</span> BNK금융지주, 부산 지역·BNK벤처투자(250억 펀드·5년 775억) 소개. <a href="https://www.bnkfg.com/01/0709.jsp" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 딜사이트, '맏형' BNK캐피탈 자동차금융 주력·연 4,000억 투자. <a href="https://dealsite.co.kr/articles/119669" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> IB토마토, BNK캐피탈 PF 재확대 속 건전성 악화(PF잔액·연체·충당금). <a href="https://www.newstomato.com/ReadNews.aspx?no=1303532" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> IB토마토 크레딧시그널, PF 부실이 뇌관·자기자본 대비 본PF 46.4%. <a href="https://www.newstomato.com/ReadNews.aspx?no=1281685" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 더벨, BNK캐피탈 2025 3Q 실적·총자산 10조·유가증권 평가익, 2025-10-31. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202510311508349760108447&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 뉴시스, BNK 카자흐 법인 은행업 본인가(첫 전환 사례), 2025-06-25. <a href="https://www.newsis.com/view/NISX20250625_0003227521" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> IB토마토, BNK캐피탈 배당 확대→레버리지 한도 근접·신종자본증권 검토. <a href="https://www.newstomato.com/ReadNews.aspx?no=1299270" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 한국금융신문, 손대진 신임 BNK캐피탈 대표 프로필·과제, 2026-01-02. <a href="https://www.fntimes.com/html/view.php?ud=2026010217213422706a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 인베스트조선, BNK금융지주 지배구조('셀프연임') 논란·금감원 검사, 2025-12-24. <a href="https://www.investchosun.com/site/data/html_dir/2025/12/24/2025122480182.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 한국금융신문, BNK캐피탈 자산 10조 돌파·포트폴리오(오토 39.8%), 2025-04-25. <a href="https://www.fntimes.com/html/view.php?ud=202504251804289167957e88cdd5_18" target="_blank" rel="noopener">링크</a></li>
       </ul>
     </div>
 
-    <p class="note">⚠️ 본 브리핑은 공개 자료 기반이며, 원문 직접열람이 제한된 항목은 검색 요약을 교차검증했습니다. <b>BNK캐피탈 자체 수치와 이상룡 전무 담당 범위는 '미확인/확인 필요'</b>로 표시했으니 취재 시 본인·회사에 재확인하시길 권합니다. 발행 시점(2026-08-06) 기준.</p>
+    <p class="note">⚠️ 공개 자료 기반이며, 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>BNK캐피탈 자체 수치와 이상룡 전무 담당 범위는 '미확인/확인 필요'</b>로 표시했으니 취재 시 재확인 권장. 발행 2026-08-06 기준.</p>
   </section>
 
   <!-- ================= 질문지 탭 ================= -->
   <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
-    <p class="note">요청하신 대로 <b>VC(벤처투자) 질문을 앞세우고</b>, BNK캐피탈 내부사정과 캐피탈 업계 현황도 담았습니다. 근거의 [번호]는 하단 출처와 연결됩니다.</p>
+    <p class="note">이번 질문지는 <b>확보한 수치·모순·빈틈을 근거로 파고드는 심층 질문</b>으로 다시 구성했습니다. 각 질문의 <span class="tag">태그</span>는 질문 기법(모순·반론·벤치마크·트레이드오프·질검증·확인형), [번호]는 근거 출처입니다. VC 질문을 앞세웠습니다.</p>
 
     <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① VC · 투자금융 전략 (핵심)</h2></div>
-    <div class="q cat1"><p class="qtext">BNK캐피탈은 신기사 기반으로 투자를 하고, 그룹엔 별도 창투사 BNK벤처투자도 있습니다. 두 조직의 역할 분담(시설대여·조합·직접지분 vs 창투 펀드)은 어떻게 정리돼 있고, 캐피탈이 직접 VC성 투자를 하는 영역은 어디까지입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 신기사 투자금융 vs BNK벤처투자 <a href="https://thevc.kr/bnkventurecapital" target="_blank" rel="noopener">[11]</a></span></div></div>
-    <div class="q cat1"><p class="qtext">2026년 '생산적금융 전략펀드' 500억을 은행·캐피탈·벤처투자가 공동출자하고 해양산업에 첫 투자했습니다. BNK캐피탈은 이 펀드와 지역 전략산업 투자에서 어떤 역할을 맡고, 향후 규모를 어떻게 키우실 계획입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 생산적금융 500억 펀드 <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">[10]</a></span></div></div>
-    <div class="q cat1"><p class="qtext">여전사 전반의 신기술금융 투자잔액이 8.3조(2021)에서 5.3조(2024)로 줄어 '생산적 금융 역행' 지적을 받습니다. 반대로 BNK가 투자를 확대한다면 그 배경과 리스크 관리(건전성과의 균형)는 무엇입니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 여전사 신기술금융 잔액 감소 <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=232753" target="_blank" rel="noopener">[6]</a></span></div></div>
-    <div class="q cat1"><p class="qtext">해양·조선·방산·항공·데이터센터 등에 연 4,000억 규모 투자를 예고하셨습니다. 이 중 '지분·조합(투자)'과 '시설대여(여신)'의 비중은 어떻게 가져가며, 회수(엑싯) 전략은 어떻게 설계하십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 연 4,000억 투자 방침 <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">여전사 전체 신기술금융 잔액이 8.3조(2021)→5.3조(2024)로 줄며 '생산적 금융 역행'이라는 지적을 받는 국면입니다. 남들이 발을 빼는데 BNK는 연 4,000억으로 투자를 늘리겠다고 했습니다 — 시장을 남다르게 읽은 겁니까, 아니면 건전성 부담을 투자수익으로 만회하려는 겁니까? 그 리스크는 어떻게 다르게 관리합니까?</p><div class="qmeta"><span class="tag">모순·반론</span><span class="pri high">상</span><span class="basis">근거: 신기술금융 잔액 감소 vs 확대 <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=232753" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">500억 생산적금융펀드도 운용(GP)은 BNK벤처투자가 맡고, 모태·부산펀드 GP도 벤처투자·증권 몫입니다. 그렇다면 '캐피탈'의 투자는 사실상 LP 출자·시설금융에 가깝다는 뜻인데, 창투사가 아닌 캐피탈이 벤처·성장기업 투자에서 만들어내는 <b>고유의 부가가치</b>는 정확히 무엇입니까?</p><div class="qmeta"><span class="tag">빈틈·확인형</span><span class="pri high">상</span><span class="basis">근거: GP는 BNK벤처투자 <a href="https://thevc.kr/bnkventurecapital" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2025년 영업이익 급증(+21.5%)에는 주가 상승에 따른 유가증권 평가이익이 크게 실렸습니다. 투자부문 성과에서 '시장이 좋아서'와 '실력'을 어떻게 구분하십니까? 하락장이 오면 지금의 투자 확대 기조를 그대로 유지하실 수 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 유가증권 평가익 <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202510311508349760108447&lcode=00" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">연 4,000억을 해양·조선·방산·데이터센터에 '시설대여+투자'로 넣겠다고 하셨습니다. 이 중 고위험 '지분·조합'과 안정적 '시설대여'의 비중, 그리고 각각의 목표 수익률(허들레이트)·회수 기간은 어떻게 잡으십니까? 지역 전략산업이라는 명분이 투자 규율을 느슨하게 만들 위험은요?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 연 4,000억·지역특화 <a href="https://dealsite.co.kr/articles/119669" target="_blank" rel="noopener">[16]</a></span></div></div>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 이상룡 전무 담당 · 관점 (확인형)</h2></div>
-    <div class="q cat2"><p class="qtext">먼저 전무님이 맡으신 '기업금융2본부'의 소관을 여쭙고 싶습니다. 투자금융·신기술금융 조합까지 관장하시는지, 아니면 기업여신·인수금융 중심인지 알려주시면 이야기를 좁혀가겠습니다.</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 기업금융2본부 담당(2024.12) <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">[1]</a></span></div></div>
-    <div class="q cat2"><p class="qtext">기업금융·투자금융 딜을 심사하실 때 캐피탈만의 강점(속도·구조화·은행 연계)은 무엇이고, 벤처·성장기업 투자에서 가장 중요하게 보는 기준은 무엇입니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 기업금융2본부 소관 <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">[1]</a></span></div></div>
-    <div class="q cat2"><p class="qtext">은행(부산·경남)과 캐피탈·벤처투자를 잇는 '그룹 협업 딜'이 늘고 있습니다. 실무에서 계열 간 역할·수익 배분이나 이해상충은 어떻게 조율하십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 그룹 공동투자 <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 이상룡 전무 담당 · 관점</h2></div>
+    <div class="q cat2"><p class="qtext">먼저 전무님 '기업금융2본부'의 소관을 여쭙니다 — 투자금융·신기사 조합까지 관장하십니까, 아니면 기업여신·인수금융 중심이십니까? (그에 따라 이후 질문의 초점을 좁히겠습니다.)</p><div class="qmeta"><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 기업금융2본부 담당 <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">은행 연계 중견기업 M&amp;A·인수금융을 키운다고 하셨습니다. 지방 캐피탈이 대형 증권사·PE와 경쟁해 딜을 따오는 <b>실질적 무기</b>는 무엇이며, 최근 실제로 클로징하신 딜을 하나 예로 들 수 있습니까?</p><div class="qmeta"><span class="tag">확인형·압박</span><span class="pri high">상</span><span class="basis">근거: 은행 연계 M&A·인수금융 <a href="https://dealsite.co.kr/articles/119669" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">초대·2대 대표가 각각 사기대출·주가조작에 연루돼 물러났고, 최근 지주도 지배구조 논란이 있었습니다. 투자·기업금융을 공격적으로 키우는 지금, 심사 독립성과 내부통제는 그때와 무엇이 구체적으로 달라졌습니까?</p><div class="qmeta"><span class="tag">반론(민감)</span><span class="pri mid">중</span><span class="basis">근거: 과거 사고·지배구조 논란 <a href="https://www.investchosun.com/site/data/html_dir/2025/12/24/2025122480182.html" target="_blank" rel="noopener">[23]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">(개방형) 심사역으로서 '이 딜은 반드시 피한다'는 원칙이 있다면 무엇이고, 반대로 지금 시장에서 가장 저평가됐다고 보시는 영역은 어디입니까?</p><div class="qmeta"><span class="tag">개방·생각거리</span><span class="pri low">하</span><span class="basis">근거: 심사역 관점(개방형) <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">[1]</a></span></div></div>
 
     <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 캐피탈 업계 · 정책 현안</h2></div>
-    <div class="q cat3"><p class="qtext">캐피탈 레버리지 배율이 10→9→8배로 단계 축소됐습니다. 자본 여력이 줄어드는 상황에서 투자(신기사) 확대와 건전성·자본비율을 어떻게 양립시키십니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 레버리지 배율 축소 <a href="https://www.news1.kr/finance/general-finance/4217181" target="_blank" rel="noopener">[8]</a></span></div></div>
-    <div class="q cat3"><p class="qtext">모태펀드(2025년 2.43조·+34%)와 국민성장펀드(150조) 등 정책 출자가 커지는데, 캐피탈·여전사가 이 자금의 GP나 출자자로 참여할 여지는 얼마나 된다고 보십니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 모태 2.43조·국민성장펀드 <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20200" target="_blank" rel="noopener">[7]</a> <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">[12]</a></span></div></div>
-    <div class="q cat3"><p class="qtext">2026년 들어 여전채 조달금리가 다시 4%대로 오르며 조달 부담이 커졌습니다. 조달 여건이 투자·심사 문턱에 어떤 영향을 주고 있습니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 여전채 조달 재상승 <a href="https://www.newspim.com/news/view/20260720001000" target="_blank" rel="noopener">[13]</a></span></div></div>
-    <div class="q cat3"><p class="qtext">CVC(기업형 벤처캐피탈) 규제 완화 논의가 이어집니다. 지방 금융지주 관점에서 벤처투자를 키우기 위해 풀려야 할 제도·규제는 무엇이라고 보십니까?</p><div class="qmeta"><span class="pri low">우선순위 하</span><span class="basis">근거: CVC 규제완화 논의 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512261420576480105951" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">레버리지 배율이 8배로 축소됐는데 BNK는 배당성향을 50%까지 올려 이미 한도에 근접했습니다. 자본을 더 쌓지 않고 투자를 늘릴 여력이 실제로 있습니까? 신종자본증권 발행은 확정입니까, 그 조달비용은 투자수익을 갉아먹지 않습니까?</p><div class="qmeta"><span class="tag">모순·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 배당 50%·레버리지 한도 근접 <a href="https://www.newstomato.com/ReadNews.aspx?no=1299270" target="_blank" rel="noopener">[21]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">국민성장펀드(150조)·모태펀드(2.43조)가 커지지만 GP는 대개 창투사·증권 몫이고 캐피탈은 배제되는 구조입니다. 여전사가 정책 벤처자금에서 소외되는 현실을 어떻게 보시며, BNK는 어떤 경로로 이 자금에 접근하려 합니까?</p><div class="qmeta"><span class="tag">정책 빈틈</span><span class="pri mid">중</span><span class="basis">근거: 모태·국민성장펀드 <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20200" target="_blank" rel="noopener">[7]</a> <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2026년 여전채 금리가 다시 4%대로 올라 조달 부담이 커졌고, 그래서 외화 신디케이트론까지 끌어오셨습니다. 조달금리가 투자 허들레이트를 잠식하면, 수익을 맞추려 결국 더 위험한 딜로 밀려가는 것 아닙니까?</p><div class="qmeta"><span class="tag">인과·압박</span><span class="pri mid">중</span><span class="basis">근거: 여전채 재상승·조달 다변화 <a href="https://www.newspim.com/news/view/20260720001000" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">CVC 규제 완화가 논의됩니다. 지방 금융지주 관점에서 벤처투자를 실질적으로 키우려면 어떤 규제(레버리지·신기사 요건·외부자금 40% 한도)가 가장 먼저 풀려야 한다고 보십니까?</p><div class="qmeta"><span class="tag">정책·제언</span><span class="pri low">하</span><span class="basis">근거: CVC 규제완화 논의 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512261420576480105951" target="_blank" rel="noopener">[9]</a></span></div></div>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ BNK캐피탈 내부사정</h2></div>
-    <div class="q cat4"><p class="qtext">2024년 9월 기준 부동산PF가 약 1.1조로 자기자본 대비 비중이 높고 중·후순위가 많다는 평가가 있었습니다. 현재 익스포저·연체 상황과 정리 진행도는 어떻습니까?</p><div class="qmeta"><span class="pri high">우선순위 상</span><span class="basis">근거: 부동산PF·건전성 <a href="https://www.fntimes.com/html/view.php?ud=2025071419261736866a663fbf34_18" target="_blank" rel="noopener">[4]</a></span></div></div>
-    <div class="q cat4"><p class="qtext">고정이하여신 비율이 오르고 개인신용대출 연체가 급등했다는 지표가 있습니다. 자산 포트폴리오를 투자·기업금융 쪽으로 재편하는 것과 연관이 있습니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 건전성 악화 지표(보도 종합) <a href="https://www.fntimes.com/html/view.php?ud=2025080616015376476a663fbf34_18" target="_blank" rel="noopener">[2]</a></span></div></div>
-    <div class="q cat4"><p class="qtext">손대진 대표 체제(2026~) 출범 이후 BNK캐피탈의 전략 방향(투자 확대·글로벌·건전성 관리)에서 우선순위는 무엇이며, 전무님 본부의 올해 목표는 무엇입니까?</p><div class="qmeta"><span class="pri mid">우선순위 중</span><span class="basis">근거: 손대진 대표 체제 <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">[10]</a></span></div></div>
-    <div class="q cat4"><p class="qtext">카자흐스탄 법인이 은행업 예비인가를 받는 등 해외 확장을 하고 있습니다. 글로벌 사업과 국내 투자·여신 사이의 자원 배분은 어떻게 가져가십니까?</p><div class="qmeta"><span class="pri low">우선순위 하</span><span class="basis">근거: 카자흐 은행업 예비인가(보도 종합) <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ BNK캐피탈 내부사정 (건전성·자본)</h2></div>
+    <div class="q cat4"><p class="qtext">자기자본 대비 본PF가 46%로 AA등급 평균(41%)을 웃돌고, 비수도권·중후순위 비중이 높은데 PF 충당금 적립률은 낮다는 지적입니다. 손실 흡수 여력이 충분하다고 보십니까? 추가 부실이 터지면 자본비율은 어떤 시나리오가 됩니까?</p><div class="qmeta"><span class="tag">벤치마크·압박</span><span class="pri high">상</span><span class="basis">근거: 자기자본 대비 PF 46.4% <a href="https://www.newstomato.com/ReadNews.aspx?no=1281685" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">리테일(오토·개인) 중심으로 안전하게 재편한다면서, 정작 개인신용대출 연체가 2.6%→3.9%로 급등했습니다. 포트폴리오 전략과 실제 건전성 사이의 이 괴리를 어떻게 설명하십니까?</p><div class="qmeta"><span class="tag">모순·질검증</span><span class="pri high">상</span><span class="basis">근거: 개인신용 연체 급등 <a href="https://www.newstomato.com/ReadNews.aspx?no=1303532" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">손대진 대표는 '영업통' 부산은행 부행장 출신입니다. 건전성 정리와 '투자금융 신수익원'이라는 성격이 다른 두 과제를 동시에 이끌 체제로 적합하다고 보시는지, 전무님 본부의 올해 최우선 목표는 무엇입니까?</p><div class="qmeta"><span class="tag">전문성(완곡)</span><span class="pri mid">중</span><span class="basis">근거: 손대진 대표 과제 <a href="https://www.fntimes.com/html/view.php?ud=2026010217213422706a663fbf34_18" target="_blank" rel="noopener">[22]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">카자흐 은행 전환은 첫 사례로 상징적이지만 초기 손실로 149억을 증자했고 캄보디아는 적자가 고착됐습니다. 국내 건전성이 나빠지는 와중에 해외에 계속 자본을 투입하는 것이 정당화됩니까? 법인장이 밝힌 '5년 5,000억' 목표는 현실적입니까?</p><div class="qmeta"><span class="tag">반론·시나리오</span><span class="pri mid">중</span><span class="basis">근거: 카자흐 증자·캄보 적자 <a href="https://www.newsis.com/view/NISX20250625_0003227521" target="_blank" rel="noopener">[20]</a></span></div></div>
 
     <div class="card" style="margin-top:20px;">
       <h2><span class="dot"></span>출처</h2>
       <ul class="srclist">
-        <li><span class="n">[1]</span> 서울경제TV, BNK캐피탈 임원 인사(이상룡 기업금융2본부), 2024-12-31. <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[2]</span> 한국금융신문, 2025 상반기 캐피탈 리그테이블(BNK 3위), 2025-08-06. <a href="https://www.fntimes.com/html/view.php?ud=2025080616015376476a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[4]</span> 한국금융신문, 2025 캐피탈 신용등급 전망(부동산PF 연체율 4.4%), 2025-07-14. <a href="https://www.fntimes.com/html/view.php?ud=2025071419261736866a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[6]</span> 인사이트코리아, 여전사 신기술금융 잔액 감소·신기사 46%. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=232753" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[7]</span> 넘버스, 2025 모태펀드 2.43조(+34.4%). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20200" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[8]</span> 뉴스1, 캐피탈 레버리지 배율 축소. <a href="https://www.news1.kr/finance/general-finance/4217181" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[1]</span> 서울경제TV, 임원 인사(이상룡 기업금융2), 2024-12-31. <a href="https://www.sentv.co.kr/article/view/sentv202412310003" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 인사이트코리아, 여전사 신기술금융 잔액 감소. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=232753" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 넘버스, 2025 모태펀드 2.43조. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20200" target="_blank" rel="noopener">링크</a></li>
         <li><span class="n">[9]</span> 더벨, CVC 규제완화 논의, 2025-12-26. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512261420576480105951" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[10]</span> BNK금융지주, 자회사·동남권 공동투자 소개. <a href="https://www.bnkfg.com/01/0703.jsp" target="_blank" rel="noopener">링크</a></li>
         <li><span class="n">[11]</span> THE VC, BNK벤처투자. <a href="https://thevc.kr/bnkventurecapital" target="_blank" rel="noopener">링크</a></li>
         <li><span class="n">[12]</span> 금융위원회, 국민성장펀드. <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">링크</a></li>
         <li><span class="n">[13]</span> 뉴스핌, 2026 여전채 조달 비상, 2026-07-20. <a href="https://www.newspim.com/news/view/20260720001000" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 딜사이트, BNK캐피탈 자동차금융 주력·연 4,000억. <a href="https://dealsite.co.kr/articles/119669" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> IB토마토, PF 재확대·건전성 악화. <a href="https://www.newstomato.com/ReadNews.aspx?no=1303532" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> IB토마토 크레딧시그널, 자기자본 대비 본PF 46.4%. <a href="https://www.newstomato.com/ReadNews.aspx?no=1281685" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> 더벨, 2025 3Q 실적·유가증권 평가익, 2025-10-31. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202510311508349760108447&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 뉴시스, 카자흐 은행업 본인가, 2025-06-25. <a href="https://www.newsis.com/view/NISX20250625_0003227521" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[21]</span> IB토마토, 배당 확대·레버리지 한도 근접. <a href="https://www.newstomato.com/ReadNews.aspx?no=1299270" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[22]</span> 한국금융신문, 손대진 대표 프로필·과제, 2026-01-02. <a href="https://www.fntimes.com/html/view.php?ud=2026010217213422706a663fbf34_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[23]</span> 인베스트조선, 지주 지배구조 논란, 2025-12-24. <a href="https://www.investchosun.com/site/data/html_dir/2025/12/24/2025122480182.html" target="_blank" rel="noopener">링크</a></li>
       </ul>
-      <p class="src">전체 출처 목록([1]~[15])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+      <p class="src">전체 출처 목록([1]~[24])은 보고서 탭 하단 "출처"를 참고하세요.</p>
     </div>
   </section>
 
