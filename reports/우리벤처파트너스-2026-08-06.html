@@ -1,0 +1,259 @@
+<meta charset="utf-8" />
+<title>우리벤처파트너스 · 김창규 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0b4da2; --accent-soft: #e6eefb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #6f9dff; --accent-soft: #15233d;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #6f9dff; --accent-soft: #15233d;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0b4da2; --accent-soft: #e6eefb;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-06</div>
+    <h1 class="title">우리벤처파트너스 · 김창규 대표</h1>
+    <p class="subtitle">배민·토스를 앞단에서 발굴한 1세대 심사역 — 우리금융 100% 자회사로 편입 후 '글로벌·시너지', 국민성장펀드 중형 리그 선정</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·금융계열 VC)</span>
+      <span class="meta-chip">유형: 종합 VC(비상장)</span>
+      <span class="meta-chip">AUM ~1.26조 (업계 6위)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체·연혁</dt><dd>1세대 VC. KTB네트워크(2020.11 코스닥 상장) → 다올인베스트먼트(2022.3) → <b>우리벤처파트너스</b>(2023.3 출범) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>지배구조</dt><dd><b>2023-08-28 상장폐지</b>, 포괄적 주식교환으로 <b>우리금융지주 100% 완전자회사</b>(현재 비상장) <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>대표</dt><dd><b>김창규</b> — KTB 30년(1994 입사), 배민·토스 초기투자 주도. 초대 대표·연임(임기 2026.3.31) <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></dd>
+        <dt>규모</dt><dd>AUM 약 <b>1.26조원</b>, 2025 상반기 <b>업계 6위</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>홈페이지</dt><dd>woorivp.com <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 전제 주의:</span> 예전 코스닥 상장사(A298870)였으나 <b>2023년 자진 상폐 후 비상장</b>입니다(주가·배당 데이터 없음). '금융지주 100% 자회사 VC'라는 지배구조가 독립성·시너지 양면의 핵심 논점.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 쟁점</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023. 03</div><div class="tl-body">우리금융 인수 후 '우리벤처파트너스' 출범, 김창규 초대 대표 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 01</div><div class="tl-body">조직개편 — VC1~3그룹을 <b>단일 VC그룹으로 통합</b>, 임동현 부사장(통합 VC그룹장) <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 06</div><div class="tl-body"><b>달바글로벌 IPO 회수</b> — KTBN 13·16호로 약 399억원 매각(2019년 40억 투자) <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 하반기</div><div class="tl-body">김창규, <b>벤처캐피탈협회장 선거 회추위 직전 사퇴</b>(김학균 퀀텀벤처스 대표 당선) <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body"><b>국민성장펀드 2차 간접투자 '중형 리그' GP 최종 선정</b>(우리벤처·도미누스·한투파) <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body">'아주초대석' 인터뷰 — 차기 유니콘 후보 <b>뤼튼</b> 지목, <b>무바달라(아부다비 국부펀드)</b> 협력 <sup class="ref"><a href="#src-14">[14]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 김창규 대표 (+이승호 전무)</h2>
+      <dl class="kv">
+        <dt>김창규</dt><dd>KTB 30년 대표 펀드매니저. <b>우아한형제들(배민)·비바리퍼블리카(토스) 초기투자</b> 주도. 철학 "남들 투자 전 앞단에서 발굴" <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>2025 목표</dt><dd>신규조성 2,000억·투자 1,600억·회수 2,000억·순이익 207억. 키워드 '글로벌·시너지' <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">이승호 전무(취재 팁 관련):</span> 우리벤처(옛 KTB) <b>문화콘텐츠(영화·음반·엔터) 투자 전무</b> — 연세대 사학, 2000 KTB 입사, 2019.12 전무. KTB 시절 대표 딜 「태극기 휘날리며」·「범죄의 재구성」·「그대를 사랑합니다」, MC the MAX 음반. 담당펀드 KTBN 방송영상콘텐츠·미래콘텐츠(300억) <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup>. <b>새 하우스 대표로의 이직처는 공개 소스로 확인 불가</b>(동명 데일리파트너스 이승호와 별개) → 대면 확인 필요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드 · 정책펀드</h2>
+      <ul class="tight">
+        <li><b>국민성장펀드 2차 중형 리그 최종 GP 선정</b>(2026.7) — 우리벤처·도미누스·한투파. <b>17곳 지원 → 5곳 숏리스트 → 3곳 최종</b>(스마일게이트인베스트먼트 탈락) <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li>중형 리그 규모: 자펀드 목표 8,000억, <b>펀드당 2,000~4,000억</b>, <b>첨단전략산업(AI·반도체·바이오 등)에 결성총액 40% 이상</b> 투자 조건 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>2차 전체: 출자 약 6,950억 → 총 1.6조 조성, 경쟁률 9.3:1, 7곳 선정 <sup class="ref"><a href="#src-6">[6]</a></sup> <span class="flag">(우리벤처 개별 출자금·자펀드 목표는 미확인)</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · 포트폴리오 · 성과 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <dl class="kv">
+        <dt>2024 실적</dt><dd>영업이익 264억(+234%), <b>당기순이익 367억(+383%)</b> — 4대 금융계열 VC 최대. 토스 성과보수 급증 기여 <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+        <dt>대표 딜</dt><dd>배민·토스·달바글로벌, 차기 유니콘 후보 뤼튼 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></dd>
+        <dt>글로벌펀드</dt><dd>'우리 2024 글로벌펀드' <b>700억</b>(당초 1,000억→축소, 우리은행 300억 출자) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 논점:</span> 달바 회수 수익배수가 매체마다 <b>'9~10배'</b>(뉴스톱·블로터)와 <b>'60배'</b>(국민성장펀드 관련 기사)로 <b>엇갈립니다</b> — 기준(초기 트랜치 최저단가 vs 펀드 전체) 차이로 추정, 대면 확인 포인트 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(우리벤처·언론)이 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. 실적·수익배수·개별 출자금, 이승호 전무 이직처는 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 딜사이트, 우리벤처파트너스 김창규號 공식 출범. <a href="https://dealsite.co.kr/articles/101076" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 머니투데이, 우리금융 우리벤처파트너스 완전자회사 편입·상폐, 2023-05-26. <a href="https://www.mt.co.kr/finance/2023/05/26/2023052616135766620" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 딜사이트, 우리벤처 글로벌펀드 결성 임박(AUM 1.26조·700억). <a href="https://dealsite.co.kr/articles/127108" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 아시아경제 K-INVESTORS, 김창규 인터뷰(배민·토스·투자철학), 2024-05-17. <a href="https://www.asiae.co.kr/article/2024051709325017874" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 서울경제 시그널, 국민성장펀드 2차 중형리그 GP 선정(우리벤처·도미누스·한투파). <a href="https://www.sedaily.com/article/20067127" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 유니콘팩토리, 1.6조 국민성장펀드 2차 7곳 선정·9.3:1·중형리그 규모. <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 이투데이, 국민성장펀드 대형/중형 리그(달바 '60배' 표현). <a href="https://www.etoday.co.kr/news/view/2583922" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 한국금융신문, 김창규 우리벤처 2024 실적·2025 목표, 2025-04-14. <a href="https://www.fntimes.com/html/view.php?ud=202504141518204730957e88cdd5_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 뉴스톱, 우리벤처 달바글로벌 지분 매각 약 399억(9~10배). <a href="https://www.newstof.com/news/articleView.html?idxno=28560" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 블로터, 달바글로벌 수요예측 흥행·우리벤처 회수. <a href="https://www.bloter.net/news/articleView.html?idxno=636408" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 더벨, 우리벤처 조직개편·임원인사(VC그룹 통합), 2025-01-08. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202501081609119560105170&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 더벨, 김창규 연임(임기 2026-03-31), 2025-03-26. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202503261811151440102059" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 김창규 VC협회장 회추위 직전 사퇴. <a href="https://dealsite.co.kr/articles/135668" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 아주경제 아주초대석, 김창규 인터뷰(뤼튼·무바달라·국민성장펀드), 2026-07-15. <a href="https://www.ajunews.com/view/20260715103705794" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 헤럴드경제, 문화콘텐츠 투자의 산증인 이승호(KTB네트워크), 2014-12-03. <a href="http://mbiz.heraldcorp.com/view.php?ud=20141203000301" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 더벨, KTB네트워크 미래콘텐츠 300억 펀드 결성(이승호 대표펀드매니저), 2018-11-07. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201811070100010130000619&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 우리벤처파트너스 홈페이지·임원 소개. <a href="https://woorivp.com/home/whoweare/korea.do" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 톱데일리, 우리벤처 상장 1년 반 만에 자진상폐. <a href="https://www.topdaily.kr/articles/93934" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>실적·달바 수익배수·개별 출자금·이승호 전무 이직처는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-06 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">필수</span> 표시 두 개는 요청하신 <b>반드시 물을 질문</b>입니다. 나머지는 확보한 수치·모순을 파고드는 심층 질문(<span class="tag">태그</span>=기법, [번호]=근거).</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 인사</h2></div>
+    <div class="q cat1 must"><p class="qtext">이승호 전무가 우리벤처파트너스를 떠나 새로 어느 하우스의 대표로 간다고 들었습니다 — 어디로 가는 겁니까? 그리고 이 전무가 우리벤처(및 KTB 시절)에서 발굴·투자한 대표 기업은 무엇입니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·인사</span><span class="pri high">상</span><span class="basis">근거: 이승호=콘텐츠 투자 전무(이직처 미확인) <a href="http://mbiz.heraldcorp.com/view.php?ud=20141203000301" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2023년 자진 상폐로 우리금융지주 100% 완전자회사가 됐습니다. '독립적 투자 판단'을 강조하시지만, 은행계 지주의 완전자회사가 리스크 큰 초기·딥테크에서 독립성을 지킬 수 있습니까? 편입 후 의사결정에서 실제로 바뀐 것은 무엇입니까?</p><div class="qmeta"><span class="tag">모순·지배구조</span><span class="pri high">상</span><span class="basis">근거: 우리금융 100% 자회사 <a href="https://www.mt.co.kr/finance/2023/05/26/2023052616135766620" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">벤처캐피탈협회장 선거에 나섰다가 회추위 직전 사퇴하셨습니다. 배경이 무엇이며, 업계 리더십과 '우리금융 계열 대표'라는 위치 사이의 부담은 없었습니까?</p><div class="qmeta"><span class="tag">반론·민감</span><span class="pri mid">중</span><span class="basis">근거: 협회장 선거 사퇴 <a href="https://dealsite.co.kr/articles/135668" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2025년 VC1~3그룹을 단일 VC그룹으로 통합하셨습니다. 통합이 노린 것과, 콘텐츠 등 특화 조직(이승호 전무 라인)의 위상 변화가 이번 이탈과 관련이 있습니까?</p><div class="qmeta"><span class="tag">빈틈</span><span class="pri mid">중</span><span class="basis">근거: 조직개편 VC그룹 통합 <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202501081609119560105170&lcode=00" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(김창규) · 투자 철학</h2></div>
+    <div class="q cat2"><p class="qtext">배민·토스를 남들보다 앞단에서 발굴하셨습니다. 30년 심사역으로서 '남이 투자하기 전 발굴'을 지금 AI 시대에도 재현할 수 있는, 대표님만의 시그널·판단 기준은 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: 배민·토스 발굴·철학 <a href="https://www.asiae.co.kr/article/2024051709325017874" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">차기 유니콘으로 뤼튼을 지목하셨습니다. AI 서비스의 수익화·빅테크 경쟁이 치열한데, 그 확신의 근거와 예상 회수 시나리오는 무엇입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 뤼튼 유니콘 지목 <a href="https://www.ajunews.com/view/20260715103705794" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">무바달라 등 중동 국부펀드와 협력하십니다. 국내 금융계열 VC가 해외 대형 LP를 유치할 때 실제로 통하는 무기와, 넘기 힘든 허들은 각각 무엇입니까?</p><div class="qmeta"><span class="tag">개방</span><span class="pri mid">중</span><span class="basis">근거: 무바달라 협력 <a href="https://www.ajunews.com/view/20260715103705794" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+    <div class="q cat3 must"><p class="qtext">이번 국민성장펀드 2차 간접투자에서 우리벤처파트너스가 '중형 리그'에 선정됐습니다(17곳 중 5곳 숏리스트, 스마일게이트가 탈락한 자리). 선정을 이끈 노하우가 무엇입니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">핵심</span><span class="pri high">상</span><span class="basis">근거: 중형리그 GP 선정 <a href="https://www.sedaily.com/article/20067127" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">중형 리그는 결성총액의 40% 이상을 첨단전략산업(AI·반도체·바이오 등)에 넣어야 합니다. 소비·콘텐츠·플랫폼에 강했던 우리벤처가 이 40% 조건을 어떻게 채우며, 딥테크 초기 소싱 역량은 충분합니까?</p><div class="qmeta"><span class="tag">압박·벤치마크</span><span class="pri high">상</span><span class="basis">근거: 첨단전략산업 40%+ 조건 <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">펀드당 2,000~4,000억짜리 대형 자펀드를 운용하게 됩니다. 그동안의 투자 규율(건당 사이즈·초기 집중)이 이 규모에서 흔들릴 위험은 없습니까? 초기 전문 하우스에 '대형화'가 독이 될 수도 있지 않나요?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 펀드당 2,000~4,000억 <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 포트폴리오 · 성과</h2></div>
+    <div class="q cat4"><p class="qtext">2024년 순이익 367억으로 계열 VC 최대였지만 토스 성과보수 영향이 컸습니다. 일회성 성과를 걷어낸 '경상 수익력'은 어느 정도이며, 2025년에도 이 이익을 재현할 수 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 2024 순이익 367억(토스) <a href="https://www.fntimes.com/html/view.php?ud=202504141518204730957e88cdd5_18" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">달바글로벌 회수를 두고 한쪽은 '9~10배', 다른 기사는 '60배'라고 씁니다. 실제 펀드 기준 수익배수는 얼마이며, 왜 이렇게 다르게 알려졌습니까?</p><div class="qmeta"><span class="tag">모순·팩트체크</span><span class="pri high">상</span><span class="basis">근거: 달바 배수 상충 <a href="https://www.etoday.co.kr/news/view/2583922" target="_blank" rel="noopener">[7]</a> <a href="https://www.newstof.com/news/articleView.html?idxno=28560" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">'우리 2024 글로벌펀드'가 목표를 1,000억에서 700억으로 줄여 결성됐습니다. '글로벌'을 전면에 내세우면서 목표를 축소한 이유와, 지금까지의 해외 투자 성과는 어떻습니까?</p><div class="qmeta"><span class="tag">모순</span><span class="pri mid">중</span><span class="basis">근거: 글로벌펀드 1,000→700억 <a href="https://dealsite.co.kr/articles/127108" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">AUM 업계 6위인데 회수 2,000억·투자 1,600억 목표를 내세우셨습니다. 국민성장펀드 자펀드까지 더해 규모 순위를 끌어올릴 다음 대형 펀드 로드맵은 무엇입니까?</p><div class="qmeta"><span class="tag">전략</span><span class="pri mid">중</span><span class="basis">근거: AUM 6위·2025 목표 <a href="https://www.fntimes.com/html/view.php?ud=202504141518204730957e88cdd5_18" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 머니투데이, 완전자회사 편입·상폐, 2023-05-26. <a href="https://www.mt.co.kr/finance/2023/05/26/2023052616135766620" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 딜사이트, 글로벌펀드 결성 임박(700억). <a href="https://dealsite.co.kr/articles/127108" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 아시아경제, 김창규 인터뷰(배민·토스), 2024-05-17. <a href="https://www.asiae.co.kr/article/2024051709325017874" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 서울경제, 국민성장펀드 2차 중형리그 GP 선정. <a href="https://www.sedaily.com/article/20067127" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 유니콘팩토리, 국민성장펀드 2차·중형리그 규모. <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 이투데이, 대형/중형 리그(달바 '60배'). <a href="https://www.etoday.co.kr/news/view/2583922" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 한국금융신문, 2024 실적·2025 목표, 2025-04-14. <a href="https://www.fntimes.com/html/view.php?ud=202504141518204730957e88cdd5_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 뉴스톱, 달바 매각 약 399억(9~10배). <a href="https://www.newstof.com/news/articleView.html?idxno=28560" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 더벨, 조직개편·VC그룹 통합, 2025-01-08. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202501081609119560105170&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 딜사이트, VC협회장 회추위 직전 사퇴. <a href="https://dealsite.co.kr/articles/135668" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 아주경제 아주초대석, 김창규(뤼튼·무바달라), 2026-07-15. <a href="https://www.ajunews.com/view/20260715103705794" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 헤럴드경제, 이승호 콘텐츠 투자(KTB), 2014-12-03. <a href="http://mbiz.heraldcorp.com/view.php?ud=20141203000301" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[18])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-06</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
