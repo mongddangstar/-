@@ -1,0 +1,271 @@
+<meta charset="utf-8" />
+<title>국민성장펀드 · 김기태 서기관 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1e3a6e; --accent-soft: #e7ecf5;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #7ea3e0; --accent-soft: #16233f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #7ea3e0; --accent-soft: #16233f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1e3a6e; --accent-soft: #e7ecf5;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-13</div>
+    <h1 class="title">국민성장펀드 · 김기태 서기관</h1>
+    <p class="subtitle">5년 150조(→200조) 정책펀드 — 직접투자(리벨리온·업스테이지·퓨리오사)와 자펀드 18곳을 굴리는 산업은행 사무국. 퓨리오사 민간매칭 지연·뤼튼·CGV 4D플렉스 등 직접투자 쟁점이 부상</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관(정책 출자·직접투자)</span>
+      <span class="meta-chip">운용: 산업은행 사무국</span>
+      <span class="meta-chip">5년 150조 → 200조</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>기관 개요</h2>
+      <dl class="kv">
+        <dt>근거·출범</dt><dd>「한국산업은행법」 개정 → <b>2025-12-10 출범</b> <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>규모</dt><dd><b>5년 150조</b>(첨단전략산업기금 75조 + 민간 75조 매칭). 2030년까지 <b>200조로 확대</b> 계획 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>구성(5년)</dt><dd>직접투자 15조 / 간접투자(자펀드) 35조 / 인프라·융자 50조 / 초저리대출 50조 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>운용 주체</dt><dd><b>산업은행 '국민성장펀드 사무국'</b>(2025-11-17, 금융지주 파견 다수) + 부처합동 '추진단'. 산은이 재정모펀드·자펀드 GP 선정·직접투자 집행 <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ LP·직접투자 겸업:</span> 자펀드에 출자하는 LP이면서 <b>직접 지분투자</b>도 하는 이중 구조입니다. 아래 수치는 원문 접근 차단(egress)으로 검색 요약을 교차검증 — 인용 전 정책브리핑·금융위 원문 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 출자·정책 동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025. 12</div><div class="tl-body"><b>국민성장펀드 출범</b>(산은법 개정 시행) <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 상반기</div><div class="tl-body"><b>직접투자 착수</b> — 1호 리벨리온(3,000억·EV~3.4조)·2호 업스테이지·<b>3호 퓨리오사AI(8,000억 승인)</b> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 상반기</div><div class="tl-body"><b>자펀드 GP 1차 11곳(3.9조)</b> 선정(대형=스카이레이크·에이티넘 등) <sup class="ref"><a href="#src-18">[18]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 13</div><div class="tl-body"><b>자펀드 2차 7곳(약 1.6조)</b> — 스케일업 리그 <b>스틱인베스트먼트 최대어</b> <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 15</div><div class="tl-body">업무보고 — <b>200조 확대·직접투자 연 3조→2027년 5조+</b> <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 20</div><div class="tl-body"><b>초장기기술투자펀드 8,800억</b> 발표(우리운용, 8월 초 공고 예정) <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 22</div><div class="tl-body"><b>K-컬처 밸류업 펀드 1,500억</b>(문체부·금융위 공동) — 부처 정책펀드 협력 첫 사례 <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07~</div><div class="tl-body"><b>CJ 4D플렉스(~2,000억) 투자 검토</b> 보도 → CJ CGV 주가 11~12% 급등 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 김기태 서기관 · 정책펀드운용실</h2>
+      <p><span class="flag">공개 정보 미확인.</span> '국민성장펀드/정책펀드운용실' 맥락에서 <b>김기태 서기관 개인을 특정할 보도·조직자료가 확인되지 않습니다</b>(소속 부처·경력·담당 모두 확인 불가, 동명이인 다수). '<b>정책펀드운용실</b>'이라는 정확한 조직명도 공개 자료에서 확인되지 않으며, 산은 사무국 내 정책성펀드 담당조직으로 <b>추정</b>됩니다(조직도·실장·인력 미확인). <sup class="ref"><a href="#src-4">[4]</a></sup></p>
+      <p class="src"><b>대면 확인 권장:</b> ①정책펀드운용실의 정확한 소속·기능(자펀드 사후관리 vs 직접투자 심사) ②담당 펀드 규모·인력 ③서기관 본인의 소속 부처·파견 경위. 서기관(4급 상당)이 사무국에 파견돼 정책성펀드 운용·심사를 담당하는 구조는 파견인력 다수 구성과 정합적이나, <b>개인 배정은 근거 없음</b>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>직접투자 구조 · 쟁점 <span style="font-size:12px;color:var(--muted);">(핵심)</span></h2>
+      <p>직접투자 총 <b>3조(기금 1.5조 + 민간 1.5조, 1:1 매칭)</b>, 연 3조 → 2027년 5조+로 확대. 최종 결정은 <b>첨단전략산업 기금운용심의회</b> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup>.</p>
+      <table class="rt">
+        <tr><th>직투 호수</th><th>기업</th><th>상태</th></tr>
+        <tr><td>1호</td><td>리벨리온(AI반도체)</td><td>국민성장 2,500+산은 500=3,000억, EV~3.4조 <sup class="ref"><a href="#src-5">[5]</a></sup></td></tr>
+        <tr><td>2호</td><td>업스테이지(AI모델)</td><td>승인 <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>3호</td><td>퓨리오사AI(AI반도체)</td><td>8,000억 승인(정책 4,000+민간 4,000). <b>민간매칭 지연</b> <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>4호(후보)</td><td>뤼튼(B2C AI)</td><td><b>기업 측 유치 추진</b>(시리즈C 3,000억+). 펀드 확정 아님 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+      </table>
+      <ul class="tight">
+        <li><b>퓨리오사 민간매칭 지연</b>: 정책 4,000억 대비 민간매칭이 4월말 기준 <b>~1,470억(목표 40% 미달)</b>. 프리밸류 <b>~3조(20억달러)</b> 이견이 배경. 퓨리오사는 "7월 중하순 최종 납입" 반박 <span class="flag">(7월 납입 완료 여부 미확인)</span> <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li><b>CGV(정정)</b>: CGV 본체가 아니라 <b>자회사 CJ 4D플렉스 ~2,000억</b>(RCPS 신주·5년 후 CJ CGV 풋옵션·연 5% 보장) 투자 <b>검토</b>. 정부 "초기 검토"·CGV "확정 없음" → <b>'사실무근' 부인이 아니라 '미확정'</b>. 중복상장 회피 우회로라는 해석 <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-25">[25]</a></sup></li>
+        <li><b>비판</b>: AI·반도체 소수 고밸류 기업 '겹치기', '심사보다 속도전', 사후검증 시 담당자 교체 우려 <sup class="ref"><a href="#src-21">[21]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>자펀드 · 위탁운용 · 출자 포트폴리오</h2>
+      <dl class="kv">
+        <dt>재정모펀드</dt><dd>3사 — <b>한국성장금융·신한자산운용·우리자산운용</b>(우리=초장기기술투자) <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>공모(국민참여형)</dt><dd>3사 — <b>미래에셋·삼성·KB자산운용</b> <span class="flag">(재정모펀드 3사와 혼동 주의)</span> <sup class="ref"><a href="#src-23">[23]</a></sup></dd>
+        <dt>자펀드 GP</dt><dd>총 <b>18곳</b>(1차 11곳 3.9조 + 2차 7곳 1.6조). 대형=스카이레이크·에이티넘, M&amp;A=웰투시, 스케일업=스틱 <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup></dd>
+        <dt>기준가</dt><dd>국민참여형 <b>961.9원</b>(7/31, 설정가 1,000원 대비 -3%대) <sup class="ref"><a href="#src-24">[24]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 쏠림 논란:</span> 국민성장펀드로 은행 LP 자금이 몰리며(위험가중치 인하·면책특례), <b>모태펀드 자펀드 GP들이 '3개월 내 결성' 기한을 무더기 연기 신청</b>하는 등 기존 정책펀드 구축(crowding-out) 정황 <sup class="ref"><a href="#src-20">[20]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 정부·언론 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 금액·일정·직투 호수·민간매칭 수치는 게재 전 원문(정책브리핑·금융위·공고) 재확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 정책브리핑(korea.kr), 국민성장펀드 출범·5년 150조 구조, 2025-12. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148956298" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 금융위원회, 국민성장펀드 운용방안(직접·간접·인프라·대출 구성). <a href="https://www.fsc.go.kr/no010101/85265" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 이투데이, 200조 확대·직접투자 연 5조(2026 업무보고), 2026-07-15. <a href="https://www.etoday.co.kr/news/view/2603930" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 정책브리핑(korea.kr), 산업은행 국민성장펀드 사무국 출범(파견 인력), 2025-11. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954838" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 머니투데이, 직투 1호 리벨리온(3,000억·EV~3.4조), 2026-03-31. <a href="https://www.mt.co.kr/future/2026/03/31/2026033111025632012" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 한국경제, 퓨리오사AI 8,000억 승인(직투 3호·정책4,000+민간4,000), 2026-05-28. <a href="https://www.hankyung.com/article/2026052850451" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 블로터, 퓨리오사 민간매칭 목표치 40% 그쳐. <a href="https://www.bloter.net/news/articleView.html?idxno=666921" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 퓨리오사 "7월 중하순 최종 납입" 반박, 2026-05-29. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605290954159440108757" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> (다음 재전송), 뤼튼 '직투 4호' 목표 시리즈C 유치 추진(펀드 확정 아님). <a href="https://v.daum.net/v/p4dluDDgct" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 인베스트조선, CJ 4D플렉스 국민성장펀드 투자 검토, 2026-07-02. <a href="https://www.investchosun.com/site/data/html_dir/2026/07/02/2026070280153.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 머니투데이, CJ 4D플렉스 RCPS·풋옵션 구조·"확정 없음", 2026-07-30. <a href="https://www.mt.co.kr/stock/2026/07/30/2026073010241686874" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 뉴스핌, 4D플렉스 투자 기대에 CJ CGV 주가 11~12% 급등, 2026-07-30. <a href="https://www.newspim.com/news/view/20260730000329" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 이투데이, K-컬처 밸류업 펀드 1,500억(문체부·금융위), 2026-07-22. <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 이투데이, 초장기기술투자펀드 8,800억 구조, 2026-07-20. <a href="https://www.etoday.co.kr/news/view/2605108" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 블로터, 초장기 8,800억 '8월 초 공고' 예상. <a href="https://www.bloter.net/news/articleView.html?idxno=668219" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 이데일리 마켓인, 재정모펀드 운용사 성장금융·신한·우리. <a href="https://marketin.edaily.co.kr/News/Read?newsId=05241446645354456" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 헤럴드경제, 국민성장펀드 자펀드 GP 18곳(1차 11+2차 7), 2026-07. <a href="https://biz.heraldcorp.com/article/10807379" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 이투데이, 자펀드 1차 11곳 3.9조 선정. <a href="https://www.etoday.co.kr/news/view/2588334" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 파이낸셜뉴스, 스틱 국민성장펀드 2차 스케일업 최대어, 2026-07-13. <a href="https://www.fnnews.com/news/202607132036444717" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 이데일리, 국민성장펀드 쏠림·모태 GP 결성기한 무더기 연기 신청. <a href="https://www.edaily.co.kr/News/Read?newsId=01607206645519768" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 인베스트조선, 직접투자 '속도전>심사'·사후검증 우려, 2026-08-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 인베스트조선, AI·반도체 '고밸류 겹치기 투자' 우려, 2026-07-07. <a href="https://www.investchosun.com/site/data/html_dir/2026/07/07/2026070780155.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 금융위원회, 직접투자 심의(첨단전략산업 기금운용심의회)·공모 3사. <a href="https://www.fsc.go.kr/no010101/86834" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 머니투데이, 국민참여형 기준가 961.9원(7/31), 2026-08-02. <a href="https://www.mt.co.kr/stock/2026/08/02" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 한국경제, CGV 4D플렉스 자금조달·중복상장 회피 해석, 2026-07-23. <a href="https://www.hankyung.com/article/202607232714i" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>정책펀드운용실·김기태 서기관, 초장기펀드 '8월 말 연기', 퓨리오사 7월 납입 완료, CGV 최종 투자 여부는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-13 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">필수</span>는 요청하신 <b>5개 질문</b>입니다. 나머지는 확보한 수치·모순을 파고드는 심층 질문(<span class="tag">태그</span>=기법, [번호]=근거). <b>직접투자 건은 소문·검토·확정을 구분</b>해 확인형으로 배치했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 기관 현안 · 직접투자 이슈</h2></div>
+    <div class="q cat1 must"><p class="qtext">퓨리오사AI에 정책자금 4,000억을 승인했는데, 대응 <b>민간매칭 4,000억이 4월말 기준 40%(~1,470억)</b>에 그치는 등 계속 지연되고 있습니다. 프리밸류 3조 부담이 배경이라는데 — <b>민간매칭이 끝내 미달하면 정책자금 집행은 어떻게 됩니까?</b> 정책펀드가 고밸류에 먼저 들어가 매칭을 못 채우는 구도가 반복되면 펀드 입장이 난처해지지 않습니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">모순·확인</span><span class="pri high">상</span><span class="basis">근거: 퓨리오사 민간매칭 40% 미달 <a href="https://www.bloter.net/news/articleView.html?idxno=666921" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">직접투자가 리벨리온·업스테이지·퓨리오사 등 <b>AI·반도체 소수 고밸류 기업에 쏠린다</b>는 '겹치기·속도전' 비판이 있습니다. "심사보다 속도가 앞서고, 사후 검증 때는 담당자가 이미 바뀌어 있을 것"이라는 지적에 어떻게 답하십니까?</p><div class="qmeta"><span class="tag">반론</span><span class="pri mid">중</span><span class="basis">근거: 속도전·겹치기 비판 <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">[21]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/07/07/2026070780155.html" target="_blank" rel="noopener">[22]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(김기태 서기관) · 담당·관점</h2></div>
+    <div class="q cat2 must"><p class="qtext">서기관님이 <b>정책펀드운용실에서 펀드 규모와 운용이력을 보시는 것</b>으로 압니다. 정책펀드운용실이 정확히 어떤 조직이고(사무국 내 위치), 담당하는 <b>펀드 규모와 인력</b>은 어느 정도입니까? '운용이력을 본다'는 것이 <b>자펀드 사후관리인지 직접투자 심사인지</b> 구체적으로 무엇을 의미합니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 정책펀드운용실·담당 미확인(사무국 구조) <a href="#src-4">[4]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">사무국은 금융지주 파견 등 민간 출신 인력이 다수입니다. 서기관으로서 <b>민간 인력과 공공의 역할·책임을 어떻게 구분</b>하시며, 직접투자·GP 선정에서 공무원의 판단이 실제로 어디까지 개입합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: 사무국 민간 파견 구조 <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954838" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 정책 출자 방향 · 초장기 · K컬처</h2></div>
+    <div class="q cat3 must"><p class="qtext"><b>초장기기술투자펀드 8,800억</b>은 원래 8월 초 공고·9월 선정 일정이었는데, <b>8월 말로 미뤄졌다</b>는 얘기가 있습니다. 실제 연기됐습니까? 연기됐다면 사유가 무엇입니까(LP 쏠림·설계 재조정)? 존속 15년·IRR 5% 설계로 <b>민간 2,000억이 실제로 모이겠습니까</b>?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: 초장기 8,800억·8월 초 공고 예정 <a href="https://www.etoday.co.kr/news/view/2605108" target="_blank" rel="noopener">[14]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=668219" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">K-컬처 밸류업 펀드 1,500억을 문체부·금융위와 함께 냈고, "부처 정책펀드와 협력한 첫 사례"라고 하셨습니다. <b>콘텐츠·영화가 '첨단전략산업' 취지와 어떻게 연결</b>됩니까? 이런 부처 협력형 펀드를 앞으로 늘릴 계획입니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: K컬처 밸류업 1,500억 <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">150조를 200조로, 직접투자를 연 5조로 키우는데 — 시장에선 국민성장펀드로 자금이 쏠려 <b>모태펀드 자펀드 GP들이 결성 기한을 무더기 연기 신청</b>하는 등 구축(crowding-out) 효과가 나옵니다. 기존 정책펀드와의 <b>역할 중복·쏠림</b>을 어떻게 조정하십니까?</p><div class="qmeta"><span class="tag">반론·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 쏠림·모태 GP 연기 신청 <a href="https://www.edaily.co.kr/News/Read?newsId=01607206645519768" target="_blank" rel="noopener">[20]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 직접투자 심사 · GP 선정</h2></div>
+    <div class="q cat4 must"><p class="qtext"><b>뤼튼이 '직투 4호'를 목표로 시리즈C를 추진</b>한다는 보도가 있습니다. 뤼튼을 국민성장펀드 <b>직접투자에 포함할 계획입니까</b>(이미 심의 대상에 올랐습니까)? 그리고 <b>B2C AI 서비스도 '첨단전략산업' 직접투자 대상</b>이 될 수 있습니까 — 자격 기준은 무엇입니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: 뤼튼 직투 4호 목표 추진(확정 아님) <a href="https://v.daum.net/v/p4dluDDgct" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext">CGV 투자설로 주가가 급등했는데, 정확히는 CGV 본체가 아니라 <b>자회사 CJ 4D플렉스 ~2,000억(RCPS·5년 후 CGV 풋옵션·연 5% 보장)</b>에 대한 검토로 보도됐습니다. 이게 <b>사실무근입니까, 검토 중입니까?</b> 영화관 기술사업이 <b>첨단전략산업 직접투자 대상</b>에 맞습니까? 이 건은 <b>K-컬처 밸류업 펀드와는 별개</b>입니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·팩트체크</span><span class="pri high">상</span><span class="basis">근거: CJ 4D플렉스 검토·"확정 없음" <a href="https://www.mt.co.kr/stock/2026/07/30/2026073010241686874" target="_blank" rel="noopener">[11]</a> <a href="https://www.hankyung.com/article/202607232714i" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">자펀드도 1차 11곳·2차 7곳으로 대형화되고, 스케일업 리그는 스틱 같은 <b>대형 하우스가 최대어</b>를 가져갑니다. GP 선정에서 <b>대형 편중을 어떻게 견제</b>하고, 초기·중소 하우스 몫은 어떻게 배분하십니까?</p><div class="qmeta"><span class="tag">벤치마크·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 자펀드 18곳·스틱 최대어 <a href="https://www.fnnews.com/news/202607132036444717" target="_blank" rel="noopener">[19]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[4]</span> 정책브리핑, 산은 국민성장펀드 사무국 출범. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954838" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 블로터, 퓨리오사 민간매칭 40% 그쳐. <a href="https://www.bloter.net/news/articleView.html?idxno=666921" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> (다음), 뤼튼 직투 4호 목표 유치 추진. <a href="https://v.daum.net/v/p4dluDDgct" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 머니투데이, CJ 4D플렉스 구조·"확정 없음", 2026-07-30. <a href="https://www.mt.co.kr/stock/2026/07/30/2026073010241686874" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 이투데이, K컬처 밸류업 1,500억, 2026-07-22. <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 이투데이, 초장기기술투자펀드 8,800억, 2026-07-20. <a href="https://www.etoday.co.kr/news/view/2605108" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 블로터, 초장기 8월 초 공고 예상. <a href="https://www.bloter.net/news/articleView.html?idxno=668219" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> 파이낸셜뉴스, 스틱 2차 스케일업 최대어, 2026-07-13. <a href="https://www.fnnews.com/news/202607132036444717" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 이데일리, 국민성장펀드 쏠림·모태 GP 연기 신청. <a href="https://www.edaily.co.kr/News/Read?newsId=01607206645519768" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[21]</span> 인베스트조선, 속도전>심사 우려, 2026-08-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[25]</span> 한국경제, CGV 4D플렉스·중복상장 회피 해석, 2026-07-23. <a href="https://www.hankyung.com/article/202607232714i" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[25])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-13</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
