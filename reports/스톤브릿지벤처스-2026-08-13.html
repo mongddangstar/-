@@ -1,0 +1,277 @@
+<meta charset="utf-8" />
+<title>스톤브릿지벤처스 · 박형주 차장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #3f4e7a; --accent-soft: #e9ecf6;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8b9bd6; --accent-soft: #1a2138;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8b9bd6; --accent-soft: #1a2138;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #3f4e7a; --accent-soft: #e9ecf6;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-13</div>
+    <h1 class="title">스톤브릿지벤처스 · 박형주 차장</h1>
+    <p class="subtitle">배민·크래프톤을 초기에 담은 '엑시트 전문가' 상장 VC — AI글로벌 병행펀드 3,250억 결성, 2026 회수 빅사이클 진입</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·상장 VC)</span>
+      <span class="meta-chip">유형: 창투사 (코스닥 330730)</span>
+      <span class="meta-chip">AUM ~1.4조 (2024말)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체·연혁</dt><dd>창업투자회사. <b>2017년 구 스톤브릿지캐피탈에서 VC부문을 물적분할</b>해 설립 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>상장</dt><dd><b>2022-02-25 코스닥 상장</b>, 티커 <b>330730</b> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>대표</dt><dd><b>유승운</b> 대표(2018~, 2025 연임). <b>김지훈</b> 부회장 = 지주격 스톤브릿지홀딩스 최대주주 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>규모</dt><dd>2022년 'AUM 1조 클럽' 초고속 진입 → <b>2024년 말 AUM 약 1조4,016억</b> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>트랙레코드</dt><dd>우아한형제들(배민)·티몬·블루홀(크래프톤)·스타일쉐어(→무신사)·노타·S2W 등. '<b>엑시트(회수) 전문가</b>' 하우스로 통칭 <sup class="ref"><a href="#src-21">[21]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 상장 VC:</span> 코스닥 330730이라 실적·배당이 공시됩니다. 다만 이번 조사에선 DART·증권사 데이터 사이트가 egress로 차단돼 <b>실적을 언론 요약(증감률)으로 교차검증</b>했습니다 — 절대금액·주가는 게재 전 DART 원문 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 쟁점</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2024. 01</div><div class="tl-body"><b>스톤브릿지신성장4.0투자조합 2,505억</b> 결성 — 하우스 설립 이래 최대 <sup class="ref"><a href="#src-20">[20]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 08</div><div class="tl-body">산업은행 <b>'AI 코리아 펀드' 중형 리그 위탁운용사(GP) 선정</b> — 산은 600억 마중물, 9개월 내 2,000억 조성 조건 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 01</div><div class="tl-body"><b>매드업 코스닥 상장</b>(공모가 밴드 최상단 8,000원) — 스톤브릿지 보유 207만주, 약 166억 회수 추산 <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 31</div><div class="tl-body"><b>스톤브릿지 AI글로벌 제1·2호 투자조합 결성 — 합계 3,250억</b>(목표 2,000억 초과). 병행 2개 조합 구조 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 08. 24</div><div class="tl-body"><b>니어스랩 코스닥 상장 예정</b> — 수요예측 743.5:1, 공모가 상단 41,200원, 예상 시총 ~2,380억 <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 (전망)</div><div class="tl-body">"<b>회수 빅사이클 진입, 역대 최대 회수 가시권</b>" — 2026이 2025보다 더 큰 폭 회수 예상 <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 박형주 차장 (+유승운 대표)</h2>
+      <p><span class="flag">박형주 차장 — 공개 정보 미확인.</span> 이름+스톤브릿지·차장·심사역·소비재 등 여러 조합으로 검색했으나 <b>그를 특정할 프로필·인터뷰·담당 딜 기록이 확인되지 않았습니다</b>(차장급 VC 인력이 언론에 노출되지 않는 관례와 일치). 동명이인(수학자·전 GIST 총장 박형주 등)과 <b>혼동 금지</b>. → <b>담당 섹터·운용 펀드·대표 딜(니어스랩·무신사·노타 관여 여부)·이력을 대면에서 직접 확인</b>하는 것이 유일한 1차 경로. <sup class="ref"><a href="#src-1">[1]</a></sup></p>
+      <p class="src"><b>팀 맥락(그가 아님):</b> 유승운 대표(CEO), 김현기 상무(바이오), 노윤아 수석팀장(바이오·헬스케어) 등이 언론에 확인되는 인물. 취재 맥락상 박 차장이 소비재/성장·회수 관련 팀일 가능성은 <b>추정일 뿐 미확인</b>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책펀드 · AI글로벌 병행펀드 <span style="font-size:12px;color:var(--muted);">(핵심)</span></h2>
+      <p><b>스톤브릿지 AI글로벌 제1호·제2호 투자조합</b> — 2026-07-31 결성, <b>약정총액 합계 3,250억</b>(당초 목표 2,000억 대폭 초과). 두 조합으로 나눈 <b>병행 결성</b> 구조. <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></p>
+      <table class="rt">
+        <tr><th>구분</th><th>제1호</th><th>제2호</th></tr>
+        <tr><td>약정총액</td><td>2,250.8억</td><td>999.2억</td></tr>
+        <tr><td>앵커 LP</td><td>한국산업은행</td><td>국민연금공단</td></tr>
+        <tr><td>참여 LP</td><td>산은·IBK·한국성장금융·중기중앙회·우정사업본부</td><td>국민연금·행정공제회</td></tr>
+      </table>
+      <ul class="tight">
+        <li><b>출발점</b>: 2025.8 산은 'AI 코리아 펀드' 중형 리그 GP 선정(산은 600억 마중물). 이를 3,250억으로 초과 조성 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>전략</b>: 투자금 약 <b>60%를 AI 밸류체인 전 영역</b>(인프라·모델·응용·AIX)에 배정 <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li><b>GP커밋</b>은 미확인 <span class="flag">(과거 DX사업재편조합 결성 시 GP커밋 100억 전례)</span> <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회수 · 실적 · 재무 <span style="font-size:12px;color:var(--muted);">(상장 VC)</span></h2>
+      <h3>회수 트랙레코드 · 파이프라인</h3>
+      <table class="rt">
+        <tr><th>기업</th><th>상태 / 멀티플·회수</th></tr>
+        <tr><td>노타(온디바이스 AI)</td><td>40만주 처분 <b>65배</b> 부분 회수 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>S2W(데이터·AI)</td><td>최초 투자가치 대비 <b>21배</b> <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td>무신사(스타일쉐어 경로)</td><td>2015KIF조합 만기 구주매각 <b>6~7배</b>(신한벤처 120억 매입). 잔여는 한국형유니콘펀드가 IPO 대기 <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td>매드업</td><td>2026-07-01 상장 · 207만주 ~<b>166억</b> <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>딜리셔스</td><td>190만주 · 밴드 기준 <b>95~133억</b> · 연내 상장 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>니어스랩</td><td>2018 시리즈A(밸류 ~100억) · <b>2026-08-24 상장 예정</b> · 개별 회수 미확인 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+      </table>
+      <h3>실적 · 배당 (언론 요약 기준)</h3>
+      <dl class="kv">
+        <dt>성과보수</dt><dd>2022 <b>122억</b> → 2023 <b>15억</b> → 2024 <b>1억</b> 급감 → 2025 반등 원년 <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>2025 실적</dt><dd>별도 기준 매출 <b>+80.2%</b>·영업이익 <b>+299%</b>·순이익 <b>+383.6%</b>(1분기 순이익 152억) <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup></dd>
+        <dt>배당</dt><dd>2025 결산 주당 <b>300원</b>·총 52.5억·배당성향 <b>47.25%</b>·상장 후 4년 누적 ~210억 <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>펀드</dt><dd>운용 <b>14개 벤처펀드 캐피탈콜 완료 → 회수모드</b> 본격화 <sup class="ref"><a href="#src-19">[19]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 질(質) 주의:</span> 2025년은 <b>연간으로 급반등(+383.6%)</b>했지만 <b>3분기 누적</b> 기준으론 오히려 전년比 순이익 -1.7%였고, <b>4분기 회수·성과보수로 연간이 뒤집힌 구조</b>입니다. 성과보수 의존형 변동성·지속가능성이 핵심 논점(공시 재확인 권장). <sup class="ref"><a href="#src-18">[18]</a></sup></p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(언론·THE VC·DART·데이터 사이트)이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 실적 절대금액·주가·개별 지분/회수 멀티플·GP커밋은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 더벨, 유승운 연임·스톤브릿지캐피탈 물적분할 연혁. <a href="https://www.thebell.co.kr/free/Content/ArticleView.asp?key=202503131410578640101283" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 파이낸셜뉴스, 스톤브릿지벤처스 코스닥 상장(2022-02, 330730). <a href="https://www.fnnews.com/news/202201071835382954" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 머니투데이, AUM 1조 클럽 초고속 진입. <a href="https://news.mt.co.kr/mtview.php?no=2022021416532825462" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 워크투데이, 2024말 AUM 1조4,016억·DX조합 GP커밋 100억. <a href="http://www.worktoday.co.kr/news/articleView.html?idxno=22467" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> CBC뉴스, AI글로벌 1·2호 병행펀드(3,250억·앵커 산은/국민연금·AI 60%). <a href="https://www.cbci.co.kr/news/articleView.html?idxno=593262" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 블로터, 스톤브릿지 AI글로벌 3,250억 결성(목표 초과). <a href="https://www.bloter.net/news/articleView.html?idxno=669791" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 유니콘팩토리, 산은 'AI 코리아 펀드' 중형리그 GP 선정(600억 마중물). <a href="https://www.unicornfactory.co.kr/article/2025081811185751799" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 니어스랩 시리즈A 30억(2018, 스톤브릿지 참여). <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201807160100028040001796" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 이투데이, 스톤브릿지 3사(매드업·딜리셔스·니어스랩) 회수 300억+·니어스랩 상장. <a href="https://www.etoday.co.kr/news/view/2598623" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> IB토마토(뉴스토마토), 니어스랩 수요예측 743.5:1·공모가 상단 41,200원. <a href="https://www.newstomato.com/ReadNews.aspx?no=1309896" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, 무신사 구주 세컨더리(신한벤처 120억, 무신사 밸류 3조, 6~7배). <a href="https://dealsite.co.kr/articles/129989" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 인베스트조선, 무신사 IPO 기업가치 10조 목표. <a href="https://www.investchosun.com/site/data/html_dir/2026/02/26/2026022680243.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 더벨, 노타 40만주 처분 65배 부분 회수. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202511061443379800105080" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 한국금융신문, S2W 21배·회수 사이클. <a href="http://www.fntimes.com/html/view.php?ud=202511232229283594dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 와우테일, 스톤브릿지 '회수 빅사이클·역대 최대 회수' 전망. <a href="https://wowtale.net/2025/11/05/249768/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 더벨, 성과보수 122→15→1억·배당 주당 300원·배당성향 47.25%. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602031449113480107722" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 이투데이, 2025 1분기 순이익 152억(1분기에 연간 이익 돌파). <a href="https://www.etoday.co.kr/news/view/2583389" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 디지털투데이, 2025 결산 +80.2%/+299%/+383.6%·기업가치 제고 계획. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=649359" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 톱데일리, 14개 벤처펀드 캐피탈콜 완료·회수모드. <a href="https://www.topdaily.kr/articles/110055" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 톱데일리, 신성장4.0투자조합 2,505억(설립 이래 최대). <a href="https://www.topdaily.kr/articles/107242" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 아시아경제, 상장VC 대해부 — 스톤브릿지 '엑시트 전문가'. <a href="https://www.asiae.co.kr/article/2025062415122643076" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>실적 절대금액·주가·개별 지분·회수 멀티플·GP커밋·박형주 차장 신원은 '미확인/확인 필요'</b>로 표시. 발행 2026-08-13 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">요청하신 <b>4대 포인트</b>(병행펀드·니어스랩/무신사 회수·2026 기대 포트폴리오와 멀티플·내부 속사정)를 파고드는 심층 질문입니다. <span class="tag">태그</span>=질문 기법, [번호]=근거 출처.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 병행펀드</h2></div>
+    <div class="q cat1 must"><p class="qtext">이번 AI글로벌 병행펀드는 산은이 요구한 목표가 2,000억이었는데 <b>3,250억까지 초과</b> 조성됐습니다. 초과 수요의 실제 출처는 어디였습니까? 그리고 1호(산은 앵커 2,251억)와 2호(국민연금 앵커 999억)로 <b>병행 구조를 쪼갠 이유</b>는 LP 요구입니까, 규제입니까, 전략적 차별화입니까?</p><div class="qmeta"><span class="tag">확인·개방</span><span class="pri high">상</span><span class="basis">근거: 3,250억·1·2호 앵커 분리 <a href="https://www.cbci.co.kr/news/articleView.html?idxno=593262" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">투자금의 60%를 AI 인프라·모델·응용·AIX <b>밸류체인 전 영역</b>에 넣겠다고 하셨습니다. AI 밸류에이션 고점 논란 속에 '전 영역 배분'이 분산 헤지가 아니라 <b>확신 부족</b>으로 비칠 위험은 없습니까? 어느 레이어에 실제로 승부를 겁니까?</p><div class="qmeta"><span class="tag">반론·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: AI 60% 전 밸류체인 배정 <a href="https://www.cbci.co.kr/news/articleView.html?idxno=593262" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">이 병행펀드의 <b>GP커밋 규모와 캐리 구조</b>는 어떻게 됩니까? 과거 DX사업재편조합엔 GP커밋 100억을 태우셨는데, 이번 3,250억엔 얼마를 걸었습니까?</p><div class="qmeta"><span class="tag">확인형 압박</span><span class="pri mid">중</span><span class="basis">근거: DX조합 GP커밋 100억 전례 <a href="http://www.worktoday.co.kr/news/articleView.html?idxno=22467" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(박형주 차장) · 담당·관점</h2></div>
+    <div class="q cat2 must"><p class="qtext">먼저 차장님의 <b>담당 섹터와 운용 펀드, 대표 딜</b>을 여쭙겠습니다. 니어스랩·무신사·노타 같은 이번 회수 건에 직접 관여하셨습니까? 앞으로 소싱에서 집중하시는 영역은 무엇입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 박형주 차장 공개정보 미확인 <a href="#src-1">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">스톤브릿지는 '엑시트 전문가'로 불립니다. 차장님이 실무에서 <b>회수 타이밍</b>을 잡을 때 가장 중시하는 신호는 무엇이고, 최근 시장에서 '너무 빨리 팔았다' 혹은 '더 들고 갈걸' 하고 복기하는 케이스가 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: '엑시트 전문가' 하우스 <a href="https://www.asiae.co.kr/article/2025062415122643076" target="_blank" rel="noopener">[21]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 니어스랩 · 무신사 회수 전략</h2></div>
+    <div class="q cat3 must"><p class="qtext"><b>무신사</b>는 '10조 IPO 최대어'로 기대를 모으지만, 실제로 스톤브릿지 지분 상당분은 <b>2015KIF조합 만기로 이미 신한벤처에 구주매각(6~7배)</b>해 회수를 끝냈고, IPO 대기분은 한국형유니콘펀드 잔여 지분입니다. '무신사 대박'이라는 기대와 <b>실제 남은 회수분 사이 괴리</b>는 얼마입니까? 잔여 지분율과 IPO 시 예상 멀티플은?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증·확인</span><span class="pri high">상</span><span class="basis">근거: 2015KIF 6~7배 기회수 / 유니콘펀드 IPO 대기 <a href="https://dealsite.co.kr/articles/129989" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext"><b>니어스랩</b>은 국내 첫 '드론' 상장으로 수요예측이 743:1까지 흥행했지만 아직 적자에 수주잔고도 두껍지 않다는 평가가 있습니다. 2018년 시리즈A(기업가치 ~100억)에 들어간 스톤브릿지의 <b>예상 멀티플과 상장 후 락업·분할매도 등 회수 타이밍 전략</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 니어스랩 743:1·8/24 상장·2018 시리즈A <a href="https://www.newstomato.com/ReadNews.aspx?no=1309896" target="_blank" rel="noopener">[10]</a> <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201807160100028040001796" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 2026 기대 포트폴리오 · 멀티플 · 내부 실적</h2></div>
+    <div class="q cat4 must"><p class="qtext">2026년을 '회수 빅사이클, 역대 최대 회수'로 규정하셨습니다. 매드업·딜리셔스·니어스랩·무신사 잔여·노타 잔여를 통틀어, <b>상반기와 하반기에 각각 어느 딜에서 가장 큰 멀티플</b>을 기대하십니까? 노타 65배·S2W 21배에 견줄 만한 건이 올해 또 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·전망</span><span class="pri high">상</span><span class="basis">근거: 회수 빅사이클·노타 65배·S2W 21배 <a href="https://wowtale.net/2025/11/05/249768/" target="_blank" rel="noopener">[15]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202511061443379800105080" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2025년 순이익이 383% 급증했지만, <b>3분기 누적으로는 오히려 전년比 감소</b>였고 4분기 회수·성과보수로 연간이 뒤집혔습니다. 성과보수도 2022년 122억에서 2024년 1억까지 롤러코스터였습니다. 이 이익의 <b>'경상 수익력'과 지속가능성</b>은 어느 정도이며, 성과보수 의존형 변동성을 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag">질 검증·모순</span><span class="pri high">상</span><span class="basis">근거: 4분기 몰빵·성과보수 122→1억 <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=649359" target="_blank" rel="noopener">[18]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602031449113480107722" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">운용 중인 <b>14개 벤처펀드가 모두 캐피탈콜을 마치고 회수모드</b>로 들어갔습니다. 회수 재원을 신규 펀드에 재투자하는 선순환을 말씀하시는데, 지금처럼 회수에 무게가 실린 국면에서 <b>신규 투자(딜 소싱) 동력</b>은 유지됩니까? 올해 신규 결성·투자 목표는?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 14개 펀드 캐피탈콜 완료 <a href="https://www.topdaily.kr/articles/110055" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">상장 후 4년 연속 배당(2025 배당성향 47.25%)으로 주주환원을 강조하십니다. 이익이 성과보수에 크게 좌우되는 VC가 <b>배당성향 47%를 지속</b>하는 것이 회수 재투자 여력과 상충하지는 않습니까? 배당과 재투자의 우선순위는?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 배당성향 47.25%·재투자 선순환 <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602031449113480107722" target="_blank" rel="noopener">[16]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[4]</span> 워크투데이, AUM 1조4,016억·GP커밋 100억. <a href="http://www.worktoday.co.kr/news/articleView.html?idxno=22467" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> CBC뉴스, AI글로벌 병행펀드(3,250억·앵커·AI 60%). <a href="https://www.cbci.co.kr/news/articleView.html?idxno=593262" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 더벨, 니어스랩 시리즈A 30억(2018). <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201807160100028040001796" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> IB토마토, 니어스랩 수요예측 743.5:1·공모가. <a href="https://www.newstomato.com/ReadNews.aspx?no=1309896" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 딜사이트, 무신사 세컨더리(6~7배·신한벤처 120억). <a href="https://dealsite.co.kr/articles/129989" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 더벨, 노타 65배 부분 회수. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202511061443379800105080" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 와우테일, 회수 빅사이클·역대 최대. <a href="https://wowtale.net/2025/11/05/249768/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 더벨, 성과보수·배당. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602031449113480107722" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 디지털투데이, 2025 결산·기업가치 제고. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=649359" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> 톱데일리, 14개 펀드 캐피탈콜 완료. <a href="https://www.topdaily.kr/articles/110055" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[21]</span> 아시아경제, '엑시트 전문가' 대해부. <a href="https://www.asiae.co.kr/article/2025062415122643076" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[21])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-13</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
