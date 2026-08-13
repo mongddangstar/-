@@ -1,0 +1,275 @@
+<meta charset="utf-8" />
+<title>케이엘앤파트너스 · 김기현 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0f6b5c; --accent-soft: #e4f1ed;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4fb89f; --accent-soft: #10322b;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4fb89f; --accent-soft: #10322b;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0f6b5c; --accent-soft: #e4f1ed;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-13</div>
+    <h1 class="title">케이엘앤파트너스 · 김기현 대표</h1>
+    <p class="subtitle">관료 출신이 세운 컨슈머·F&amp;B 바이아웃 PE — 맘스터치로 이름값, 마녀공장·하파크리스틴 K뷰티 연속 베팅, 첫 단독 블라인드 3,500억 결성 중</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·PEF)</span>
+      <span class="meta-chip">유형: 바이아웃 PE(비상장)</span>
+      <span class="meta-chip">2015 설립 · 대표 김기현</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체·설립</dt><dd><b>2015년 설립</b> 국내 바이아웃 PEF 운용사(서울 강남 역삼) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>대표</dt><dd><b>김기현</b> — 행정고시 재경직 관료(기재부) 출신 → 스틱인베스트먼트 → 이스트브릿지파트너스 → 2015 창업 <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>강점</dt><dd><b>컨슈머·F&amp;B 바이아웃</b>. 맘스터치가 대표 성공 사례 → 이후 K뷰티(마녀공장·하파크리스틴)·바이오로 확장 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>규모</dt><dd>누적 AUM 약 <b>3,700억</b>(2021 보도 기준·<b>오래된 수치</b>). 이후 딜·블라인드로 확대, <b>현재치 미확인</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 비상장 PEF:</span> DART 실적 공시 대상이 아니라 <b>펀드·출자자(LP) 구조와 딜</b> 중심으로 봅니다. 아래 수치는 원문 접근 차단(egress)으로 검색 요약을 교차검증한 것 — 인용 전 원문·공시 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 쟁점</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2019~2020</div><div class="tl-body"><b>맘스터치 인수</b> — 창업주 지분 56.8%를 약 1,938억에 매입 <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022</div><div class="tl-body">맘스터치 <b>공개매수(1,200억)→100% 확보·자발적 상장폐지</b> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 02</div><div class="tl-body"><b>산은PE와 공동 GP</b> '산은-KL 중견기업 밸류업 블라인드펀드' 1,600억 1차 클로징(목표 2,000억) <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 04~05</div><div class="tl-body"><b>마녀공장 51.87% 인수(1,900억)</b> → 김기현 <b>공동대표 겸직</b>, '오너형 PEF' 표방 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 10</div><div class="tl-body"><b>우정사업본부</b> 국내 블라인드 PEF <b>중형리그 우선협상자 선정</b> <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 상반기</div><div class="tl-body"><b>성장금융 은행권 밸류업펀드 3차 GP 선정</b>(17곳 5.67:1, 각 500억) → <b>첫 단독 블라인드 3,500억+ 모집</b> <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 상반기</div><div class="tl-body"><b>국민성장펀드 M&amp;A 리그 최종 탈락</b>(웰투시에 밀림) <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 04~</div><div class="tl-body"><b>맘스터치 경영권 매각 착수</b>(씨티글로벌마켓증권 주관) — 몸값 1조 vs 7~8천억 논쟁 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body"><b>하파크리스틴('장원영 렌즈') 65% 약 1,400억 인수 SPA</b> — 미스토홀딩스 전략적 LP <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 김기현 대표</h2>
+      <dl class="kv">
+        <dt>경력</dt><dd>서울대 경제학·행정대학원 → <b>행정고시(재경직) 관료(기획재정부)</b> → 스틱인베스트먼트 이사 → 이스트브릿지파트너스 상무 → <b>2015 KL&amp;파트너스 창업</b> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>스타일</dt><dd>재무투자자에 머물지 않고 <b>인수기업 경영까지 설계</b> — 2025 마녀공장 <b>공동대표·사내이사</b> 취임, '오너형' PEF <sup class="ref"><a href="#src-25">[25]</a></sup></dd>
+        <dt>최근 발언</dt><dd>(2023-10 인터뷰) "맘스터치 급하게 팔 필요 없다", 해외는 직접 출점 대신 <b>마스터프랜차이즈</b> 확대 <sup class="ref"><a href="#src-21">[21]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명이인 주의:</span> PE 대표 김기현(행시 출신)과 <b>정치인 김기현 의원, 법무법인 '케이엘파트너스'는 전혀 무관</b>. 2025~2026 신규 인터뷰 인용문은 미확인 → 대면 확보 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출자(LP) 선정 이력 <span style="font-size:12px;color:var(--muted);">(핵심)</span></h2>
+      <table class="rt">
+        <tr><th>출자기관 · 사업</th><th>시점</th><th>내용 · 결과</th></tr>
+        <tr><td><b>한국성장금융</b> 은행권 중견기업 밸류업펀드(3차)</td><td>2026 상반기</td><td><b>GP 선정</b>(KL·SG PE·우리PE). 17곳 <b>5.67:1</b> 뚫고 <b>각 500억</b> 앵커 <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td><b>우정사업본부</b> 국내 블라인드 PEF(중형)</td><td>2025-10</td><td><b>우선협상자 선정</b>. 중형 2,500억+, 중소·중견 50%+·AI 40%+ 조건 <sup class="ref"><a href="#src-5">[5]</a></sup></td></tr>
+        <tr><td><b>산업은행 PE실</b> 공동 블라인드</td><td>2023-02</td><td>산은 <b>Co-GP</b>, 1,600억 1차 클로징(목표 2,000억) <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td><b>국민성장펀드</b> 간접투자 M&amp;A 리그</td><td>2026</td><td>숏리스트 진출 → <b>최종 탈락</b>(웰투시 단독 선정) <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+        <tr><td><b>수출입은행</b> LP 출자(중형)</td><td>2025~26</td><td>경쟁 참여 <span class="flag">(선정 여부 미확인)</span> <sup class="ref"><a href="#src-19">[19]</a></sup></td></tr>
+      </table>
+      <p class="src"><b>첫 단독 블라인드</b>: 그간 산은 Co-GP였다가 <b>홀로서기</b>로 첫 단독 대형 블라인드 결성 중. 목표는 초기 <b>4,000~5,000억</b>에서 <b>3,500억+</b>로 조정 보도. 성장금융 500억이 앵커 <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup>. <span class="flag">모태펀드·연기금·공제회 직접 GP 선정 이력은 이번 조사에서 미확인.</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · 포트폴리오 · 회수 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <table class="rt">
+        <tr><th>기업</th><th>인수</th><th>상태 · 회수</th></tr>
+        <tr><td><b>맘스터치</b>(버거·치킨 프랜차이즈)</td><td>2019~20 · 56.8% 1,938억</td><td>상폐 후 <b>3차례 리캡·유상감자·고배당</b>으로 원금 이상 부분회수(누적 ~1,200억, <b>IRR 20%중반·2.6배</b> 보도). <b>2026 경영권 매각 착수</b>(몸값 1조~1.3조 vs 7~8천억) <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup></td></tr>
+        <tr><td><b>마녀공장</b>(코스닥 K뷰티)</td><td>2025-04 · 51.87% 1,900억</td><td>SPC 케이뷰티홀딩스로 구주 인수, EV ~3,700억. 김기현 공동대표 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td><b>하파크리스틴</b>(피피비스튜디오스·컬러렌즈)</td><td>2026-07 · 65% ~1,400억</td><td>마녀공장 유사구조. <b>미스토홀딩스(휠라·아쿠시네트 지주) 전략적 LP</b> → K뷰티 시너지 <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+        <tr><td>보령바이오파마(백신·바이오)</td><td>2023~24 추진</td><td>90% ~4,000억 인수 추진 보도 <span class="flag">(최종 편입·성사 미확인, 무산 가능성)</span> <sup class="ref"><a href="#src-20">[20]</a></sup></td></tr>
+      </table>
+      <p class="src"><span class="flag">※ 맘스터치 엑시트 논란:</span> 리캡·유상감자·고배당으로 <b>연결 부채비율 50.3%(2023)→124.6%(2024)</b>로 급등, "재무건전성 훼손하며 회수 극대화" 비판. <b>가맹점주와 감자튀김 중량·가격 법적 분쟁</b>도 매각 밸류 할인 요인 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 국내 언론·홈페이지 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 출자 규모·회수 배수·부채비율·인수액은 게재 전 원문·공시 재확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> THE VC, 케이엘앤파트너스 기업정보(2015 설립·PEF). <a href="https://thevc.kr/klnpartners" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 이투데이, KL 성장금융 밸류업펀드 3차 GP 선정·'펀딩 물꼬'(각 500억·5.67:1), 2026-06. <a href="https://www.etoday.co.kr/news/view/2610373" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 한국경제, KL&amp;파트너스 투트랙 전략·AUM 3,700억, 2021-05-26. <a href="https://www.hankyung.com/article/202105262127a" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 서울경제 CEO&amp;스토리, 김기현 경력(관료·스틱·이스트브릿지·창업). <a href="https://www.sedaily.com/NewsView/2DAIY4H3ZW" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 인베스트조선, 우정사업본부 블라인드 PEF 중형리그 우협(KL 등), 2025-10-21. <a href="https://www.investchosun.com/site/data/html_dir/2025/10/21/2025102180163.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨, 산은-KL 공동 밸류업 블라인드 1,600억 1차 클로징, 2023-03-03. <a href="http://www.thebell.co.kr/free/content/ArticleView.asp?key=202303031208266080102128" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 이투데이, 국민성장펀드 M&amp;A 리그 숏리스트(KL 포함), 2026-05. <a href="https://www.etoday.co.kr/news/view/2584961" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 이투데이, 국민성장펀드 M&amp;A 리그 웰투시 최종 선정(KL 탈락), 2026. <a href="https://www.etoday.co.kr/news/view/2588669" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 맘스터치 인수·리캡·매각 정리. <a href="https://dealsite.co.kr/articles/123244" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 이투데이, 맘스터치 매각 씨티 주관·몸값 논쟁, 2026-05. <a href="https://www.etoday.co.kr/news/view/2586077" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 더벨, 맘스터치 리캡·IRR 20%중반·원금 2.6배 회수, 2025-04-14. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202504141809573120106728" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 녹색경제신문, 맘스터치 부채비율 급등·재무건전성 비판(50.3%→124.6%). <a href="https://www.greened.kr/news/articleView.html?idxno=338021" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 서울경제 시그널, 마녀공장 51.87% 1,900억 인수. <a href="https://www.sedaily.com/NewsView/2GSPVBP3U0" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 코스인코리아, 마녀공장 인수·김기현 공동대표 선임. <a href="https://cosinkorea.com/news/article.html?no=55206" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 헤럴드경제, 하파크리스틴 65% 약 1,400억 인수 SPA('장원영 렌즈'), 2026-07. <a href="https://biz.heraldcorp.com/article/10804841" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 더벨, 하파크리스틴 미스토홀딩스 전략적 LP·마녀공장 유사구조. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202606120704168500108677" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 더벨 PE 애뉴얼, KL 첫 단독 블라인드 3,500억+ 목표, 2026-01. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202601191511165280101520" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 이투데이, KL 첫 단독 블라인드 초기 목표 4,000~5,000억, 2025. <a href="https://www.etoday.co.kr/news/view/2555526" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 뉴스톱, 수출입은행 LP 출자 중형 경쟁 구도(KL 등). <a href="https://www.newstopkorea.com/news/articleView.html?idxno=30294" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 블로터, 보령바이오파마 90% ~4,000억 인수 추진(피씨엘 컨소). <a href="https://www.bloter.net/news/articleView.html?idxno=607722" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 서울경제(네이트), 김기현 인터뷰 "맘스터치 급히 안 판다·마스터프랜차이즈", 2023-10-23. <a href="https://news.nate.com/view/20231023n02180" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 식품음료신문, 맘스터치 가맹점주 갈등·감자튀김 중량 분쟁. <a href="https://www.thinkfood.co.kr/news/articleView.html?idxno=200155" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 블로터, 맘스터치 몸값 거품 논란·7~8천억 현실론. <a href="https://www.bloter.net/news/articleView.html?idxno=664168" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 인베스트조선, 맘스터치 매각 RFP·2024 매출 4,790억·영업익 897억, 2026-04. <a href="https://www.investchosun.com/site/data/html_dir/2026/04/15/2026041580069.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 비즈니스포스트, KL 마녀공장 인수·'오너형' 경영 표방. <a href="https://www.businesspost.co.kr/BP?command=article_view&num=405232" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>AUM 현재치·펀드 목표액·회수 배수·부채비율·보령바이오 성사 여부는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-13 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">요청하신 <b>출자 선정·주요 포트폴리오·투자 전략</b>을 축으로, 확보한 수치·모순을 파고드는 심층 질문입니다. <span class="tag">태그</span>=질문 기법, [번호]=근거 출처.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 맘스터치 매각</h2></div>
+    <div class="q cat1 must"><p class="qtext">맘스터치는 상폐 후 <b>세 차례 리캡·유상감자·고배당으로 부채비율을 50.3%(2023)→124.6%(2024)</b>까지 끌어올리며 원금 이상을 이미 회수했습니다. 그런데 지금 <b>1조~1.3조</b> 몸값으로 매각을 추진합니다. "재무건전성을 훼손해 회수를 극대화한 뒤 비싸게 되판다"는 비판에 어떻게 답하시겠습니까? 원매자가 그 밸류를 받아들일 근거는?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순·반론</span><span class="pri high">상</span><span class="basis">근거: 부채비율 급등·1조 매각 <a href="https://www.greened.kr/news/articleView.html?idxno=338021" target="_blank" rel="noopener">[12]</a> <a href="https://www.etoday.co.kr/news/view/2586077" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">시장에서는 맘스터치 몸값을 두고 '1조론'과 '현실적 7,000~8,000억론'이 맞섭니다. 2024년 영업이익 897억 기준이면 <b>EV/EBITDA 10~13배</b>를 요구하는 셈인데, 국내 F&amp;B 프랜차이즈에 그 멀티플이 정당화됩니까? 해외·글로벌 성장 스토리는 실체가 있습니까?</p><div class="qmeta"><span class="tag">벤치마크·질 검증</span><span class="pri high">상</span><span class="basis">근거: 몸값 논쟁·2024 실적 <a href="https://www.bloter.net/news/articleView.html?idxno=664168" target="_blank" rel="noopener">[23]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/04/15/2026041580069.html" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">가맹점주와 <b>감자튀김 중량·가격 인상</b>을 둘러싼 법적 분쟁이 진행 중입니다. 이런 가맹 리스크가 매각 밸류와 브랜드에 어떤 영향을 준다고 보시며, 매각 전 어떻게 정리하실 계획입니까?</p><div class="qmeta"><span class="tag">빈틈</span><span class="pri mid">중</span><span class="basis">근거: 점주 법적 분쟁 <a href="https://www.thinkfood.co.kr/news/articleView.html?idxno=200155" target="_blank" rel="noopener">[22]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(김기현) · 투자 전략</h2></div>
+    <div class="q cat2"><p class="qtext">관료(기재부)에서 출발해 스틱·이스트브릿지를 거쳐 하우스를 세우셨습니다. 관료 출신이라는 배경이 <b>딜 소싱·정책 LP 출자 유치</b>에서 실제로 어떤 강점과 한계로 작동합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: 관료 출신 경력 <a href="https://www.sedaily.com/NewsView/2DAIY4H3ZW" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">마녀공장 인수 후 <b>공동대표까지 겸직</b>하시며 '오너형 PEF'를 표방하셨습니다. 재무투자자가 피투자사 경영 전면에 나서는 것은 <b>속도·책임의 이점</b>과 <b>이해상충·집중 리스크</b>가 동시에 있습니다. 대표님이 직접 경영을 맡는 기준과, LP 이익과 충돌할 여지는 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프·질 검증</span><span class="pri high">상</span><span class="basis">근거: 마녀공장 공동대표·오너형 <a href="https://www.businesspost.co.kr/BP?command=article_view&num=405232" target="_blank" rel="noopener">[25]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 출자(LP) 선정 · 정책펀드</h2></div>
+    <div class="q cat3 must"><p class="qtext">올해 <b>성장금융 밸류업 3차(5.67:1)·우정사업본부 중형리그</b>는 뚫으셨는데, <b>국민성장펀드 M&amp;A 리그는 웰투시에 밀려 최종 탈락</b>했습니다. 세 심사의 결과가 갈린 <b>결정적 차이</b>는 무엇이었고, 국민성장펀드 재도전 전략은 어떻게 세우셨습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·확인</span><span class="pri high">상</span><span class="basis">근거: 성장금융·우본 선정 vs 국민성장펀드 탈락 <a href="https://www.etoday.co.kr/news/view/2610373" target="_blank" rel="noopener">[2]</a> <a href="https://www.etoday.co.kr/news/view/2588669" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">그간 산은과 <b>공동 GP</b>로 블라인드를 운용하다, 이번에 <b>첫 단독 대형 블라인드</b>로 '홀로서기'에 나섰습니다. 목표액이 <b>초기 4,000~5,000억에서 3,500억+로 조정</b>됐는데, 축소 배경과 현재 LP 모집 상황, 산은 없이 단독 트랙레코드를 입증할 승부처는 무엇입니까?</p><div class="qmeta"><span class="tag">모순·확인</span><span class="pri high">상</span><span class="basis">근거: 단독 블라인드 목표 5,000→3,500억+ <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202601191511165280101520" target="_blank" rel="noopener">[17]</a> <a href="https://www.etoday.co.kr/news/view/2555526" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">우정사업본부 중형리그는 <b>중소·중견 50%+, AI 40%+</b> 투자 조건이 붙습니다. 컨슈머·F&amp;B에 강한 하우스가 이 <b>AI 40% 조건</b>을 어떻게 충족하실 계획입니까? 소싱 역량은 준비돼 있습니까?</p><div class="qmeta"><span class="tag">압박·확인</span><span class="pri mid">중</span><span class="basis">근거: 우본 중형 AI 40%+ 조건 <a href="https://www.investchosun.com/site/data/html_dir/2025/10/21/2025102180163.html" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 포트폴리오 · 회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">마녀공장(2025)에 이어 <b>하파크리스틴(65%·1,400억, 미스토홀딩스 전략적 LP)</b>까지 K뷰티에 연속 베팅하셨습니다. K뷰티 밸류에이션 고점·경쟁 심화 우려 속에서 <b>연속 베팅의 승부수와 두 딜의 시너지</b>는 무엇이고, 회수(IPO·전략적 매각) 시나리오는 어떻게 그리십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">전략·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 마녀공장·하파크리스틴 K뷰티 연속 <a href="https://biz.heraldcorp.com/article/10804841" target="_blank" rel="noopener">[15]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202606120704168500108677" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">포트폴리오가 <b>맘스터치·마녀공장·하파크리스틴 등 컨슈머에 집중</b>돼 있습니다. 내수 소비 둔화 국면에서 컨슈머 편중은 리스크 아닙니까? 첫 단독 블라인드에서는 섹터를 어떻게 배분하실 계획입니까?</p><div class="qmeta"><span class="tag">반론·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 컨슈머 편중 포트폴리오 <a href="https://www.hankyung.com/article/202105262127a" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2023~24년 <b>보령바이오파마 90%(~4,000억) 인수</b> 추진이 보도됐는데, 최종 성사·편입 여부가 공개 자료로 확인되지 않습니다. 실제로 어떻게 마무리됐습니까? (무산됐다면 그 배경은?)</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: 보령바이오 인수 추진·성사 미확인 <a href="https://www.bloter.net/news/articleView.html?idxno=607722" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">맘스터치를 <b>리캡만으로 IRR 20%중반·원금 2.6배</b>를 이미 회수했다고 알려졌습니다. 여기서 경영권 매각까지 더하면 최종 멀티플은 얼마를 기대하시며, 이 성공 공식(상폐→리캡→매각)을 마녀공장·하파크리스틴에도 그대로 적용하실 겁니까?</p><div class="qmeta"><span class="tag">질 검증·전망</span><span class="pri mid">중</span><span class="basis">근거: 맘스터치 IRR 20%중반·2.6배 <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202504141809573120106728" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 이투데이, 성장금융 밸류업 3차 GP 선정·펀딩 물꼬, 2026-06. <a href="https://www.etoday.co.kr/news/view/2610373" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 인베스트조선, 우정사업본부 중형리그 우협, 2025-10-21. <a href="https://www.investchosun.com/site/data/html_dir/2025/10/21/2025102180163.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 이투데이, 국민성장펀드 M&amp;A 리그 KL 탈락, 2026. <a href="https://www.etoday.co.kr/news/view/2588669" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 이투데이, 맘스터치 매각 씨티 주관·몸값, 2026-05. <a href="https://www.etoday.co.kr/news/view/2586077" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 더벨, 맘스터치 IRR 20%중반·2.6배, 2025-04-14. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202504141809573120106728" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 녹색경제신문, 맘스터치 부채비율 급등 비판. <a href="https://www.greened.kr/news/articleView.html?idxno=338021" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 헤럴드경제, 하파크리스틴 65% 1,400억 인수 SPA, 2026-07. <a href="https://biz.heraldcorp.com/article/10804841" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 더벨, 하파크리스틴 미스토홀딩스 전략적 LP. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202606120704168500108677" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 더벨 PE 애뉴얼, 첫 단독 블라인드 3,500억+ 목표. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202601191511165280101520" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 블로터, 보령바이오파마 인수 추진(성사 미확인). <a href="https://www.bloter.net/news/articleView.html?idxno=607722" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[25]</span> 비즈니스포스트, 마녀공장 인수·오너형 경영. <a href="https://www.businesspost.co.kr/BP?command=article_view&num=405232" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[25])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-13</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
