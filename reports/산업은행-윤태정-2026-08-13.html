@@ -1,0 +1,268 @@
+<meta charset="utf-8" />
+<title>산업은행 · 윤태정 부행장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #12667a; --accent-soft: #e2f0f3;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4fb0c4; --accent-soft: #0e2a33;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4fb0c4; --accent-soft: #0e2a33;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #12667a; --accent-soft: #e2f0f3;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-13</div>
+    <h1 class="title">산업은행 · 윤태정 부행장</h1>
+    <p class="subtitle">혁신성장금융부문장 — 산은의 벤처·모험자본(넥스트라운드·간접투자·자펀드 GP 선정) 총괄. 국민성장펀드부문(직접투자)과의 역할 조율이 선임 미션</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관(정책금융·간접투자)</span>
+      <span class="meta-chip">혁신성장금융부문장(2026-03)</span>
+      <span class="meta-chip">회장 박상진 체제</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>기관·인물 개요</h2>
+      <dl class="kv">
+        <dt>인물</dt><dd><b>윤태정 부행장 · 혁신성장금융부문장</b>(2026-03-23 인사). 산은의 <b>벤처·모험자본 공급 총괄</b>('대체투자 총괄') <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>기관</dt><dd>한국산업은행 — 산업은행법 근거 정책금융기관. 회장 <b>박상진</b>(2025-09-15 취임) <sup class="ref"><a href="#src-18">[18]</a></sup></dd>
+        <dt>부문 소관</dt><dd>간접투자금융실·정책펀드금융실·<b>넥스트라운드실</b>·벤처금융본부 — 펀드 출자·GP 선정·벤처 IR <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>조직 위치</dt><dd>박상진 회장이 신설한 <b>'국가산업성장지원그룹'</b> 내 3부문 중 하나. ①국민성장펀드부문(직접투자) ②<b>혁신성장금융부문(윤태정·간접투자)</b> ③자본시장부문 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 역할 구분(중요):</span> 화제의 <b>직접투자(리벨리온·퓨리오사·CGV 4D플렉스)는 '국민성장펀드부문' 소관</b>이고, 윤 부행장의 혁신성장금융부문은 <b>간접투자(자펀드 GP)·넥스트라운드</b>가 축입니다. 두 부문은 같은 그룹 안에서 인접·협업. 원문 접근 차단(egress)으로 검색 요약 교차검증 — 인용 전 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>담당 부문 · 최근 동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025. 11</div><div class="tl-body">산은, 국민성장펀드사무국·혁신성장금융부문 등 투자조직을 <b>'국가산업성장지원그룹'으로 통합</b> <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02. 26</div><div class="tl-body"><b>KDB 넥스트라운드 10주년</b> 'Opening Day' — 첨단전략산업·지역·오픈이노베이션·글로벌 4축, '새로운 10년' <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02. 26</div><div class="tl-body"><b>재정모펀드 위탁운용사 3곳 선정</b>(성장금융·신한·우리) — 산은 심사 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 03. 23</div><div class="tl-body"><b>윤태정 혁신성장금융부문장 선임</b>(박상진 회장 인사) <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 05~07</div><div class="tl-body"><b>국민성장펀드 자펀드 GP 18곳</b> 확정(1차 11곳 3.9조·2차 7곳 1.6조) <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 29</div><div class="tl-body"><b>남부권 성장지원펀드 3,450억 GP 선정</b>(산은 1,000억 마중물) <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 31</div><div class="tl-body">스톤브릿지 AI글로벌 병행펀드 3,250억 결성 — 산은 'AI코리아펀드' 600억 마중물이 출발점 <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 윤태정 부행장</h2>
+      <dl class="kv">
+        <dt>신상</dt><dd><b>1971년생</b>. 건국대 무역학과 → 영국 <b>레딩대 리스크관리 석사</b> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>경력</dt><dd>산은 인사부(2016) → <b>간접투자금융실 팀장·간접투자단장(벤처펀드 조성·GP 선정 총괄)</b>(2019~) → 종로지점장(2022) → <b>뉴욕지점장</b>(2023) → 혁신성장금융부문장(2026.3) <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>선임 논리</dt><dd>"정책금융의 공공성 + 시장의 효율성 이해" → <b>국민성장펀드와의 업무 분장 조율·투자 집행 속도 제고</b> 기대 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 미확인:</span> 정확한 입행 연도·개인 발언(2025~26 직접 인용문)은 확보되지 않았습니다. 신상(1971·건국대·레딩대)은 언론 프로필 기반 — 대면 확인 권장. 동명이인(방송인 등)과 무관.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드 · 정책 출자 구조</h2>
+      <ul class="tight">
+        <li><b>산은 = 국민성장펀드 운용 핵심</b>. 5년 150조(첨단전략산업기금 75조+민간 75조), 30조 조기 승인 목표(박상진) <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+        <li><b>혁신성장펀드 → 국민성장펀드로 통합·승계</b>. 산은 기존 벤처투자 트랙을 2026년부터 국민성장펀드에서 승계 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>간접투자(윤 부행장 소관)</b>: 재정모펀드 3사(성장금융·신한·우리) → 자펀드 GP 18곳 → 피투자기업 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>직접투자(국민성장펀드부문·인접)</b>: 총 2조 규모 — 1호 리벨리온·2호 업스테이지·<b>3호 퓨리오사AI(박상진 회장 본사 실사)</b>, CJ 4D플렉스(콘텐츠 첫 투자) 검토 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출자 포트폴리오 · 프로그램</h2>
+      <table class="rt">
+        <tr><th>프로그램</th><th>내용</th></tr>
+        <tr><td><b>KDB 넥스트라운드</b></td><td>2016 출범·2026 <b>10주년</b>. 누적 약 <b>908회·3,467개사 IR·1,071개사 11.6조 유치</b>(투자유치율 ~30%) <span class="flag">(수치 시점별 상충, 재확인)</span> <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td><b>자펀드 GP 18곳</b></td><td>1차 11곳(3.9조, 7.4:1) — 대형 스카이레이크·에이티넘 / 2차 7곳(1.6조, 9.3:1) — 중형 도미누스·우리벤처·한투파 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td><b>남부권 성장지원펀드</b></td><td>3,450억 — PE 더함·릴슨(각 1,200억), VC 리인베스트·원익·이앤(각 350억). 부·울·경+호남 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>스톤브릿지 AI글로벌</td><td>병행 3,250억 — 산은 'AI코리아펀드' 600억 마중물 출발 <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr>
+      </table>
+      <p class="src"><span class="flag">※ 비판 지형:</span> ①산은 '역할 과대·독주'(성장금융과 정관 갈등) ②'속도전이 심사를 앞선다' ③AI·반도체 고밸류 겹치기·버블 우려 ④정책자금 쏠림으로 <b>민간 VC 펀드 결성 문턱↑ 역설</b> <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 정부·언론 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 넥스트라운드 누적수치·자펀드 명단·직접투자 금액은 게재 전 원문 재확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 딜사이트 [LP Scope], 산업은행 대체투자 총괄…혁신성장부문장 윤태정. <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국금융신문 [프로필], 윤태정 혁신성장부문장·넥스트라운드, 2026-03-24. <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 한국금융신문, 박상진號 산업은행 조직개편(국가산업성장지원그룹 3부문), 2026-02-07. <a href="https://www.fntimes.com/html/view.php?ud=202602072115074455dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴데일리, 산업은행 임원인사 — 윤태정 혁신성장부문장 外, 2026-03-23. <a href="https://biz.newdaily.co.kr/site/data/html/2026/03/23/2026032300384.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 정책브리핑, 산은 국민성장펀드 사무국·투자조직 통합, 2025-11. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954838" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 서울경제 [단독], 혁신성장펀드→국민성장펀드 통합·승계. <a href="https://www.sedaily.com/NewsView/2GZ7A597TM" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 이데일리 마켓인, 재정모펀드 운용사 3곳(성장금융·신한·우리) 선정. <a href="https://marketin.edaily.co.kr/News/ReadE?newsId=05241446645354456" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 머니투데이, 국민성장펀드 자펀드 1차 11곳(7.4:1), 2026-05-27. <a href="https://www.mt.co.kr/finance/2026/05/27/2026052717301140479" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 이투데이, 자펀드 2차 7곳 1.6조·18곳 마무리(도미누스·우리벤처·한투파). <a href="https://www.etoday.co.kr/news/view/2603186" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 비즈월드, KDB 넥스트라운드 10주년 Opening Day(4축), 2026-02-26. <a href="http://www.bizwnews.com/news/articleView.html?idxno=126878" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 이코노미사이언스, 넥스트라운드 누적 908회·11.6조 유치. <a href="https://www.e-science.co.kr/news/articleView.html?idxno=127193" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 블로터, 넥스트라운드 리벨리온 '1억 시드→글로벌' 사례. <a href="https://www.bloter.net/news/articleView.html?idxno=666763" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 아주경제, 남부권 성장지원펀드 3,450억 GP 선정, 2026-07-29. <a href="https://www.ajunews.com/view/20260729152342464" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 디일렉, 퓨리오사AI 직투 3호·박상진 회장 본사 실사. <a href="https://www.thelec.kr/news/articleView.html?idxno=57326" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 인베스트조선, 리벨리온 1호·업스테이지 2호, 2026-06-10. <a href="https://www.investchosun.com/site/data/html_dir/2026/06/10/2026061080180.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 한국경제, CJ 4D플렉스 국민성장펀드 투자 검토(콘텐츠 첫 사례), 2026-07-29. <a href="https://www.hankyung.com/article/202607293525i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> CBC뉴스, 스톤브릿지 AI글로벌 3,250억·산은 600억 마중물. <a href="https://www.cbci.co.kr/news/articleView.html?idxno=593262" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 한국금융신문, 박상진 회장 30조 조기달성·7대 메가프로젝트, 2026-02-25. <a href="https://www.fntimes.com/html/view.php?ud=2026022517231050955e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 뉴스웨이, 박상진 회장 '부산 이전 사실상 반대', 2025-09-16. <a href="https://www.newsway.co.kr/news/view?ud=2025091611133575908" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 더팩트, 산은 '역할 과대·성장 투자자 급전환·속도전' 지적. <a href="https://news.tf.co.kr/read/economy/2332781.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 인베스트조선, 직접투자 '속도전>심사', 2026-08-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 인베스트조선, AI·반도체 고밸류 겹치기·버블 우려, 2026-07-07. <a href="https://www.investchosun.com/site/data/html_dir/2026/07/07/2026070780155.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 이투데이, 이해상충·산은 독주·성장금융 정관 갈등. <a href="https://www.etoday.co.kr/news/view/2597545" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 인베스트조선, 정책자금 쏠림·민간 VC 결성 문턱↑ 역설, 2026-04-30. <a href="https://www.investchosun.com/site/data/html_dir/2026/04/30/2026043080133.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 인베스트조선, HMM 산은 단독지분 매각안 검토, 2026-05-15. <a href="https://www.investchosun.com/site/data/html_dir/2026/05/15/2026051580187.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>윤 부행장 개인 발언·입행연도, 넥스트라운드 누적수치, 자펀드 전체 명단, 직접투자 개별 금액은 '미확인/확인 필요'</b>로 표시. 발행 2026-08-13 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">윤 부행장의 <b>담당 부문(간접투자·넥스트라운드·GP 선정)</b>에 초점을 맞춘 심층 질문입니다. 직접투자(퓨리오사 등)는 <b>인접 부문 소관</b>이라 '조율' 각도로 물었습니다. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 기관 현안 · 출자 이슈</h2></div>
+    <div class="q cat1 must"><p class="qtext">정책자금이 AI·반도체에 쏠려 우량기업 몸값만 급등하는 한편, 역설적으로 <b>민간 VC의 펀드 결성 문턱은 더 높아졌다</b>는 현장 불만이 큽니다. <b>간접투자·GP 선정을 총괄</b>하는 부문장으로서, 국민성장펀드가 민간 시장을 구축(crowding-out)하지 않도록 어떤 장치를 두십니까?</p><div class="qmeta"><span class="tag">반론·확인</span><span class="pri high">상</span><span class="basis">근거: 정책자금 쏠림·민간 결성 문턱↑ <a href="https://www.investchosun.com/site/data/html_dir/2026/04/30/2026043080133.html" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">산은이 '구조조정 전담'에서 국민성장펀드를 운용하는 '성장 투자자'로 급전환하며 <b>'견제 없는 산은 독주'</b>라는 지적, 성장금융과의 정관 갈등이 불거졌습니다. 운용기관이 산은이라는 점 자체가 이해상충·권한 집중이라는 비판에 어떻게 답하시겠습니까?</p><div class="qmeta"><span class="tag">반론·민감</span><span class="pri high">상</span><span class="basis">근거: 산은 독주·이해상충 지적 <a href="https://www.etoday.co.kr/news/view/2597545" target="_blank" rel="noopener">[23]</a> <a href="https://news.tf.co.kr/read/economy/2332781.htm" target="_blank" rel="noopener">[20]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(윤태정) · 운용 관점</h2></div>
+    <div class="q cat2 must"><p class="qtext">선임 배경으로 <b>'국민성장펀드부문과의 업무 분장 조율'</b>이 거론됐습니다. 부행장님의 혁신성장금융부문(간접투자·넥스트라운드)과 국민성장펀드부문(직접투자)의 <b>역할 경계는 실제로 어디서 갈립니까?</b> 같은 기업을 두고 직접·간접이 겹치거나 충돌할 소지는 없습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·구조</span><span class="pri high">상</span><span class="basis">근거: 선임 논리=국민성장펀드 업무 분장 조율 <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">간접투자단장 시절 벤처펀드 조성·GP 선정을 총괄하셨고 뉴욕지점장을 거쳐 대체투자 총괄로 오셨습니다. <b>GP를 고를 때 가장 중시하는 것</b>과, 정책 LP로서 '공공성'과 '수익률' 사이 균형을 어디에 두십니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: 간접투자단장·GP 선정 총괄 경력 <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책 출자 방향</h2></div>
+    <div class="q cat3 must"><p class="qtext">박상진 회장이 <b>국민성장펀드 승인 30조 조기달성</b>을 내걸었고, 시장에선 "속도전이 심사를 앞선다"는 우려가 큽니다. <b>간접투자·자펀드에서 속도와 심사 건전성을 어떻게 양립</b>시키며, 사후검증 때 담당자가 이미 바뀌어 있을 것이라는 지적에는 어떻게 대비하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순·질 검증</span><span class="pri high">상</span><span class="basis">근거: 30조 조기달성·속도전 비판 <a href="https://www.fntimes.com/html/view.php?ud=2026022517231050955e6e69892f_18" target="_blank" rel="noopener">[18]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">[21]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">기존 <b>혁신성장펀드가 국민성장펀드로 통합·승계</b>됐습니다. 산은이 쌓아온 벤처투자 트랙레코드와 새 국민성장펀드 체계는 무엇이 이어지고 무엇이 달라집니까? LP로서 산은만의 차별점은 무엇입니까?</p><div class="qmeta"><span class="tag">개방</span><span class="pri mid">중</span><span class="basis">근거: 혁신성장펀드→국민성장펀드 승계 <a href="https://www.sedaily.com/NewsView/2GZ7A597TM" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 자펀드 · GP 선정 · 넥스트라운드</h2></div>
+    <div class="q cat4 must"><p class="qtext">올해 자펀드 GP 18곳을 선정했는데 대형리그는 스카이레이크·에이티넘, 2차 스케일업 최대어는 스틱 등 <b>대형 하우스에 쏠립니다</b>. 대형 편중을 어떻게 견제하고, 초기·중소·지역 하우스 몫은 어떻게 배분하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">벤치마크·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 자펀드 18곳·대형 편중 <a href="https://www.etoday.co.kr/news/view/2603186" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">넥스트라운드가 올해 <b>10주년</b>입니다. 리벨리온을 '1억 시드→글로벌'로 키운 성과를 내세우시는데, '새로운 10년'의 차별화(첨단전략산업·지역·오픈이노베이션·글로벌)는 <b>구체적으로 무엇이고 성과지표(KPI)</b>는 무엇입니까?</p><div class="qmeta"><span class="tag">개방·질 검증</span><span class="pri mid">중</span><span class="basis">근거: 넥스트라운드 10주년·4축 <a href="http://www.bizwnews.com/news/articleView.html?idxno=126878" target="_blank" rel="noopener">[10]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=666763" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">남부권 성장지원펀드 3,450억을 결성해 PE·VC에 배분했습니다. 지역 펀드가 <b>실제 지역 기업 투자로 이어지게 하는 장치</b>와, 결국 수도권·유명 딜로 쏠리는 것을 막을 방안은 무엇입니까?</p><div class="qmeta"><span class="tag">확인·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 남부권 펀드 3,450억 <a href="https://www.ajunews.com/view/20260729152342464" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 딜사이트 [LP Scope], 윤태정 대체투자 총괄. <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 한국금융신문 [프로필], 윤태정·넥스트라운드, 2026-03-24. <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 서울경제, 혁신성장펀드→국민성장펀드 승계. <a href="https://www.sedaily.com/NewsView/2GZ7A597TM" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 이투데이, 자펀드 2차 7곳·18곳 마무리. <a href="https://www.etoday.co.kr/news/view/2603186" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 비즈월드, 넥스트라운드 10주년 4축. <a href="http://www.bizwnews.com/news/articleView.html?idxno=126878" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 블로터, 넥스트라운드 리벨리온 사례. <a href="https://www.bloter.net/news/articleView.html?idxno=666763" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 아주경제, 남부권 성장지원펀드 3,450억, 2026-07-29. <a href="https://www.ajunews.com/view/20260729152342464" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 한국금융신문, 박상진 30조 조기달성, 2026-02-25. <a href="https://www.fntimes.com/html/view.php?ud=2026022517231050955e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 더팩트, 산은 역할 과대·속도전. <a href="https://news.tf.co.kr/read/economy/2332781.htm" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[21]</span> 인베스트조선, 속도전>심사, 2026-08-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/06/2026080680083.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[23]</span> 이투데이, 이해상충·산은 독주·성장금융 갈등. <a href="https://www.etoday.co.kr/news/view/2597545" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[24]</span> 인베스트조선, 민간 VC 결성 문턱↑ 역설, 2026-04-30. <a href="https://www.investchosun.com/site/data/html_dir/2026/04/30/2026043080133.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[25])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-13</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
