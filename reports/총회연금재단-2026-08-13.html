@@ -1,0 +1,271 @@
+<meta charset="utf-8" />
+<title>총회연금재단 · 조병준 실장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1f6feb; --accent-soft: #e8f0fe;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #6f9dff; --accent-soft: #16233f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #6f9dff; --accent-soft: #16233f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1f6feb; --accent-soft: #e8f0fe;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.warn { border-color: var(--c3); background: color-mix(in srgb, var(--c3) 8%, var(--card)); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .new { display:inline-block; font-size: 10px; font-weight: 800; letter-spacing:.03em; color:#fff; background: var(--c1); padding: 1px 6px; border-radius: 5px; vertical-align: middle; margin-left: 4px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 26px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-13 (갱신)</div>
+    <h1 class="title">총회연금재단 · 조병준 실장</h1>
+    <p class="subtitle">예장통합 목회자 연금(기관 LP) — 하반기 대체투자 GP 최종 선정(BNW·IMM인베스트·LB인베스트) 완료. 사장(총괄본부장) 공백·과거 손실 논란과 함께</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관</span>
+      <span class="meta-chip">교단 목회자 연금(비상장)</span>
+      <span class="meta-chip">적립금 ~8,898억 (2026.6말)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>기관 개요</h2>
+      <dl class="kv">
+        <dt>성격</dt><dd>대한예수교장로회 통합(예장통합) 총회 산하 재단법인. 목회자(가입자)의 퇴직·노후 연금(은급) 운용 — 순수 민간 성격의 기관 LP <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>가입 구조</dt><dd>노회 소속 목사·당회 소속 전도사 의무가입 <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>가입자</dt><dd>17,621명 · 연금 수급자 1,377명 (2023.8 제108회 총회 보고) <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>운용 규모</dt><dd>약 <b>8,898억원</b> (2026.6 가결산) — 2023.8 5,989억에서 급증, "1조원 시대" 목표 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>누적</dt><dd>누적 납입금 8,272억 · 누적 연금지급 3,741억 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>지배구조</dt><dd>이사회·기금운용위원회 중심. 집행 총책 <b>'총괄본부장'(구 '사장') 공백 지속</b> — 2026.2 채용공고 후 미충원 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></dd>
+        <dt>홈페이지</dt><dd>pension.or.kr <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 기구 주의:</span> 예장 합동측 '총회은급재단'(eunkub.org)·예장 고신 '총회은급재단'(kspension.or.kr)과는 별개 조직(본 건은 <b>예장통합·pension.or.kr</b>) <sup class="ref"><a href="#src-15">[15]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 출자·운용 동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2015</div><div class="tl-body">자베즈파트너스와 펀드 조성, 자동차부품사 <b>이래CS에 300억원 출자</b>(현대인베스트먼트서 300억 차입, '3년 내 IPO' 조건) — 이후 상장 실패 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 01</div><div class="tl-body">이래CS 창원지법 <b>회생계획안 인가</b> — 300억 회수는 여전히 불투명 <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 05</div><div class="tl-body">출자사업 2년 만에 복귀 — <b>위탁운용사 7곳 선정</b>(PEF: IMM PE·도미누스·IMM인베스트먼트 등) <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 03</div><div class="tl-body">재단, 자베즈파트너스를 <b>위탁운용사에서 해임</b>. 자베즈 핵심 인사 특경법(배임) 기소 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 09</div><div class="tl-body">예장통합 <b>제110회 정기총회</b>에서 연금재단 문제(누적손실·지속가능성) 논의 <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body">PE·VC·인프라·프라이빗뎁(PD) 전 부문 <b>최대 1,000억 대체투자 위탁운용사 공모 착수</b> <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 08. 11</div><div class="tl-body"><b>하반기 대체투자 GP 3곳 최종 선정</b> <span class="new">NEW</span> — PEF <b>BNW인베스트먼트</b> / VC <b>IMM인베스트먼트·LB인베스트먼트</b>. 펀드당 100~200억, 총 최대 1,000억 약정 예정 <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 조병준 기금운용팀 실장</h2>
+      <dl class="kv">
+        <dt>직책</dt><dd>기금운용팀 실장(기금운용 실무 책임) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>배경</dt><dd>민간 자산운용업계 출신 <b>외부 전문가</b> — 주식운용 경력, 자산운용사 대표·이사(임원) 역임으로 평가 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>위치</dt><dd><b>총괄본부장(사장) 공백이 길어지며</b> 자산배분·GP 선정 등 운용 실무의 중심 역할 확대 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※</span> 직책·배경은 언론(뉴스워커) 보도 기준이며, 상세 경력(전 소속 운용사명·합류 시점·학력)은 공개 소스로 확정되지 않아 <b>대면 확인</b>을 권합니다. <b>사장 공백 국면에서 운용 의사결정·책임 라인을 누가 지는지</b>가 좋은 취재 앵글입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책·출자 연관성</h2>
+      <ul class="tight">
+        <li><b>정책펀드와는 무관</b> — 모태펀드·국민성장펀드·성장금융 등 정부 정책 출자 연관 근거 없음. 교단 자체 재원으로 GP를 선정하는 <b>순수 민간 기관 LP(앵커투자자)</b> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li>2024년 PEF 3사(IMM PE·도미누스·IMM인베스트먼트) 포함 7곳 선정으로 출자 재개 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li>2026년 PE·<b>VC</b>·인프라·PD 전 부문으로 확대(최대 1,000억) → 8/11 GP 최종 선정 완료 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>자산배분 · 출자 포트폴리오 <span style="font-size:12px;color:var(--muted);">(비상장)</span></h2>
+      <dl class="kv">
+        <dt>자산배분</dt><dd>주식 55.3% · 대체투자 22.6% · 채권 1.4% (2026.5말 보도, 잔여 ~20% 현금·기타 추정) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>기대수익</dt><dd>약정 시 연 8% 내외 목표 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+      </dl>
+      <h3>2026 하반기 선정 GP <span class="new">NEW</span> (2026.8.11)</h3>
+      <ul class="tight">
+        <li><b>PEF: BNW인베스트먼트</b> — 경쟁 상대 <b>KL&amp;파트너스</b>를 제침. BNW는 목표 최대 8,000억대 4호 블라인드펀드 조성 중 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>VC: IMM인베스트먼트 · LB인베스트먼트</b> — 두 곳 모두 <b>세컨더리펀드</b> 제안(둘 다 산은 회수시장 지원 세컨더리 GP로도 선정). VC 부문 경쟁: IMM인베스트·LB·KB인베스트·얼머스 등 <b>6곳</b> <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li>규모: 펀드당 100~200억, 총 최대 1,000억 약정 예정 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+      </ul>
+      <h3>2024년 위탁 GP (7곳)</h3>
+      <ul class="tight">
+        <li>PEF 3사: IMM프라이빗에쿼티 · 도미누스인베스트먼트 · IMM인베스트먼트 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li>해외주식 3사: KCGI자산운용 · 피데스자산운용 · 체슬리투자자문 / 혼합형: 타이거자산운용 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+      </ul>
+      <h3>과거 손실 이력(핵심 리스크)</h3>
+      <p>2015~2020년 약 <b>772억원 투자손실</b>(총대 일부는 "1,000억 초과" 주장). 특히 자베즈·이래CS 300억 건의 회수 불투명이 최대 현안 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup>. <span class="flag">실현수익률(연도별)은 미확인 — '기대수익률 8%'와 혼동 금지</span>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ 공식 홈페이지(pension.or.kr)와 다수 매체가 직접 접근 차단(403)돼 검색 요약을 교차검증했습니다. 수치·인용은 게재 전 원문 재확인 권장.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 파이낸셜뉴스, "총회연금재단, 대체투자 1000억 출자"(자산배분·8,898억·기대수익 8%), 2026-07-08. <a href="https://www.fnnews.com/news/202607082010286876" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 파이낸셜뉴스, "총회연금재단 출자 2년 만에 복귀"(위탁운용사 7곳), 2024-05-29. <a href="https://www.fnnews.com/news/202405290742577297" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 뉴스워커, "[IB탈탈털기] 총회연금재단, 사장 공백"(거버넌스·조병준 실장), 2026. <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴스앤조이, "연금재단 자산 5989억 보고"(가입자·수급자), 2023. <a href="https://www.newsnjoy.or.kr/news/articleView.html?idxno=305695" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 뉴스앤조이, "1조원 시대"(누적 납입·지급·쇄신). <a href="https://www.newsnjoy.or.kr/news/articleView.html?idxno=307798" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 가스펠투데이, "예장통합 제110회 총회 5대 쟁점"(772억 손실), 2025-09. <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=13148" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 가스펠투데이, "총회연금재단 300억 회수 불투명". <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12137" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 가스펠투데이, "의혹 핵심 인사, 배임혐의 기소"(2025-03-31). <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12724" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 가스펠투데이, "충격적 배임 의혹"(전 본부장 100억 무결의 집행). <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12580" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 가스펠투데이, "자베즈 GP 해임 후 재위탁 논란". <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12286" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, "이래CS 회생계획 인가"(앵커 LP·회수). <a href="https://dealsite.co.kr/articles/116799" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 인베스트조선, "총회연금재단 위탁운용사 선정", 2024-05-30. <a href="https://www.investchosun.com/site/data/html_dir/2024/05/30/2024053080103.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 총회연금재단, 2024 위탁운용사 선정결과 공지. <a href="https://www.pension.or.kr/modu/s_board/read.asp?board_seq=1&seq=7857" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 한국기독공보(pckworld), "연금재단 '사장' 직책 '총괄본부장'으로 변경". <a href="https://pckworld.com/article.php?aid=10571712665" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 예장총회연금재단 공식 홈페이지. <a href="https://www.pension.or.kr" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 예장통합 총회 규정집 — 총회연금재단 정관·연금규정. <a href="http://new.pck.or.kr/ruleContents/rule_view.php?cate1=3&cate2=93" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 뉴스톱/더비스타, "총회연금재단 하반기 대체투자 GP 선정"(BNW·IMM인베스트·LB인베스트·세컨더리), 2026-08. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=46953" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>수치(운용규모·수익률·손실액)·인물 상세 경력·GP 최종약정액은 취재 시 원문·본인 확인</b> 권장. 발행 2026-08-13(08-03판 갱신) 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">LP(기관 출자자) 취재 세트. <span class="tag req">필수</span>는 이번 <b>하반기 GP 선정</b> 관련 핵심 질문입니다. 각 질문에 근거[번호]·우선순위를 붙였습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 기관 현안 · 출자 이슈</h2></div>
+    <div class="q cat1 must"><p class="qtext">이달 11일 하반기 대체투자 GP를 <b>PEF는 BNW인베스트먼트, VC는 IMM인베스트먼트·LB인베스트먼트</b>로 최종 선정하셨습니다. PEF에서 <b>KL&amp;파트너스를 제치고 BNW를 고른 결정적 기준</b>은 무엇이었고, VC 두 곳이 모두 <b>세컨더리펀드</b>를 제안했다는데 왜 지금 신규투자보다 <b>세컨더리(회수시장)에 무게</b>를 두셨습니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: 8/11 GP 선정·세컨더리 <a href="https://www.newstopkorea.com/news/articleView.html?idxno=46953" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2015년 자베즈파트너스를 통한 이래CS 300억 투자는 회생 국면에서도 회수가 불투명합니다. 현재 회수·상각 규모는 어디까지 확정됐고, 잔여 손실은 어떻게 처리하실 계획입니까?</p><div class="qmeta"><span class="tag">확인·민감</span><span class="pri high">상</span><span class="basis">근거: 자베즈·이래CS 300억 <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12137" target="_blank" rel="noopener">[7]</a> <a href="https://dealsite.co.kr/articles/116799" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">집행 총책인 '총괄본부장'(구 사장) 공백이 2026년 채용공고 이후에도 이어지고 있습니다. <b>사장 없이 1,000억 규모 신규 출자를 결정</b>하는 것인데, 그 사이 기금운용의 의사결정·책임 구조는 어떻게 유지됩니까? 공백 해소 일정은?</p><div class="qmeta"><span class="tag">빈틈·확인</span><span class="pri high">상</span><span class="basis">근거: 총괄본부장 공백 <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421766" target="_blank" rel="noopener">[3]</a> <a href="https://pckworld.com/article.php?aid=10571712665" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2015~2020년 약 772억원 손실이 총회에서 반복 지적됐습니다. "위험한 투자가 없는 건강한 재단"이 됐다는 재단 설명과, 총대들의 불신 사이 간극은 무엇으로 메우십니까?</p><div class="qmeta"><span class="tag">반론</span><span class="pri mid">중</span><span class="basis">근거: 772억 손실·쇄신 주장 <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=13148" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(조병준) 개인 · 운용 관점</h2></div>
+    <div class="q cat2"><p class="qtext">민간 자산운용업계(운용사 대표·이사)에서 오신 외부 전문가로 알려져 있습니다. 교단 목회자 연금이라는 특수한 자금을 맡으며 세운 목표와, 민간 운용과 가장 다른 점은 무엇이었나요?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: 외부 전문가 배경 <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421766" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">자산배분이 주식 55%로 상당히 높습니다. 목회자 연금이라는 자금 성격을 감안할 때 이 비중의 근거와, 변동성·하방 리스크 관리는 어떻게 설계하셨습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 주식 55.3% 배분 <a href="https://www.fnnews.com/news/202607082010286876" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">베이비부머 목회자의 대량 은퇴로 연금 지급 부담이 커집니다. '1조원 시대' 목표와 지급 지속가능성을 운용 측면에서 어떻게 양립시키려 하십니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 수급 부담·1조 목표 <a href="https://www.newsnjoy.or.kr/news/articleView.html?idxno=307798" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 출자 방향 · 대체투자 확대</h2></div>
+    <div class="q cat3"><p class="qtext">이번에 PE·VC·인프라·PD 중 최종적으로 PEF 1곳·VC 2곳을 뽑았습니다. <b>인프라·PD 부문은 왜 선정이 없었거나 미뤄졌습니까?</b> 부문별 배분과, 특히 VC(벤처)를 새로 넣은 판단 배경은?</p><div class="qmeta"><span class="tag">확인</span><span class="pri high">상</span><span class="basis">근거: 전 부문 공모 vs 3곳 선정 <a href="https://www.newstopkorea.com/news/articleView.html?idxno=46953" target="_blank" rel="noopener">[17]</a> <a href="https://www.fnnews.com/news/202607082010286876" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">재단은 정책자금(모태·국민성장펀드) 없이 순수 자체 재원으로 GP를 고르는 민간 앵커 LP입니다. 정책 LP와 달리 재단만의 출자 판단 기준·강점은 무엇이라고 보십니까?</p><div class="qmeta"><span class="tag">개방</span><span class="pri mid">중</span><span class="basis">근거: 순수 민간 LP <a href="https://dealsite.co.kr/articles/116799" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">교회 자금이라는 특성상 임팩트·ESG나 투자 배제(주류·도박 등) 기준을 두십니까? 대체투자를 늘리며 이런 가치 기준을 GP 선정에 어떻게 반영하십니까?</p><div class="qmeta"><span class="tag">개방</span><span class="pri mid">중</span><span class="basis">근거: 교단 기관 LP 특성 <a href="http://new.pck.or.kr/ruleContents/rule_view.php?cate1=3&cate2=93" target="_blank" rel="noopener">[16]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ GP 선정 기준 · 출자 프로그램</h2></div>
+    <div class="q cat4"><p class="qtext">자베즈 사태는 GP 리스크·거버넌스 심사의 실패 사례로 볼 수 있습니다. 이후 GP 실사·모니터링·이해상충 점검에서 <b>구체적으로 무엇을 바꾸셨고</b>, 이번 BNW·IMM인베스트·LB 선정에 그 교훈이 어떻게 반영됐습니까?</p><div class="qmeta"><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: 자베즈 교훈 <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12724" target="_blank" rel="noopener">[8]</a> <a href="https://www.newstopkorea.com/news/articleView.html?idxno=46953" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">'1조원 시대'를 목표로 하시는데, 목표 자산배분(주식·대체·채권)의 중장기 그림과, 대체투자 비중(현재 22.6%)의 상한은 어디로 보십니까?</p><div class="qmeta"><span class="tag">전략</span><span class="pri mid">중</span><span class="basis">근거: 자산배분·1조 목표 <a href="https://www.fnnews.com/news/202607082010286876" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">향후 출자사업을 정례화하실 계획인지, 국내 GP들이 재단 자금을 받으려면 무엇을 준비해야 하는지 — 운용사들에게 전하고 싶은 메시지가 있다면요?</p><div class="qmeta"><span class="tag">개방</span><span class="pri low">하</span><span class="basis">근거: 출자 재개·확대 기조 <a href="https://www.fnnews.com/news/202405290742577297" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 파이낸셜뉴스, 대체투자 1000억·자산배분·8,898억, 2026-07-08. <a href="https://www.fnnews.com/news/202607082010286876" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 뉴스워커, 거버넌스·조병준 기금운용팀 실장. <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421766" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 뉴스앤조이, 1조원 시대·쇄신. <a href="https://www.newsnjoy.or.kr/news/articleView.html?idxno=307798" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 가스펠투데이, 110회 총회 5대 쟁점·772억 손실, 2025-09. <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=13148" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 가스펠투데이, 300억 회수 불투명. <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12137" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 가스펠투데이, 배임 기소(2025-03-31). <a href="https://www.gospeltoday.co.kr/news/articleView.html?idxno=12724" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 딜사이트, 이래CS 회생계획 인가. <a href="https://dealsite.co.kr/articles/116799" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 예장통합 총회 규정집 — 정관·연금규정. <a href="http://new.pck.or.kr/ruleContents/rule_view.php?cate1=3&cate2=93" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 뉴스톱/더비스타, 하반기 대체투자 GP 선정(BNW·IMM인베스트·LB·세컨더리), 2026-08. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=46953" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[17])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-13</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
