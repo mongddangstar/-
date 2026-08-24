@@ -1,0 +1,273 @@
+<meta charset="utf-8" />
+<title>에이스톤벤처스 · 안신영 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #a83250; --accent-soft: #f8e3e8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #e07d92; --accent-soft: #38121c;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #e07d92; --accent-soft: #38121c;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #a83250; --accent-soft: #f8e3e8;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-20</div>
+    <h1 class="title">에이스톤벤처스 · 안신영 대표</h1>
+    <p class="subtitle">HB인베스트먼트 대표를 놓고 독립한 여성 CEO — '실패 재도전 창업가' 철학의 초기 특화 하우스. AUM 1,000억 돌파, 국민성장펀드 도전리그 선정으로 체급 확대</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·VC)</span>
+      <span class="meta-chip">2021 설립 · LLC 창투사</span>
+      <span class="meta-chip">AUM ~1,097억 → 2,000억대 목표</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>설립</dt><dd><b>2021년 1월</b>, 안신영 대표가 <b>HB인베스트먼트 대표에서 독립</b>해 창업. LLC형 창투사 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>구성</dt><dd><b>4인 파트너</b> — 안신영 대표·안병규 부사장·권영혜 전무·김진열 전무. "가장 큰 무기는 <b>구성원(파트너)의 검증된 경험</b>" <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>색깔</dt><dd>초기·청년창업 집중, <b>실패 경험 있는 재도전 창업가 선호</b>. 로봇·소부장·바이오·미래환경(ESS)·AI로 확장 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>대표</dt><dd><b>안신영</b> — 20년+ VC 경력, <b>업계 드문 여성 CEO</b> <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 주의:</span> '에이스톤로보틱스' 등 유사명·타 '안신영'과 무관(VC 하우스 <b>에이스톤벤처스</b>·여성 대표 안신영 한정). 수치는 원문 차단(egress)으로 검색 요약 교차검증 — 인용 전 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 마일스톤</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2021. 01</div><div class="tl-body">안신영·안병규 등 창업(설립 당시 AUM ~700억) <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022. 03</div><div class="tl-body"><b>유일로보틱스 코스닥 '따상'</b> — 2호 프로젝트펀드 52억 투자 후 1년 만에 4배+ 평가차익 <sup class="ref"><a href="#src-18">[18]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 11</div><div class="tl-body"><b>청년창업 블라인드펀드 218.5억</b> 결성(모태 출자, 만 39세 이하 주목적) <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 02</div><div class="tl-body"><b>에이스톤 AI 혁신 투자조합 299억</b> 결성 → <b>AUM 1,000억 돌파</b> <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 06. 02</div><div class="tl-body"><b>국민성장펀드 1차 '도전리그' GP 선정</b>(신한운용 재간접, 삼호그린과 2곳) <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07. 20</div><div class="tl-body"><b>초장기기술투자펀드 공청회 연사</b>(산은 IR센터) — 안신영 "업종별 가점 필요" 의견 개진 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 (진행)</div><div class="tl-body"><b>'2026 에이스톤 생태계 투자조합' 1,000억+ 조성 중</b>(도전리그 기반, 9월 클로징 목표·2,000억대 진입 전망) <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 안신영 대표</h2>
+      <dl class="kv">
+        <dt>학력·시작</dt><dd>이화여대 통계학, <b>회계사</b> 잠깐 근무 → 2003 대성창업투자에서 <b>VC 시작</b>(안병규 부사장과 사수-부사수) <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+        <dt>경력</dt><dd>SBI인베스트먼트 상무 → <b>2018 HB인베스트먼트 대표이사</b> → <b>2021 에이스톤 창업</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></dd>
+        <dt>철학(인용)</dt><dd>"젊은 창업가의 첫 사업보다 <b>실패해 보고 방향을 다시 잡아 재도전하는 기업</b>에 투자하는 경우가 더 많다" <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>정책 발언</dt><dd>(2026.7 공청회) "제조업은 성과에 시간이 걸려 <b>13년 만기 펀드면 10년 넘게 부정적 평가</b>를 받을 수 있다 → 업종별 특성 반영·가점 필요" <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드 · 정책 출자 (핵심)</h2>
+      <ul class="tight">
+        <li><b>국민성장펀드 1차 '도전리그' 선정</b> — 도전리그 자격 = <b>산은 출자 이력 없고 AUM 5,000억 미만</b> 신생·소형 GP. <b>35곳 지원·17.5:1(국민성장펀드 최고 경쟁률)</b>에서 <b>에이스톤·삼호그린 2곳</b> 최종 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>구조</b>: 산은이 <b>신한자산운용</b>을 도전·소형 리그 재간접 운용사로 두고 2026.06.02 자펀드 GP 4곳 선정 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>규모(상충)</b>: '도전리그 펀드 750억' vs '정책자금 320억 마중물로 <b>최대 1,000억 자펀드</b>' — 프로그램 설계와 개별 목표가 혼재 <span class="flag">(에이스톤 실제 목표·확정 출자액 확인 필요)</span> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>기존 정책 출자</b>: 블라인드 2개 모두 <b>성장금융·모태펀드</b> 출자 기반(청년창업 218.5억 등) <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>초장기기술투자펀드</b>: 최대 15년·재원 80% 정부 부담. 에이스톤은 <b>공청회 연사</b>로 참여, GP 직접 도전 여부는 <span class="flag">미확인</span> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>AUM · 펀드 · 포트폴리오</h2>
+      <h3>AUM 성장 곡선</h3>
+      <table class="rt">
+        <tr><th>시점</th><th>AUM</th></tr>
+        <tr><td>2021 설립</td><td>~700억 <sup class="ref"><a href="#src-3">[3]</a></sup></td></tr>
+        <tr><td>2023 말</td><td>~580억 <span class="flag">(감소)</span> <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>2024 상반기</td><td>634.7억 <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>2026 현재</td><td><b>~1,097억(1,000억 돌파)</b> <sup class="ref"><a href="#src-7">[7]</a></sup></td></tr>
+        <tr><td>생태계펀드 후(목표)</td><td><b>2,000억대 진입</b> 전망 <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+      </table>
+      <h3>운용 조합 · 회수</h3>
+      <ul class="tight">
+        <li>3년차 기준 <b>프로젝트 5개 + 블라인드 2개</b>. 청년창업 218.5억, AI혁신 299억(2026) <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>유일로보틱스</b>(2호, 52억) → 2022 따상, 1년 4배+ <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+        <li><b>지투파워</b>(3호, CPS 50억) → <b>하우스 첫 엑시트</b>: 지분 1/3(11.5만주) 24.36억 회수 <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li>애드바이오텍(바이오)·태석광학(광학) — 1~3호 초기 포트폴리오 <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 전략:</span> <b>초기·청년창업 집중 + 상장 임박 프로젝트펀드로 회수</b>하는 병행 구조. 국민성장펀드 도전리그를 발판으로 생태계 전반 대형 펀드로 체급 확대 중. 개별 조합 정식명·세부 규모 일부 미확인.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(언론·KVCA·THE VC 등)이 직접 차단(403)돼 검색 요약을 교차검증했습니다. AUM·펀드 규모·도전리그 확정 출자액은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 팍스넷뉴스, 안신영 HB인베스트 前 대표, 에이스톤벤처스 설립. <a href="https://paxnetnews.com/articles/70207" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 딜사이트, HB서 독립한 안신영…6년 만에 AUM 1000억 돌파. <a href="https://dealsite.co.kr/articles/155918" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 딜사이트, 에이스톤 '가장 큰 무기는 구성원 경험'·LLC 설립. <a href="https://dealsite.co.kr/articles/70488" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> KVCA 웹진 202402, 에이스톤벤처스 인터뷰(4파트너·프로젝트5·블라인드2·성장금융/모태). <a href="http://webzine.kvca.or.kr/202402/?idx=21" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 국민일보, "실패해 본 청년 창업가를 더 신뢰합니다"(안신영), 2024-11-24. <a href="https://www.kmib.co.kr/article/view.asp?arcid=0020762019" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨, VC 리그테이블(에이스톤 AUM 580억→634.7억), 2024-07-09. <a href="http://thebell.co.kr/free/content/ArticleView.asp?key=202407090819382800103145&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 블로터, 에이스톤 AI혁신조합 299억·AUM 1000억 돌파. <a href="https://www.bloter.net/news/articleView.html?idxno=658677" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 뉴스톱/더비스타, 에이스톤 생태계 투자조합 1000억+·2000억대 전망. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=45417" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 탑데일리, 에이스톤 청년창업 블라인드펀드 218.5억 결성. <a href="https://www.topdaily.kr/articles/95482" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 블로터, 국민성장펀드 도전리그(신생·소형 GP, 17.5:1, 에이스톤·삼호그린). <a href="https://www.bloter.net/news/articleView.html?idxno=664377" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 머니투데이, 신한운용 도전·소형 리그 자펀드 GP 4곳 선정, 2026-06-02. <a href="https://www.mt.co.kr/stock/2026/06/02/2026060208493465414" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 뉴스핌, 국민성장펀드 도전·소형 리그 규모(320억 마중물·최대 1,000억), 2026-06-02. <a href="https://www.newspim.com/news/view/20260602000195" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 경향신문, 초장기기술투자펀드(15년·재원 80% 정부), 2026-07-20. <a href="https://www.khan.co.kr/article/202607201533001" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 금융위원회, 초장기기술투자펀드 공청회(산은·에이스톤·아주IB 참석). <a href="https://www.fsc.go.kr/no010101/87361" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 이데일리 마켓인, 안신영 "15년 투자만은 부족…업종별 가점 필요". <a href="https://marketin.edaily.co.kr/News/Read?newsId=03594886645516488" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 블로터, 초장기펀드 공청회(성과보수·경업금지 완화 논의). <a href="https://www.bloter.net/news/articleView.html?idxno=668474" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 파이낸셜뉴스, 안신영 프로필(이화여대 통계·회계사·대성창투·SBI·HB), 2020-04-13. <a href="https://www.fnnews.com/news/202004131958349969" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 서울신문(네이트), 유일로보틱스 따상·에이스톤 4배 평가차익, 2022-03-21. <a href="https://news.nate.com/view/20220321n38508" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 에이스톤 지투파워·1~3호 포트폴리오(애드바이오텍·태석광학). <a href="https://dealsite.co.kr/articles/86981" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 탑데일리, 에이스톤 지투파워 첫 엑시트 24.36억 회수. <a href="https://www.topdaily.kr/articles/90753" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>AUM 정밀치·도전리그 자펀드 목표/확정 출자액·개별 조합명·초장기 GP 도전 여부는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-20 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">심화</span>는 자료의 빈틈·모순을 파고드는 질문입니다. <span class="tag">태그</span>=기법, [번호]=근거. 대표(투자 총괄) 취재이므로 출자 전략·회수·철학을 정면으로 물었습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · 출자</h2></div>
+    <div class="q cat1 must"><p class="qtext">국민성장펀드 도전리그로 '2026 에이스톤 생태계 투자조합'을 조성 중인데, 규모가 매체마다 <b>'750억' vs '정책자금 320억 마중물로 최대 1,000억'</b>으로 엇갈립니다. 에이스톤 자펀드의 <b>실제 목표 규모와 확정 출자액</b>, 그리고 9월 클로징 진척은 어디까지 왔습니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">확인·팩트체크</span><span class="pri high">상</span><span class="basis">근거: 도전리그 규모 상충 <a href="https://www.newspim.com/news/view/20260602000195" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">AUM가 설립 당시 ~700억에서 <b>2023년 580억까지 줄었다가</b> 올해 1,000억을 돌파했습니다. 이 <b>하락-회복 곡선의 배경</b>은 무엇이고(초기 펀드 청산·회수?), 소형·초기 특화 하우스가 도전리그·생태계펀드로 <b>급격히 대형화하면 기존 투자 규율이 흔들릴 위험</b>은 없습니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">질 검증·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: AUM 700→580→1,097억 <a href="http://thebell.co.kr/free/content/ArticleView.asp?key=202407090819382800103145&lcode=00" target="_blank" rel="noopener">[6]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=658677" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">도전리그는 <b>35곳이 몰려 17.5:1</b>로 국민성장펀드에서 최고 경쟁률이었습니다. 설립 5년차 소형 하우스가 삼호그린과 함께 <b>2곳에 든 결정적 노하우</b>는 무엇이었습니까?</p><div class="qmeta"><span class="tag">개방·핵심</span><span class="pri high">상</span><span class="basis">근거: 도전리그 17.5:1 선정 <a href="https://www.bloter.net/news/articleView.html?idxno=664377" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(안신영) · 투자 철학</h2></div>
+    <div class="q cat2 must"><p class="qtext">"실패해 보고 재도전하는 창업가를 더 신뢰한다"는 철학을 내세우십니다. 그런데 <b>재도전의 실패율도 높습니다</b> — 심사에서 '좋은 재도전'과 '나쁜 재도전'을 어떤 신호로 구분하십니까? 이 철학이 회수까지 오래 걸리는 <b>딥테크·초장기 투자</b>와도 맞습니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 실패 재도전 철학 <a href="https://www.kmib.co.kr/article/view.asp?arcid=0020762019" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">HB인베스트먼트 <b>대표까지 지내고 독립</b>해 하우스를 세우셨습니다. 안정된 대표직을 놓고 창업한 결단의 배경과, '구성원 경험이 무기'라는 하우스에서 대표로서 가장 중요하게 지키는 원칙은 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: HB 대표→독립 창업 <a href="https://paxnetnews.com/articles/70207" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 초장기</h2></div>
+    <div class="q cat3 must"><p class="qtext">초장기기술투자펀드 공청회에서 "<b>13년 만기면 제조업은 10년 넘게 부정적 평가를 받는다</b>"며 업종별 가점을 요구하셨습니다. 그럼에도 에이스톤이 <b>초장기펀드 GP로 직접 도전할 계획</b>입니까? 15년 펀드에서 <b>소형 하우스가 감당할 유동성·존속 리스크</b>는 어떻게 보십니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">확인·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 안신영 '15년 부족·업종 가점' 발언 <a href="https://marketin.edaily.co.kr/News/Read?newsId=03594886645516488" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">도전리그는 <b>산은이 신한자산운용을 재간접 운용사로 두는 이중 구조</b>입니다. 정책자금이 재간접을 거쳐 오는 방식이 소형 GP의 자율성·의사결정 속도에 제약이 되지는 않습니까? 초기·혁신 투자에 실제로 적합한 구조입니까?</p><div class="qmeta"><span class="tag">확인·심화</span><span class="pri mid">중</span><span class="basis">근거: 신한운용 재간접 구조 <a href="https://www.mt.co.kr/stock/2026/06/02/2026060208493465414" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 포트폴리오 · 회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">유일로보틱스 '따상'(1년 4배), 지투파워 첫 엑시트 등 <b>'상장 임박 프로젝트펀드로 빠르게 회수'</b>하는 공식으로 성장하셨습니다. 이 공식을, 회수까지 훨씬 오래 걸리는 <b>국민성장펀드 초기·혁신 투자와 초장기 딥테크에 어떻게 접목</b>하십니까? 빠른 회수 DNA와 장기 인내가 충돌하지는 않습니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">트레이드오프·질 검증</span><span class="pri high">상</span><span class="basis">근거: 유일로보틱스·지투파워 회수 <a href="https://news.nate.com/view/20220321n38508" target="_blank" rel="noopener">[18]</a> <a href="https://dealsite.co.kr/articles/86981" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">섹터를 로봇·소부장에서 <b>바이오·미래환경(ESS)·AI로 넓히고</b> 계십니다. 4인 파트너의 '경험'이 무기라면, 새로 진입하는 섹터에서는 그 강점이 약해질 수 있는데 — <b>확장 섹터의 심사 역량</b>은 어떻게 확보하십니까?</p><div class="qmeta"><span class="tag">빈틈·확인</span><span class="pri mid">중</span><span class="basis">근거: 섹터 확장 <a href="http://webzine.kvca.or.kr/202402/?idx=21" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">생태계펀드 결성으로 <b>AUM 2,000억대 진입</b>을 내다보십니다. 다음 단계의 <b>블라인드 대형화 로드맵</b>과, 소형·초기 특화 정체성을 유지하면서 규모를 키우는 균형점을 어디에 두십니까?</p><div class="qmeta"><span class="tag">전략</span><span class="pri low">하</span><span class="basis">근거: 2,000억대 목표 <a href="https://www.newstopkorea.com/news/articleView.html?idxno=45417" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 팍스넷뉴스, 안신영 에이스톤 설립. <a href="https://paxnetnews.com/articles/70207" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 국민일보, 실패 재도전 창업가 선호(안신영), 2024-11-24. <a href="https://www.kmib.co.kr/article/view.asp?arcid=0020762019" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 더벨, VC 리그테이블 AUM, 2024-07-09. <a href="http://thebell.co.kr/free/content/ArticleView.asp?key=202407090819382800103145&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 블로터, AI혁신조합 299억·AUM 1000억 돌파. <a href="https://www.bloter.net/news/articleView.html?idxno=658677" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 뉴스톱/더비스타, 생태계조합·2000억대 전망. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=45417" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 블로터, 국민성장펀드 도전리그 17.5:1·에이스톤·삼호그린. <a href="https://www.bloter.net/news/articleView.html?idxno=664377" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 머니투데이, 신한운용 도전·소형 GP 4곳 선정, 2026-06-02. <a href="https://www.mt.co.kr/stock/2026/06/02/2026060208493465414" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 뉴스핌, 도전·소형 리그 규모, 2026-06-02. <a href="https://www.newspim.com/news/view/20260602000195" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 이데일리 마켓인, 안신영 '15년 부족·업종 가점'. <a href="https://marketin.edaily.co.kr/News/Read?newsId=03594886645516488" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 서울신문(네이트), 유일로보틱스 따상·4배, 2022-03-21. <a href="https://news.nate.com/view/20220321n38508" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> 딜사이트, 지투파워·1~3호 포트폴리오. <a href="https://dealsite.co.kr/articles/86981" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[20])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-20</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
