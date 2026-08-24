@@ -1,0 +1,254 @@
+<meta charset="utf-8" />
+<title>삼일PwC · 정경수 M&A센터장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #8a5a2b; --accent-soft: #f2e7d8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #c99a5f; --accent-soft: #2e1c0c;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #c99a5f; --accent-soft: #2e1c0c;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #8a5a2b; --accent-soft: #f2e7d8;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-20</div>
+    <h1 class="title">삼일PwC · 정경수 M&amp;A센터장(부대표)</h1>
+    <p class="subtitle">국내 M&amp;A 재무자문 3년 연속 1위 하우스의 '딜본부 터줏대감' — 루트로닉·보령바이오 등 대형딜과 중소·중견 미들마켓 '자본시장 선순환'을 함께 말하는 자문가</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 자문사(M&amp;A·거래자문)</span>
+      <span class="meta-chip">삼일PwC 딜부문 CF 리더</span>
+      <span class="meta-chip">부대표(2024.8~)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>인물·조직 개요</h2>
+      <dl class="kv">
+        <dt>직책</dt><dd><b>삼일PwC M&amp;A센터장 · 부대표</b>(2024.8 승진). 딜(Deals) 부문 내 <b>재무자문·CF(Corporate Finance) 조직 실무 총괄</b> <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>조직 위치</dt><dd>딜부문 대표 <b>민준선</b> 아래 M&amp;A센터/CF 리더. '딜본부 터줏대감' <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></dd>
+        <dt>법인</dt><dd>삼일PwC(삼일회계법인) — <b>국내 1위 회계·자문 법인</b>, 전문가 4,100여명, FY2025 삼일PwC 합산 1.55조 <sup class="ref"><a href="#src-14">[14]</a></sup></dd>
+        <dt>위상</dt><dd>M&amp;A <b>재무자문 3년 연속(2023~25) 1위</b>·회계자문 독주 <sup class="ref"><a href="#src-9">[9]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 주체 성격:</span> VC·LP·스타트업이 아니라 <b>M&amp;A 거래를 자문하는 회계·자문법인</b> 관점입니다. 원문 차단(egress)으로 검색 요약 교차검증 — 인용 전 재확인 권장. 동명이인(정치인 등)과 무관.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 자문 딜 · 리그테이블</h2>
+      <table class="rt">
+        <tr><th>딜</th><th>내용</th></tr>
+        <tr><td><b>루트로닉</b>(레이저 의료기기)</td><td>한앤컴퍼니 인수(~9,720억) — <b>인수 측 자문</b>(2024.1) <sup class="ref"><a href="#src-3">[3]</a></sup></td></tr>
+        <tr><td><b>보령바이오파마</b></td><td>매각(~3,200억) — <b>매각 주관</b> <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>쌍용레미콘</td><td>~4,400억 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>광진화학(폐화학물 처리)</td><td>매각 ~2,500억(기대가 30~40%+ 상회 밸류) <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+      </table>
+      <p class="src">삼일PwC <b>M&amp;A 재무자문 2025 연간 1위</b> — <b>157건·24조788억</b>(역대 최대), 3년 연속 베스트하우스 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup>. <span class="flag">※ 리그테이블·나열 딜은 법인/M&amp;A센터 팀 실적으로, 정경수 개인 단독 리드 여부는 기사가 구분하지 않음 — 확인 필요.</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 정경수 부대표</h2>
+      <dl class="kv">
+        <dt>이력</dt><dd>서울대 경영학과 → <b>1999 삼일PwC 입사, 2002~ 딜 자문</b> 담당. 20년+ 딜 한우물 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>승진</dt><dd>2024.8 파트너 → <b>부대표</b>. 민준선 딜부문 대표를 도와 CF(재무·금융자문) 총괄 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>철학(인용)</dt><dd>"M&amp;A는 중소·중견 오너에게 <b>엑시트 기회이자 성장 모멘텀</b> … PEF가 기업가치를 2~3배 올려 다시 엑시트하는 <b>자본시장 선순환</b>에 기여" <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>스타일</dt><dd>지방 우량기업을 직접 발굴하러 다니는 <b>미들마켓·PEF 연결</b> 중시 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 미확인:</span> CPA(회계사) 자격 명시 확인 안 됨, 2026.4 딜부문 개편(M&amp;A센터→미들마켓그룹 통합) 후 <b>정확한 현 보직명</b>은 부대표/CF 리더로 추정되나 불명확 — 대면 확인 권장 <sup class="ref"><a href="#src-4">[4]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>삼일PwC가 주목하는 M&amp;A 분야 (핵심)</h2>
+      <ul class="tight">
+        <li><b>AI 인프라 대형딜이 시장 견인</b> — 데이터센터·전력 인프라·AI 반도체. 2025 글로벌 M&amp;A ~3.5조달러(+36%), <b>2026 ~4조달러(2021 이후 최대)</b>·50억달러+ 대형딜 급증 전망 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>보안·데이터·AI 플랫폼</b> 역량 확보형 M&amp;A, <b>AI·휴머노이드 전략적 M&amp;A</b> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>사업재편·카브아웃(carve-out)·크로스보더</b> — 대기업·PEF 전담그룹 신설, 씨티 출신 등 크로스보더 전문가 영입 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>바이오·헬스케어·미용 의료기기(K뷰티)</b> — 루트로닉·보령바이오파마 딜과 연결, "미용 의료기기 신성장 축" <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>중견·중소 M&amp;A + PEF의 역할</b> — 삼일 이슈브리프로 시장 회복 짚음(정경수 핵심 관심) <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>삼일PwC 딜부문 · 경쟁 구도</h2>
+      <ul class="tight">
+        <li>딜부문 대표 <b>민준선</b>, PE·글로벌 IB 전문가 대거 영입으로 '글로벌 IB 역량' 표방. "회계사만으로 자문 안 돼 — 거래구조 기획·재무·컨설팅 필요" <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li>2024 딜부문 5그룹·대기업+PEF 전담 신설 → <b>2026.4 재개편</b>: M&amp;A센터+미들마켓 통합, PMI 전담 <b>DDV(Delivering Deal Value)팀</b> 신설, 차세대 리더 전면 배치 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li>경쟁 빅4: 삼정KPMG·EY한영·딜로이트안진. <b>재무자문은 삼일·삼정 접전, 회계자문은 삼일 독주</b> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(언론·PwC)이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 딜 규모·귀속·정경수 현 보직·리그테이블 수치는 게재 전 원문 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 한국경제, 삼일PwC 딜본부 터줏대감 정경수 M&amp;A센터장 부대표 승진, 2024-08-06. <a href="https://www.hankyung.com/article/202408065478r" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 이투데이 [이슈&amp;인물], 정경수 "자본시장 선순환·중소중견 M&amp;A" 인터뷰, 2024. <a href="https://www.etoday.co.kr/news/view/2408104" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 한국경제, 삼일PwC 루트로닉 인수 거래 자문(한앤컴퍼니), 2024-01-31. <a href="https://www.hankyung.com/article/2024013149211" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 더벨, 삼일PwC 딜부문 조직 개편·DDV팀 신설·차세대 리더, 2026-04-07. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604071558548040101481" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 뉴시스, 삼일PwC 'AI 중심 대형딜, 올해 M&amp;A 시장 주도', 2026-03-16. <a href="https://www.newsis.com/view/NISX20260316_0003549681" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 이투데이, 삼일PwC 2026 M&amp;A 전망(AI·4조달러). <a href="https://www.etoday.co.kr/news/view/2611567" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 삼일PwC경영연구원, 2026 글로벌 M&amp;A 인더스트리 트렌드 리포트(PDF). <a href="https://www.pwc.com/kr/ko/insights/samil-insight/samilpwc_global-mna-industry-trends2026.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 인베스트조선, M&amp;A 재무자문 연간 1위(157건·24조788억), 2025-12-17. <a href="https://www.investchosun.com/site/data/html_dir/2025/12/17/2025121780169.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트 IB대상, 삼일PwC 3년 연속 베스트하우스. <a href="https://dealsite.co.kr/articles/155528" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 한국경제(네이트), 삼일PwC 대기업·PEF 전담그룹·크로스보더 영입, 2024-08-12. <a href="https://news.nate.com/view/20240812n37343" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 조세일보, "AI·휴머노이드 시대, 전략적 M&amp;A가 기업 핵심 전략". <a href="https://m.joseilbo.com/news/view.htm?newsid=564890" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 이투데이, 삼일 딜 파트너 — 미용 의료기기·K뷰티 관심. <a href="https://www.etoday.co.kr/news/view/2515758" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 서울경제 시그널, 민준선 삼일PwC 딜부문 대표 인터뷰(글로벌 IB 역량). <a href="https://signal.sedaily.com/article/13958976" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 조세일보, 삼일PwC FY2025 매출(삼일회계 1.1조·합산 1.55조). <a href="https://m.joseilbo.com/news/view.htm?newsid=557158" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 삼일PwC 이슈브리프, 국내 중견·중소기업 M&amp;A 시장 내 사모펀드의 역할. <a href="https://www.pwc.com/kr/ko/insights/issue-brief/recovery-domestic-mna-market.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 삼일PwC 딜 크리덴셜, 광진화학 매각 자문. <a href="https://www.pwc.com/kr/ko/deal/credential/mm_230804.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>딜 규모·개인 귀속·CPA 여부·2026 개편 후 보직·리그테이블 수치는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-20 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">요청하신 <b>최근 딜·주목 분야·이력</b>을 축으로 구성했습니다. <span class="tag req">심화</span>는 트렌드 전망과 현장 실체의 간극을 파고드는 질문(<span class="tag">태그</span>=기법, [번호]=근거).</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 최근 딜 · M&amp;A 시장</h2></div>
+    <div class="q cat1"><p class="qtext">루트로닉(한앤코 인수)·보령바이오파마 매각·쌍용레미콘·광진화학 등을 다루셨습니다. 이 중 <b>협상이 가장 어려웠던 딜</b>과, 회계법인 자문가로서 '가격을 만든다'는 건 실제로 어떤 작업이었습니까(광진화학은 기대가 30~40% 상회)?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: 최근 자문 딜 <a href="https://www.hankyung.com/article/202408065478r" target="_blank" rel="noopener">[1]</a> <a href="https://www.pwc.com/kr/ko/deal/credential/mm_230804.html" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2026년 M&amp;A 시장이 회복(글로벌 4조달러)한다지만, 국내는 고금리·정책 불확실성으로 <b>매도-매수 호가 격차</b>가 여전합니다. 지금 딜 클로징을 막는 <b>가장 큰 병목</b>은 무엇이고, 매도자·매수자 중 지금은 누구에게 유리한 시장입니까?</p><div class="qmeta"><span class="tag">질 검증·확인</span><span class="pri high">상</span><span class="basis">근거: 2026 M&amp;A 회복 전망 <a href="https://www.newsis.com/view/NISX20260316_0003549681" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(정경수) · 자문 철학</h2></div>
+    <div class="q cat2 must"><p class="qtext">"M&amp;A는 중소·중견 오너의 엑시트이자 성장 모멘텀이고, PEF가 가치를 2~3배 올리는 <b>자본시장 선순환</b>"이라고 하셨습니다. 하지만 PE의 고배당·리캡·구조조정으로 오히려 기업이 훼손된다는 비판(부채비율 급등 등)도 있습니다. <b>'선순환'과 '약탈'의 경계</b>를 어디서 보십니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">반론</span><span class="pri high">상</span><span class="basis">근거: 정경수 '자본시장 선순환' 철학 <a href="https://www.etoday.co.kr/news/view/2408104" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">1999년 입사해 20년 넘게 딜 한 우물을 파셨고, 지방 우량기업을 직접 발굴하러 다니신다고 했습니다. 지금 <b>지방·산업재편에서 매물로 나오는 섹터</b>는 어디이고, PEF가 특히 눈독 들이는 분야는 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: 미들마켓·지방 발굴 <a href="https://www.etoday.co.kr/news/view/2408104" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 삼일PwC 주목 분야</h2></div>
+    <div class="q cat3 must"><p class="qtext">삼일PwC경영연구원은 2026년 <b>AI 인프라(데이터센터·전력·AI 반도체) 대형딜</b>이 시장을 주도한다고 전망했습니다. 한국 시장에서 삼일이 실제로 다루는 <b>AI·데이터센터·전력 M&amp;A 파이프라인</b>은 어느 정도이며, 국내에 '살 만한' 대형 매물이 실제로 있습니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: AI 대형딜 전망 <a href="https://www.newsis.com/view/NISX20260316_0003549681" target="_blank" rel="noopener">[5]</a> <a href="https://www.pwc.com/kr/ko/insights/samil-insight/samilpwc_global-mna-industry-trends2026.pdf" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">루트로닉·보령바이오 등 <b>바이오·미용 의료기기(K뷰티)</b> 딜을 많이 하셨고 삼일도 이 분야를 신성장 축으로 봅니다. K뷰티·미용기기 M&amp;A가 <b>밸류에이션 정점</b> 아니냐는 시각도 있는데, 지금 들어가도 되는 시점입니까?</p><div class="qmeta"><span class="tag">반론·비교</span><span class="pri mid">중</span><span class="basis">근거: 미용 의료기기·K뷰티 관심 <a href="https://www.etoday.co.kr/news/view/2515758" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">대기업 <b>사업재편·카브아웃</b>과 <b>크로스보더(해외 M&amp;A)</b>를 늘리고 계십니다. 지금 한국 대기업이 실제로 떼어내는(파는) 비핵심 사업은 어떤 것들이고, 해외로 나가는 딜에서 한국 기업의 가장 큰 약점은 무엇입니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 카브아웃·크로스보더 강화 <a href="https://news.nate.com/view/20240812n37343" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 자문 경쟁 · 조직</h2></div>
+    <div class="q cat4"><p class="qtext">삼일이 M&amp;A 재무자문 3년 연속 1위지만, <b>회계법인이 증권사 IB(인수금융·주관)와 경쟁</b>하려면 한계도 있습니다. 딜부문에 PE·글로벌 IB를 대거 영입하고 DDV팀까지 만든 이유와, <b>회계법인 자문만의 진짜 차별점</b>은 무엇입니까?</p><div class="qmeta"><span class="tag">확인·비교</span><span class="pri mid">중</span><span class="basis">근거: 딜부문 IB화·DDV팀 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604071558548040101481" target="_blank" rel="noopener">[4]</a> <a href="https://signal.sedaily.com/article/13958976" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2026년 개편에서 <b>M&amp;A센터가 미들마켓그룹에 통합</b>됐습니다. 미들마켓(중소·중견) 강화가 대형딜 경쟁력과 <b>상충</b>하지는 않습니까? 그 개편 속에서 <b>센터장님의 현재 역할</b>은 어떻게 바뀌었습니까?</p><div class="qmeta"><span class="tag">확인·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 2026 딜부문 개편 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604071558548040101481" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 한국경제, 정경수 부대표 승진, 2024-08-06. <a href="https://www.hankyung.com/article/202408065478r" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 이투데이, 정경수 인터뷰(자본시장 선순환). <a href="https://www.etoday.co.kr/news/view/2408104" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 더벨, 삼일PwC 딜부문 개편·DDV팀, 2026-04-07. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604071558548040101481" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 뉴시스, 삼일 AI 중심 대형딜 전망, 2026-03-16. <a href="https://www.newsis.com/view/NISX20260316_0003549681" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 삼일PwC경영연구원, 2026 글로벌 M&amp;A 트렌드(PDF). <a href="https://www.pwc.com/kr/ko/insights/samil-insight/samilpwc_global-mna-industry-trends2026.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 한국경제, 대기업·PEF 전담·크로스보더 영입, 2024-08-12. <a href="https://news.nate.com/view/20240812n37343" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 이투데이, 미용 의료기기·K뷰티 관심. <a href="https://www.etoday.co.kr/news/view/2515758" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 서울경제 시그널, 민준선 딜부문 대표(글로벌 IB 역량). <a href="https://signal.sedaily.com/article/13958976" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 삼일PwC, 광진화학 매각 자문 크리덴셜. <a href="https://www.pwc.com/kr/ko/deal/credential/mm_230804.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[16])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-20</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
