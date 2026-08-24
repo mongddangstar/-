@@ -1,0 +1,266 @@
+<meta charset="utf-8" />
+<title>에이치투 · 한신 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0891b2; --accent-soft: #e0f4f8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4ec5db; --accent-soft: #0a2a33;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4ec5db; --accent-soft: #0a2a33;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0891b2; --accent-soft: #e0f4f8;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-20</div>
+    <h1 class="title">에이치투 · 한신 대표</h1>
+    <p class="subtitle">국내 최초·유일 바나듐 레독스 흐름전지(VRFB) 전문기업 — 무화재 장주기 ESS로 "화석연료 발전소 대체" 비전. 시리즈D 220억(밸류 ~1,900억), 미국 20MWh 진출, 기술특례 IPO 재추진</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 스타트업(비상장)</span>
+      <span class="meta-chip">기후테크·장주기 ESS(VRFB)</span>
+      <span class="meta-chip">시리즈D·프리IPO 국면</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>㈜에이치투(H2Inc.) — <b>국내 최초·유일 바나듐 레독스 흐름전지(VRFB) 전문·국내 1위</b>. 장주기 ESS 개발·제조 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>설립·대표</dt><dd><b>2010년 8월</b> 설립("두 번째 심장=ESS"). 대표 <b>한신</b>(창업자). 본사 대전권·생산 충남 계룡 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>기술</dt><dd><b>수계(물) 전해액 → 화재 위험 없음</b>, 2만회+ 충·방전, 20년+ 수명(리튬의 약 2배). "리튬=단거리, VRFB=장거리" <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>생산</dt><dd>계룡 <b>K1 330MWh(2023.5 준공)</b> + K2 건설 → 양산 시 <b>연 1.2GWh</b>(중국 제외 세계 최대급) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 주의:</span> 수소(H2) 관련 기업이 아니라 <b>레독스 흐름전지/ESS 에이치투</b>입니다. 재무(매출·손익)는 비공시이며, 검색에 잡힌 매출 수치는 <b>동명이인 회사 혼동으로 신뢰 불가</b> — 원문 차단(egress)으로 교차검증했으니 인용 전 DART·대표 확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 마일스톤</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2018~2020</div><div class="tl-body"><b>폴란드 수출</b>(국내 최초 VRFB ESS 수출)·독일 수출·<b>국내 첫 흐름전지 단체표준</b>(2020) <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2021</div><div class="tl-body">시리즈B <b>172억</b> 유치 <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 01</div><div class="tl-body">시리즈C <b>230억</b> 마감(누적 ~562억) — KT&amp;G·신한운용·하나증권·포스코신성장1호(성장금융) 신규 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 05</div><div class="tl-body">계룡 K1 공장 330MWh 준공 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 12</div><div class="tl-body"><b>시리즈D 220억 막바지</b>(스틱인베스트먼트 리드 ~200억, <b>밸류 ~1,900억</b>) <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 07</div><div class="tl-body">케이런벤처스 <b>20억 후속투자</b>(정부과제 수주 발판) <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 05</div><div class="tl-body"><b>기후에너지환경부 현장 점검</b>(에이치투·스탠다드에너지·기계연) — 장주기 ESS 민관협력 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>창업자 프로필 — 한신 대표</h2>
+      <dl class="kv">
+        <dt>창업 배경</dt><dd><b>디젤엔진 내연기관 발전기</b> 분야 경력 중 온실가스·환경규제 강화를 보고 "미래 먹거리는 환경산업"이라 확신 → <b>선두 없는 VRFB 선택</b> <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+        <dt>스토리</dt><dd>창업 초 프로젝트 실패로 재료비 15억 손실 → 6개월 추가 설득 끝에 VRFB 개발 성공 <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+        <dt>수상</dt><dd>지식경제부·산업통상자원부 장관상, 국무총리표창(3관왕) <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+        <dt>비전</dt><dd>VRFB를 "<b>차세대 발전소</b>"로 규정 — "흐름전지로 화석연료 발전소를 대체" <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 미확인:</span> 회사는 "KAIST 공학박사 3인 설립"으로 소개되나 한신 본인은 "VRFB는 전공이 아니었다"고 밝혀 <b>한신 개인 학위·전공은 미확인</b>. 기술은 연구진(공동창업)이 주도 — 대면 확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>투자유치 · 주주 · 정부지원 (핵심)</h2>
+      <table class="rt">
+        <tr><th>라운드</th><th>내용</th></tr>
+        <tr><td>시리즈B (2021)</td><td>172억 <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>시리즈C (2023.1)</td><td>230억 · 누적 <b>~562억</b>. 더터닝포인트·<b>인비저닝파트너스</b>·SKS PE 후속 + KT&amp;G(30억)·신한운용·하나증권·<b>포스코신성장1호(성장금융)</b> <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></td></tr>
+        <tr><td>시리즈D (2024.12)</td><td><b>220억</b> · 스틱인베스트먼트 리드 ~200억 · <b>밸류 ~1,900억</b> <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+        <tr><td>후속 (2025.7)</td><td>케이런벤처스 20억 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+      </table>
+      <ul class="tight">
+        <li><b>한화솔루션 전략투자</b>(태양광 연계 ESS) — 지분율 <b>12.38%(한화솔루션 기준) vs ~19%(한화그룹 기준)</b> <span class="flag">상충</span> <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>인비저닝파트너스</b>(임팩트·기후테크 VC) = 초기 투자자, 기후펀드 LP에 한화솔루션·GS 등 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li>정부: 포스코신성장1호(성장금융) 피투자·정부과제 수주. <span class="flag">최신 누적액(~780억+ 추정)·TIPS 여부 미확인</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>사업·성과 · 시장 <span style="font-size:12px;color:var(--muted);">(성장지표 — 재무 비공시)</span></h2>
+      <h3>사업·수주</h3>
+      <ul class="tight">
+        <li>제품 <b>에너플로우(EnerFlow) 시리즈</b>. 국내 울산 태양광 연계 ESS 상용화(국내 최초) <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>미국 캘리포니아 북부 20MWh</b>(미국 최대·모듈형 흐름전지 세계 최대급) — 2024 하반기 상업운전 계획, <b>현재 계룡공장서 이 물량 생산 중</b> <span class="flag">(상업운전 개시·추가수주 최신 미확인)</span> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+      </ul>
+      <h3>시장·경쟁</h3>
+      <ul class="tight">
+        <li>리튬 화재·재생에너지 간헐성으로 <b>비리튬 장주기 ESS(LDES)</b> 부상, 10차 전기본 저장장치 명시(대형 시장 전망) <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li>경쟁: 국내 <b>스탠다드에너지(바나듐 이온전지)</b>, 중국 RFB, 리튬이온 ESS <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 현안·리스크:</span> ①<b>수익성</b> — 2023 침체로 IPO 연기, 매출 본격 실현 시점이 관건 ②<b>자금 소요</b> — K2 등 설비투자 지속 ③재무 비공시. IPO는 코스닥 <b>기술특례</b> 재추진(미래에셋 주관, 시점 미확인) <sup class="ref"><a href="#src-10">[10]</a></sup>.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 재무·지분율·누적 투자유치·미국 프로젝트 진척·IPO 시점은 게재 전 DART·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> THE VC, 에이치투(H2) 기업정보. <a href="https://thevc.kr/h2" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 전기신문, 한신 대표 인터뷰(2010 설립·창업 배경·비전). <a href="https://www.electimes.com/news/articleView.html?idxno=321587" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 전자신문, 계룡 K1 330MWh 준공·1.2GWh 목표, 2023-11-21. <a href="https://www.etnews.com/20231121000249" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> ZDNet Korea, 무화재·2만회·기후에너지환경부 현장 점검, 2026-05. <a href="https://zdnet.co.kr/view/?no=20260513075401" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 매거진한경, "리튬=단거리, VRFB=장거리"·발전소 대체 비전, 2022-08. <a href="https://magazine.hankyung.com/business/article/202208244108b" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 서울신문, 에이치투 시리즈C 마감·누적 562억, 2023-01. <a href="https://www.seoul.co.kr/news/newsView.php?id=20230105500032" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 파이낸셜뉴스, 시리즈C 참여사(KT&amp;G·성장금융 등), 2022-06. <a href="https://www.fnnews.com/news/202206071134076608" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 시리즈D 220억·스틱 리드·밸류 ~1,900억, 2024-12. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412101722536880103852" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 더벨, 케이런벤처스 20억 후속투자, 2025-07. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202507241218053480106748" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 서울경제, 한화솔루션 전략투자 지분·기술특례 IPO 추진. <a href="https://www.sedaily.com/article/13676187" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 비즈니스포스트, 넷제로히어로 한신(창업 스토리·15억 손실·수상 3관왕). <a href="https://www.businesspost.co.kr/BP?command=article_view&num=304408" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 전자신문, 에너플로우 시리즈, 2020-08. <a href="https://m.etnews.com/20200804000178" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 전자신문, 국내 첫 흐름전지 단체표준·울산 상용화, 2020-12. <a href="https://m.etnews.com/20201215000111" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 이데일리, 미국 캘리포니아 20MWh 흐름전지 ESS(미국 최대). <a href="https://www.edaily.co.kr/news/read?newsId=01646566629282784" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 바이라인네트워크, 비리튬 장주기 ESS(LDES) 시장, 2024-01. <a href="https://byline.network/2024/01/3-178" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 블로터, 인비저닝파트너스 기후펀드 LP(한화솔루션·GS 등). <a href="https://www.bloter.net/news/articleView.html?idxno=611516" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 전기신문, 장주기 ESS 시장·전력수급기본계획. <a href="https://www.electimes.com/news/articleView.html?idxno=354536" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>재무(매출·손익)·지분율(한화 12~19% 상충)·누적 투자유치·한신 학력·미국 상업운전 진척·IPO 시점은 '미확인/확인 필요'</b>로 표시. 발행 2026-08-20 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">스타트업(비상장) 취재 세트. <span class="tag req">심화</span>는 빈틈·모순을 파고드는 질문(<span class="tag">태그</span>=기법, [번호]=근거). 재무 비공시 항목은 확인형으로 물었습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 회사 현안 · 시장·경쟁</h2></div>
+    <div class="q cat1 must"><p class="qtext">"리튬은 단거리, VRFB는 장거리"라고 하시지만 <b>리튬 가격은 계속 떨어지고 리튬 ESS 안전기술도 발전</b>합니다. 리튬이 장주기 구간까지 잠식하는 상황에서, VRFB가 리튬을 확실히 이기는 <b>경제적 임계점(저장 시간·설치 규모)</b>은 구체적으로 어디입니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">반론·질 검증</span><span class="pri high">상</span><span class="basis">근거: 리튬 vs VRFB 포지셔닝 <a href="https://magazine.hankyung.com/business/article/202208244108b" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">같은 바나듐 계열 <b>스탠다드에너지(바나듐 이온전지)</b>가 부각되고, 중국 RFB의 가격 공세도 거셉니다. VRFB(흐름전지)와 VIB(이온전지)의 우열, 그리고 <b>중국 대비 원가·바나듐 조달</b> 경쟁력은 어떻게 확보하십니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: 스탠다드에너지·중국 RFB 경쟁 <a href="https://zdnet.co.kr/view/?no=20260513075401" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 창업자 · 비전</h2></div>
+    <div class="q cat2"><p class="qtext">디젤엔진 발전기를 하시다가 '<b>전공도 아닌</b>' VRFB로 전환하셨습니다. 비전공자가 딥테크를 15년 넘게 끌고 온 동력은 무엇이며, "KAIST 박사 3인 설립"이라는 소개와 <b>대표님의 실제 역할(기술 vs 경영) 분담</b>은 어떻게 됩니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: '전공 아님'·KAIST 박사 설립 병존 <a href="https://www.businesspost.co.kr/BP?command=article_view&num=304408" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">"흐름전지로 화석연료 발전소를 대체한다"는 큰 비전을 말씀하십니다. 창업 16년 차인데, 그 비전 대비 <b>지금 어디까지 왔다</b>고 자평하시며, 앞으로 5년 내 반드시 증명해야 할 한 가지는 무엇입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 발전소 대체 비전 <a href="https://www.electimes.com/news/articleView.html?idxno=321587" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 투자유치 · 자본조달</h2></div>
+    <div class="q cat3 must"><p class="qtext">시리즈D 밸류가 <b>~1,900억</b>인데 <b>매출·손익은 비공시</b>입니다. 매출이 본격화되지 않은 상태에서 1,900억 밸류의 근거는 무엇이며, 프리IPO·기술특례 상장에서 이 밸류가 <b>유지·정당화</b>됩니까? 상장 전 추가 라운드 계획은?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">질 검증·확인</span><span class="pri high">상</span><span class="basis">근거: 시리즈D 밸류 1,900억·재무 비공시 <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412101722536880103852" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat3"><p class="qtext"><b>한화솔루션이 전략투자자</b>(지분 12~19% 보도 상충)입니다. 태양광 연계 ESS에서 실제 협력·수주 성과는 어느 정도이며, <b>한화 의존이 다른 발전사·해외 고객 확보</b>에 제약이 되지는 않습니까? 정확한 지분율은?</p><div class="qmeta"><span class="tag">확인·트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 한화 전략투자·지분 상충 <a href="https://www.sedaily.com/article/13676187" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 사업·제품·성장·회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">누적 700억 넘게 투자받고 K1·K2 대규모 설비까지 지었지만 <b>매출·손익은 비공시</b>이고, "올해부터 유의미한 매출"이라고 하셨습니다. <b>2026년 실제 매출·흑자전환 시점</b>과, 1.2GWh 설비 대비 <b>가동률</b>은 어느 정도입니까?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 대규모 설비 vs 매출 실현 <a href="https://www.etnews.com/20231121000249" target="_blank" rel="noopener">[3]</a> <a href="https://www.sedaily.com/article/13676187" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext"><b>미국 캘리포니아 20MWh</b>가 2024 하반기 상업운전 계획이었습니다. 현재 상업운전 개시·성능 데이터는 어떻게 됐고, <b>추가 수주</b>는 있습니까? 미국 IRA·관세 등 정책 변화가 프로젝트 경제성에 주는 영향은?</p><div class="qmeta"><span class="tag req">심화</span><span class="tag">확인</span><span class="pri high">상</span><span class="basis">근거: 미국 20MWh 상업운전 계획 <a href="https://www.edaily.co.kr/news/read?newsId=01646566629282784" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2023년 침체로 IPO를 연기하셨습니다. <b>코스닥 기술특례 상장 목표 시점</b>과, 그때까지 K2 등 <b>지속되는 설비투자 자금</b>은 어떻게 감당하십니까? 기후에너지환경부 현장 점검이 실제 정책·자금 지원으로 이어질 여지는?</p><div class="qmeta"><span class="tag">확인·전망</span><span class="pri mid">중</span><span class="basis">근거: IPO 연기·기술특례·정책 점검 <a href="https://www.sedaily.com/article/13676187" target="_blank" rel="noopener">[10]</a> <a href="https://zdnet.co.kr/view/?no=20260513075401" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 전기신문, 한신 대표 인터뷰. <a href="https://www.electimes.com/news/articleView.html?idxno=321587" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 전자신문, K1 330MWh·1.2GWh, 2023-11-21. <a href="https://www.etnews.com/20231121000249" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> ZDNet, 무화재·기후부 점검, 2026-05. <a href="https://zdnet.co.kr/view/?no=20260513075401" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 매거진한경, 리튬 vs VRFB·발전소 대체, 2022-08. <a href="https://magazine.hankyung.com/business/article/202208244108b" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 더벨, 시리즈D 220억·밸류 1,900억, 2024-12. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412101722536880103852" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 서울경제, 한화 전략투자·기술특례 IPO. <a href="https://www.sedaily.com/article/13676187" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 비즈니스포스트, 넷제로히어로 한신(창업 스토리·수상). <a href="https://www.businesspost.co.kr/BP?command=article_view&num=304408" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 이데일리, 미국 캘리포니아 20MWh. <a href="https://www.edaily.co.kr/news/read?newsId=01646566629282784" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[17])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-20</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
