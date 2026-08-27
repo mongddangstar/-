@@ -1,0 +1,252 @@
+<meta charset="utf-8" />
+<title>콘텐츠 모태펀드 · 박규식 담당자 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #5b21b6; --accent-soft: #ede4fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #a882e8; --accent-soft: #241147;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #a882e8; --accent-soft: #241147;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #5b21b6; --accent-soft: #ede4fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-27</div>
+    <h1 class="title">콘텐츠 모태펀드 · 박규식 담당자</h1>
+    <p class="subtitle">K-콘텐츠 정책 출자(모태펀드 문화·영화 계정) — 2026년 7,318억 역대 최대 조성. 그러나 콘텐츠 벤처투자 비중은 반토막 나는 '역대 최대의 역설'</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관(정책 출자·콘텐츠)</span>
+      <span class="meta-chip">운용: 한국벤처투자(KVIC)·재원 문체부</span>
+      <span class="meta-chip">담당자 신원 미확인</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>구조 개요 — "누가 운용하나" (중요)</h2>
+      <p style="margin-top:0;"><span class="flag">※ 먼저 정리:</span> '콘텐츠 모태펀드'는 <b>단일 공식 펀드명이 아닙니다</b>. 정확히는 KVIC 모태펀드의 <b>문체부 소관 계정(문화계정·영화계정)</b>을 통칭합니다. 층위가 다른 4개 주체를 구분해야 합니다.</p>
+      <table class="rt">
+        <tr><th>주체</th><th>역할</th></tr>
+        <tr><td><b>한국벤처투자(KVIC)</b></td><td>모태펀드 <b>운용·관리</b> — 출자사업 공고·GP 선정·자펀드 관리 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td><b>문화체육관광부</b></td><td><b>재원 출자·정책 주관</b>(문화·영화 계정). 누적 3,840억 출자→9,014억 조성·45개 자조합 <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td>한국콘텐츠진흥원(KOCCA)</td><td>완성보증·이차보전 등 <b>콘텐츠 금융지원</b>(별도 트랙, 모태 운용 아님) <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+        <tr><td>한국성장금융</td><td><b>별개 정책펀드</b> — K-콘텐츠 미디어 전략펀드·K-컬처 밸류업 펀드 운용 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+      </table>
+      <p class="src"><span class="flag">→ 첫 질문에서 소속·담당 계정을 반드시 특정</span>: KVIC(문화·영화 계정) / KOCCA(완성보증) / 성장금융(밸류업)에 따라 담당 영역이 완전히 다릅니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 출자사업 · GP 선정</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023</div><div class="tl-body">모태펀드 문화계정 1차 정시 — <b>14개 자펀드·4,262억</b> 결성 <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 01</div><div class="tl-body"><b>2026 콘텐츠 정책펀드 역대 최대</b> — 정부출자 4,390억·조성목표 <b>7,318억</b>(+22%). 문화계정 ~6,500억(5종)·영화계정 ~818억(3종), <b>IP펀드·수출펀드 신설</b> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 03</div><div class="tl-body">수시 GP 발표 — <b>영화계정 케이제이앤투자파트너스</b>(100억→200억, 경쟁률 4:1)·과기정통 지앤텍벤처투자(8:1) <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 (별도)</div><div class="tl-body">성장금융 <b>K-콘텐츠 미디어 전략펀드</b>(푸른-엠더블유, 박찬욱 '어쩔수가 없다' 투자) <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07~09</div><div class="tl-body"><b>K-컬처 밸류업 펀드 1,500억</b>(문체부·금융위, 국민성장펀드 연계 첫 협력) 운용사 모집·<b>9월 GP 선정 예정</b> <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 박규식 담당자</h2>
+      <p><span class="flag">공개 정보 미확인.</span> 콘텐츠 모태펀드/정책펀드 맥락에서 <b>'박규식' 담당자를 특정할 자료가 확인되지 않습니다</b> — KVIC·KOCCA·문체부·성장금융 어디에서도 이름·직책·담당이 확인 안 됨(KOCCA 2026 정기인사 팀장 명단에도 없음). 검색상 '박규식'은 <b>동명의 영화감독/배우</b>만 잡혀 무관 → 혼동 금지 <sup class="ref"><a href="#src-5">[5]</a></sup>.</p>
+      <p class="src"><b>섭외·대면 확인 필수:</b> ①정확한 소속 기관 ②직책(팀장/실장/본부장/PM) ③담당 계정(문화/영화/콘텐츠) ④담당 업무(출자사업 기획·GP 선정·자펀드 관리 중). 현 단계에선 어떤 직책·경력도 단정 불가 → <b>인터뷰 서두에서 확정</b>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책·현안 · 쟁점 (핵심 질문거리)</h2>
+      <ul class="tight">
+        <li><b>역대 최대 조성</b>: 2026 콘텐츠 정책펀드 7,318억(+22%)·'K-컬처 300조 시대' 마중물 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>'역대 최대의 역설'(핵심)</b>: K콘텐츠 수출 연 149억달러 역대 최고인데, 콘텐츠·게임·미디어 <b>벤처투자 비중은 2022년 금액 ~13% → 2025년 ~6%로 반토막</b>. 민간자금은 AI·로보틱스로 이동, 콘텐츠 자금조달 공백 연 최대 2조 추정 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>회수난·중소 기획사 위기</b>: 사상 최대 출자에도 회수·후속투자 병목 → 중소 콘텐츠기획사 존속 위기 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>IP(저작권) 금융·글로벌 OTT 종속</b>: 제작사가 IP를 못 지키는 구조 개선이 과제 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li><b>K-컬처 밸류업 펀드</b>: 국민성장펀드와 문화 정책펀드의 첫 협력(AI·IP 1,000억+콘텐츠 혁신 500억) <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>자펀드 · 출자 프로그램 구조</h2>
+      <dl class="kv">
+        <dt>2026 구성</dt><dd>문화계정 ~6,500억(자펀드 5종) + 영화계정 ~818억(3종) = 7,318억 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>특화 펀드</dt><dd>IP펀드·수출펀드 신설, <b>중저예산 한국영화 134억·애니메이션 특화 117억</b> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>GP 경쟁률</dt><dd>영화계정 4:1 vs 과기정통 8:1 — <b>콘텐츠 GP 풀 상대적 열위</b> 정황 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>병존 라인</dt><dd>KVIC 모태(문화·영화) + 성장금융(미디어 전략·밸류업) + KOCCA(완성보증) <sup class="ref"><a href="#src-9">[9]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 수치 주의:</span> 2026 IP펀드·수출펀드 개별 규모는 검색 스니펫 번역에서 '2조'로 표기되나 총 7,318억과 모순 → <b>원문 재확인 전까지 미확인</b>. 문체부 누적(3,840억→9,014억·45개)도 기준연도 미표기.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 정부·언론 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 담당자 신원·펀드 규모·구성은 게재 전 KVIC 공고·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 한국벤처투자(KVIC), 모태펀드 사업개요·출자사업 공지. <a href="https://www.kvic.or.kr/business/business1_1_1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 문화체육관광부 보도자료, 모태펀드 문화·영화 계정 누적 출자(3,840억→9,014억·45개 자조합). <a href="https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=12609" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 머니투데이, 2026 콘텐츠 정책펀드 7,318억 역대 최대, 2026-01-23. <a href="https://www.mt.co.kr/entertainment/2026/01/23/2026012308105989930" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 코리아넷, 2026 모태펀드 콘텐츠(IP·수출펀드·중저예산·애니 신설). <a href="https://www.korean-culture.org/koreanet/view.do?seq=1053639" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 넘버스, 영화계정 케이제이앤·과기정통 지앤텍 GP 선정(경쟁률). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20323" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 이데일리 마켓in, 모태 영화·과기정통 수시 GP 발표. <a href="https://marketin.edaily.co.kr/News/Read?newsId=04339446645380040" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 모태펀드 콘텐츠 계정 GP 선정. <a href="https://dealsite.co.kr/articles/157764" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 파이낸셜뉴스, 2023 모태 문화계정 14개 자펀드·4,262억, 2023-05-01. <a href="https://www.fnnews.com/news/202305011711260799" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 넘버스, 성장금융 K-콘텐츠 미디어 전략펀드(푸른-엠더블유·박찬욱). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20213" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 이투데이, K-컬처 밸류업 펀드 1,500억(문체부·금융위), 2026-07-22. <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 이데일리, K-컬처 밸류업·국민성장펀드 연계 첫 협력. <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03680166645517144" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 이슈인사이트, 콘텐츠·게임·미디어 벤처투자 비중 축소(13%→6%). <a href="https://www.issueinsight.co.kr/news/articleView.html?idxno=2677" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 뉴스핌, 'K콘텐츠 펀드 7318억의 명암', 2026-07-07. <a href="https://www.newspim.com/news/view/20260707000858" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 주간한국, 콘텐츠 IP(저작권) 금융 활성화 과제. <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7170305" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 아시아경제, 회수·유동성 부족·중소 콘텐츠기획사 위기, 2026-08-18. <a href="https://view.asiae.co.kr/article/2026081812490859852" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 한국콘텐츠진흥원(KOCCA), 콘텐츠 금융지원(완성보증·이차보전). <a href="https://www.kocca.kr/kocca/bbs/view/B0158960/2010291.do?bbsId=B0158960&menuNo=204392" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>박규식 담당자 신원·소속·직책 일체 미확인, 펀드 개별 규모(IP·수출펀드)·누적 수치는 '미확인/확인 필요'</b>로 표시. 발행 2026-08-27 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">LP(정책 출자) 취재 세트. <span class="tag req">필수</span>는 <b>소속 확정</b>과 <b>'역대 최대의 역설'</b> 핵심 질문. <span class="tag">태그</span>=기법, [번호]=근거. 담당자 신원 미확인이라 ②는 확인형으로 시작합니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 관계자(박규식) · 담당 확인 (먼저)</h2></div>
+    <div class="q cat2 must"><p class="qtext">먼저 담당을 여쭙겠습니다 — '콘텐츠 모태펀드'라 해도 <b>KVIC 모태펀드 문화·영화 계정, 콘텐츠진흥원 완성보증, 성장금융 K-컬처 펀드</b>는 층위가 다릅니다. <b>어느 기관에서 어느 계정·프로그램</b>을 맡으시고, <b>출자사업 기획·GP 선정·자펀드 관리</b> 중 무엇을 담당하십니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 콘텐츠 정책펀드 4주체 층위 <a href="https://www.kvic.or.kr/business/business1_1_1" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 기관 현안 · 출자 이슈</h2></div>
+    <div class="q cat1 must"><p class="qtext">K콘텐츠 수출은 연 <b>149억달러로 역대 최고</b>이고 콘텐츠 모태 출자도 <b>7,318억으로 역대 최대</b>인데, 정작 콘텐츠·게임·미디어 벤처투자 비중은 <b>2022년 금액 13%에서 2025년 6%로 반토막</b>이 났습니다. '역대 최대 정책자금'과 '민간자금 이탈(AI·로보틱스로 이동)'의 이 <b>괴리</b>를 어떻게 설명하시고, 민간을 다시 불러올 유인은 무엇입니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">모순·질 검증</span><span class="pri high">상</span><span class="basis">근거: 수출 최고·출자 최대 vs 벤처투자 반토막 <a href="https://www.issueinsight.co.kr/news/articleView.html?idxno=2677" target="_blank" rel="noopener">[12]</a> <a href="https://www.newspim.com/news/view/20260707000858" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">사상 최대 정책펀드에도 <b>회수·후속투자 병목</b>으로 중소 콘텐츠기획사가 존속 위기라는 지적이 있습니다. 출자(공급)는 느는데 회수(선순환)가 막힌 구조를, 정책펀드가 <b>어떻게 뚫을</b> 수 있습니까? 회수시장을 위한 별도 장치가 있습니까?</p><div class="qmeta"><span class="tag">반론</span><span class="pri high">상</span><span class="basis">근거: 회수난·기획사 위기 <a href="https://view.asiae.co.kr/article/2026081812490859852" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 정책 출자 방향 · K-컬처 밸류업</h2></div>
+    <div class="q cat3 must"><p class="qtext"><b>K-컬처 밸류업 펀드 1,500억</b>은 국민성장펀드와 문화 정책펀드의 첫 협력입니다. 그런데 <b>모태펀드 콘텐츠 계정과 역할이 겹치지 않습니까?</b> 두 라인(모태 vs 밸류업)의 분업은 어떻게 되며, 9월 GP 선정에서 어떤 운용사를 원하십니까?</p><div class="qmeta"><span class="tag req">필수</span><span class="tag">확인·구조</span><span class="pri high">상</span><span class="basis">근거: K-컬처 밸류업·국민성장펀드 연계 <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">[10]</a> <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03680166645517144" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2026년 <b>IP펀드·수출펀드를 신설</b>하셨습니다. K-콘텐츠의 최대 약점으로 꼽히는 <b>IP(저작권) 소유·글로벌 OTT 종속</b> 문제를 이 펀드들이 실제로 바꿀 수 있습니까? <b>제작사가 IP를 지키게 하는 출자 조건</b>이 붙어 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: IP·수출펀드 신설·IP금융 과제 <a href="https://www.korean-culture.org/koreanet/view.do?seq=1053639" target="_blank" rel="noopener">[4]</a> <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7170305" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ GP 선정 · 자펀드 프로그램</h2></div>
+    <div class="q cat4"><p class="qtext">올해 <b>영화계정 GP 경쟁률이 4:1</b>인 반면 과기정통은 8:1이었습니다. <b>콘텐츠 전문 GP 풀이 얇아지는</b> 것 아닙니까? GP를 고를 때 '흥행·라인업 트랙레코드'와 '재무 규율' 중 무엇을 더 보시며, 콘텐츠 GP를 늘릴 유인책은 있습니까?</p><div class="qmeta"><span class="tag">비교·확인</span><span class="pri high">상</span><span class="basis">근거: 영화 4:1 vs 과기정통 8:1 <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20323" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2026 구성이 <b>문화계정 6,500억 vs 영화계정 818억</b>으로 크게 기울어 있습니다. 영화 산업 위기론이 큰데 <b>영화계정 비중이 이대로 괜찮습니까?</b> 드라마·웹툰·음악에 쏠린 배분은 어떤 근거입니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 문화 6,500억 vs 영화 818억 <a href="https://www.mt.co.kr/entertainment/2026/01/23/2026012308105989930" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat4"><p class="qtext"><b>중저예산 한국영화 134억·애니메이션 특화 117억</b>을 배정하셨습니다. 대작·드라마에 쏠리는 시장에서 이런 <b>소액 특화펀드가 실효</b>가 있습니까? 성패를 무엇으로 판단하십니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 중저예산·애니 특화펀드 <a href="https://www.korean-culture.org/koreanet/view.do?seq=1053639" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 한국벤처투자(KVIC), 모태펀드 사업개요. <a href="https://www.kvic.or.kr/business/business1_1_1" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 머니투데이, 2026 콘텐츠 정책펀드 7,318억, 2026-01-23. <a href="https://www.mt.co.kr/entertainment/2026/01/23/2026012308105989930" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 코리아넷, IP·수출펀드·중저예산·애니 신설. <a href="https://www.korean-culture.org/koreanet/view.do?seq=1053639" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 넘버스, 영화·과기정통 GP 선정(경쟁률). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20323" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 이투데이, K-컬처 밸류업 1,500억, 2026-07-22. <a href="https://www.etoday.co.kr/news/view/2605929" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 이데일리, K-컬처 밸류업·국민성장펀드 연계. <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03680166645517144" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 이슈인사이트, 콘텐츠 벤처투자 비중 축소(13%→6%). <a href="https://www.issueinsight.co.kr/news/articleView.html?idxno=2677" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 뉴스핌, K콘텐츠 펀드 7318억의 명암, 2026-07-07. <a href="https://www.newspim.com/news/view/20260707000858" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 주간한국, 콘텐츠 IP 금융 과제. <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7170305" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 아시아경제, 중소 콘텐츠기획사 위기, 2026-08-18. <a href="https://view.asiae.co.kr/article/2026081812490859852" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[16])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-27</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
