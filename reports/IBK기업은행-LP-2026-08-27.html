@@ -1,0 +1,255 @@
+<meta charset="utf-8" />
+<title>IBK기업은행 · LP 역할 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0369a1; --accent-soft: #e0f0fa;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #56b6e0; --accent-soft: #0a2634;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #56b6e0; --accent-soft: #0a2634;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0369a1; --accent-soft: #e0f0fa;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-27</div>
+    <h1 class="title">IBK기업은행 · LP로서의 역할</h1>
+    <p class="subtitle">국책은행의 변신 — VC의 '매칭 출자자'에서 '앵커 LP'로. IBK 혁신펀드·IBK창공·자회사 IBK벤처투자로 이어지는 모험자본 공급 체인</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관(국책은행·민간 출자)</span>
+      <span class="meta-chip">매칭 LP → 앵커 LP(2024~)</span>
+      <span class="meta-chip">모험자본 3년 3.5조 목표</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>기관 개요 · LP 위상</h2>
+      <dl class="kv">
+        <dt>성격</dt><dd>중소기업 지원 <b>국책은행</b>. 단순 대출을 넘어 <b>벤처투자·펀드 조성 등 모험자본 공급</b>으로 확장 <sup class="ref"><a href="#src-13">[13]</a></sup></dd>
+        <dt>LP 전환(핵심)</dt><dd>VC의 <b>매칭 출자자</b>에 머물다 <b>2024년부터 앵커 LP로 전면</b> — 한국성장금융과 공동 출자사업 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>목표</dt><dd>모험자본 3년(2026~28) 2.5조→<b>3.5조</b>. '30-300' — 2030까지 생산적금융 300조+, <b>벤처·투자·인프라 20조</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>규모</dt><dd>연간 벤처투자 ~1조, 직접 출자 2024 2,000억 → 2026 <b>3,000억+</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>행장</dt><dd><b>장민영</b> 제28대 행장(2026-02-20 취임, 37년 IBK) — "생산적 금융 마중물" <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 관계자 미지정:</span> 취재 대상 개인이 특정되지 않아 <b>기관·프로그램 중심</b>으로 정리했습니다(은행 내 벤처투자 담당 부서명은 공개 확인 안 됨). 수치는 원문 차단(egress)으로 검색 요약 교차검증 — 인용 전 재확인 권장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 출자·동향</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2017. 12</div><div class="tl-body"><b>IBK창공(창업공작소) 마포센터</b> 개소 — 스타트업 보육·투자연계 플랫폼 시작 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 12</div><div class="tl-body"><b>IBK벤처투자 설립</b>(자본금 1,000억, 그룹 9번째 자회사·신기술금융사) — 자회사 GP <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024</div><div class="tl-body"><b>IBK 혁신펀드 첫 공모 출자 → 1조1,638억 조성</b>(목표의 2.3배), 직접투자 ~1,000억 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 11</div><div class="tl-body"><b>2025 혁신펀드 GP 7곳</b>(2,000억 출자→5,600억+): K-AI 스톤브릿지·코오롱·키움 / K-테크 삼호그린·위벤처스·이노폴리스·퓨처플레이 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 11</div><div class="tl-body">IBK창공 <b>실리콘밸리(팔로알토) 센터</b> 개소 — 해외진출 지원 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 03</div><div class="tl-body"><b>국민성장펀드 연계</b> 첨단전략산업 1조3,500억 지원 승인, <b>매칭 출자 4,000억 이내</b> <sup class="ref"><a href="#src-11">[11]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 05</div><div class="tl-body"><b>IBK 동행펀드</b>(1,200억→2,300억) — 임팩트·바이오헬스·컬처 3개 분야 <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>IBK창공(創工) — 보육→직접투자 파이프라인</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>지점 공간 활용 <b>스타트업 보육·액셀러레이팅</b>(창업 7년 이내). 사무공간·멘토링·IR·투자연계·해외진출 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>센터</dt><dd>국내 6곳(마포·구로·부산·대전·광주·대구) + <b>실리콘밸리(팔로알토)</b>. 연 ~160개 육성 <sup class="ref"><a href="#src-7">[7]</a></sup></dd>
+        <dt>누적</dt><dd>육성 <b>1,158~1,380개</b>(시점 상충), 금융지원 <b>2.9조~3.4조</b>. 대표 사례 라라스윗 등 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>직접투자</dt><dd><b>IBK금융그룹 창공 1호 투자조합 200억</b>(IBK벤처투자 운용) — 창공 육성기업 직접 지분투자 연결 <sup class="ref"><a href="#src-10">[10]</a></sup></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>국민성장펀드 · 정책 출자 방향</h2>
+      <ul class="tight">
+        <li><b>생산적 금융 '30-300'</b>: 2030까지 300조+, 벤처·투자·인프라 20조. 상반기 누적 2조8,150억(<b>벤처·인프라 목표 대비 달성률 14.1%</b>) <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>국민성장펀드 매칭</b>: 첨단전략산업 1조3,500억 승인(기업투자 8,500억+인프라 5,000억), 매칭 출자 4,000억 이내 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li>앵커 LP 전환은 정부 <b>생산적 금융·신산업 육성 기조</b>와 연동 <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출자 구조 · 계열 VC — LP vs GP 분담</h2>
+      <table class="rt">
+        <tr><th>층위</th><th>주체·역할</th></tr>
+        <tr><td><b>은행 본체 = 앵커 LP</b></td><td>혁신펀드·동행펀드·혁신성장펀드3호(285억)·상생도약펀드(500억) 등 출자사업 주관 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td><b>IBK벤처투자 = 자회사 GP</b></td><td>2023 설립·AUM ~2,035억. '스타트업코리아 IBKVC-코오롱 2024' 500억(퓨리오사AI·라피끄·패스트파이브 등)·창공1호 200억·딥테크1호 110억 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>IBK창공</td><td>은행 <b>보육 플랫폼</b>(펀드 운용은 IBK벤처투자) <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td>IBK캐피탈</td><td><b>신기술금융</b>(기존 그룹 VC 기능) <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+      </table>
+      <p class="src"><span class="flag">※ 취재 포인트:</span> 은행(LP)–IBK벤처투자(GP)–IBK캐피탈(신기사)–창공(보육)이 <b>한 그룹 안에 병존</b> → 역할·이해상충·리스크 분담이 핵심 논점.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문(언론·IBK)이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 출자 규모·창공 누적·집행 진척은 게재 전 원문 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 더벨 LP Radar, IBK 매칭→앵커 LP 전환·혁신펀드 연 2회 확대·직접출자 3,000억, 2026-04-23. <a href="https://thebell.co.kr/front/newsview.asp?key=202604231015553400103527" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 인사이트코리아, IBK창공 누적 실적·모험자본. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=252648" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 아시아투데이, IBK '30-300'·모험자본 3.5조·달성률 14.1%, 2026-08-07. <a href="https://asiatoday.co.kr/kn/view.php?key=20260807010002231" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 유니콘팩토리, 2024 IBK 혁신펀드 1.16조·직접투자 1,000억, 2025-04-02. <a href="https://www.unicornfactory.co.kr/article/2025040210312073026" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트, 2025 IBK 혁신펀드 GP 7곳(K-AI·K-테크). <a href="https://dealsite.co.kr/articles/152419" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 아주경제, IBK 동행펀드 1,200억→2,300억(임팩트·바이오·컬처), 2026-05-18. <a href="https://www.ajunews.com/view/20260518143128875" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 아시아투데이, IBK창공 실리콘밸리(팔로알토) 센터 개소, 2025-11-18. <a href="https://asiatoday.co.kr/kn/view.php?key=20251118010009281" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 이투데이, IBK벤처투자 설립(2023.12·자본금 1,000억·신기술금융사). <a href="https://www.etoday.co.kr/news/view/2342135" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 더벨, 스타트업코리아 IBKVC-코오롱 2024 펀드 500억(1년 만에 소진), 2025-12-12. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202512121052556200106215" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 더벨, IBK금융그룹 창공 1호 투자조합 200억(IBK벤처투자 운용), 2025-08-27. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202508270740176760106639" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 서울경제TV, IBK 국민성장펀드 연계 1.35조·매칭 4,000억, 2026-03-10. <a href="https://www.sentv.co.kr/article/view/sentv202603100041" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 딜사이트, IBK 상생도약펀드 500억 GP 선정. <a href="https://dealsite.co.kr/articles/154890" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 인사이트코리아, IBK '될성부른 스타트업' 육성·모험자본. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=251340" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>담당 부서·관계자, 창공 누적 수치(상충)·출자 집행 진척·IBK벤처투자 AUM은 '미확인/확인 필요'</b>로 표시. 발행 2026-08-27 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">요청하신 <b>LP로서의 IBK 역할</b>(앵커 LP·창공·벤처펀드 출자)에 초점을 맞췄습니다. <span class="tag req">핵심</span>은 전환·구조를 파고드는 질문. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 기관 현안 · 출자 이슈</h2></div>
+    <div class="q cat1 must"><p class="qtext">IBK는 그동안 VC의 <b>매칭 출자자</b>에 머물다 2024년부터 <b>앵커 LP</b>로 전면에 나섰습니다. 은행이 직접 앵커 LP로 GP를 고르는 것과 모태·성장금융 같은 <b>전업 출자기관의 차이·강점</b>은 무엇이며, 국책은행의 앵커 LP 확대가 <b>민간 LP를 구축(crowd-out)</b>하지는 않습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·반론</span><span class="pri high">상</span><span class="basis">근거: 매칭→앵커 LP 전환 <a href="https://thebell.co.kr/front/newsview.asp?key=202604231015553400103527" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">모험자본을 3년간 <b>3.5조</b>로 늘리고 벤처·인프라 20조를 내걸었지만 <b>상반기 달성률이 14.1%</b>입니다. 목표가 과한 것 아닙니까? 대규모 벤처투자 확대에 따른 <b>건전성·회수(RWA) 부담</b>은 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag">질 검증·반론</span><span class="pri high">상</span><span class="basis">근거: 3.5조·달성률 14.1% <a href="https://asiatoday.co.kr/kn/view.php?key=20260807010002231" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">정책성 중기·벤처 지원과 주주 밸류업·수익성이라는 '<b>두 토끼</b>'를 좇습니다. LP 출자·직접투자에서 손실이 나면 <b>정책 명분과 수익성 중 무엇을 우선</b>하십니까? 회수 실적으로 이를 증명한 사례가 있습니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 중기지원 vs 밸류업 <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=251340" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 출자 구조 · 계열 VC 분담</h2></div>
+    <div class="q cat2 must"><p class="qtext">그룹 안에 <b>은행(앵커 LP)·IBK벤처투자(GP)·IBK캐피탈(신기술금융)·창공(보육)</b>이 모두 있습니다. 같은 스타트업을 두고 <b>은행 출자와 자회사 운용의 이해상충·리스크 분담</b>은 어떻게 관리하며, IBK벤처투자와 IBK캐피탈의 역할은 어디서 갈립니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·구조</span><span class="pri high">상</span><span class="basis">근거: LP–GP–신기사–보육 병존 <a href="https://www.etoday.co.kr/news/view/2342135" target="_blank" rel="noopener">[8]</a> <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202512121052556200106215" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat2"><p class="qtext"><b>IBK창공</b>은 누적 1,300여 개 기업·금융지원 3조를 넘겼고 창공 1호 투자조합 200억으로 직접투자까지 연결합니다. '<b>보육→직접투자→펀드출자</b>'로 이어지는 이 파이프라인에서 <b>실제 회수·수익 성과</b>는 어느 정도이며, 라라스윗 외에 손에 잡히는 엑시트가 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 창공 파이프라인·창공1호 200억 <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=252648" target="_blank" rel="noopener">[2]</a> <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202508270740176760106639" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책 출자</h2></div>
+    <div class="q cat3 must"><p class="qtext"><b>국민성장펀드에 4,000억 매칭 출자</b>를 계획하면서 IBK 자체 <b>혁신펀드·동행펀드</b>도 굴립니다. 두 라인이 겹치지 않습니까? 국민성장펀드 앵커(산은)와 IBK의 <b>역할 분담</b>은 어떻게 되며, 정책펀드 쏠림 속에서 IBK 출자사업의 차별점은?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인</span><span class="pri high">상</span><span class="basis">근거: 국민성장 매칭 4,000억·자체 출자 <a href="https://www.sentv.co.kr/article/view/sentv202603100041" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">혁신펀드 출자를 <b>연 1회 → 2회로 확대</b>하십니다. 시장에 자금이 몰리는 국면에서 출자 물량을 늘리면 <b>'좋은 GP·좋은 딜'이 부족</b>해질 위험은 없습니까? 출자 속도와 심사 건전성을 어떻게 양립시키십니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 혁신펀드 연 2회 확대 <a href="https://thebell.co.kr/front/newsview.asp?key=202604231015553400103527" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ GP 선정 · 출자 프로그램</h2></div>
+    <div class="q cat4"><p class="qtext">2025 혁신펀드에서 <b>K-AI에 스톤브릿지·코오롱·키움, K-테크에 삼호그린·위벤처스·이노폴리스·퓨처플레이</b>를 뽑으셨습니다. 분야를 AI·첨단산업으로 못박고 <b>중견 GP 위주</b>로 간 논리는 무엇이고, 초기·소형 GP나 지역 하우스의 몫은 어떻게 배분하십니까?</p><div class="qmeta"><span class="tag">확인·벤치마크</span><span class="pri high">상</span><span class="basis">근거: 혁신펀드 GP 7곳·분야 설정 <a href="https://dealsite.co.kr/articles/152419" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">동행펀드로 <b>임팩트·바이오헬스·컬처</b>까지 넓히셨습니다. AI·첨단산업에 자금이 쏠리는 시장에서 <b>임팩트·콘텐츠 같은 비주류 분야</b>에 출자하는 판단 배경과, 이 분야 GP 선정 기준은 무엇입니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 동행펀드 3개 분야 <a href="https://www.ajunews.com/view/20260518143128875" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">IBK벤처투자가 운용한 'IBKVC-코오롱' 펀드가 <b>퓨리오사AI·패스트파이브 등에 투자해 1년 만에 소진</b>됐습니다. 은행 출자(LP)와 자회사 운용(GP)이 함께 움직일 때, 이 펀드의 <b>성과·회수 전망</b>과 다음 대형 펀드 로드맵은 무엇입니까?</p><div class="qmeta"><span class="tag">전망·확인</span><span class="pri mid">중</span><span class="basis">근거: IBKVC-코오롱 500억 소진 <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202512121052556200106215" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 더벨 LP Radar, 매칭→앵커 LP·혁신펀드 연 2회, 2026-04-23. <a href="https://thebell.co.kr/front/newsview.asp?key=202604231015553400103527" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 인사이트코리아, IBK창공 누적 실적. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=252648" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 아시아투데이, 30-300·모험자본 3.5조·14.1%, 2026-08-07. <a href="https://asiatoday.co.kr/kn/view.php?key=20260807010002231" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 딜사이트, 2025 혁신펀드 GP 7곳. <a href="https://dealsite.co.kr/articles/152419" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 아주경제, 동행펀드 1,200→2,300억, 2026-05-18. <a href="https://www.ajunews.com/view/20260518143128875" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 이투데이, IBK벤처투자 설립(2023.12). <a href="https://www.etoday.co.kr/news/view/2342135" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 더벨, IBKVC-코오롱 2024 펀드 500억, 2025-12-12. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202512121052556200106215" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 더벨, 창공 1호 투자조합 200억, 2025-08-27. <a href="https://thebell.co.kr/free/content/ArticleView.asp?key=202508270740176760106639" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 서울경제TV, 국민성장펀드 1.35조·매칭 4,000억, 2026-03-10. <a href="https://www.sentv.co.kr/article/view/sentv202603100041" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 인사이트코리아, '될성부른 스타트업' 육성. <a href="https://www.insightkorea.co.kr/news/articleView.html?idxno=251340" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[13])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-27</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
