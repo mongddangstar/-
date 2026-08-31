@@ -1,0 +1,269 @@
+<meta charset="utf-8" />
+<title>LB인베스트먼트 · 이수정 차장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #3641a8; --accent-soft: #e6e8fa;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8b93e8; --accent-soft: #171b40;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8b93e8; --accent-soft: #171b40;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #3641a8; --accent-soft: #e6e8fa;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-08-27</div>
+    <h1 class="title">LB인베스트먼트 · 이수정 차장</h1>
+    <p class="subtitle">범LG가 상장 VC(코스닥 309960·AUM 1.5조) — 노타 '텐배거' e신산업 펀드, 산은·사학연금 업은 세컨더리 2,000억 펀드레이징, 그리고 애즈위메이크 회계부정 피해</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·상장 VC)</span>
+      <span class="meta-chip">코스닥 309960 · 대표 박기호</span>
+      <span class="meta-chip">AUM ~1.5조</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>연혁</dt><dd>1996 'LG창업투자' → 2008 계열분리 <b>LB인베스트먼트</b>. 범LG가(회장 구자두·부회장 구본천) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>상장</dt><dd><b>2023-03-29 코스닥 상장(티커 309960)</b>, 청약 1,165:1 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>대표</dt><dd><b>박기호 대표이사</b>(대표펀드매니저 겸) <span class="flag">※ '김은희'는 대표로 확인 안 됨</span> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>규모</dt><dd>AUM <b>~1.5조</b>(2025 상반기 1조5,091억), 5년내 2조 목표. 통산 투자 477개사·92곳 IPO/M&amp;A·평균 IRR 20%중반 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></dd>
+        <dt>섹터</dt><dd>바이오·ICT·콘텐츠·소비재 + AI·딥테크. 2025 펀드레이징 ~3,030억(5위권) <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 상장 VC:</span> 코스닥 309960이라 실적·주가 공시. 다만 <b>상장 후 주가 부진('반토막')</b>이 취재 민감 포인트. 원문 차단(egress)으로 검색 요약 교차검증 — 인용 전 재확인 권장 <sup class="ref"><a href="#src-17">[17]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 동향 · 회수</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023. 03</div><div class="tl-body">코스닥 상장(309960) <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><b>IPO 회수 러시</b> — 오름테라퓨틱·오가노이드사이언스·이뮨온시아·프로티나·S2W·<b>노타</b> 등 코스닥 상장 <sup class="ref"><a href="#src-16">[16]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 06</div><div class="tl-body"><b>애즈위메이크 시리즈C(100억)에 신규 주주로 참여</b> <sup class="ref"><a href="#src-19">[19]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 06</div><div class="tl-body"><b>산은 '회수시장 지원 세컨더리 펀드' 중형 GP 선정</b>(3번째 세컨더리 펀드 마중물) <sup class="ref"><a href="#src-14">[14]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07</div><div class="tl-body"><b>사학연금 블라인드 위탁운용사 선정 → 200억 확보</b> <sup class="ref"><a href="#src-13">[13]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 07~08</div><div class="tl-body"><b>애즈위메이크 회계부정 표면화</b> — 후속 500억 라운드 FDD서 매출조작·장부위조 의혹 <sup class="ref"><a href="#src-20">[20]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 이수정 차장</h2>
+      <p><span class="flag">공개 정보 미확인.</span> LB인베스트먼트 <b>'이수정 차장'의 담당 섹터·대표 딜·경력을 특정할 1차 출처가 확인되지 않습니다</b>('IR/기획 소속'설은 출처 불명). 2024년 LB가 영입한 여성 심사역은 김기헌·신승희로, <b>이수정은 여기 포함되지 않습니다</b>. 동명(배우 등)과 무관 <sup class="ref"><a href="#src-18">[18]</a></sup>.</p>
+      <p class="src"><b>대면 확인 권장:</b> 정확한 팀·직책, 담당 섹터, 대표 투자·회수 건, <b>e신산업 1호·세컨더리 펀드에서의 역할</b>(펀드운용/IR/심사). 세컨더리·펀드레이징 문맥이면 IR·운용 담당 가능성은 추정일 뿐.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>e신산업 1호펀드 · 노타 '텐배거' <span style="font-size:12px;color:var(--muted);">(관심①)</span></h2>
+      <dl class="kv">
+        <dt>펀드 정체</dt><dd><b>'e신산업'=에너지신산업</b> — 앵커 LP가 <b>한전 에너지신산업펀드</b>(+두산테스나·E1). 약정 <b>335억</b>, 만기 <b>2026.11</b> <span class="flag">(2차전지·소부장 아님)</span> <sup class="ref"><a href="#src-9">[9]</a></sup></dd>
+        <dt>대표작 노타</dt><dd>e신산업+혁신성장II로 노타(AI 경량화)에 <b>107억 투입</b> → 상장 후 <b>지분 57% 매각 ~350억 회수</b>(약정 초과) <sup class="ref"><a href="#src-8">[8]</a></sup></dd>
+        <dt>멀티플</dt><dd>보도상 <b>'텐배거(12배+) 기대'</b> <span class="flag">vs '4.3배' 표기도 있어 상충</span>(부분 실현·산정범위 차) <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ '멀티플 3배' 주의:</span> 사용자가 접한 <b>'3배'는 e신산업 펀드 성과가 아니라 박기호 대표가 밝힌 하우스 5년 평균 멀티플</b>로 보도된 지표입니다. e신산업/노타 건과 구분 필요 → 정확한 확정 멀티플·잔여 43% 회수는 대면 확인 <sup class="ref"><a href="#src-7">[7]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드레이징 · LP <span style="font-size:12px;color:var(--muted);">(관심②)</span></h2>
+      <ul class="tight">
+        <li><b>3번째 세컨더리 펀드 결성 중 — 목표 2,000억+</b>, 세컨더리(구주·펀드지분 인수)에 <b>M&amp;A 결합</b>한 복합 구조 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>LP 확보(순항)</b>: 산은 회수시장 세컨더리 중형 GP <sup class="ref"><a href="#src-14">[14]</a></sup> · <b>사학연금 200억</b>(VC 5곳 각 200억) <sup class="ref"><a href="#src-13">[13]</a></sup> · <b>총회연금재단</b> <span class="flag">(보도 '최대 200억' vs 사용자 정보 100억 — 상충, 확인 필요)</span> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li>별개 펀드: LB넥스트퓨처펀드 3,030억(2025)·AI펀드 3,000억 추진 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>애즈위메이크 회계부정 — LB는 피해 주주 <span style="font-size:12px;color:var(--muted);">(관심③·민감)</span></h2>
+      <p style="margin-top:0;"><span class="flag">※ 구도 정리:</span> LB는 <b>2025.6 시리즈C(100억)에 참여한 기존 주주</b>입니다. 문제를 처음 발견한 곳은 <b>별도 500억 후속 라운드를 검토하던 신규 운용사의 FDD</b>이고, LB는 <b>피해 주주로서 약 10개 기관과 공동 회계실사·법적 대응 중</b>(LB의 개별 고소 여부는 미확인) <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup>.</p>
+      <ul class="tight">
+        <li><b>회사</b>: 애즈위메이크 = <b>식자재마트 DX 플랫폼 '큐마켓'</b> 운영사(인테리어·집꾸미기 아님). 2019 설립 <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+        <li><b>매출 조작(시인)</b>: 손수영 전 대표가 8월 주주간담회에서 <b>2023년 3분기부터 매출 일부 조작 사실 시인</b>·사임 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>장부 위조(의혹)</b>: 감사보고서·은행 잔고증명서 위조 의혹(회계법인 발급 부인 정황) → <b>의혹 단계, 외부 실사 진행 중</b> <sup class="ref"><a href="#src-21">[21]</a></sup></li>
+        <li><b>후폭풍</b>: 투자금 상각, 일부 투자자 특경법(사기) <b>고소(수사·판결 전, 무죄추정)</b>, CFO·대표 사임→류지원 체제, 인력 92→37명, 큐마켓 종료·B2B SaaS 전환 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">⚠️ 취재 각:</span> 이 건은 <b>LB의 투자심사·FDD 역량</b>에 대한 질문으로 번질 수 있습니다 — 시리즈C 당시 LB가 받은 자료 검증 여부, 상각·회수 전망이 핵심.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 이수정 차장 신원, e신산업 확정 멀티플, 총회재단 출자액, 애즈위메이크 상각·수사 진척은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 이데일리 마켓인, LB인베스트먼트 연혁(LG창업투자→계열분리). <a href="https://marketin.edaily.co.kr/News/ReadE?newsId=02233686635543320" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 인베스트뉴스, LB인베 코스닥 상장(309960·청약 1,165:1), 2023. <a href="https://www.investnews.co.kr/news/articleView.html?idxno=3000371" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 전자신문, LB인베 상장·박기호 대표, 2023-03-14. <a href="https://www.etnews.com/20230314000174" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴스톱, LB인베 AUM 1.5조·2조 목표. <a href="http://www.newstopkorea.com/news/articleView.html?idxno=28529" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 더벨, LB인베 2026 로드맵(세컨더리·M&amp;A·글로벌). <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202601190933507640106327" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 딜사이트, 2025 VC 리그테이블(LB 펀드레이징 ~3,030억). <a href="https://dealsite.co.kr/articles/155666" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 이투데이 VC스토리, 박기호(펄어비스 15.6배·5년 평균 멀티플 3배·통산). <a href="https://www.etoday.co.kr/news/view/1837762" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 노타 e신산업+혁신성장II 107억 투입·회수, 2025-11-06. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202511060938440240104274" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 뉴스톱, LB e신산업 1호 335억·노타 텐배거·만기 2026.11, 2026-04. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=44566" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 탑데일리, LB 노타 회수. <a href="https://www.topdaily.kr/articles/106489" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 엑시트넘버스(다음), LB 노타 '원금 4.3배' 표기(상충). <a href="https://m.finance.daum.net/quotes/A309960/news/stock/20260119090127756" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 토큰포스트, LB 3번째 세컨더리 2,000억·산은·사학연금·총회재단. <a href="https://www.tokenpost.kr/amp/news/cryptocurrency/388836" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 서울경제, 사학연금 VC 5곳 각 200억 선정, 2026-07. <a href="https://www.sedaily.com/article/20074356" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> TTL뉴스, 산은 회수시장 지원 세컨더리 중형 GP 선정. <a href="http://www.ttlnews.com/news/articleView.html?idxno=3121482" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 한국금융신문, LB 2026 경영전략(AI·딥테크·AI펀드 3,000억). <a href="https://www.fntimes.com/html/view.php?ud=202604190758389654dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 서울경제 시그널, LB 2025 IPO 회수 러시(6개사). <a href="https://signal.sedaily.com/NewsView/2H0KFC80GR/GX11" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 딜사이트, 상장 VC 주가 부진·AI펀드로 만회. <a href="https://dealsite.co.kr/articles/142515" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 더벨 VC People, LB 2024 여성 심사역 김기헌·신승희 영입(이수정 미포함), 2024-10-14. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202410141732331800103176" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 블로터, 애즈위메이크 시리즈C 100억(LB인베 신규 참여), 2025-06. <a href="https://www.bloter.net/news/articleView.html?idxno=638002" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 이데일리, 애즈위메이크 500억 유치 중 사기 의혹·대표 매출조작 시인·CFO 사임. <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02610886645546008" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 한국경제, 애즈위메이크 '가짜 장부' 의혹·잔고증명서 논란, 2026-08-11. <a href="https://www.hankyung.com/article/202608114370i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 벤처스퀘어, 애즈위메이크 구조조정 92→37명·큐마켓 종료·B2B SaaS 전환. <a href="https://www.venturesquare.net/1106403" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 유니콘팩토리, 애즈위메이크 NH투자 상장주관·2027 IPO 목표, 2025-11-25. <a href="https://www.unicornfactory.co.kr/article/2025112510560213539" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>이수정 차장 신원·역할, e신산업 확정 멀티플('3배'는 하우스 평균), 총회재단 출자액(100 vs 200 상충), 애즈위메이크 상각·수사 진척은 '미확인/확인 필요'</b>. 애즈위메이크 형사 건은 고소 단계로 무죄추정. 발행 2026-08-27 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">주신 <b>3가지(e신산업·펀드레이징·애즈위메이크)</b>를 정밀화한 질문 + <b>추가 질문</b>입니다. <span class="tag req">핵심</span>=꼭 물을 것, <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① e신산업 · 회수·멀티플</h2></div>
+    <div class="q cat1 must"><p class="qtext"><b>e신산업(에너지신산업) 1호 펀드</b>는 노타로 이미 약정 335억을 넘는 ~350억을 회수했습니다. 그런데 보도마다 <b>'텐배거(12배+)'와 '4.3배'</b>가 엇갈리고, 흔히 말하는 <b>'멀티플 3배'는 하우스 5년 평균</b>으로 알려졌습니다 — e신산업 1호 펀드의 <b>실제 확정 멀티플</b>과 노타 <b>잔여 43% 회수 전망</b>, 11월 만기 처리는 정확히 어떻게 됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">팩트체크·확인</span><span class="pri high">상</span><span class="basis">근거: 노타 텐배거 vs 4.3배·5년평균 3배 <a href="https://www.newstopkorea.com/news/articleView.html?idxno=44566" target="_blank" rel="noopener">[9]</a> <a href="https://www.etoday.co.kr/news/view/1837762" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2025년 오름테라·프로티나·노타 등 <b>6개사 코스닥 상장</b>으로 회수가 몰렸습니다. 이 실적이 <b>일회성</b> 아닌가요? 상장 후 주가는 오히려 부진한데, 다음 회수 파이프라인과 <b>경상 수익력</b>은 어느 정도입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: IPO 러시·주가 부진 <a href="https://signal.sedaily.com/NewsView/2H0KFC80GR/GX11" target="_blank" rel="noopener">[16]</a> <a href="https://dealsite.co.kr/articles/142515" target="_blank" rel="noopener">[17]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>② 펀드레이징 · LP</h2></div>
+    <div class="q cat3 must"><p class="qtext">3번째 <b>세컨더리 펀드(목표 2,000억+)</b>에 산은·<b>사학연금 200억</b>·총회연금재단을 확보하며 순항 중입니다. <b>총회재단 출자액이 100억인지 200억인지</b> 확인 부탁드리고, 이 펀드가 <b>세컨더리에 M&amp;A를 결합</b>한 복합 구조라는데 그 전략과 <b>첫 타깃</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·구체</span><span class="pri high">상</span><span class="basis">근거: 세컨더리 2,000억·LP <a href="https://www.tokenpost.kr/amp/news/cryptocurrency/388836" target="_blank" rel="noopener">[12]</a> <a href="https://www.sedaily.com/article/20074356" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">회수난으로 세컨더리 시장이 붐입니다. 구주·펀드지분을 싸게 사서 되파는 세컨더리에서 <b>LB만의 소싱 우위</b>와 목표 수익률은 무엇이며, M&amp;A 결합이 실제로 수익을 더 낼 수 있습니까?</p><div class="qmeta"><span class="tag">개방·질 검증</span><span class="pri mid">중</span><span class="basis">근거: 세컨더리+M&amp;A 복합 <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202601190933507640106327" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>③ 애즈위메이크 (민감)</h2></div>
+    <div class="q cat4 must"><p class="qtext">LB는 2025년 6월 <b>애즈위메이크 시리즈C(100억)</b>에 들어갔는데, 이후 후속 500억 라운드 FDD에서 <b>매출 조작(전 대표 2023년 3분기부터 시인)·장부 위조 의혹</b>이 터졌습니다. LB는 <b>얼마를 집행했고 상각 규모·회수 전망</b>은 어떻게 됩니까? 그리고 시리즈C 투자 당시 LB는 <b>받은 감사보고서·잔고증명서를 자체 검증</b>했습니까 — 기존 주주도 위조 자료를 받았습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·질 검증</span><span class="pri high">상</span><span class="basis">근거: 애즈위메이크 회계부정·LB 시리즈C <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02610886645546008" target="_blank" rel="noopener">[20]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=638002" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">이번 건은 <b>LB의 투자심사·FDD 역량</b>에 대한 질문으로 이어집니다. 손 전 대표 <b>고소에 LB가 참여</b>했습니까, 아니면 공동 회계실사만 참여하십니까? 재발 방지를 위해 <b>실사·모니터링 프로세스</b>를 어떻게 보강하실 계획입니까?</p><div class="qmeta"><span class="tag">확인·후속</span><span class="pri high">상</span><span class="basis">근거: 공동 실사·법적 대응 <a href="https://www.hankyung.com/article/202608114370i" target="_blank" rel="noopener">[21]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>④ 관계자·하우스 전략(추가)</h2></div>
+    <div class="q cat2 must"><p class="qtext">(먼저) 차장님의 <b>담당 팀·섹터와 대표 딜</b>, 그리고 <b>e신산업·세컨더리 펀드에서의 역할</b>(운용/IR/심사)을 여쭙겠습니다. 공개 자료로는 확인이 어려워 직접 듣고 싶습니다.</p><div class="qmeta"><span class="tag req">확인형</span><span class="pri high">상</span><span class="basis">근거: 이수정 차장 공개정보 미확인 <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202410141732331800103176" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">상장 3년째인데 <b>주가가 공모가 대비 부진</b>합니다. 회수 러시에도 주가가 안 따라오는 이유와, <b>3,000억 AI펀드·글로벌(미·일·인도)</b>로 이를 만회할 수 있습니까? 국내 VC의 해외투자 성공 사례가 드문데 LB의 실제 무기는?</p><div class="qmeta"><span class="tag">반론·개방</span><span class="pri mid">중</span><span class="basis">근거: 주가 부진·AI펀드·글로벌 <a href="https://dealsite.co.kr/articles/142515" target="_blank" rel="noopener">[17]</a> <a href="https://www.fntimes.com/html/view.php?ud=202604190758389654dd55077bc2_18" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[5]</span> 더벨, LB 2026 로드맵(세컨더리·M&amp;A). <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202601190933507640106327" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 이투데이 VC스토리, 박기호(5년 평균 3배). <a href="https://www.etoday.co.kr/news/view/1837762" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 뉴스톱, e신산업 1호·노타 텐배거, 2026-04. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=44566" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 토큰포스트, 세컨더리 2,000억·LP(산은·사학연금·총회재단). <a href="https://www.tokenpost.kr/amp/news/cryptocurrency/388836" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 서울경제, 사학연금 VC 각 200억, 2026-07. <a href="https://www.sedaily.com/article/20074356" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 서울경제 시그널, IPO 회수 러시. <a href="https://signal.sedaily.com/NewsView/2H0KFC80GR/GX11" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 딜사이트, 주가 부진·AI펀드. <a href="https://dealsite.co.kr/articles/142515" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 더벨 VC People, 2024 여성 심사역(이수정 미포함). <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202410141732331800103176" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[19]</span> 블로터, 애즈위메이크 시리즈C 100억(LB 참여). <a href="https://www.bloter.net/news/articleView.html?idxno=638002" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 이데일리, 애즈위메이크 사기 의혹·매출조작 시인. <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02610886645546008" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[21]</span> 한국경제, 애즈위메이크 '가짜 장부' 의혹, 2026-08-11. <a href="https://www.hankyung.com/article/202608114370i" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[23])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-08-27</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
