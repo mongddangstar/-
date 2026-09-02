@@ -1,0 +1,256 @@
+<meta charset="utf-8" />
+<title>DSC인베스트먼트 · 윤건수 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #7c2d8f; --accent-soft: #f0e5f5;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545; --ok: #2f8f5b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #c78ad6; --accent-soft: #2c0f36;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #c78ad6; --accent-soft: #2c0f36;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #7c2d8f; --accent-soft: #f0e5f5;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .ok { color: var(--ok); font-weight: 700; }
+  .fix { color: var(--c1); font-weight: 700; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-02 · 블로터 VC 20년 기획④</div>
+    <h1 class="title">DSC인베스트먼트 · 윤건수 대표</h1>
+    <p class="subtitle">기술로 승부한 상장 VC — 50개 미만 압축·AI 60% 집중, 퓨리오사AI 최대 기관투자자. 초안 팩트체크 + 최신화(퓨리오사 IPO·세요빌딩 연기·주가 반토막)</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·상장 VC)</span>
+      <span class="meta-chip">코스닥 241520 · AUM ~1.52조</span>
+      <span class="meta-chip">대표 윤건수(4연임)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>취재 초안 팩트체크 (최신화) <span style="font-size:12px;color:var(--muted);">핵심</span></h2>
+      <table class="rt">
+        <tr><th>초안 내용</th><th>확인 결과(2026-09-02)</th></tr>
+        <tr><td>2012 설립·2016 코스닥 상장</td><td><span class="ok">✔ 확인</span> — 티커 241520, "VC 16년 만의 IPO" <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>세요빌딩 505억 매입·계열 3사 집결</td><td><span class="fix">△ 정정</span> — 505<b>억</b> 맞음. 단 <b>매입 6개월 연기(등기 2026-11-14 예정)</b> → <b>현재 입주 전</b>, 잔금 ~424억 미지급 <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>계열 3사(DSC·슈미트·똑똑)</td><td><span class="ok">✔ 확인</span> — 슈미트(AC·TIPS·AUM ~1,957억) / 똑똑(VC용 ERP) <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+        <tr><td>슈미트 2025 영업수익 63억·순이익 30억</td><td><span class="ok">✔ 정확</span> — 순이익 3배+ 급증(역대 최대) <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>투자기업 50개 미만·기술 심사역</td><td><span class="ok">✔</span> 50개 미만·AI 60% 확인 / <span class="flag">'심사역 전원 기술 전공' 문구는 미확인</span> <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td>2025 연결 영업수익 451억·영업이익 223억</td><td><span class="ok">✔ 정확</span> — 순이익 177.5억(+67.9%), 성과보수 본격화 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>퓨리오사 5개 펀드 보유·상장 시 수백억 회수</td><td><span class="fix">△ 정정</span> — 5개 펀드·지분 ~10% 맞음. <b>단 상장 목표는 2027년</b>(2026 하반기는 예심 청구), 회수는 <b>350배 거론</b>이나 지연 중 <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>2012 설립·<b>2016 코스닥 상장(241520)</b>. AUM <b>1조5,205억</b>(2025 3Q·17개 조합·업계 10위권) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>대표</dt><dd><b>윤건수</b>(1962년생·경북대 전자공학·MIT 슬로언). LG종기원→한국기술투자→LB인베→2012 DSC 창업. <b>CEO 4연임</b> <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup></dd>
+        <dt>협회</dt><dd>한국벤처캐피탈협회장 역임(2024.2 취임) <span class="flag">※ 2025.2 김학균(퀀텀벤처스)이 제16대 회장 당선 — <b>현직 여부 확인 필요</b></span> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>철학</dt><dd>"투자기업 50개 미만 '<b>될놈될</b>' AI 집중", "1등이 다 갖는 세상", "0.1% 혁신가 안목" <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 주의:</span> 국민성장펀드 대형 GP로 선정된 '<b>디에스자산운용</b>'은 DSC인베스트먼트와 <b>별개 회사</b>. DSC의 국민성장펀드/모태 GP 신규 선정은 미확인. 원문 차단(egress)으로 검색 요약 교차검증.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>퓨리오사AI 회수 — 최신·핵심</h2>
+      <dl class="kv">
+        <dt>DSC 보유</dt><dd><b>5개 펀드로 지분 ~10%</b>(시드부터·국내 최대 기관투자자) — KT-DSC창조경제(350억)·홈런1호(2,480억)·스케일업(1,700억) 등 <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+        <dt>메타 인수</dt><dd><b>메타 ~8억달러(1.2조) 인수 제안 거절</b>·독자노선 <sup class="ref"><a href="#src-16">[16]</a></sup></dd>
+        <dt>국민성장펀드</dt><dd>2026-05 <b>직접투자(직투 3호) 8,000억 승인</b>(정책 4,000+민간 4,000)·<b>프리밸류 ~3조</b>('실적 없는 밸류' 비판·민간매칭 지연) <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></dd>
+        <dt>IPO</dt><dd>미래에셋·모건스탠리 <b>프리IPO 8,000억대</b>. <b>상장 목표 2027년</b>·코스닥/나스닥 듀얼트랙, 2026 하반기 예심 청구 잠정 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+        <dt>회수</dt><dd>시드 대비 <b>350배+ 거론</b>이나 매각 무산으로 <b>회수 지연 → KT-DSC펀드 등 청산 3년 연속 연장</b> <span class="flag">(예상 회수금액 조단위는 미확인)</span> <sup class="ref"><a href="#src-11">[11]</a></sup></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>계열 3사 · 세요빌딩 · 실적·주가</h2>
+      <ul class="tight">
+        <li><b>세요빌딩(삼성동 505억)</b>: 계열 3사(DSC·슈미트·똑똑) 통합거점 구상. <b>등기 2026-11-14로 6개월 연기 → 현재 미입주</b> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>슈미트(AC 자회사)</b>: 2017 설립·독립경영·TIPS 운용·극초기 특화. AUM ~1,957억(AC 1위) <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li><b>망고부스트</b>(AI 반도체 DPU): 2022 시드·2023 시리즈A 참여, 시리즈B 밸류 <b>1조~1.4조</b>. <span class="flag">단 "DSC 후속(팔로온) 투자 거부" 보도</span> <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+        <li><b>실적·주가</b>: 2025 영업이익 223억(성과보수). 단 <b>주가 4월 14,710원 → 8,200원대(약 -44%)</b> — 퓨리오사 밸류 논쟁·회수 지연 반영 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>2026 배분</b>: AI 60% / 바이오 30% / 글로벌 10%, '투자 기준 재정립 전환 원년' <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 퓨리오사 예상 회수액·지분율, 협회장 현직 여부, 2026 반기 실적·배당은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 위키백과, DSC인베스트먼트 개요(2012 설립·2016 상장 241520). <a href="https://ko.wikipedia.org/wiki/DSC_인베스트먼트" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국금융신문, 윤건수 "투자 50개 미만·될놈될 AI 집중", 2025-11-23. <a href="https://www.fntimes.com/html/view.php?ud=2025112322444484068a55064dd1_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 한국금융신문, DSC AUM 1조5,205억·17개 조합, 2025-12-03. <a href="https://www.fntimes.com/html/view.php?ud=202512031601257245957e88cdd5_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 아주경제, 윤건수 프로필·인터뷰(시총·주가), 2025-10-15. <a href="https://www.ajunews.com/view/20251015120415006" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 더벨, DSC 삼성동 세요빌딩 505억 양수 결정, 2025-11-14. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202511141432139360102730" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 딜사이트, DSC 세요빌딩 매입 6개월 연기(등기 2026-11-14), 2026-07-15. <a href="https://dealsite.co.kr/articles/165292" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, DSC 계열 3사 신사옥 집결 구상. <a href="https://dealsite.co.kr/articles/152609" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 넘버스, 슈미트 AUM ~1,957억·AC 1위. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=20581" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 더벨, DSC 2025 실적(연결 451억·영업이익 223억·순이익 177.5억)·슈미트 63/30, 2026-03-25. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603250925415400101148" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 더벨, DSC 2026 전략(AI 60%·바이오 30%·글로벌 10%·전환 원년), 2026-01-19. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601190749351920102667" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, DSC 퓨리오사 5개 펀드·350배·펀드 청산 연장. <a href="https://dealsite.co.kr/articles/136668" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 아시아경제, 퓨리오사AI 국민성장펀드 8,000억 승인, 2026-05-29. <a href="https://www.asiae.co.kr/article/2026052916343792513" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 파이낸셜뉴스, 퓨리오사 직투 8,000억·프리IPO, 2026-06-20. <a href="https://www.fnnews.com/news/202606200837079700" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 인베스트조선, 퓨리오사 프리밸류 3조 '실적 없는 밸류' 논쟁, 2026-05-29. <a href="https://www.investchosun.com/site/data/html_dir/2026/05/29/2026052980132.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 디일렉, 퓨리오사 IPO 목표 2027·코스닥/나스닥 듀얼트랙. <a href="https://www.thelec.kr/news/articleView.html?idxno=52780" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 이데일리 마켓인, 퓨리오사 메타 8억달러 인수 제안 거절. <a href="https://marketin.edaily.co.kr/News/Read?newsId=03798246642074456" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 더벨, 망고부스트 시리즈B 밸류 1조~1.4조, 2026-05-27. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605271000339440106635" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 딜사이트, "망고부스트 짝사랑 DSC…거부당한 후속투자". <a href="https://dealsite.co.kr/articles/157392" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 윤건수 DSC 대표 4연임. <a href="https://dealsite.co.kr/articles/120152" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트(다음), 윤건수 '소형 VC 집중 3년 강제' 제언. <a href="https://v.daum.net/v/qESAKivmSt" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>퓨리오사 예상 회수액·지분율, 협회장 현직 여부, 2026 반기 실적·배당, 망고부스트 후속 '거부' 사실관계는 '미확인/확인 필요'</b>. 퓨리오사 밸류·회수는 유동적. 발행 2026-09-02 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">'VC 20년·기술로 승부한 DSC' 기획에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 퓨리오사 · 회수·주가</h2></div>
+    <div class="q cat1 must"><p class="qtext">DSC는 <b>5개 펀드로 퓨리오사AI를 시드부터 담은 국내 최대 기관투자자</b>입니다. 메타의 8억달러 인수는 거절됐고 국민성장펀드가 8,000억 직투를 승인했지만 <b>프리밸류 3조에 '실적 없는 밸류'라는 비판</b>과 민간매칭 지연이 있습니다. 상장이 <b>2027년으로 밀린 상황</b>에서 DSC의 <b>예상 회수 멀티플·금액</b>과, <b>KT-DSC펀드 등 3년 연속 청산 연장에 따른 LP 부담</b>은 어떻게 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">팩트체크·질 검증</span><span class="pri high">상</span><span class="basis">근거: 퓨리오사 8,000억·3조·IPO 2027·청산 연장 <a href="https://dealsite.co.kr/articles/136668" target="_blank" rel="noopener">[11]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/05/29/2026052980132.html" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">주가가 4월 <b>1만4,710원에서 8,200원대로 반토막</b> 났습니다. 퓨리오사 지분가치가 DSC 주가 프리미엄의 핵심인데, <b>퓨리오사 밸류 논쟁·회수 지연이 그대로 주가에 반영</b>된 것 아닙니까? 상장 VC로서 '퓨리오사 원노트' 리스크와 변동성을 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론·질 검증</span><span class="pri high">상</span><span class="basis">근거: 주가 -44%·퓨리오사 의존 <a href="https://www.ajunews.com/view/20251015120415006" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 윤건수 · 투자 철학·조직</h2></div>
+    <div class="q cat2 must"><p class="qtext">'투자기업 50개 미만·AI 60% 집중·될놈될'이라는 <b>고집중 전략</b>이 이번 기획의 축입니다. 그런데 압축·집중은 반대로 <b>하방 리스크가 큽니다</b> — 한국기술투자·LB를 거친 25년 경험에서, <b>'분산 없이 이겨온' 방법론</b>과 지금 그 전략이 통하지 않을 위험은 무엇이라고 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: 50개 미만·될놈될·경력 <a href="https://www.fntimes.com/html/view.php?ud=2025112322444484068a55064dd1_18" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">DSC(투자)-슈미트(극초기 AC)-똑똑(ERP) <b>계열 분업</b>을 삼성동 세요빌딩에 모으려 하십니다. 슈미트는 독립경영으로 순이익 30억까지 컸는데, <b>한 거점에 모으면 실제로 무엇이 달라지며</b> 독립성과 시너지가 상충하지는 않습니까? (매입이 6개월 연기됐는데 통합 시점은?)</p><div class="qmeta"><span class="tag">개방·구조</span><span class="pri mid">중</span><span class="basis">근거: 계열 3사·세요빌딩 연기 <a href="https://dealsite.co.kr/articles/152609" target="_blank" rel="noopener">[7]</a> <a href="https://dealsite.co.kr/articles/165292" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">벤처캐피탈협회장을 지내며 '<b>소형 VC 집중을 3년 강제하자</b>'는 제언도 하셨습니다. 업계 리더로서, 정책자금이 AI·대형에 쏠리는 지금 <b>VC 생태계의 최대 과제</b>와 초기·소형 하우스의 활로는 무엇이라고 보십니까?</p><div class="qmeta"><span class="tag">개방</span><span class="pri mid">중</span><span class="basis">근거: 소형 VC 3년 강제 제언 <a href="https://v.daum.net/v/qESAKivmSt" target="_blank" rel="noopener">[20]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 정책펀드</h2></div>
+    <div class="q cat3 must"><p class="qtext">퓨리오사를 초기부터 키운 투자자로서, <b>국민성장펀드가 프리밸류 3조에 8,000억 직접투자</b>를 승인한 것을 어떻게 평가하십니까? 정책자금이 이렇게 <b>고밸류에 선진입</b>하고 민간매칭이 지연되는 구조가 <b>바람직</b>합니까? 초기 투자자에겐 유리하지만 세금의 리스크는?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론·질 검증</span><span class="pri high">상</span><span class="basis">근거: 국민성장펀드 퓨리오사 직투·매칭 지연 <a href="https://www.asiae.co.kr/article/2026052916343792513" target="_blank" rel="noopener">[12]</a> <a href="https://www.fnnews.com/news/202606200837079700" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 포트폴리오 · 회수·실적</h2></div>
+    <div class="q cat4 must"><p class="qtext">AI 반도체 '2관왕'(퓨리오사·<b>망고부스트</b>)을 내세우시는데, <b>망고부스트 후속(팔로온) 투자가 거부됐다</b>는 보도가 있습니다. 사실입니까? 시리즈B 밸류가 1조~1.4조로 뛰는 국면에서 후속을 못 받은 배경과, 망고부스트 회수 계획은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·민감</span><span class="pri high">상</span><span class="basis">근거: 망고부스트 후속 거부 보도 <a href="https://dealsite.co.kr/articles/157392" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2025년 영업이익 223억으로 <b>성과보수가 본격화</b>됐습니다. 그런데 이익의 상당 부분이 <b>퓨리오사·슈미트발</b>이고 퓨리오사 회수가 2027년으로 밀렸습니다. 이 실적의 <b>지속성(경상 수익력)</b>은 어느 정도이며, 회수 공백기의 이익 방어책은?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 2025 실적 223억·성과보수 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603250925415400101148" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">컬리·두나무·무신사·카카오게임즈가 DSC를 거쳤습니다. 2026 배분을 <b>AI 60%·바이오 30%·글로벌 10%</b>로 잡으셨는데, AI에 자금이 다 몰리는 시장에서 <b>DSC만의 소싱 차별점</b>과, '기술 중심'이 실제 회수로 이어진 대표 사례는?</p><div class="qmeta"><span class="tag">개방·비교</span><span class="pri mid">중</span><span class="basis">근거: 2026 배분·트랙레코드 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601190749351920102667" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 한국금융신문, 50개 미만·될놈될, 2025-11-23. <a href="https://www.fntimes.com/html/view.php?ud=2025112322444484068a55064dd1_18" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 아주경제, 윤건수 인터뷰·주가, 2025-10-15. <a href="https://www.ajunews.com/view/20251015120415006" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 딜사이트, 세요빌딩 매입 6개월 연기, 2026-07-15. <a href="https://dealsite.co.kr/articles/165292" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 딜사이트, 계열 3사 집결 구상. <a href="https://dealsite.co.kr/articles/152609" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 더벨, DSC 2025 실적·슈미트, 2026-03-25. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603250925415400101148" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 더벨, DSC 2026 전략(AI 60%), 2026-01-19. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601190749351920102667" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 딜사이트, 퓨리오사 5개 펀드·350배·청산 연장. <a href="https://dealsite.co.kr/articles/136668" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 아시아경제, 퓨리오사 국민성장펀드 8,000억, 2026-05-29. <a href="https://www.asiae.co.kr/article/2026052916343792513" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 인베스트조선, 퓨리오사 3조 밸류 논쟁, 2026-05-29. <a href="https://www.investchosun.com/site/data/html_dir/2026/05/29/2026052980132.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 디일렉, 퓨리오사 IPO 2027·듀얼트랙. <a href="https://www.thelec.kr/news/articleView.html?idxno=52780" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> 딜사이트, 망고부스트 후속투자 거부. <a href="https://dealsite.co.kr/articles/157392" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[20]</span> 딜사이트(다음), 윤건수 소형 VC 3년 강제 제언. <a href="https://v.daum.net/v/qESAKivmSt" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[20])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-02</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
