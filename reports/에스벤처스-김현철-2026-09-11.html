@@ -1,0 +1,243 @@
+<meta charset="utf-8" />
+<title>에스벤처스 · 김현철 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #455a64; --accent-soft: #e4e9eb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8fa8b3; --accent-soft: #1a2227;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8fa8b3; --accent-soft: #1a2227;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #455a64; --accent-soft: #e4e9eb;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-11</div>
+    <h1 class="title">에스벤처스 · 김현철 공동대표</h1>
+    <p class="subtitle">설립 4년차 '특급루키' — 딥테크·방산 전문 창투사. 공군 무기체계 교관 출신 대표가 대형사 제치고 방산 정책펀드 GP 획득, 소부장의 방산 진출을 노린다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(GP·VC)</span>
+      <span class="meta-chip">2021 설립 · 딥테크·방산 특화</span>
+      <span class="meta-chip">AUM ~400억 → 1,400억 전망</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd><b>2021.7 설립</b>, 2022.4 증자로 <b>창투사 전환</b>(자본금 ~21억). <b>딥테크·소부장·방산</b> 특화 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>대표</dt><dd><b>김현철·도승환 공동대표</b>(둘 다 20년+ VC). 김현철=<b>방산</b>, 도승환=<b>소부장</b> 전문 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>규모</dt><dd>AUM <b>~400억</b>(2024말) → 방산·부산 펀드 반영 시 <b>~1,400억</b> 전망. 운용조합 4개+ <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>평판</dt><dd>설립 4년차 소형사가 대형사 제치고 정책펀드 GP 획득 → 언론 '<b>특급루키·슈퍼루키</b>' <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 동명 주의:</span> 코스닥 상장 대형 VC '<b>에스브이인베스트먼트(SV인베스트먼트)</b>'·에스제이투자파트너스 등과는 <b>별개 법인</b>. 홈페이지·계열관계는 미확인(독립 하우스 추정). 원문 차단(egress)으로 검색 요약 교차검증.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 펀드 · 출자 선정</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023. 06</div><div class="tl-body"><b>에스세컨더리 투자조합 1호 105억</b>(첫 벤처펀드) <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023</div><div class="tl-body"><b>2023 에스초격차 지역균형발전 조합 300억</b>·모태펀드 GP 선정 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 말</div><div class="tl-body"><b>성장금융 방산기술혁신펀드 3차 GP 선정</b> — SK증권·퀀텀·TS인베스트 등과 경쟁 <b>5:1 뚫음</b> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 03</div><div class="tl-body"><b>에스-피앤유 부산지역혁신조합 136.5억</b>(부산대기술지주 공동) <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><b>에스방산기술혁신펀드 400억 결성</b> — 앵커 방산기술혁신펀드(200억), <b>방사청 산하 3개 기관</b>(국방기술진흥연·기품원·국과연) 참여 <b>국내 첫 방산 정책모펀드 자펀드</b> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관계자 프로필 — 김현철 공동대표</h2>
+      <dl class="kv">
+        <dt>학력</dt><dd>서울대 전기공학부 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>군</dt><dd><b>공군 장교 출신</b> — 교관으로 장교 대상 <b>무기체계 기술 교육</b>. 전역 후에도 군 인사 교류, <b>~30년 방산 지식·네트워크</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>VC 경력</dt><dd><b>2008 벤처투자 입문</b>(16년차)·<b>플래티넘기술투자</b> 시절부터 소부장 등 딥테크 다수 발굴 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>발언</dt><dd>"초격차 펀드 주목적 투자 조건이 에스벤처스가 전문성을 갖춘 <b>딥테크 영역에 최적화</b>… 이미 검토 중인 회사가 있어 발빠른 투자" <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※</span> KVIC 뉴스레터 'VC를 만나다 — 에스벤처스 김현철' 심층 인터뷰가 있으나 도메인 차단으로 <b>투자철학 원문 미확보</b> — 대면에서 직접 확인 권장 <sup class="ref"><a href="#src-10">[10]</a></sup>. 동명(가수·배우 김현철)과 무관.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책펀드 · 방산 정책 연관</h2>
+      <ul class="tight">
+        <li><b>국내 첫 방산 정책모펀드 자펀드 운용</b> — 방사청 산하 3기관 앵커. 방산을 <b>드론·로봇·우주·반도체·AI</b> 5대 국방 신사업으로 겨냥 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>성장금융·모태펀드</b> GP(지역균형·방산혁신), <b>부산 지역펀드</b>로 산학·지역 연계 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>국민성장펀드·산업은행 GP 선정은 미확인</b> — 방산이 국민성장펀드 첨단전략산업 대상이라 향후 도전 가능성은 있음 <span class="flag">(현재 확인 안 됨)</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>포트폴리오 · 전략 · 회수</h2>
+      <ul class="tight">
+        <li><b>알페스</b>(배터리셀 코팅 딥테크): 2025.5 <b>시리즈A 20억</b>(누적 48억) <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li>포스포·디지털팜·바이온에버·타스글로벌 등 딥테크 <span class="flag">(개별 섹터·투자액 미확인)</span>. 초기 펀드는 결성 1년 만에 재원 대부분 소진할 만큼 활발 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>차별 전략</b>: "<b>소부장 기업을 방위산업에 신규 진출</b>시킨다" — 민수 기술의 방산 전환 발굴 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><span class="flag">회수(IPO·M&amp;A·멀티플)는 신생사라 아직 확인된 실적 없음</b></span> — 첫 엑시트 시점·세컨더리 1호 성과는 대면 확인</li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문의 <sup class="ref">[n]</sup>을 누르면 이 목록의 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. AUM(현재 실결성)·펀드 규모·포트폴리오 세부·회수는 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 딜사이트, 에스벤처스 '펀딩 혹한기 400억 모은 비결'(설립·창투사 전환·김현철). <a href="https://dealsite.co.kr/articles/113307" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 머니투데이/유니콘팩토리, "모태·성장금융 사로잡은 '특급루키' 에스벤처스", 2024-12-22. <a href="https://news.mt.co.kr/mtview.php?no=2024122123493050745" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 블로터, "성장금융 GP 에스벤처스, 대형하우스 제친 딥테크 VC"(김현철 공군·도승환). <a href="https://www.bloter.net/news/articleView.html?idxno=628506" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 넘버스, 에스벤처스 딥테크·투자 집행 속도(동일 취재). <a href="https://www.numbers.co.kr/news/articleView.html?idxno=7547" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트플러스, "성장금융, 방산혁신펀드 GP '에스벤처스' 낙점"(5:1). <a href="https://dealsiteplus.co.kr/articles/133667" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 뉴스톱, "'슈퍼루키' 에스벤처스 400억 방산펀드 결성"(방사청 3기관·부산펀드). <a href="https://www.newstof.com/news/articleView.html?idxno=28508" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> THE VC, 에스벤처스 기업정보·펀드(세컨더리 1호 등). <a href="https://thevc.kr/sventures" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> THE VC, 알페스 시리즈A(배터리셀 코팅). <a href="https://thevc.kr/alpes" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 뉴스톱, 성장금융 방산 3차 GP 선정 경쟁. <a href="https://www.newstof.com/news/articleView.html?idxno=25518" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> KVIC 뉴스레터, 'VC를 만나다 — 에스벤처스 김현철'(본문 미확보). <a href="https://kvicnewsletter.co.kr/page/view.php?idx=407" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>현재 실결성 AUM·펀드 규모, 포트폴리오 개별 섹터·투자액, 회수 실적, 2026 신규 GP 선정은 '미확인/확인 필요'</b>. 발행 2026-09-11 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">딥테크·방산 전문 신생 GP에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 · GP 선정</h2></div>
+    <div class="q cat1 must"><p class="qtext">설립 4년차 소형 VC가 <b>SK증권·퀀텀벤처스·TS인베스트먼트 등 대형사를 제치고</b> 성장금융 방산혁신펀드 3차 GP(5:1)를 따내 '특급루키'로 불립니다. 심사에서 <b>대형사 대비 결정적으로 앞선 지점</b>은 무엇이었고, 김 대표의 <b>공군·무기체계 이력</b>이 실제 심사·소싱에서 어떻게 작동합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: 대형사 제친 GP 선정·공군 이력 <a href="https://dealsiteplus.co.kr/articles/133667" target="_blank" rel="noopener">[5]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=628506" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">AUM가 400억에서 방산·부산 펀드로 <b>1,400억대로 3배 이상 커집니다</b>. 신생 소형 하우스가 이 규모를 관리할 <b>인력·시스템</b>은 갖춰졌습니까? 그리고 <b>방산 한 분야에 정체성을 거는 편중 리스크</b>(정책·안보 환경 변화)는 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증·트레이드오프</span><span class="pri high">상</span><span class="basis">근거: AUM 400→1,400억·방산 특화 <a href="https://news.mt.co.kr/mtview.php?no=2024122123493050745" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 김현철 · 방산 투자 관점</h2></div>
+    <div class="q cat2 must"><p class="qtext">'<b>소부장 기업을 방위산업에 신규 진출</b>시킨다'는 게 차별 전략입니다. 민수 소부장이 방산으로 가는 건 <b>인증·보안·조달 장벽</b>이 큰데, 실제로 성사시킨 <b>첫 딜과 그 방법론</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 소부장→방산 진출 전략 <a href="https://www.bloter.net/news/articleView.html?idxno=628506" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">공군 교관으로 무기체계를 가르치고 30년 방산 네트워크를 쌓으셨습니다. 방산 투자에서 '<b>기술을 아는 것</b>'과 '<b>군의 실제 수요를 아는 것</b>' 중 무엇이 더 결정적입니까? 네트워크가 이해상충으로 비칠 위험은 어떻게 관리하십니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 공군·무기체계·30년 네트워크 <a href="https://www.numbers.co.kr/news/articleView.html?idxno=7547" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 정책펀드 · 방산 정책</h2></div>
+    <div class="q cat3 must"><p class="qtext">에스방산기술혁신펀드는 <b>방사청 산하 3개 기관이 참여한 국내 첫 방산 정책 모펀드</b> 자펀드입니다. 정책자금 방산펀드가 늘면서 특정 기술이 '<b>정책이 원해서' 과대평가</b>되는 위험은 없습니까? GP로서 <b>방산 밸류에이션</b>을 어떻게 검증하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론·질 검증</span><span class="pri high">상</span><span class="basis">근거: 방사청 3기관·첫 방산 정책모펀드 <a href="https://www.newstof.com/news/articleView.html?idxno=28508" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">방산은 국민성장펀드 첨단전략산업 대상이기도 합니다. <b>국민성장펀드·산업은행 등 더 큰 정책자금 GP</b>에 도전할 계획입니까? 대형화하면 지금의 '기민한 소형사' 강점이 희석되지는 않나요?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 국민성장펀드 방산·GP 미확인 <a href="https://dealsiteplus.co.kr/articles/133667" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 포트폴리오 · 회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">설립 4년차라 아직 <b>이렇다 할 엑시트가 없습니다</b>. 세컨더리 1호(105억)의 성과와, <b>방산·딥테크는 회수까지 오래 걸리는데 첫 엑시트 시점·경로</b>(IPO/M&amp;A/방산 대기업 인수)를 어떻게 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 회수 실적 미확인·세컨더리 1호 <a href="https://thevc.kr/sventures" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">배터리셀 코팅 <b>알페스</b> 등 딥테크에 투자하셨습니다. 방산과 별개로 <b>소부장·이차전지 딥테크 포트폴리오의 대표 성장 사례</b>는 무엇이고, 방산 라인과의 시너지(민군 겸용 기술)는 어떻게 만들어집니까?</p><div class="qmeta"><span class="tag">개방·비교</span><span class="pri mid">중</span><span class="basis">근거: 알페스 등 딥테크 <a href="https://thevc.kr/alpes" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 머니투데이, 특급루키 에스벤처스, 2024-12-22. <a href="https://news.mt.co.kr/mtview.php?no=2024122123493050745" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 블로터, 대형하우스 제친 딥테크 VC(김현철 공군). <a href="https://www.bloter.net/news/articleView.html?idxno=628506" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 넘버스, 에스벤처스 딥테크·집행 속도. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=7547" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 딜사이트플러스, 성장금융 방산혁신펀드 GP 낙점(5:1). <a href="https://dealsiteplus.co.kr/articles/133667" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 뉴스톱, 400억 방산펀드 결성(방사청 3기관). <a href="https://www.newstof.com/news/articleView.html?idxno=28508" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> THE VC, 에스벤처스 기업정보·펀드. <a href="https://thevc.kr/sventures" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> THE VC, 알페스 시리즈A. <a href="https://thevc.kr/alpes" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처 목록([1]~[10])은 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-11</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
