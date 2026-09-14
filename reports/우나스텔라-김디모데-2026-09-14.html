@@ -1,0 +1,257 @@
+<meta charset="utf-8" />
+<title>우나스텔라 · 김디모데 팀장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #4c1d95; --accent-soft: #ece4fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #b79bf0; --accent-soft: #201538;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #b79bf0; --accent-soft: #201538;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #4c1d95; --accent-soft: #ece4fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .factcheck { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; }
+  .factcheck b { color: var(--accent); }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-14</div>
+    <h1 class="title">우나스텔라 · 김디모데 팀장</h1>
+    <p class="subtitle">고도 100km 유인 준궤도 우주관광을 노리는 발사체 스타트업. 시리즈B 누적 615억, 민간 첫 자력발사(10km) 성공 — 그런데 '국민성장펀드'와의 연결은 팩트체크가 필요하다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 스타트업(피투자기업)</span>
+      <span class="meta-chip">2022.2 설립 · 유인 발사체</span>
+      <span class="meta-chip">누적 615억 · 고흥 발사장</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd><b>2022.2 설립</b> 민간 발사체 스타트업. 궁극 목표는 고도 <b>100km 유인 준궤도 우주관광(승객 6인)</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+        <dt>대표</dt><dd><b>박재홍</b> — 연세대 기계공학·베를린공대 우주공학 석사·독일 DLR/국내 발사체 ~10년. <b>※ '스페이스X 출신'은 근거 없음</b> <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>전략</dt><dd>단기 <b>소형위성 발사</b>로 신뢰성·매출 확보 → 유인 비행 확장하는 <b>단계론</b>. 자체 발사장 <b>전남 고흥</b> <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>관계자</dt><dd><b>김디모데 팀장</b> — 직함·담당(사업개발/대외협력/엔지니어링 등) <b>공개자료 확인 불가</b>. 현장 명함 확인 권장</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>투자 유치 이력</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2024. 09</div><div class="tl-body"><b>시리즈A 195억</b> 성료(누적 ~280억). HB·SBI·우리벤처·삼호그린·KDB캐피탈 등 신규 + 하나벤처스·스트롱벤처스·에이스톤 등 기존 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026. 06. 02</div><div class="tl-body"><b>시리즈B 335억</b>, 누적 <b>615억</b>. <b>리드=알토스벤처스.</b> 참여: <b>산업은행(KDB)·산은캐피탈</b>·스트롱벤처스·우리벤처·삼호그린·하나벤처스 <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+      </div>
+      <p class="src">자금 용도: 엔진·차세대 발사체 개발, 핵심 인재 확보, 시험·제작·발사 인프라. <span class="flag">※ 시드/프리A 초기 라운드 상세, TIPS·모태펀드 출자 여부는 미확인.</span></p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 국민성장펀드 — 팩트체크(핵심)</h2>
+      <div class="factcheck">"우나스텔라가 <b>국민성장펀드로부터 투자받았다</b>"는 <b>직접 근거는 현재 확인되지 않습니다.</b> 인터뷰에서 정면 확인이 필요한 지점입니다.</div>
+      <ul class="tight">
+        <li>시리즈B에 <b>산업은행·산은캐피탈</b>이 참여한 건 사실이나, 이 자금이 <b>'국민성장펀드' 재원으로 명시된 근거는 없음</b> — <b>KDB 고유·계열 투자와 국민성장펀드 재원은 구분</b>해야 함 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li>국민성장펀드는 2026.7.15 <b>150조→200조 확대</b>하며 <b>'우주항공'을 지원대상에 편입한다는 '방침'</b>을 발표한 단계. <b>실제 우주기업 집행 사례는 미확인</b>(방침과 집행의 시차) <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>진짜 정부 우주 재원은 우주항공청(KASA) '뉴스페이스펀드'</b> — 2026년 KASA 1,000억 출자로 <b>총 2,000억</b> 결성(2024년 80억의 25배). 우나스텔라는 KASA <b>'스페이스 파이오니어' 사업 첫 실발사 적용</b> 사례 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">→ 취재 포인트:</span> "KDB 자금은 어느 재원인가(고유/계열/국민성장펀드)?" · "국민성장펀드(우주항공 편입) 별도 유치를 추진 중인가?" · "KASA 뉴스페이스펀드와 국민성장펀드는 역할 분담이 되나?"</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>기술 · 개발 진척</h2>
+      <ul class="tight">
+        <li>발사체 <b>우나 익스프레스(UNA EXPRESS)</b>. 1호기: 길이 9.45m·총중량 ~2t·추력 5t급 <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+        <li>엔진: <b>전기모터펌프(electric pump-fed) 사이클</b>, 케로신+액체산소(LOX). 터보펌프 대비 안정성·제어성 우위가 차별점 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+      </ul>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2024. 11. 22</div><div class="tl-body">고흥 첫 준궤도 시험발사 시도 → <b>엔진 문제로 이륙 못 하고 중단(실패)</b> <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025. 05. 28</div><div class="tl-body"><b>UNA EXPRESS-I 약 10km 비행 성공</b> — "국내 영토서 민간이 자력개발 로켓을 자력 발사한 첫 사례" <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+      </div>
+      <p class="src"><span class="flag">※ 미확인:</span> 첫 무인 준궤도·첫 <b>유인</b> 비행 목표 연도의 공식 확정치, 유인 캡슐 제원·명칭, 공식 티켓 가격. (검색 시 중국 딥블루에어로스페이스 2.9억원 티켓이 혼입 — 우나 사실 아님)</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>리스크 · 경쟁 · 규제</h2>
+      <ul class="tight">
+        <li><b>개발지연이 상수</b>: 자체도 1차 실패 후 성공. 상업발사 실적 없어 매출 미미 → 전형적 딥테크 자금소진 구조 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>경쟁</b>: 이노스페이스(궤도 소형발사체, 2024 코스닥 상장 ~4,277억 밸류)·페리지에어로스페이스(액체메탄 재사용) 등 선발주자. 우나는 후발이나 <b>유인 지향</b>이 차별 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>회수 경로=기술특례 상장</b>에 집중. <b>발사 성패가 밸류에 직결</b> — 이노스페이스 브라질 첫 상업발사 실패 당일 <b>-26.5%</b> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>규제 공백 가능성</b>: 우주개발진흥법은 '발사 안전' 중심(2026.8 일괄허가·발사안전구역 개정). <b>유인 준궤도 탑승객 안전·인증·손해배상 전용 프레임은 확인 안 됨</b> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>글로벌 벤치마크</b>: 버진갤럭틱조차 상업 유인 재개가 <b>2027년으로 연기</b>, 티켓 60만~75만 달러대 — 국내 타임라인 검증 잣대 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 국민성장펀드 수혜·유인비행 시점·재무는 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 머니투데이, 우나스텔라 박재홍·엔진·발사체, 2026-06-06. <a href="https://www.mt.co.kr/amp/future/2026/06/06/2026060509305196526" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 아시아경제, 우나스텔라 시리즈B 335억(알토스 리드·KDB 참여), 2026-06-02. <a href="https://www.asiae.co.kr/article/2026060209140342143" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 유니콘팩토리, 우나스텔라 시리즈A 195억, 2024-09-25. <a href="https://www.unicornfactory.co.kr/article/2024092511062481524" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 와우테일, 우나스텔라 시리즈B·누적 615억, 2026-06-02. <a href="https://wowtale.net/2026/06/02/259475/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 대한민국 정책브리핑, 민간 자력발사 첫 성공(10km), 2025. <a href="https://www.korea.kr/multi/visualNewsView.do?newsId=148943934" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨 Peer Match Up, 전기모터펌프 엔진·경쟁구도, 2026-05-14. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605141319223840101557" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 산경투데이, 우나스텔라 첫 시험발사 이륙 실패, 2024-11. <a href="https://www.sankyungtoday.com/news/articleView.html?idxno=49466" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 대한민국 정책브리핑, 국민성장펀드 200조 확대·우주항공 편입, 2026-07-15. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148968206" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 파이낸셜뉴스, 국민성장펀드 확대·직접투자 방침, 2026-07-15. <a href="https://www.fnnews.com/news/202607151810006234" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 유니콘팩토리, KASA 뉴스페이스펀드 4호 2,000억, 2026-06-29. <a href="https://www.unicornfactory.co.kr/article/2026062915530850383" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 한국경제, 이노스페이스 코스닥 상장·밸류, 2024-05. <a href="https://www.hankyung.com/article/202405124208i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 아시아경제, 이노스페이스 브라질 발사 실패·주가 -26.5%, 2025-12-23. <a href="https://core.asiae.co.kr/article/2025122314080887919" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 뉴시스, 우주개발진흥법 개정(일괄 발사허가·발사안전구역), 2026-08-10. <a href="https://www.newsis.com/view/NISX20260810_0003742967" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> Space.com, 버진갤럭틱 상업 유인비행 2027 연기. <a href="https://www.space.com/space-exploration/virgin-galactic-delays-next-commercial-spaceflight-to-2027" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> THE VC, 우나스텔라 기업정보. <a href="https://thevc.kr/unastella" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>국민성장펀드 수혜 여부, 첫 유인비행 목표 연도, 티켓 가격, 재무 세부(자본잠식·현금소진율), 김디모데 신원은 '미확인/확인 필요'</b>. 발행 2026-09-14 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">유인 발사체 스타트업에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거. <b>김디모데 팀장의 실제 담당(투자유치/대외협력/엔지니어링)을 초반에 확인</b>하면 질문 강약을 조절할 수 있습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 국민성장펀드 · 투자</h2></div>
+    <div class="q cat1 must"><p class="qtext">시리즈B에 <b>산업은행·산은캐피탈</b>이 들어왔습니다. 이 자금은 KDB <b>고유계정인가, 계열 캐피탈인가, 아니면 국민성장펀드(또는 그 자펀드) 재원</b>인가요? 우주항공을 편입한 <b>국민성장펀드로부터 별도 유치를 추진 중</b>이십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: KDB 시리즈B 참여·재원 불명 <a href="https://www.asiae.co.kr/article/2026060209140342143" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">국민성장펀드는 우주항공 편입이 <b>2026년 7월 '방침'</b>이고 실제 우주기업 집행은 아직 안 보입니다. 반면 <b>KASA 뉴스페이스펀드(2,000억)</b>가 실질 재원이죠. 우나스텔라 입장에서 두 재원의 <b>차이·활용 계획</b>은 무엇이고, 정부 재원 의존도는 매출·펀딩에서 몇 %입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·검증</span><span class="pri high">상</span><span class="basis">근거: 국민성장펀드 방침 vs KASA 펀드 <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148968206" target="_blank" rel="noopener">[8]</a> <a href="https://www.unicornfactory.co.kr/article/2026062915530850383" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">시리즈B 335억(누적 615억)의 자금 용도로 '핵심 인재 확보'를 꼽으셨습니다. <b>구체적으로 어떤 포지션</b>이며, 615억으로 <b>다음 라운드까지 런웨이(현금소진율 기준 몇 개월)</b>는 얼마나 됩니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 시리즈B 용도·런웨이 <a href="https://wowtale.net/2026/06/02/259475/" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 기술 · 타임라인</h2></div>
+    <div class="q cat2 must"><p class="qtext">2024년 11월 첫 발사는 엔진 문제로 이륙조차 못 했고, 2025년 5월 <b>10km</b> 비행에 성공했습니다. 100km 준궤도, 그리고 <b>첫 무인 준궤도·첫 유인 비행</b>까지의 <b>구체적 마일스톤과 목표 연도</b>는 무엇입니까? 버진갤럭틱도 2027년으로 밀린 걸 감안하면 실현 근거는?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오·검증</span><span class="pri high">상</span><span class="basis">근거: 1차 실패→10km·유인 시점 미확정 <a href="https://www.korea.kr/multi/visualNewsView.do?newsId=148943934" target="_blank" rel="noopener">[5]</a> <a href="https://www.space.com/space-exploration/virgin-galactic-delays-next-commercial-spaceflight-to-2027" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat2"><p class="qtext"><b>전기모터펌프 엔진</b>을 차별점으로 내세우는데, 실증 수준(연소시험 누적·최대 추력)은 어디까지 왔습니까? '기술이전 기반 린 전략'이라는 평가가 있는데 <b>핵심 IP는 자체 보유인가 라이선스</b>인가, 재사용·대형화 확장성은?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 전기모터펌프·린 전략 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605141319223840101557" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 사업모델 · 회수</h2></div>
+    <div class="q cat3 must"><p class="qtext">유인 관광은 장기 목표이고 그전 매출은 <b>소형위성 발사</b>에서 나온다고 하셨습니다. <b>실제 상업 발사 수주·계약</b>이 있습니까? 있다면 규모·고객은? 위성 발사 단가·신뢰성에서 이노스페이스·페리지 대비 <b>경쟁 우위</b>는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인·비교</span><span class="pri high">상</span><span class="basis">근거: 위성발사 브리지·경쟁 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605141319223840101557" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">우주 발사체의 회수는 사실상 <b>기술특례 상장</b>에 몰려 있고, <b>발사 성패가 주가에 직결</b>됩니다(이노스페이스 실패 당일 -26.5%). 우나스텔라의 <b>상장 목표 시점</b>과, 상장 후 발사 실패 리스크를 투자자에게 어떻게 설명하십니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 기술특례 상장·발사 실패 변동성 <a href="https://core.asiae.co.kr/article/2025122314080887919" target="_blank" rel="noopener">[12]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 규제 · 안전</h2></div>
+    <div class="q cat4 must"><p class="qtext">유인 준궤도 비행은 발사체 성공을 넘어 <b>탑승객 안전 인증</b>이 필요합니다. 현행 우주개발진흥법·항공안전법에는 <b>상업 유인비행 승객 안전·인허가·손해배상 규정이 없어 보입니다</b>. 이 규제 공백을 KASA와 <b>어떤 로드맵</b>으로 메우고 있으며, 첫 유인비행 전 인증 절차는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: 발사안전 중심·유인 인증 공백 <a href="https://www.newsis.com/view/NISX20260810_0003742967" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">글로벌 준궤도 관광은 티켓 <b>60만~75만 달러</b>대인데, 우나스텔라의 <b>목표 티켓 가격·초기 수요</b>는 어떻게 잡고 계십니까? 국내에서 이 가격대 수요가 사업성을 담보할 만큼 존재한다고 보는 근거는?</p><div class="qmeta"><span class="tag">개방·검증</span><span class="pri mid">중</span><span class="basis">근거: 글로벌 티켓가·수요 <a href="https://www.space.com/space-exploration/virgin-galactic-delays-next-commercial-spaceflight-to-2027" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 아시아경제, 시리즈B(KDB 참여). <a href="https://www.asiae.co.kr/article/2026060209140342143" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 와우테일, 누적 615억. <a href="https://wowtale.net/2026/06/02/259475/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 정책브리핑, 10km 자력발사 성공. <a href="https://www.korea.kr/multi/visualNewsView.do?newsId=148943934" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 더벨, 전기모터펌프·경쟁. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202605141319223840101557" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 정책브리핑, 국민성장펀드 우주항공 편입. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148968206" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 유니콘팩토리, KASA 뉴스페이스펀드 2,000억. <a href="https://www.unicornfactory.co.kr/article/2026062915530850383" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 아시아경제, 이노스페이스 -26.5%. <a href="https://core.asiae.co.kr/article/2025122314080887919" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 뉴시스, 우주개발진흥법 개정. <a href="https://www.newsis.com/view/NISX20260810_0003742967" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> Space.com, 버진갤럭틱 2027 연기. <a href="https://www.space.com/space-exploration/virgin-galactic-delays-next-commercial-spaceflight-to-2027" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[15])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-14</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
