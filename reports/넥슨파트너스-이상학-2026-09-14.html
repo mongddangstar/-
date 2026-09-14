@@ -1,0 +1,283 @@
+<meta charset="utf-8" />
+<title>넥슨파트너스 · 이상학 과장 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #157347; --accent-soft: #e2f0e8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4ec98a; --accent-soft: #16261e;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4ec98a; --accent-soft: #16261e;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #157347; --accent-soft: #e2f0e8;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .pri.low { background: #7a8593; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-14</div>
+    <h1 class="title">넥슨파트너스 · 이상학 과장</h1>
+    <p class="subtitle">넥슨코리아 100% 자회사 게임 전문 CVC. 순수 VC가 떠난 초기 게임 시장의 공백을 5년 2,500억으로 메운다 — '마중물'인가 '유일한 돈줄'인가</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 전략적 투자자(CVC)</span>
+      <span class="meta-chip">2026.5 설립 · 5년 2,500억</span>
+      <span class="meta-chip">시드~시리즈A · 개방형</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>넥슨파트너스 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd><b>2026.5 설립</b> 투자 전문 법인, <b>넥슨코리아 100% 자회사</b> CVC. 국내 초기 게임투자 활성화가 목적 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>규모</dt><dd><b>향후 5년 최대 2,500억원</b> 투자 프로그램 <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>경영진</dt><dd>대표 <b>이정헌</b>(넥슨 일본법인 CEO)·사내이사 <b>김한준 CIO</b>(도이체방크·맥쿼리→엔씨 투자전무→2024 넥슨)·이사 <b>피아오얀리</b>(前 텐센트 부사장) <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+        <dt>계보</dt><dd>2012~2019 무상지원 '넥슨앤파트너즈센터(NPC)'의 투자형 후신. <b>미확인:</b> '이상학 과장' 등 실무진은 공표 안 됨 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>투자 구조 · 재원 — '정책자금 588억 우회'</h2>
+      <p>2,500억은 <b>①민관 합동 펀드 1,200억 + ②넥슨 직접 후속투자 약 1,300억</b>의 혼합형. <sup class="ref"><a href="#src-2">[2]</a></sup></p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>'코나 글로벌 IP 투자조합' 1,200억</th><th>출자</th></tr>
+        <tr><td>문체부 모태펀드 <b>IP계정</b>(민)</td><td>600억</td></tr>
+        <tr><td><b>넥슨</b> LP 출자</td><td>약 588억</td></tr>
+        <tr><td>코나벤처파트너스(GP)</td><td>약 12억</td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li>게임 전문 VC <b>코나벤처파트너스</b>가 GP로 시드~시리즈A 초기 발굴, <b>넥슨이 성장단계 후속 1,300억</b> 담당 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li>별도 '게임계정' 모펀드가 없어 <b>IP계정에 588억을 넣어 사실상 게임 투자재원 조달</b> — 게임계정 신설 시 예상액(최대 1,000억)의 절반 이상 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li>코나벤처파트너스는 <b>2년 전 GP 반납·페널티 이력을 딛고 재신임</b> <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li>테마: <b>글로벌 신규 IP·UA 기반 라이브서비스·AI 활용 개발사</b>. "직접 퍼블리싱 안 하는 IP에도 투자"하는 <b>개방형</b> 표방 <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 넥슨 588억 vs 모태 600억 등 출자 비중은 보도별 편차 — DART·IR 원문 확인 필요. <b>1호 딜·개별 포트폴리오는 설립 4개월(9월)까지 미공개.</b></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>VC 업계 영향 — 공백 메우기 vs 구축효과</h2>
+      <h3>① 게임 VC 투자 혹한 (배경)</h3>
+      <ul class="tight">
+        <li>게임 업종 VC 신규투자 비중 <b>2024 상반기 1.9%</b>로 지속 하락. "VC 게임 투자 <b>10년래 최저</b>" <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li>업력 3년 이내 초기 게임 스타트업 749→327개 반토막. 모태펀드가 회수율 등 정량지표 위주라 게임 제안서가 구조적 불리 <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+      </ul>
+      <h3>② 순기능</h3>
+      <ul class="tight">
+        <li><b>회수처(exit)</b>: 대기업 후속투자·M&amp;A·퍼블리싱이 초기 VC의 출구. 넥슨은 데브캣·니트로 등 합작사를 자회사로 흡수한 전례 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>공동투자 파트너</b>(코나 재신임)·<b>밸류에이션 마중물</b>: 얼어붙은 초기 심리에 가격 시그널 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+      </ul>
+      <h3>③ 우려</h3>
+      <ul class="tight">
+        <li><b>독립성·후속 FI 제약</b>: 지분+판권 동반 확보 시 스튜디오의 타 투자자 유치 협상력 저하 <span class="flag">(분석)</span></li>
+        <li><b>회수처 수렴</b>: exit이 넥슨 한 곳으로 몰릴 위험 / <b>CVC 대형화로 순수 VC 소외</b>(빈익빈) <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>SI도 만능 아님</b>: 엔씨 문로버·픽셀트라이브 등 SI 투자 스튜디오 연쇄 폐업 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>'게임계정' 투자 가능성 · RMT 이중성</h2>
+      <ul class="tight">
+        <li>넥슨은 운영정책상 <b>계정·아이템 현금거래(RMT) 엄격 금지</b> — 위반 시 제재 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li>2024~25 '넥슨이 계정매매 허용' 보도는 실제로는 <b>'넥슨ID 본인인증 초기화 시범'</b> 이슈. 넥슨은 "계정거래 허용 사실 아님"이라 반박 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>따라서 <b>계정·아이템 secondary 마켓(아이템매니아·베이류) 투자 정황은 없음</b> — 공식 입장상 부정적 <span class="flag">(미확인)</span></li>
+        <li><b>예리한 각도:</b> 외부 계정·아이템 거래는 금지하면서 <b>자체 웹3(메이플스토리 유니버스·기축토큰 NXPC)로 이용자 간 자산거래를 제도화</b> — '이중잣대' 질문 가능</li>
+        <li>인접분야 중 <b>'AI 활용 개발사'는 공식 투자 테마</b>로 명시(단 개별 딜 미확인) <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>과거 전략적 투자 계보 · 타사 비교</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2018~2021</div><div class="tl-body"><b>엠바크 스튜디오(스웨덴)</b> 단계적 투자→<b>100% 인수</b>(누적 ~4,568억)</div></div>
+        <div class="tl-item"><div class="tl-date">2022. 01</div><div class="tl-body"><b>AGBO(러소 형제 영화사)</b> 약 4억달러 38% 지분 — IP 영상 확장 <span class="flag">※ 'HYBE 지분설'은 근거 미확인, AGBO 혼동 가능</span></div></div>
+        <div class="tl-item"><div class="tl-date">2024. 02</div><div class="tl-body"><b>데브캣</b> 95억에 55.4%·<b>니트로스튜디오</b> 100% 확보(원더홀딩스 지분 인수) <sup class="ref"><a href="#src-12">[12]</a></sup></div></div>
+      </div>
+      <p class="src">→ 과거엔 <b>대형 인수·해외 스튜디오·IP 확장</b> 중심. 넥슨파트너스는 결이 다른 <b>초기·소액·개방형</b> 신설 트랙.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>구분</th><th>방식</th><th>규모</th></tr>
+        <tr><td><b>넥슨파트너스</b></td><td>국내 초기 지분 + 정책자금 결합</td><td>5년 2,500억</td></tr>
+        <tr><td>크래프톤</td><td>검증 글로벌 스튜디오 대형 M&amp;A</td><td>현금 3조 기반 <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td>스마일게이트</td><td>계열 VC(스마일게이트인베) 범용 FI</td><td>AUM ~1.48조</td></tr>
+        <tr><td>카카오게임즈</td><td>퍼블리싱 연계 조기 발굴·인수</td><td>자회사 중심</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 해당 항목으로 이동합니다. 원문은 '링크'로 열립니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 출자 비중·포트폴리오·인물은 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> ZDNet Korea, 넥슨 투자법인 '넥슨파트너스' 설립, 2026-05-29. <a href="https://zdnet.co.kr/view/?no=20260529095639" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 파이낸셜뉴스, 넥슨 2,500억 게임 초기투자·1,200억 조합 구조, 2026-06-23. <a href="https://www.fnnews.com/news/202606231403471768" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 블로터, 넥슨 모태펀드 IP계정 588억 출자(게임계정 부재). <a href="https://www.bloter.net/news/articleView.html?idxno=668117" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 블로터, 코나벤처파트너스 GP 재신임. <a href="https://www.bloter.net/news/articleView.html?idxno=667999" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 한국경제, 넥슨파트너스 개방형 투자·NPC 계보, 2026-08-27. <a href="https://www.hankyung.com/article/202608275885i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 대한민국 정책브리핑, 역대 최대 1,200억 게임 IP펀드. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148966970" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 시사저널e, 게임 VC 투자 비중 1.9%·대기업 CVC 중심 재편, 2024-08-30. <a href="https://www.sisajournal-e.com/news/articleView.html?idxno=405427" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 머니투데이, VC 게임 스타트업 투자 10년래 최저, 2024-05-31. <a href="https://news.mt.co.kr/mtview.php?no=2024053112143459885" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 블로터 디깅노트, 넥슨 2,500억의 진짜 관건. <a href="https://www.bloter.net/news/articleView.html?idxno=666748" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> ZDNet, SI 투자 스튜디오 폐업(문로버·픽셀트라이브), 2026-02-23. <a href="https://zdnet.co.kr/view/?no=20260223103512" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 머니투데이, 크래프톤 M&amp;A 전략('끝까지 함께'), 2025-04-09. <a href="https://www.mt.co.kr/tech/2025/04/09/2025040900423276009" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 디스이즈게임, 넥슨 데브캣·니트로스튜디오 지분 인수. <a href="https://www.thisisgame.com/webzine/nboard/263/?n=185304" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 넥슨 게임운영정책(계정·아이템 현금거래 금지). <a href="https://m.nexon.com/terms/134/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 게임플, 넥슨 '계정매매 허용' 보도 반박(본인인증 초기화). <a href="https://www.gameple.co.kr/news/articleView.html?idxno=209398" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> CEOScoreDaily, 넥슨파트너스 경영진(이정헌·김한준·피아오얀리), 2026-05-29. <a href="http://m.ceoscoredaily.com/page/view/2026052913483548257" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>이상학 과장 신원·직함, 출자 비중, 개별 포트폴리오(1호 딜), 판권·우선권 계약조항은 '미확인/확인 필요'</b>. 발행 2026-09-14 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">넥슨파트너스 CVC에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거. <b>이상학 과장의 실제 소속·담당(투자심사/전략/사업개발)을 초반에 확인</b>하면 질문 강약을 조절할 수 있습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 구조 · 현안</h2></div>
+    <div class="q cat1 must"><p class="qtext">2,500억은 <b>코나벤처파트너스 1,200억 조합 + 넥슨 직접 1,300억</b> 구조입니다. 코나가 초기 발굴을 하고 넥슨이 후속을 대는데, <b>투자 의사결정·거부권은 어떻게 나뉩니까?</b> 넥슨 사내이사 3인이 심의하면 GP(코나) 독립성은 실질적으로 보장됩니까? <b>2년 전 GP를 반납했던 코나를 재신임한 배경</b>도 궁금합니다.</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 조합 구조·코나 재신임 <a href="https://www.fnnews.com/news/202606231403471768" target="_blank" rel="noopener">[2]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=667999" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">별도 '게임계정' 모펀드가 없어 <b>문체부 IP계정에 588억을 넣는 방식</b>을 택했습니다. 이 조합엔 모태펀드(600억)가 껴 있어 <b>국내 투자·회수 요건</b>이 붙는데, "글로벌 신규 IP 발굴"이라는 목표와 <b>해외 초기 스튜디오 투자 여지</b>는 충돌하지 않습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: IP계정 588억·글로벌 목표 <a href="https://www.bloter.net/news/articleView.html?idxno=668117" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">법인 설립 5월, 펀드 6월인데 <b>9월까지 공개된 1호 딜이 없습니다.</b> 현재 심사 중인 파이프라인은 어느 정도이며, 첫 투자는 언제 나옵니까? 초기 게임에서 상정하는 <b>연간 투자 건수·티켓 사이즈</b>는?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 1호 딜 미공개 <a href="https://www.fnnews.com/news/202606231403471768" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② VC 업계 영향</h2></div>
+    <div class="q cat2 must"><p class="qtext">순수 VC가 게임에서 발을 뺀(비중 1.9%, 10년래 최저) 상황에서 넥슨이 사실상 '<b>유일한 돈줄</b>'이 되면, 스튜디오 협상력·밸류에이션을 왜곡하는 <b>구축효과(크라우딩아웃)</b>가 아니라 '마중물'이라고 보는 근거는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: 게임 VC 1.9%·10년 최저 <a href="https://www.sisajournal-e.com/news/articleView.html?idxno=405427" target="_blank" rel="noopener">[7]</a> <a href="https://news.mt.co.kr/mtview.php?no=2024053112143459885" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">시드~시리즈A에서 넥슨이 <b>지분과 판권을 함께</b> 가져가면 후속 라운드에 다른 FI·경쟁 퍼블리셔가 들어올 여지가 줄어듭니다. 스튜디오가 넥슨 외 투자자를 자유롭게 택하도록 <b>판권·우선협상권·후속투자 우선권 조항</b>을 어떻게 설계했습니까? "개방형"이 파이프라인 락인의 다른 말은 아닙니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 개방형 표방·판권 우려 <a href="https://www.hankyung.com/article/202608275885i" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">공동투자 VC가 초기에 넣은 뒤 결국 <b>넥슨에 되파는 것 외 exit</b>이 마땅치 않으면 회수 경로가 넥슨 한 곳으로 수렴합니다. 공동투자 VC의 <b>독립적 회수(IPO·제3자 매각)</b>는 어떻게 보장하며, 후속 1,300억이 <b>다운라운드 인수 통로</b>로 변질되지 않을 장치는?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 회수처 수렴 우려 <a href="https://www.bloter.net/news/articleView.html?idxno=666748" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 게임계정 · RMT 이중성</h2></div>
+    <div class="q cat3 must"><p class="qtext">넥슨은 외부 <b>계정·아이템 현금거래(RMT)를 엄격 금지</b>하면서, 자체 <b>메이플스토리 유니버스·기축토큰 NXPC로 이용자 간 자산 거래·현금화를 사실상 제도화</b>하고 있습니다. 이 이중잣대는 어떻게 설명하십니까? 그리고 <b>계정·아이템 거래, 게임 커뮤니티 같은 '게임 인접' 스타트업</b>은 투자 대상에서 원천 배제입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: RMT 금지 vs 자체 웹3 <a href="https://m.nexon.com/terms/134/" target="_blank" rel="noopener">[13]</a> <a href="https://www.gameple.co.kr/news/articleView.html?idxno=209398" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">투자 테마로 '<b>AI 활용 개발사</b>'를 명시하셨습니다. 게임 개발사가 아닌 <b>AI 게임 도구·엔진·UA 마케팅 솔루션</b> 같은 인접 툴 스타트업도 투자 범위에 넣습니까? 넣는다면 넥슨 자체 AI 개발과 이해상충은 어떻게 관리합니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: AI 개발사 투자 테마 <a href="https://www.hankyung.com/article/202608275885i" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 회수 · KPI</h2></div>
+    <div class="q cat4 must"><p class="qtext">엔씨 문로버, 픽셀트라이브처럼 <b>SI가 투자한 스튜디오도 줄줄이 폐업</b>했습니다. 흥행 리스크가 큰 초기 게임에서 상정하는 <b>회수율·손실 시나리오</b>는 무엇이며, 실패 시 <b>인력·IP를 넥슨이 흡수하는 애크하이어</b>가 목적입니까, 순수 재무수익이 목적입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: SI 투자 스튜디오 폐업 <a href="https://zdnet.co.kr/view/?no=20260223103512" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">크래프톤은 <b>검증된 글로벌 스튜디오를 수천억에 사오는</b> 방향인데 넥슨은 <b>국내 초기</b>로 틀었습니다. 국내 초기 게임 VC 생태계가 이미 10년래 최저인데 넥슨까지 '초기'에 집중하면 <b>남은 순수 VC의 먹거리를 잠식</b>하지 않습니까? 5년 뒤 성공을 잴 <b>구체적 KPI</b>(후속투자 유치 건수·글로벌 진출 IP 수)는?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: 크래프톤 대비·10년 최저 <a href="https://www.mt.co.kr/tech/2025/04/09/2025040900423276009" target="_blank" rel="noopener">[11]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=666748" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 파이낸셜뉴스, 조합 구조. <a href="https://www.fnnews.com/news/202606231403471768" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 블로터, IP계정 588억. <a href="https://www.bloter.net/news/articleView.html?idxno=668117" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 블로터, 코나 재신임. <a href="https://www.bloter.net/news/articleView.html?idxno=667999" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 한국경제, 개방형 투자. <a href="https://www.hankyung.com/article/202608275885i" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 시사저널e, 게임 VC 1.9%. <a href="https://www.sisajournal-e.com/news/articleView.html?idxno=405427" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 머니투데이, 10년래 최저. <a href="https://news.mt.co.kr/mtview.php?no=2024053112143459885" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 블로터 디깅노트, 2,500억 관건. <a href="https://www.bloter.net/news/articleView.html?idxno=666748" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> ZDNet, SI 스튜디오 폐업. <a href="https://zdnet.co.kr/view/?no=20260223103512" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 머니투데이, 크래프톤 M&amp;A. <a href="https://www.mt.co.kr/tech/2025/04/09/2025040900423276009" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 넥슨 게임운영정책. <a href="https://m.nexon.com/terms/134/" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 게임플, 계정매매 보도 반박. <a href="https://www.gameple.co.kr/news/articleView.html?idxno=209398" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[15])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-14</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
