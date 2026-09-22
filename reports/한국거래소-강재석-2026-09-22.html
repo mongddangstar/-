@@ -1,0 +1,280 @@
+<meta charset="utf-8" />
+<title>한국거래소 · 강재석 대리 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1d4ed8; --accent-soft: #e2e8fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #7fa3f5; --accent-soft: #141d33;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #7fa3f5; --accent-soft: #141d33;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1d4ed8; --accent-soft: #e2e8fb;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .num { min-width: 22px; height: 22px; border-radius: 6px; background: var(--accent); color:#fff; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+  .card h3 { font-size: 13.5px; margin: 12px 0 4px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 5px 0; font-size: 14.5px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
+  ul.tight { margin: 5px 0; padding-left: 18px; }
+  ul.tight li { margin: 4px 0; font-size: 14px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  @media (prefers-color-scheme: dark){ .warn{ background:#2c1512; color:#f0b9ae; } }
+  :root[data-theme="dark"] .warn{ background:#2c1512; color:#f0b9ae; }
+  :root[data-theme="light"] .warn{ background:#fbe9e7; color:#7a2318; }
+  .warn b { color: var(--c1); }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-22</div>
+    <h1 class="title">한국거래소 · 강재석 대리</h1>
+    <p class="subtitle">코너스톤·주가누르기방지법·락업·코스닥 승강제 — IPO와 코스닥을 동시에 뜯어고치는 6대 제도 해설과, 이것이 VC 회수통로에 남길 그림자</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 시장운영기관(KRX)</span>
+      <span class="meta-chip">제도 해설형</span>
+      <span class="meta-chip">IPO·코스닥 개편</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 제도 해설</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2>⭐ 취재 전 확인·정정</h2>
+      <div class="warn"><b>인물 정정:</b> '주가 누르기 방지법'을 발의한 이는 <b>이소영(李素永) 더불어민주당 의원</b>(2026.8 중기부 장관 후보 지명)입니다 <sup class="ref"><a href="#src-5">[5]</a></sup>. <b>김소영</b>은 前 금융위 부위원장(교수 출신)으로 <b>국회의원이 아니라 발의 주체가 될 수 없습니다</b> <sup class="ref"><a href="#src-6">[6]</a></sup>. → 구도는 <b>"이소영 의원안 vs 정부(기재부)안"</b>. (다른 김소영 의원을 지칭하신 거면 확인 요망)</div>
+      <div class="warn"><b>수치 확인:</b> "코스닥 시총 <b>60%가 1,000억 미만</b>"의 정확한 60% 수치·출처는 미확인. 인접 통계(시총 200억 미만 ~10%, 상폐위기 ~10.6%)만 확인 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup>. 방향은 타당하나 <b>KRX 정보데이터시스템(data.krx.co.kr) 시총 분포로 재확인</b> 권장(질문 ③-1로 배치).</div>
+      <div class="warn"><b>강재석 대리:</b> KRX 소속·담당 부서 <b>공개자료 확인 불가</b>(대리급 실무자). 현장에서 소속 본부(코스닥시장/유가증권/경영지원) 확인 권장.</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">1</span>코너스톤 인베스터 제도</h2>
+      <div class="def"><b>정의:</b> IPO에서 검증된 기관이 <b>증권신고서 제출 前</b> 공모물량 일부를 공모가로 미리 배정받고, 상장 후 <b>6~10개월 팔지 않기로(락업)</b> 약속하는 '앵커 투자자' 제도.</div>
+      <h3>왜/어떻게</h3>
+      <p>지금 수요예측은 기관이 '일단 높게 써서 물량 받고 첫날 팔아 단타'(허수청약)하는 관행이 만연 → 공모가 왜곡·상장 직후 급락. 신고서 前에 <b>진짜 현금 장전한 장기 투자자</b>를 확보해 오버행을 줄이고 공모가 신뢰를 높이려는 취지 <sup class="ref"><a href="#src-4">[4]</a></sup>.</p>
+      <h3>최신</h3>
+      <p>자본시장법 개정 <b>2026.4.23 국회 통과 → 2026.11.13 시행 예정</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup>. 설계: 배정한도 <b>코스피 20%·코스닥 30%</b>, 락업 <b>50%는 6개월·30%는 8개월·20%는 10개월</b> 차등 <sup class="ref"><a href="#src-3">[3]</a></sup>. 홍콩에서 시작→아시아 확산.</p>
+      <h3>쟁점</h3>
+      <p>국내 기관의 '가격발견 역량' 논란, 코너스톤에 물량 몰아주면 일반투자자와의 정보·배정 비대칭 우려.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>주가 누르기 방지법</h2>
+      <div class="def"><b>정의:</b> 승계(상속·증여)를 앞둔 대주주가 세금을 줄이려 <b>일부러 주가를 눌러두는 관행</b>을 막기 위해, 저평가 주식의 상속·증여세 평가액을 '눌린 시가'가 아닌 실질가치로 올려 매기는 <b>상속·증여세법(세법) 개정</b>.</div>
+      <h3>왜 (쉬운 풀이)</h3>
+      <p>상속·증여세는 '주가' 기준. 승계 전후 주가를 낮게 눌러두면 세금이 크게 줄어 → <b>코리아 디스카운트(만성 저평가)의 구조적 원인</b>. ※ 이사 충실의무·자기주식은 <b>상법</b> 트랙, 의무공개매수는 <b>자본시장법</b> 트랙 — 이 법은 별개인 <b>'세법' 트랙</b>입니다.</p>
+      <h3>최신 — 원안 vs 정부안</h3>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th></th><th>이소영 원안(2025.5)</th><th>정부안(2026.8.3 세제개편)</th></tr>
+        <tr><td>기준</td><td><b>PBR 0.8배 절대기준</b></td><td><b>동종업계 상대평가</b>(업종 하위 %)</td></tr>
+        <tr><td>대상</td><td>약 <b>1,300개사</b>(상장사 절반)</td><td>약 <b>100개사</b> 안팎</td></tr>
+        <tr><td>방식</td><td>자산·수익가치 평가(하한 순자산 80%)</td><td>평가액 최소 30% 상향</td></tr>
+      </table>
+      </div>
+      <p class="src">대상 격차 13배 <sup class="ref"><a href="#src-7">[7]</a></sup>. 이소영은 정부안을 "취지를 무색하게 했다", "6.5년 중 한 번만 올라도 세금이 오르는 역설"이라 비판 <sup class="ref"><a href="#src-8">[8]</a></sup>. <span class="flag">정부안 국회 최종 통과는 미확정(계류·수정 중).</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span>락업 · 의무보유확약</h2>
+      <div class="def"><b>정의:</b> IPO 때 최대주주·기관이 상장 후 일정기간 <b>팔지 않기로 약속</b>하는 것이 락업(의무보유), 기관이 자발적으로 이 약속을 건 비율이 <b>의무보유확약 비율</b>.</div>
+      <h3>왜 중요 (수요예측 연결)</h3>
+      <p>상장 직후 물량이 한꺼번에 쏟아지면(오버행) 급락. 기관이 '오래 들겠다(확약)'고 하면 <b>우대 배정</b>을 받고, 이는 '장기투자 가치 있다'는 신호 → 공모가 정상화·허수청약 억제 <sup class="ref"><a href="#src-9">[9]</a></sup>.</p>
+      <h3>최신</h3>
+      <p>2025.1 IPO 제도개선으로 <b>확약 우선배정 도입</b>(우대비율 30%→<b>2026년 40%↑</b>), 2025.7 적용 <sup class="ref"><a href="#src-9">[9]</a></sup>. 효과: 확약 비중 <b>18.1%→41%</b>로 급증(5년 최고), 코스닥 39.6% <sup class="ref"><a href="#src-10">[10]</a></sup>.</p>
+      <h3>쟁점</h3>
+      <p>짧은 확약(15일·1개월)으로 물량만 챙기는 편법 여부, 규제강화發 IPO 위축 vs 건전화. 코너스톤과 '오버행 억제' 보완재.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">4</span>코스닥 승강제(昇降制)</h2>
+      <div class="def"><b>정의:</b> 코스닥 상장사를 실적·재무·지배구조로 <b>상·중·하 등급으로 나눠</b> 성과에 따라 승격·강등하고, 최하위 부실기업은 신속 퇴출하는 시장 재편.</div>
+      <h3>쉬운 풀이</h3>
+      <p>1,800여 개가 '한 반'에 뒤섞여 우량기업이 좀비기업과 같은 취급 → 기관·연기금이 코스닥 전체를 기피. 이를 <b>3개 리그로 분반</b>(①셀렉트/프리미엄 ②스탠더드 ③관리군), 나스닥 3단계 벤치마킹. 매년 성적표로 승강.</p>
+      <h3>최신</h3>
+      <p>2026.2.12 <b>상장폐지 개혁방안</b> — 코스닥 상폐 시총요건 150억→200억(2026.7)→<b>300억(2027)</b>, 매출 30억→<b>100억(2029)</b>, 심사 3심→2심. 올해 상폐 대상 약 150개사 추산 <sup class="ref"><a href="#src-11">[11]</a></sup>. 승강제는 <b>2026 하반기 시행 목표였으나 벤처업계 반발로 설계 조정 중</b>, '프리미엄'→'셀렉트' 명칭 변경 검토 <sup class="ref"><a href="#src-12">[12]</a></sup>.</p>
+      <h3>쟁점</h3>
+      <p><b>'낙인효과'</b> — 스탠더드·관리군 편입 시 오히려 자금이 끊겨 강등→상폐 악순환. R&D 적자 성장기업(바이오·딥테크) 불리. 우량기업 <b>코스피 이전상장 러시</b>(알테오젠 등) 방지책과 맞물림.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">5</span>코스닥 소형주(1,000억 미만) 현황</h2>
+      <div class="def"><b>정의:</b> 코스닥 다수가 소형주여서 상당수 종목의 시총이 기관 투자 컷오프(통상 1,000억)에 못 미치는 <b>저유동성 구조</b>.</div>
+      <h3>쉬운 풀이</h3>
+      <p>기관·연기금·외국인은 보통 <b>시총 1,000억 미만을 투자 대상에서 제외</b>(거래량 적어 사고팔기 어렵고 펀드 수익 기여 미미) → '거래 안 됨→저평가→시총 더 하락→상장유지 미달' 악순환. 코리아 디스카운트의 코스닥판.</p>
+      <h3>최신 (수치 주의)</h3>
+      <div class="warn"><b>'60%' 정확 수치는 미확인.</b> 확인된 인접 통계: 시총 200억 미만 178곳(~10%) <sup class="ref"><a href="#src-13">[13]</a></sup>, 상장유지 시총 미달 194개사(10.6%) <sup class="ref"><a href="#src-14">[14]</a></sup>. "다수가 1,000억 미만"이라는 방향은 타당하나 <b>60% 재확인 필요.</b></div>
+      <p>2026.6~7월 코스닥 급락으로 거래대금 위축, 상폐 기준 강화가 유동성 마른 시장과 겹쳐 기준 미달 급증(소액주주 216만·6조원대).</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">6</span>VC 엑시트에 미칠 영향</h2>
+      <div class="def"><b>정의:</b> 코너스톤·락업 강화 + 상폐·승강제가 겹치며 VC의 주 회수통로였던 <b>코스닥 IPO가 좁아지고 늦춰지는 '회수 절벽'</b>.</div>
+      <h3>구조</h3>
+      <p>한국은 회수의 <b>IPO 의존이 절대적</b>(모태펀드 IPO+장외매각 90.6%, M&amp;A 2.3% / 미국·유럽 M&amp;A 47%·46%). 제도들이 상장 문턱을 높이고 파는 시점을 늦춤 → 펀드 만기(7~8년)와 미스매치 → <b>'반납 위기'</b>.</p>
+      <h3>최신</h3>
+      <ul class="tight">
+        <li>2026년 코스닥 신규상장 급감(1~7월 20곳 = 전년 41곳의 절반, 연간 27개 그침) <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>투자는 사상 최대(상반기 8.9조, +54%)인데 회수만 병목</b> — 펀드시장 15~20조 vs 연 IPO 회수 3조 안팎 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li>대안: 세컨더리(3년 1조·모태 2,000억)·M&amp;A 활성화 요구. 다만 "세컨더리는 미봉책, 진짜는 M&amp;A"라는 업계 시각 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 코너스톤 하위법규 세부 수치·정부안 통과 여부·'60%' 수치는 원문/KRX 데이터 재확인 필요.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> KDI 경제정책자료, 자본시장법 개정(코너스톤·사전수요예측) 본회의 통과. <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=280036" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 김·장 법률사무소, 코너스톤 2026.5.12 공포·11.13 시행. <a href="https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=34985" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 파이낸셜뉴스, 코너스톤 배정한도·차등 락업, 2026-07-30. <a href="https://www.fnnews.com/news/202607301156580181" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 블로터, 코너스톤 진단(허수청약·공모가 왜곡). <a href="https://www.bloter.net/news/articleView.html?idxno=672246" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 서울경제/네이트, 이소영 의원 중기부 장관 후보 지명, 2026-08-30. <a href="https://m.news.nate.com/view/20260830n16766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 뉴시스, 김소영 금융위 부위원장 프로필(교수·비의원), 2022-05-17. <a href="https://www.newsis.com/view/NISX20220517_0001874040" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 뉴스핌, 주가누르기 이소영안 vs 정부안 대상 격차, 2026-08-14. <a href="https://www.newspim.com/news/view/20260814000883" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 머니투데이, 정부 세제개편 '주가 누르기'·이소영 반발, 2026-08-03. <a href="https://www.mt.co.kr/politics/2026/08/03/2026080320341410968" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 금융위, IPO 및 상장폐지 제도개선 방안(확약 우선배정), 2025-01-21. <a href="https://www.fsc.go.kr/no010101/83895" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> EBN, 2025 의무보유확약 41%로 급증(5년 최고). <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1701453" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 금융위, 상장폐지 개혁방안(시총·매출 요건 상향), 2026-02-12. <a href="https://www.fsc.go.kr/no010101/86273" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 전자신문, 코스닥 승강제 '프리미엄→셀렉트' 검토, 2026-06-23. <a href="https://www.etnews.com/20260623000107" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 헤럴드경제, '위기의 코스닥 30주년' 시총 200억 미만 178곳. <a href="https://biz.heraldcorp.com/article/10792919" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 서울경제, 상장유지 미달 194개사(10.6%). <a href="https://www.sedaily.com/article/20077263" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 서울경제 시그널/네이트, 올해 코스닥 상장 27개 그쳐, 2026-09-04. <a href="https://m.news.nate.com/view/20260904n25310" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 아시아경제, 투자 최대·회수 병목의 역설, 2026-06-22. <a href="https://view.asiae.co.kr/article/2026062223174935013" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 머니투데이, 세컨더리·M&amp;A 회수 다변화 논쟁, 2026-08-26. <a href="https://www.mt.co.kr/future/2026/08/26/2026082415200846804" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>'김소영→이소영' 정정, '코스닥 60%' 수치, 코너스톤 하위법규 세부, 정부 세법안 통과, 강재석 소속은 확인 필요</b>. 발행 2026-09-22 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">거래소 실무 담당자에게 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거. 대리급 실무자인 만큼 <b>제도 설계 디테일·시행 준비상황</b>에 강할 수 있습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 코너스톤 · 락업</h2></div>
+    <div class="q cat1 must"><p class="qtext">홍콩은 코너스톤 <b>사전배정 물량·가격·락업을 신고서에 공시</b>해 일반투자자가 앵커를 보고 판단합니다. 한국 11월 시행안은 <b>배정내역·가격·락업조건을 어느 수준까지, 언제 공시</b>하도록 설계했습니까? 정보 비대칭 우려의 답이 여기 있습니다.</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·검증</span><span class="pri high">상</span><span class="basis">근거: 코너스톤 11월 시행·정보비대칭 <a href="https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=34985" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">그동안 국내 기관은 밴드 안에서 수급만 따졌다는 비판을 받았습니다. 신고서 前에 <b>독립적 가치평가로 가격을 제시할 '가격발견 역량'</b>이 검증됐다고 보십니까? 아니라면 코너스톤이 오히려 <b>주관사 제시가를 추인</b>하는 통로가 되지 않겠습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: 가격발견 역량 논란 <a href="https://www.bloter.net/news/articleView.html?idxno=672246" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">확약 우선배정 40%와 코너스톤 6·8·10개월 락업이 동시에 걸리면, <b>해제가 몰리는 시점(클리프)에 오히려 '2차 오버행'</b>이 생길 수 있습니다. 해제시점 분산 외에 클리프 리스크를 관리할 장치가 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: 확약 40%·차등락업 <a href="https://www.fnnews.com/news/202607301156580181" target="_blank" rel="noopener">[3]</a> <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1701453" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 주가누르기 · 밸류업</h2></div>
+    <div class="q cat2 must"><p class="qtext">정부안(동종업계 상대평가, <b>약 100개사</b>)과 이소영 원안(PBR 0.8배 절대기준, <b>약 1,300개사</b>)의 대상 격차가 13배입니다. 당국은 '주가 누르기'를 <b>상대적 저평가로 봅니까, 절대적 저평가로 봅니까?</b> 100개사로 좁힌 근거는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 대상 13배 격차 <a href="https://www.newspim.com/news/view/20260814000883" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">'주가 누르기 방지법'(세법)은 저PBR 방치를 막으려는 건데, IPO 직후 <b>코너스톤·확약 락업은 인위적으로 주가를 떠받칩니다</b>. 상장 초기 '락업발 주가'와 상속·증여 평가 시점의 '실질가치' 사이 괴리를 당국은 <b>어떻게 정합적으로</b> 봅니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: 세법 vs 락업 정합성 <a href="https://www.mt.co.kr/politics/2026/08/03/2026080320341410968" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 코스닥 승강제 · 소형주</h2></div>
+    <div class="q cat3 must"><p class="qtext">흔히 인용되는 "<b>코스닥 시총 1,000억 미만이 60%</b>"의 거래소 공식 집계가 있습니까? <b>근거 시점·정의</b>(종목 수 기준인가 시총 비중 기준인가)를 확인해 주십시오. 없다면 소형주 비중을 거래소는 어떤 지표로 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: '60%' 수치 미확인 <a href="https://biz.heraldcorp.com/article/10792919" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">승강제로 스탠더드·관리군에 <b>'낙인'이 찍히면 오히려 자금이 끊겨 강등→상폐가 가속</b>되는 악순환을 어떻게 차단합니까? 하위 등급 전용 <b>유동성 공급(시장조성·연기금)</b> 대책이 있습니까? R&amp;D 적자 성장기업은 어떻게 배려합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: 낙인효과·벤처 반발 <a href="https://www.etnews.com/20260623000107" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">우량기업의 <b>코스피 이전상장을 막겠다</b>면서 부실기업은 퇴출하는데, 정작 코스닥에 남는 '중간층'엔 당근도 채찍도 애매합니다. 이전상장 방지 인센티브와 승강제 강등 리스크가 <b>충돌하지 않습니까?</b></p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: 이전상장 러시·승강제 <a href="https://www.sedaily.com/article/20077263" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ VC 엑시트 · 회수절벽</h2></div>
+    <div class="q cat4 must"><p class="qtext">코너스톤 락업·확약 40%·상폐 강화가 <b>2026년 코스닥 신규상장을 20곳대로 반토막</b> 낸 직접 원인이라는 VC업계 주장에 동의하십니까? IPO 위축과 제도강화의 <b>인과를 거래소는 어떻게 진단</b>합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론·검증</span><span class="pri high">상</span><span class="basis">근거: 상장 반토막·회수절벽 <a href="https://m.news.nate.com/view/20260904n25310" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">M&amp;A 회수 비중이 <b>2.3%</b>에 불과한데 세컨더리 1조·모태 2,000억으로 15~20조 펀드시장의 회수 절벽을 감당할 수 있습니까? 상장 문턱을 높인 만큼 거래소 차원의 <b>'상장 외(外) 회수통로'(K-OTC 활성화·M&amp;A 상장특례)</b> 로드맵이 있습니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: M&amp;A 2.3%·세컨더리 규모 <a href="https://view.asiae.co.kr/article/2026062223174935013" target="_blank" rel="noopener">[16]</a> <a href="https://www.mt.co.kr/future/2026/08/26/2026082415200846804" target="_blank" rel="noopener">[17]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 김·장, 코너스톤 11.13 시행. <a href="https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=34985" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 파이낸셜뉴스, 코너스톤 배정·락업. <a href="https://www.fnnews.com/news/202607301156580181" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 뉴스핌, 이소영안 vs 정부안 대상. <a href="https://www.newspim.com/news/view/20260814000883" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 머니투데이, 정부 세제개편·이소영 반발. <a href="https://www.mt.co.kr/politics/2026/08/03/2026080320341410968" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 전자신문, 승강제 프리미엄→셀렉트. <a href="https://www.etnews.com/20260623000107" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 헤럴드경제, 시총 200억 미만 178곳. <a href="https://biz.heraldcorp.com/article/10792919" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 서울경제 시그널, 코스닥 상장 27개. <a href="https://m.news.nate.com/view/20260904n25310" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 아시아경제, 투자 최대·회수 병목. <a href="https://view.asiae.co.kr/article/2026062223174935013" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 머니투데이, 세컨더리·M&amp;A 논쟁. <a href="https://www.mt.co.kr/future/2026/08/26/2026082415200846804" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[17])는 제도 해설 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-22</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
