@@ -1,0 +1,262 @@
+<meta charset="utf-8" />
+<title>메리츠금융지주 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #26324f; --accent-soft: #e2e6ef;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8fa6d4; --accent-soft: #171d2c;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8fa6d4; --accent-soft: #171d2c;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #26324f; --accent-soft: #e2e6ef;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-23</div>
+    <h1 class="title">메리츠금융지주</h1>
+    <p class="subtitle">순익 2.3조·ROE 22%·주주환원 62%의 '밸류업 1호'. 전업 VC는 없지만 증권 신기술금융이 '좁게 깊게' 바이아웃을 태운다 — 그리고 홈플러스라는 그림자</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 금융지주(보험·증권·캐피탈)</span>
+      <span class="meta-chip">순익 2.35조 · ROE 22.7%</span>
+      <span class="meta-chip">벤처=증권 신기사 겸영</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>그룹 개요 · 지배구조</h2>
+      <dl class="kv">
+        <dt>구조</dt><dd>2023년 <b>메리츠증권·화재를 완전자회사로 통합</b>해 지주 단일 상장. 자회사 4개: 화재·증권·캐피탈·대체투자운용 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>오너</dt><dd><b>조정호 회장 57.84%</b>(2026.3) — 통합 직후 51.25%에서 <b>자사주 소각으로 자연 상승</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>경영</dt><dd><b>김용범 부회장</b>(지주 대표·그룹 총괄), 최희문 부회장(운용·투자 총괄), 장원재 사장(증권 대표)</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>실적 · 주주환원</h2>
+      <ul class="tight">
+        <li><b>FY2025 연결 순이익 2조3,501억(역대 최대, 3년 연속 2조)</b>. 자기자본 8.2조, 총자산 135조, <b>ROE ~22.7%</b>(업계 최고), 시총 ~18조 <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+        <li>부문: 화재 순익 1.68조·증권 순익 7,663억(+10.1%) — 보험 중심에 증권 기여 회복</li>
+        <li><b>'순익 50% 이상 주주환원'</b> — 실제 FY2023 51.2%→FY2024 53.2%→<b>FY2025 61.7%</b>. 3년간 <b>자사주 매입·소각 3.9조</b>, <b>금융지주 1호 밸류업 공시</b> <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li>2026년 결산: <b>현금배당 없이 재원 전액(~7,000억)을 자사주 소각</b>에 — "주가 할인 구간엔 소각 수익률이 배당 상회"(김용범)</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ VC · 벤처투자 활동(핵심)</h2>
+      <div class="def"><b>가장 중요한 사실:</b> 메리츠는 <b>전업 VC도, 별도 CVC 자회사도 없습니다</b>(신한벤처·하나벤처스와 다름). 벤처·성장투자는 <b>메리츠증권 신기술금융팀(신기술사업금융 겸영)</b>이 <b>신기술사업투자조합</b>으로 수행합니다.</div>
+      <ul class="tight">
+        <li><b>메리츠증권 신기술금융팀</b>: 2018년 첫 조합, 누적 <b>AUM ~8,685억·청산(회수) 5,000억대·누적수익률 165%</b> <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li>2026.4 <b>종합금융본부 PE팀 → '신기사투자팀'으로 개편</b>(조합 비히클이 LP 다각화·모험자본에 적합) <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>메리츠캐피탈</b>도 신기사 라이선스 보유하나 실제 영업은 자동차금융·부동산 여신 중심 — 벤처는 주력 아님</li>
+        <li><b>전략='좁게 깊게'</b>: 초기 다건 소액이 아니라 <b>소수·중대형 바이아웃/그로스 딜</b>에 크게 태움. 인수금융까지 결합 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>정책펀드(모태·성장금융·LP성장펀드) LP/GP 명단엔 사실상 부재</b> — 정부 벤처펀드 생태계 참여도 낮음 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>대표 벤처·성장 딜</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023.07 → 2025</div><div class="tl-body"><b>서린컴퍼니(화장품 '라운드랩')</b> — 칼립스캐피탈과 Co-GP로 <b>2,353억 인수 → 6,000억 매각</b>(구다이글로벌·컴퍼니케이). 약 2년 <b>2.5~3배</b> <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024~25</div><div class="tl-body"><b>쑥쑥컴퍼니(디퓨저 '헤트라스')</b> — 티그리스·F&amp;F파트너스와 조합, 지분 70%(총 1,400억) <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.02</div><div class="tl-body"><b>미코파워(수소 SOFC 연료전지) 400억</b> — AFWP와 공동 조합, 2026 첫 모험자본 투자 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+      </div>
+      <p class="src">그 밖 포트폴리오: <b>퓨리오사AI·세미파이브</b>(AI 반도체), 이뮨온시아·심텍·네오셈 등 <sup class="ref"><a href="#src-5">[5]</a></sup>. <span class="flag">※ 손실·부실 투자 사례는 공개 노출이 적음(성공사례 위주) — 조합별 손익 확인 필요.</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>최근 이슈 · 리스크</h2>
+      <h3>홈플러스(MBK) 익스포저</h3>
+      <ul class="tight">
+        <li>메리츠 3사 <b>총 1조2,000억 투자</b>(증권 6,551억 최대채권자·캐피탈 2,807억·화재 2,807억) <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li>홈플 법정관리 → <b>캐피탈 여신 2,689억 전액 NPL(고정) 분류</b>, 증권이 캐피탈에 <b>750억 자본 수혈</b> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li>2026.7 <b>MBK 전액 지급보증 조건 2,000억 DIP(회생 운영자금) 지원</b> 잠정합의 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+      </ul>
+      <h3>부동산PF · M&amp;A</h3>
+      <ul class="tight">
+        <li>그룹 부동산 익스포저 <b>19.7조·PF 15.5조</b>(자기자본 8.2조 크게 상회) <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>애큐온캐피탈·저축은행 인수전 참여</b>(~1조, 조달 다변화 목적) <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li>PE·인수금융: KKR과 반복 협업(악셀스프링거 인수금융 단독 주선 등) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※</span> 우리금융 인수설은 최근 근거 미확인.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 신기사 등록·조합별 손익·홈플 충당·수치는 게재 전 DART·IR 원문 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 뉴스핌, 메리츠금융 FY2025 순익 2.35조·자기자본·ROE, 2026-02-11. <a href="https://www.newspim.com/news/view/20260211001251" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 네이트/공시, 메리츠 FY2025 주주환원율 61.7%, 2026-02-11. <a href="https://m.news.nate.com/view/20260211n36254" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 네이트/공시, 조정호 회장 지분 57.84%, 2026-03-30. <a href="https://m.news.nate.com/view/20260330n32595" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 머니투데이, 메리츠증권 신기술금융 AUM 8,685억, 2026-02-25. <a href="https://www.mt.co.kr/stock/2026/02/25/2026022514103576167" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 뉴스핌, 메리츠 신기술금융 포트폴리오(퓨리오사·세미파이브 등), 2026-02-25. <a href="https://www.newspim.com/news/view/20260225000406" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨, 메리츠증권 PE팀→신기사투자팀 개편, 2026-04-16. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604161101356080107775" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 한국경제, 메리츠·AFWP 미코파워 400억 투자, 2026-02-25. <a href="https://www.hankyung.com/article/202602252943P" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 인베스트조선, 서린컴퍼니(라운드랩) 인수(2,353억), 2024-07-02. <a href="https://www.investchosun.com/site/data/html_dir/2024/07/02/2024070280141.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 더벨, 서린컴퍼니 6,000억 매각(2.5~3배), 2025-07-16. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202507161332112520102492" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 서울경제/시그널, 메리츠 등 쑥쑥컴퍼니 인수. <a href="https://www.sedaily.com/article/14166077" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 유니콘팩토리, LP성장펀드 출자기관 명단(메리츠 부재), 2026-08-13. <a href="https://www.unicornfactory.co.kr/article/2026081314425386324" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 비즈워치, 메리츠 3사 홈플러스 1.2조 익스포저, 2025-05-14. <a href="https://news.bizwatch.co.kr/article/market/2025/05/14/0047" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 머니투데이, 메리츠캐피탈 홈플 NPL·증권 750억 수혈, 2026-06-22. <a href="https://www.mt.co.kr/stock/2026/06/22/2026062215285090842" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> ZDNet Korea, MBK 지급보증 2,000억 DIP 지원 합의, 2026-07-15. <a href="https://zdnet.co.kr/view/?no=20260715183125" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 한국경제TV, 메리츠 애큐온캐피탈·저축은행 인수전, 2026-06-05. <a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202606050484" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 인베스트조선, 메리츠 KKR 악셀스프링거 인수금융 주선, 2025-02-26. <a href="https://www.investchosun.com/site/data/html_dir/2025/02/26/2025022680209.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 아주경제, 메리츠 부동산 익스포저 19.7조·PF 15.5조, 2024-08-14. <a href="https://www.ajunews.com/view/20240814171510543" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>신기사 겸영등록 공식 여부, 조합별 손익·부실, 캐피탈 벤처 잔액, 화재 LP 출자, 홈플 충당금 규모는 '미확인/확인 필요'</b>. 발행 2026-09-23 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">'금융지주의 벤처투자'라는 특이 구조에 맞춘 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① VC 전략 · 구조</h2></div>
+    <div class="q cat1 must"><p class="qtext">신한·하나·KB는 <b>전업 VC 자회사(CVC)</b>를 두는데, 메리츠는 <b>증권 신기술금융 조직으로만</b> 벤처투자를 합니다. 별도 CVC 설립을 검토한 적이 있습니까? <b>증권 겸영 방식을 고수하는 전략적·규제적 이유</b>는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·비교</span><span class="pri high">상</span><span class="basis">근거: CVC 없이 증권 겸영 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604161101356080107775" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">메리츠는 <b>모태·성장금융·LP성장펀드 등 정책 벤처펀드의 GP·LP 명단에 사실상 보이지 않습니다.</b> 참여하지 않는 것은 의도적 전략입니까, 아니면 정책 매칭의 수익률·제약이 메리츠 기준에 안 맞기 때문입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 정책펀드 명단 부재 <a href="https://www.unicornfactory.co.kr/article/2026081314425386324" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 신기술금융 실적의 질</h2></div>
+    <div class="q cat2 must"><p class="qtext">신기술금융 <b>AUM 8,685억·누적수익률 165%</b>를 내세우시는데, 이는 <b>서린컴퍼니(라운드랩) 같은 소수 바이아웃 대박</b>에 의존한 수치 아닙니까? 초기·성장초기 스타트업 <b>직접투자 비중</b>과, <b>손실을 낸 조합·투자 건</b>은 얼마나 됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 165%·서린 2.5~3배 <a href="https://www.mt.co.kr/stock/2026/02/25/2026022514103576167" target="_blank" rel="noopener">[4]</a> <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202507161332112520102492" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">서린·쑥쑥컴퍼니는 <b>화장품·소비재 바이아웃</b>, 미코파워는 <b>수소</b>로 성격이 판이합니다. 신기술금융의 <b>섹터 원칙과 리스크 한도</b>(단일 딜 최대 투자한도, 조합 대 자기자본 비중)는 무엇입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 섹터 상이·딜 구조 <a href="https://www.hankyung.com/article/202602252943P" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat2"><p class="qtext"><b>인수금융·PE·신기술조합을 한 본부(종합금융본부)</b>에서 겸합니다. 메리츠가 <b>인수금융을 대준 딜에 메리츠 조합이 에쿼티로 함께</b> 들어가면 '대주 vs GP' 이해상충이 생기는데, LP 보호와 내부통제는 어떻게 합니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: 종금본부 겸영 <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604161101356080107775" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 그룹 리스크 · 밸류업</h2></div>
+    <div class="q cat3 must"><p class="qtext">순익 50% 주주환원의 재원은 결국 이익입니다. <b>홈플러스 익스포저 1.2조·캐피탈 여신 전액 NPL</b> 상황에서 추가 충당금이 <b>FY2026 순익과 주주환원율(61.7%)</b>을 깎을 여지는? MBK 지급보증 <b>2,000억 DIP는 손실 방어인가, 추가 리스크 인수인가?</b></p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 홈플 NPL·DIP <a href="https://www.mt.co.kr/stock/2026/06/22/2026062215285090842" target="_blank" rel="noopener">[13]</a> <a href="https://zdnet.co.kr/view/?no=20260715183125" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">부동산 익스포저 <b>19.7조·PF 15.5조</b>가 자기자본 8.2조를 크게 웃돕니다. 홈플러스가 개별 이벤트가 아니라 <b>PF·구조화 모델의 구조적 신호</b>는 아닌가요? 애큐온(저축은행) 인수로 '조달 다변화'를 꾀하는 것 자체가 <b>기존 조달구조의 취약성</b>을 인정하는 것 아닙니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: PF 15.5조·애큐온 <a href="https://www.ajunews.com/view/20240814171510543" target="_blank" rel="noopener">[17]</a> <a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202606050484" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 주주환원 · 지배구조</h2></div>
+    <div class="q cat4 must"><p class="qtext">자사주 소각으로 조정호 회장 지분이 <b>51%→57.8%로 자연 상승</b>했습니다. 주주환원이 동시에 <b>지배력 강화</b>로 귀결되는 구조에 대한 소액주주 형평성 논리는? 주가 할인이 해소되면 <b>현금배당으로 전환할 기준선</b>은 구체적으로 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: 소각→오너지분 상승 <a href="https://m.news.nate.com/view/20260330n32595" target="_blank" rel="noopener">[3]</a> <a href="https://m.news.nate.com/view/20260211n36254" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2026년부터 '<b>내부투자 수익률 vs 주주환원 수익률</b>'을 비교해 자본배치한다고 하셨습니다. 애큐온 인수(~1조)·신기술금융 확대 같은 <b>내부투자가 주주환원을 잠식</b>하지 않으려면, 어느 정도 IRR을 넘겨야 '환원 대신 투자'가 정당화됩니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 자본배치 원칙·애큐온 <a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202606050484" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 네이트, 주주환원율 61.7%. <a href="https://m.news.nate.com/view/20260211n36254" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[3]</span> 네이트, 조정호 57.84%. <a href="https://m.news.nate.com/view/20260330n32595" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[4]</span> 머니투데이, 신기술금융 AUM 8,685억. <a href="https://www.mt.co.kr/stock/2026/02/25/2026022514103576167" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 더벨, 신기사투자팀 개편. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202604161101356080107775" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 한국경제, 미코파워 400억. <a href="https://www.hankyung.com/article/202602252943P" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 더벨, 서린컴퍼니 6,000억 매각. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202507161332112520102492" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 유니콘팩토리, LP성장펀드 명단(메리츠 부재). <a href="https://www.unicornfactory.co.kr/article/2026081314425386324" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 머니투데이, 홈플 NPL·750억 수혈. <a href="https://www.mt.co.kr/stock/2026/06/22/2026062215285090842" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> ZDNet, MBK DIP 2,000억. <a href="https://zdnet.co.kr/view/?no=20260715183125" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[15]</span> 한국경제TV, 애큐온 인수전. <a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202606050484" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[17])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-23</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
