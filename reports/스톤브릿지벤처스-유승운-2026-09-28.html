@@ -1,0 +1,282 @@
+<meta charset="utf-8" />
+<title>스톤브릿지벤처스 · 유승운 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0f766e; --accent-soft: #d8efec;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #4ec9bd; --accent-soft: #10241f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #4ec9bd; --accent-soft: #10241f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #0f766e; --accent-soft: #d8efec;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
+  .def b { color: var(--accent); }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn{ background:#2c1512; color:#f0b9ae; }
+  :root[data-theme="light"] .warn{ background:#fbe9e7; color:#7a2318; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .warn{ background:#2c1512; color:#f0b9ae; } }
+  .warn b { color: var(--c1); }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-28</div>
+    <h1 class="title">스톤브릿지벤처스 · 유승운 대표</h1>
+    <p class="subtitle">크래프톤 35배·노타 65배를 회수한 'AI·IT 엑시트 전문' 상장 VC. 상반기 성과보수 265억의 잭팟 뒤엔 대펀 일원화와 캐리 배분 논란이 있다 — 그리고 형제회사 스톤브릿지캐피탈(PE)</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(상장 VC)</span>
+      <span class="meta-chip">AUM 1.7조 · 코스닥 330730</span>
+      <span class="meta-chip">+ 스톤브릿지캐피탈(PE) 비교</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 정정 · 그룹 구조</h2>
+      <div class="warn"><b>정정:</b> 유승운 대표는 <b>'스톤브릿지벤처스(코스닥 상장 VC)'의 대표</b>입니다. <b>'스톤브릿지캐피탈(PE)'의 대표가 아닙니다</b> — PE는 창업자 <b>김지훈 부회장·현승윤 대표</b> 체제. 만나실 분은 VC 대표입니다.</div>
+      <p>두 회사는 <b>2008년 김지훈(IMM 출신)이 세운 한 뿌리</b>에서 갈라진 형제 계열사입니다. 2017년 VC부문을 물적분할해 스톤브릿지벤처스 신설 → 2021.7 지주사 전환(<b>스톤브릿지홀딩스</b>, 김지훈 79.8%) → 산하에 <b>PE(캐피탈)·VC(벤처스)·자산운용</b>을 100% 자회사로 <sup class="ref"><a href="#src-2">[2]</a></sup>. 벤처스는 2022.2 코스닥 상장.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>스톤브릿지벤처스 개요</h2>
+      <dl class="kv">
+        <dt>대표</dt><dd><b>유승운</b>(서강대 경영) — 소프트뱅크벤처스 수석심사역·<b>카카오벤처스 대표</b> 거쳐 2019 취임, 2025 두 번째 연임 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></dd>
+        <dt>CIO</dt><dd><b>최동열 투자부문대표</b>(2024.3 첫 CIO) — 반도체·AI·딥테크 주도(수아랩·가온칩스·오픈엣지 등) <sup class="ref"><a href="#src-9">[9]</a></sup></dd>
+        <dt>규모</dt><dd>AUM <b>~1.7조</b>(유 대표 취임 당시 3,900억→3배 이상). 포트폴리오 ~188개사 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>전략</dt><dd>ICT·딥테크(반도체·AI)·바이오·플랫폼. 결성시기 다른 펀드로 시차 회수하는 <b>'멀티 빈티지'</b> <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※</span> 유 대표 '삼성벤처투자 경력설'은 미확인(최동열 CIO가 삼성벤처투자 출신) — 혼동 주의.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>성과 · 회수(엑시트)</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>회수 사례</th><th>멀티플</th></tr>
+        <tr><td>크래프톤</td><td><b>~35배</b></td></tr>
+        <tr><td>노타(AI 경량화, 2025.11 상장)</td><td><b>~65배</b>(텐배거)</td></tr>
+        <tr><td>크로키닷컴(지그재그)</td><td>~11.3배</td></tr>
+        <tr><td>우아한형제들(배민)</td><td>~9.1배</td></tr>
+        <tr><td>S2W(보안)</td><td>~21배</td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>2025년 역대급 회수 → 2026 상반기 사상 최대 실적</b>: 매출 346억(+296%)·영업익 170억·순익 140억. 누적 회수 <b>2,329억</b>(2025 연간 초과) <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>상반기 조합 성과보수 265억(영업수익의 ~77%)</b> — 노타·S2W 등이 견인 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>하반기 파이프라인: <b>딜리셔스·니어스랩·리브스메드·아델·넥스아이</b> 등 상장·회수 추진 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li>2025년분 <b>주당 300원 현금배당</b>(시가배당 4.99%) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · 포트폴리오</h2>
+      <ul class="tight">
+        <li><b>스톤브릿지신성장4.0 2,505억</b>(2024, 대펀 최동열) <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>스톤브릿지AI글로벌 3,250억</b>(2026.7, 대펀 최동열) — AI 밸류체인 60%·인접/바이오/딥테크 40%. LP: <b>산업은행·기업은행·성장금융·국민연금·행정공제회</b> <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li>정책펀드 GP 다수(IBK혁신·산은/성장금융 혁신성장·행정공제회 등)</li>
+        <li>대표 포트폴리오: <b>무신사(스타일쉐어)·직방·노타·리브스메드·니어스랩·딜리셔스·S2W</b> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 컬리(마켓컬리)·리디·메가존클라우드는 스톤브릿지벤처스 투자로 확인 안 됨 — 대면 확인 요망.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 내부 이슈 — 대펀 교체·캐리 논란</h2>
+      <div class="warn"><b>사실/의혹 구분 유의(무죄추정).</b></div>
+      <h3>확인된 사실</h3>
+      <ul class="tight">
+        <li>2024.3 <b>최동열을 첫 CIO로 선임</b>하고 신성장4.0·AI글로벌 등 주력 펀드 <b>대표펀드매니저를 최동열로 집중·일원화</b> <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li>2026 상반기 <b>성과보수 265억(영업수익 77%)</b> 대규모 캐리 발생 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+      </ul>
+      <h3>보도된 논란(조선비즈 2026-06-30)</h3>
+      <ul class="tight">
+        <li>스톤브릿지벤처스의 <b>대표펀드매니저 일괄 교체·캐리(성과보수) 배분 갈등</b> 제기 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li>회사 공식 메시지는 성과보수 급증을 '<b>멀티 빈티지 전략의 결실</b>'로 설명 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">→ 취재 확인 포인트:</span> ①'일괄 교체'가 실제인지 특정 펀드 교체인지 ②GP/대펀 변경 시 <b>LP 동의·관리보수 30% 페널티</b> 여부 ③265억 캐리의 심사역 배분 비율·불만 실체(회사·LP·이탈인력 3자 크로스체크). <b>key-man(유승운·최동열 집중) 리스크</b>도 함께.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>스톤브릿지캐피탈(PE) — 별개 형제회사</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>경영참여형 PEF(바이아웃·그로스). 2008 김지훈이 IMM에서 독립 설립. <b>AUM ~3.3조</b> <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>경영</dt><dd><b>김지훈 부회장(창업자)·현승윤 대표</b> — 유승운 관여 안 함</dd>
+        <dt>딜</dt><dd>2호 블라인드: 유진소닉·에이스엔지니어링·코렌스이엠·폴리피아 등. <b>3호 최소 7,000억(2차전지·ESG)</b> 조성 착수 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※</span> 위 유명 회수건(크래프톤·배민 등)은 모두 <b>VC(벤처스)</b> 실적 — PE(캐피탈) 실적과 혼동 금지.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 재무 세부·대펀 논란 사실관계·포트폴리오는 게재 전 DART·원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 한국경제, 유승운 스톤브릿지벤처스 대표 인터뷰(AI 플랫폼), 2026-08-30. <a href="https://www.hankyung.com/article/2026083018961" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국경제, 스톤브릿지캐피탈 지주사 전환, 2021-06-23. <a href="https://www.hankyung.com/article/202106236894i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 네이트/한국경제, PEF 릴레이 분석 스톤브릿지캐피탈(AUM 3.3조), 2023-08-13. <a href="https://news.nate.com/view/20230813n01881" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 더벨, 스톤브릿지벤처스 유승운 전 카카오벤처스 대표 영입, 2019-01-02. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=201901020100001170000070" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 머니투데이, AI글로벌펀드 3,250억 결성·AUM 1.7조, 2026-08-03. <a href="https://www.mt.co.kr/future/2026/08/03/2026080309031368853" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 블로터, '멀티 빈티지 전략 통했다'…성과보수 잭팟(노타 65·S2W 21배). <a href="https://www.bloter.net/news/articleView.html?idxno=673846" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 상반기 순익 140억 역대 최대·성과보수 견인. <a href="https://dealsite.co.kr/articles/167281" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 이데일리 마켓인, 작년 역대급 회수…올해 AI·바이오 결실. <a href="https://marketin.edaily.co.kr/News/Read?newsId=01826966645379712" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 이데일리, 스톤브릿지벤처스 첫 CIO 최동열 선임. <a href="https://www.edaily.co.kr/News/Read?newsId=02522326638792160" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 톱데일리, 신성장4.0펀드 2,505억(대펀 최동열). <a href="https://www.topdaily.kr/articles/111409" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 아시아경제, 대형VC 대해부⑩ 성과보수 1억→265억, 2026-08-31. <a href="https://view.asiae.co.kr/article/2026083110010786105" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 이투데이, 포트폴리오 줄상장…하반기 회수 잭팟. <a href="https://www.etoday.co.kr/news/view/2598623" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 더벨, 유승운호 계속…사내이사 재선임, 2025-03-13. <a href="https://www.thebell.co.kr/free/Content/ArticleView.asp?key=202503131410578640101283" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 서울경제 시그널, 스톤브릿지캐피탈 7,000억 펀드·매각, 2026-01-12. <a href="https://www.sedaily.com/article/14169677" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 더벨, 스톤브릿지캐피탈 3호 블라인드 최소 7,000억, 2025-09-10. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509101336434320105346" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 네이트/한국경제, 스톤브릿지벤처스 주당 300원 배당, 2026-02-02. <a href="https://news.nate.com/view/20260202n32962" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 조선비즈, 스톤브릿지벤처스 대펀 교체·캐리 논란, 2026-06-30. <a href="https://biz.chosun.com/stock/market_trend/2026/06/30/5AOJRU2VFRAHPFDDBAKREC5KLU/" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>대펀 논란 사실관계, 캐리 배분 세부, 2024 재무, 주가·시총, 일부 포트폴리오(컬리·리디·메가존)는 '미확인/확인 필요'</b>. 발행 2026-09-28 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">유승운 대표(스톤브릿지벤처스)에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 대펀 교체 · 캐리 논란</h2></div>
+    <div class="q cat1 must"><p class="qtext">조선비즈가 <b>대표펀드매니저 일괄 교체·캐리 배분 갈등</b>을 보도했습니다. 이것이 <b>실제 '일괄 교체'</b>였습니까, 특정 펀드 교체였습니까? GP·대펀 변경 시 <b>LP 동의와 관리보수 30% 페널티</b>는 어떻게 처리됐습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 조선비즈 대펀 논란 <a href="https://biz.chosun.com/stock/market_trend/2026/06/30/5AOJRU2VFRAHPFDDBAKREC5KLU/" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">2026 상반기 <b>성과보수 265억(영업수익의 77%)</b>은 개별 펀드 대펀·심사역에게 어떤 기준·비율로 배분됩니까? <b>법인 몫과 개인 인센티브의 경계</b>는? 배분을 둘러싼 내부 불만이 실제 있었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 캐리 265억 77% <a href="https://view.asiae.co.kr/article/2026083110010786105" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">주력 펀드(신성장4.0·AI글로벌) 대펀이 <b>최동열 CIO로 집중</b>돼 있습니다. 'key-man 리스크'와, 유 대표·최 CIO 개인 의존에서 <b>조직·시스템으로의 승계·분권화</b>는 어디까지 왔습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: 대펀 일원화 <a href="https://www.edaily.co.kr/News/Read?newsId=02522326638792160" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 실적 지속성 · 회수</h2></div>
+    <div class="q cat2 must"><p class="qtext">상반기 이익 대부분이 <b>일회성 성과보수(노타 65배·S2W 21배)</b>에 기댑니다. 크래프톤·배민 같은 '메가 엑시트' 빈티지가 소진된 뒤, <b>관리보수 기반만으로 흑자·배당을 유지</b>할 정상화 이익(run-rate)은 얼마로 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 성과보수 의존 <a href="https://www.bloter.net/news/articleView.html?idxno=673846" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">딜리셔스·니어스랩·아델·넥스아이 등 하반기 IPO/회수 후보의 <b>공모 성사 가정과 예상 멀티플·회수액</b>은? IPO 시장 냉각 시 노타·리브스메드 잔여지분 <b>락업·오버행</b> 관리 계획은?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: 회수 파이프라인 <a href="https://www.etoday.co.kr/news/view/2598623" target="_blank" rel="noopener">[12]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ AI 쏠림 · 투자전략</h2></div>
+    <div class="q cat3 must"><p class="qtext">"웹브라우저가 저물고 AI 플랫폼이 판을 바꾼다"며 <b>3,250억을 AI에 걸었습니다.</b> 글로벌 AI 밸류에이션 고점 논란 속에서, 본인이 과거 경계한 '빚 내서 몸값 높인 기업'과 지금 AI 라운드의 과열은 <b>무엇이 다릅니까?</b> 국민연금·행정공제회가 요구한 목표수익률·심사기준은?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: AI글로벌 3,250억·LP <a href="https://www.mt.co.kr/future/2026/08/03/2026080309031368853" target="_blank" rel="noopener">[5]</a> <a href="https://www.hankyung.com/article/2026083018961" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">연기금 LP는 회수 압박이 큰데 초기 AI 투자는 회수가 깁니다. <b>보수적 LP의 회수 기대와 딥테크 장기투자</b>의 타이밍을 어떻게 조율합니까? 바이오·딥테크(40%) 분산의 실효성은?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: 연기금 LP·40% 분산 <a href="https://www.mt.co.kr/future/2026/08/03/2026080309031368853" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 그룹 구조 · 지배구조</h2></div>
+    <div class="q cat4 must"><p class="qtext">시장이 <b>'스톤브릿지캐피탈(PE)'과 '스톤브릿지벤처스(VC)'를 자주 혼동</b>합니다. 김지훈 부회장의 지주사(스톤브릿지홀딩스) 아래 100% 자회사인 상장 VC로서, 지주·PE와의 <b>이해상충(딜 배분·공동투자·브랜드) 관리 원칙</b>과 <b>상장사 소액주주 이익 보호</b>는 어떻게 합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 지주·PE·VC 구조 <a href="https://www.hankyung.com/article/202106236894i" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">유 대표 취임 후 AUM이 3,900억→1.7조로 커졌습니다. <b>다음 성장 동력</b>은 무엇이며, PE(캐피탈)와의 <b>공동투자·후속펀드 협업</b>이나 그룹 차원 시너지 계획이 있습니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: AUM 3배 성장 <a href="https://www.thebell.co.kr/free/Content/ArticleView.asp?key=202503131410578640101283" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 한국경제, 유승운 인터뷰. <a href="https://www.hankyung.com/article/2026083018961" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 머니투데이, AI글로벌 3,250억. <a href="https://www.mt.co.kr/future/2026/08/03/2026080309031368853" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 블로터, 멀티빈티지 성과보수. <a href="https://www.bloter.net/news/articleView.html?idxno=673846" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 이데일리, 최동열 CIO 선임. <a href="https://www.edaily.co.kr/News/Read?newsId=02522326638792160" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[11]</span> 아시아경제, 성과보수 265억. <a href="https://view.asiae.co.kr/article/2026083110010786105" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 이투데이, 하반기 회수 파이프라인. <a href="https://www.etoday.co.kr/news/view/2598623" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 더벨, 유승운 연임·AUM 성장. <a href="https://www.thebell.co.kr/free/Content/ArticleView.asp?key=202503131410578640101283" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 조선비즈, 대펀 교체·캐리 논란. <a href="https://biz.chosun.com/stock/market_trend/2026/06/30/5AOJRU2VFRAHPFDDBAKREC5KLU/" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[17])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-28</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
