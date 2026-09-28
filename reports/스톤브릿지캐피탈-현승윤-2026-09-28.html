@@ -1,0 +1,276 @@
+<meta charset="utf-8" />
+<title>스톤브릿지캐피탈 · 현승윤 대표 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1e5aa8; --accent-soft: #dde8f5;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #6fa3e0; --accent-soft: #12203a;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #6fa3e0; --accent-soft: #12203a;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1e5aa8; --accent-soft: #dde8f5;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
+  .def b { color: var(--accent); }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn{ background:#2c1512; color:#f0b9ae; }
+  :root[data-theme="light"] .warn{ background:#fbe9e7; color:#7a2318; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .warn{ background:#2c1512; color:#f0b9ae; } }
+  .warn b { color: var(--c1); }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 14px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14.5px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-28</div>
+    <h1 class="title">스톤브릿지캐피탈 · 현승윤 대표</h1>
+    <p class="subtitle">AUM 3.3조 미드캡 바이아웃 PE. 지분 25%로 승계를 굳힌 '우리PE·EIG 출신' 대표가, 2차전지 캐즘과 키맨 이탈 속에 3호 7,000억 펀딩에 나섰다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: PE(경영참여형 사모펀드)</span>
+      <span class="meta-chip">AUM ~3.3조 · 미드캡 바이아웃</span>
+      <span class="meta-chip">3호 7,000억 조성 중</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 현승윤 대표 — 인물(정정 포함)</h2>
+      <div class="warn"><b>정정:</b> 현승윤은 <b>IMM 출신이 아닙니다</b>(IMM 계보는 창업주 김지훈 부회장). <b>우리PE(우리-블랙스톤 오퍼튜니티펀드)→EIG 글로벌 에너지 파트너스 전무</b> 출신입니다.</div>
+      <dl class="kv">
+        <dt>이력</dt><dd>1972년생, <b>서울대 경제·와튼 MBA</b>. 우리PE→EIG 거쳐 스톤브릿지 합류, <b>2019년 대표 승진</b> <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>승계</dt><dd><b>2024년 지분 약 25% 확보 → 2대주주</b>(임직원 첫 지분 파트너, '지분 기반 승계') <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>체제</dt><dd>현승윤=PE 대표, <b>김지훈=부회장(창업주)·홀딩스 대표</b>. 의사결정은 <b>집행위원회 7인 집단경영</b>(동일 의결권) <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>철학</dt><dd>"이해상충 없이 오직 수익률로" · 기대감보다 <b>펀더멘털에 베팅</b>, 보수적이되 단단한 투자 <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 미확인:</span> 각자대표/단독대표 법적 구조, 등기 직함(사장 vs 대표이사)은 확인 필요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd><b>2008년 김지훈이 IMM에서 독립</b> 설립. 경영참여형 PEF, <b>미드캡 바이아웃·그로스</b> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+        <dt>규모</dt><dd>AUM <b>~3조3,000억</b>(2023). 2019 산업은행 성장지원펀드 미드캡 GP 선정이 도약점 <sup class="ref"><a href="#src-3">[3]</a></sup></dd>
+        <dt>섹터</dt><dd>'펀더멘털 기반 성장기업' — <b>2차전지·소재·산업재·환경(ESG)·소비재</b></dd>
+      </dl>
+      <p class="src"><span class="flag">※ 혼동 금지:</span> 코스닥 상장 VC '스톤브릿지벤처스(유승운)'의 크래프톤·노타·리브스메드 등은 <b>VC 실적</b>이며 이 PE와 무관.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>블라인드펀드</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2020. 07</div><div class="tl-body"><b>1호 미드캡 3,060억</b>(첫 단독 블라인드). LP 산업은행·사학연금 등. 구구스·클루커스 등 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023. 03</div><div class="tl-body"><b>2호 6,750억</b> 결성. LP <b>국민연금 1,420억</b>·산은 1,050억·사학연금 1,000억·새마을금고·산재기금 등 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.09~</div><div class="tl-body"><b>3호 최소 7,000억 조성 시동</b>(2차전지·ESG). <b>노란우산공제 ~700억 앵커</b> 확보, 추가 LP·클로징은 진행 중 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></dd></div></div>
+      </div>
+      <p class="src"><span class="flag">※</span> 2호 소진율 약 50~60%(매체별 편차). 3호 최종 규모·핵심 LP는 미확정.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>주요 바이아웃 딜(2호 중심)</h2>
+      <ul class="tight">
+        <li><b>유모멘트</b>(웨딩홀 1위 아펠가모·더채플): 2024.6 <b>~1,200억, 지분 72.5%</b> 인수 <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li><b>리파인</b>(부동산 권리조사 1위): LS증권과 SPC '리얼티파인'로 공동 인수 — 1차 1,603억(34%)→<b>2026.8 공개매수로 76.5%</b> <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>유진소닉</b>(라스트마일 물류): 2023.3 총 ~1,000억, 지분 ~43% <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>에이스엔지니어링</b>(ESS 컨테이너): 2호 560억, bnw 공동 <sup class="ref"><a href="#src-12">[12]</a></sup> / <b>폴리피아</b>(플라스틱 소재) ~550억 100%</li>
+        <li><b>코렌스이엠</b>(2차전지 부품): 2023.12 CB 500억(15% 보장) → <b>1년 만에 71% 조기회수</b> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회수 성과 · 섹터 리스크</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>회수</th><th>성과</th></tr>
+        <tr><td><b>DS단석</b>(바이오디젤, 2023 상장)</td><td>809억→<b>~2,214억, 약 3배</b> <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td>캐리스라이프사이언스(美 진단)</td><td>MOIC <b>2.5배</b>·IRR ~18% <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>코렌스이엠(2차전지)</td><td>1년 만 71% 조기회수(방어적)</td></tr>
+      </table>
+      </div>
+      <div class="warn"><b>2차전지 캐즘 직격:</b> 코렌스이엠 조기 회수, <b>에이스엔지니어링(ESS) IPO 2024.11 자진철회</b>(투심 악화)로 회수 지연 <sup class="ref"><a href="#src-16">[16]</a></sup>. 그런데 3호도 2차전지·ESG를 전면에 — LP 설득·딜소싱 난도.</div>
+      <p class="src">대응: <b>리파인(프롭테크)·유모멘트(웨딩)·폴리피아(소재)</b>로 섹터 다변화. <span class="flag">포트폴리오 손상 규모는 비공개(확인 불가).</span></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>조직 · 그룹 이슈</h2>
+      <ul class="tight">
+        <li><b>키맨(핵심운용역) 잇단 이탈</b>(최은성 상무·박성준 전무 등 보도) → 3호 펀딩·LP 신뢰 부담. 집단경영(7인)의 리텐션·의사결정 속도 논쟁 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>리파인 공개매수 '차별가' 논란</b>: 경영권 27,159원 vs 일반주주 17,600원 → 머스트자산운용이 동일가·자사주매입 요구, 회사는 '프롭테크 M&amp;A 재원' 이유로 거부 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><span class="flag">그룹 평판(별개):</span> 계열 <b>스톤브릿지자산운용을 자본금 1억·1인 법인(까르띠움)에 매각, 인수자 실체·자금출처 논란</b>(2026.6) — PE 본체 딜 아님, 그룹 지배구조 이슈 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 현승윤 등기 직함·펀드 소진율·회수 멀티플·손상 규모는 게재 전 DART·원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 이투데이, 'PE의 젊은 피⑧' 현승윤(우리PE·EIG 출신). <a href="https://www.etoday.co.kr/news/view/2530919" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 아시아경제, 'PE 2.0' 현승윤 지분 25%·세대교체, 2026-06-29. <a href="https://view.asiae.co.kr/article/2026062915370549895" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 헤럴드경제, PEF 릴레이 분석 스톤브릿지캐피탈(AUM 3.3조·집단경영), 2023-08-11. <a href="https://biz.heraldcorp.com/view.php?ud=20230811000646" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 한국경제, 스톤브릿지캐피탈 지주사 전환, 2021-06-23. <a href="https://www.hankyung.com/article/202106236894i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 헤럴드경제, 2호 블라인드 6,750억 결성(LP 구성), 2023-03-09. <a href="https://news.heraldcorp.com/view.php?ud=20230309000464" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨, 3호 블라인드 최소 7,000억 시동, 2025-09-10. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509101336434320105346" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 인베스트조선, 노란우산 PEF 위탁운용사 6곳 선정(스톤브릿지 포함), 2025-12-22. <a href="https://www.investchosun.com/site/data/html_dir/2025/12/22/2025122280200.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 파이낸셜뉴스, 스톤브릿지 유모멘트 1,200억 인수(72.5%), 2024-06-28. <a href="https://www.fnnews.com/news/202406280715258223" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 스톤브릿지·LS증권 리파인 경영권 인수(1차). <a href="https://dealsite.co.kr/articles/132790" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 리파인 공개매수 76.5%·차별가 논란(2차). <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 더벨, 유진소닉 1,000억 딜 클로징, 2023-03-29. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202303291037246080107432" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 딜사이트, 에이스엔지니어링 560억 프리IPO. <a href="https://dealsite.co.kr/articles/156361" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 뉴스톱, 코렌스이엠 1년 만 71% 조기 엑시트. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=25753" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 헤럴드경제, DS단석 3년 동행 엑시트 약 3배, 2024-11-05. <a href="https://biz.heraldcorp.com/article/3848363" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 딜사이트, 캐리스라이프사이언스 회수 MOIC 2.5배. <a href="https://dealsite.co.kr/articles/162126" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 뉴스핌, 에이스엔지니어링 IPO 예심 자진철회, 2024-11-06. <a href="https://www.newspim.com/news/view/20241106001071" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 서울경제, 스톤브릿지캐피탈 핵심 운용역 이탈·조직 재정비. <a href="https://m.sedaily.com/article/14075802" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> IB토마토, 스톤브릿지자산운용 1인 법인 매각 실체 논란, 2026-06-19. <a href="https://v.daum.net/v/20260619070042746" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>현승윤 등기 직함·각자대표 구조, 3호 최종 규모·LP, 회수 멀티플·손상 규모, 키맨 이탈 시점·인물은 '미확인/확인 필요'</b>. 발행 2026-09-28 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">현승윤 대표(스톤브릿지캐피탈 PE)에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 인물 · 승계 · 조직</h2></div>
+    <div class="q cat1 must"><p class="qtext">우리PE·<b>EIG(에너지·인프라)</b> 출신으로 김지훈 부회장의 IMM 계보와는 배경이 다릅니다. EIG의 에너지·인프라 경험이 스톤브릿지의 <b>2차전지·소재·ESG 전략</b>에 실제로 어떻게 이식됐습니까? 집행위 7인 체제에서 <b>대표의 최종 권한</b>은 어디까지입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·검증</span><span class="pri high">상</span><span class="basis">근거: 우리PE·EIG 출신·집단경영 <a href="https://www.etoday.co.kr/news/view/2530919" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext"><b>최은성 상무·박성준 전무 등 핵심 운용역 이탈</b> 이후에도 국민연금·산은 등 2호 앵커 LP가 3호에 재출자할 근거는 무엇입니까? '지분 25% 확보'(현 대표) 외에 <b>후배 세대에 대한 지분·캐리 배분</b> 계획은? 집단경영이 인력 리텐션·신속한 딜 결정에 오히려 걸림돌은 아닙니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 키맨 이탈·25% 지분 <a href="https://m.sedaily.com/article/14075802" target="_blank" rel="noopener">[17]</a> <a href="https://view.asiae.co.kr/article/2026062915370549895" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 2차전지 · 섹터 리스크</h2></div>
+    <div class="q cat2 must"><p class="qtext">코렌스이엠은 15% 보장·71% 조기회수로 '방어'했지만 <b>에이스엔지니어링(ESS)은 IPO를 철회</b>해 물려 있습니다. 2호의 <b>2차전지·산업재 익스포저 장부가 대비 공정가치(마크다운) 폭</b>은 어느 정도이고, <b>3호에서도 2차전지를 앞세우는 근거</b>는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: 캐즘·에이스 IPO 철회·3호 2차전지 <a href="https://www.newspim.com/news/view/20241106001071" target="_blank" rel="noopener">[16]</a> <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509101336434320105346" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">리파인·유모멘트·폴리피아로 <b>섹터를 다변화</b>하는 흐름인데, 이는 2차전지 집중 전략의 <b>사실상 수정</b>입니까? '펀더멘털 기반'이라는 원칙과 경기민감 소비재(웨딩홀)·프롭테크 편입은 어떻게 양립합니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: 섹터 다변화 <a href="https://www.fnnews.com/news/202406280715258223" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 딜 · 회수</h2></div>
+    <div class="q cat3 must"><p class="qtext">약 3배 회수한 <b>DS단석을 잇는 확실한 대표 엑시트</b>가 아직 안 보입니다. 구구스·클루커스 매각과 에이스 IPO 재도전, 유모멘트·리파인의 <b>회수 시나리오(전략적/재무적 매각 vs IPO)와 목표 멀티플·타임라인</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: DS단석 3배 이후 공백 <a href="https://biz.heraldcorp.com/article/3848363" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">리파인 공개매수에서 경영권 지분(27,159원)과 일반주주(17,600원)의 <b>차별가</b>를 두고 머스트가 반발했습니다. 700~800억 프롭테크 M&amp;A는 <b>확정 딜입니까 방어 명분입니까?</b> 리얼티파인 1,350억 차입·지분 전량 담보 구조에서 <b>소액주주 이익</b>은 어떻게 보호됩니까?</p><div class="qmeta"><span class="tag">확인형 압박</span><span class="pri mid">중</span><span class="basis">근거: 리파인 차별가 논란 <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 펀드 · 그룹</h2></div>
+    <div class="q cat4 must"><p class="qtext">3호는 <b>최소 7,000억에 노란우산 700억이 앵커</b>인데, 국민연금·산업은행 등 핵심 기관 LP 확보는 어디까지 왔습니까? 2호(6,750억) 대비 규모를 못 키운다는 시각에 대한 답과 <b>클로징 목표 시점·3호 핵심운용인력 명단</b>은?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 3호 7,000억·노란우산 700억 <a href="https://www.investchosun.com/site/data/html_dir/2025/12/22/2025122280200.html" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">계열 <b>스톤브릿지자산운용을 자본금 1억·1인 법인에 매각</b>한 거래의 실제 대금·자금출처, 그리고 이것이 그룹의 <b>선택과 집중</b>인지 유동성 신호인지 어떻게 봐야 합니까? PE 본체 LP들은 이를 어떻게 봅니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: 자산운용 매각 논란 <a href="https://v.daum.net/v/20260619070042746" target="_blank" rel="noopener">[18]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[1]</span> 이투데이, 현승윤 프로필(우리PE·EIG). <a href="https://www.etoday.co.kr/news/view/2530919" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[2]</span> 아시아경제, 현승윤 지분 25%. <a href="https://view.asiae.co.kr/article/2026062915370549895" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[6]</span> 더벨, 3호 7,000억 시동. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509101336434320105346" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 인베스트조선, 노란우산 위탁운용사 선정. <a href="https://www.investchosun.com/site/data/html_dir/2025/12/22/2025122280200.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[8]</span> 파이낸셜뉴스, 유모멘트 인수. <a href="https://www.fnnews.com/news/202406280715258223" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 딜사이트, 리파인 공개매수·차별가. <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 헤럴드경제, DS단석 3배 회수. <a href="https://biz.heraldcorp.com/article/3848363" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 뉴스핌, 에이스엔지니어링 IPO 철회. <a href="https://www.newspim.com/news/view/20241106001071" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[17]</span> 서울경제, 핵심 운용역 이탈. <a href="https://m.sedaily.com/article/14075802" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[18]</span> IB토마토, 자산운용 1인 법인 매각 논란. <a href="https://v.daum.net/v/20260619070042746" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[18])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-28</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
