@@ -1,0 +1,270 @@
+<meta charset="utf-8" />
+<title>군인공제회 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #4b5320; --accent-soft: #e7e9d5;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #b0bd62; --accent-soft: #1e2110;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #b0bd62; --accent-soft: #1e2110;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #4b5320; --accent-soft: #e7e9d5;
+    --chip: #eef1f5; --chip-text: #47505c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
+  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h3 { font-size: 14px; margin: 13px 0 5px; color: var(--text); }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
+  .def b { color: var(--accent); }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn{ background:#2c1512; color:#f0b9ae; }
+  :root[data-theme="light"] .warn{ background:#fbe9e7; color:#7a2318; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .warn{ background:#2c1512; color:#f0b9ae; } }
+  .warn b { color: var(--c1); }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-09-30</div>
+    <h1 class="title">군인공제회</h1>
+    <p class="subtitle">투자운용자산 16조의 대형 LP. 블라인드펀드 출자를 역대 최대에서 37% 줄인 해, 200조 국민성장펀드의 리그 세분화와 크레딧·세컨더리 파고 속에서 무엇을 선택하나</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 기관 출자자(LP·공제회)</span>
+      <span class="meta-chip">투자운용 ~16조 · 대체 74.8%</span>
+      <span class="meta-chip">2026 블라인드 3,000억(-37%)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card">
+      <h2><span class="dot"></span>기관 개요</h2>
+      <dl class="kv">
+        <dt>정체</dt><dd>1984 설립 군인·군무원 공제회. <b>총자산 24.4조</b>(2025말), <b>투자운용자산 ~16조</b>(2026.8 15.9조) <sup class="ref"><a href="#src-1">[1]</a></sup></dd>
+        <dt>자산배분</dt><dd>대체투자 44%+부동산 31% = <b>74.8% → 2030 목표 84.8%</b>. <b>해외 50.3%로 국내 첫 추월</b> <sup class="ref"><a href="#src-2">[2]</a></sup></dd>
+        <dt>경영</dt><dd>CIO(금융투자부문) <b>박화재</b>(前 우리금융 사장, 2024) <sup class="ref"><a href="#src-3">[3]</a></sup>. <span class="flag">이사장 정재관은 2026.8 사의 → 직무대행 체제 전망</span> <sup class="ref"><a href="#src-4">[4]</a></sup></dd>
+      </dl>
+      <p class="src">실적: 2025 사업이익 <b>1조542억(창립 첫 1조 돌파)</b>, 2026 상반기 순익 3,431억(+53%). 퇴직급여 지급률 연 4.9% <sup class="ref"><a href="#src-1">[1]</a></sup></p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 블라인드펀드 출자 동향(핵심)</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>연도</th><th>총액</th><th>PE / VC</th><th>GP</th></tr>
+        <tr><td>2023</td><td>3,000억</td><td>—</td><td>16곳</td></tr>
+        <tr><td>2024</td><td>3,900억</td><td>PE 2,700 / VC 1,200</td><td>17곳</td></tr>
+        <tr><td>2025</td><td><b>4,800억(역대 최대)</b></td><td>PE 3,400 / VC 1,400</td><td>20곳</td></tr>
+        <tr><td><b>2026</b></td><td><b>3,000억(-37%)</b></td><td>PE 2,000 / VC 1,000</td><td>18곳</td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li>2026 출자에 <b>'국방·방산·우주항공' 투자역량 GP 가점</b> 신설. 제안 8/14→구술심사 9월→<b>9월말~10월초 최종선정</b> <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li>2025 숏리스트에 VIG·어피니티 등 대형 포함, 경쟁률 2.5:1. PE는 하우스당 300~400억 차등 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>별도 <b>PE 공동투자(co-invest) 펀드 ~2,100억</b> — KB자산운용PE 선정(군공 2,000억+GP 100억), 약정 70%+를 <b>기존 출자이력 GP와 국내 PE딜에 공동투자</b> <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">→ 취재 포인트:</span> 대체 비중은 84.8%까지 늘린다면서 <b>국내 블라인드 신규만 37% 축소</b> — 부동산·PF 소화인가 총량 조절인가(축소 배경 미확인).</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 국민성장펀드 리그 세분화</h2>
+      <div class="def"><b>확인:</b> 국민성장펀드(5년 <b>150조→200조</b> 확대) <sup class="ref"><a href="#src-11">[11]</a></sup>. 올해 PE·VC를 <b>'통합 공고'</b>로 묶어 양측 불만 폭발 → 산은이 <b>2027년 3차 사업에서 ①PE·VC 리그 분리 ②섹터펀드 다변화 ③세컨더리펀드 편성 여부</b>까지 담은 설문 착수 <sup class="ref"><a href="#src-9">[9]</a></sup>.</div>
+      <h3>공제회 LP에 미치는 영향</h3>
+      <ul class="tight">
+        <li><b>'모험자본 블랙홀·크라우딩아웃' 우려</b>: 정책자금이 민간 유동성을 빨아들여 미선정 GP 소외 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li>앵커(국민성장) → 연기금·공제회 매칭 → 타 LP 유치의 <b>레버리지 구조</b>로 시장 재편. GP 단위 '국민성장 민간 매칭펀드' 조성 정황</li>
+        <li>공제회는 구축 속에서도 <b>별도 출자 병행</b>(군공 3,000억, 과기공 4,600억 등) <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 공제회의 '기회 vs 구축' 공식 규정 발언, 국민성장펀드와의 제도화된 매칭·공동출자 스킴, 3차 리그 개편 확정안.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>크레딧(사모대출·메자닌)</h2>
+      <ul class="tight">
+        <li><b>우정사업본부가 크레딧 선도</b> — 선순위 대출펀드 5,000억, 해외 인프라 대출 ~2억달러 등 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>군인공제회</b>: 2024년 크레딧 블라인드 <b>900억</b>(중·후순위+메자닌, 박화재 CIO 첫 출자사업) 경험 <sup class="ref"><a href="#src-12">[12]</a></sup>. 단 2026년은 <b>해외 사모대출(PDF) '옥석가리기'로 신규 신중</b></li>
+        <li>시장: 고금리로 사모대출이 대표 인컴자산화(연기금·공제회 출자 급증). 다만 <b>'사모대출 폭탄' 리스크 경계</b>도 병존</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>세컨더리</h2>
+      <ul class="tight">
+        <li>배경: IPO 절벽으로 <b>회수 M&amp;A 비중 2.3%</b>(모태 자펀드)까지 추락 → 세컨더리 부상 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>시장: <b>금투협·증권업계 3년 1조 벤처 세컨더리</b>, KIC 해외 PEF 지분 1.4조 매각 등 LP세컨더리 확대 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>군인공제회</b>: 세컨더리 <b>전용 트랙보다 '공동투자(co-invest)'에 무게</b>(과거 2014 해외 세컨더리 이력은 있음) <span class="flag">— 최근 세컨더리 전용 출자는 확인 불가</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>거버넌스 · 리스크</h2>
+      <ul class="tight">
+        <li><b>거버넌스 공백 우려</b>: <b>이사장 사의(직무대행)</b> + <b>CIO 박화재 사법리스크</b>(2024.11 손태승 부당대출 관련 압수수색)가 겹침 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li>대체·부동산 74.8%로 <b>PF 리스크 경계</b>, 자회사 엠플러스자산운용 매각(2026.4). 인프라 전담팀 신설·북미/유럽 인프라 ~5,000억</li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 대체·부동산 손실 규모, 박 CIO 사법 결과·현 재직, 신임 이사장 확정(9/30 시점), 2026 GP 최종 명단.</p>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 출자 수치·GP 명단·거버넌스 최신 상태는 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 아시아경제, 군인공제회 2025 실적·총자산 24.4조, 2026-03-30. <a href="https://view.asiae.co.kr/article/2026033010240627170" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 아시아경제, 기금·공제 대해부⑥ 자산배분·해외 50.3%, 2026-08-06. <a href="https://view.asiae.co.kr/article/2026080615175315403" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 더벨 LP Radar, 군인공제회 CIO 박화재 취임, 2024-06-28. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202406281321425920102432" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 이투데이, 정재관 이사장 사의·직무대행 전망, 2026-08-31. <a href="https://www.etoday.co.kr/news/view/2620128" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트, 2026 군인공제회 PE·VC 출자 3,000억(축소)·국방 가점, 2026-07-31. <a href="https://dealsite.co.kr/articles/166391" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 더벨 LP Radar, 2025 군인공제회 4,800억 역대 최대·GP 20곳, 2025-11-06. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202511060817128400106233" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 군인공제회 PE 공동투자 2,000억 출자사업. <a href="https://dealsite.co.kr/articles/158862" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 군인공제회·KB자산운용 PE 2,100억 공동투자, 2026-06-22. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202606220803577960103849" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 국민성장펀드 PE·VC 리그 분리·섹터·세컨더리 검토(산은 설문). <a href="https://dealsite.co.kr/articles/169801" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 헤럴드경제, 국민성장펀드 '모험자본 블랙홀' 우려. <a href="https://biz.heraldcorp.com/article/10802060" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 아시아경제, 국민성장펀드 150조→200조 확대, 2026-07-15. <a href="https://view.asiae.co.kr/article/2026071511380952862" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 인베스트조선, 군인공제회 크레딧 900억 출자(박화재 첫 사업), 2024-08-08. <a href="https://www.investchosun.com/site/data/html_dir/2024/08/08/2024080880075.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 이투데이, 우정사업본부 크레딧(선순위 대출펀드 5,000억). <a href="https://www.etoday.co.kr/news/view/2606097" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 머니투데이, 회수 M&amp;A 2.3%·세컨더리 부상, 2026-08-27. <a href="https://www.mt.co.kr/future/2026/08/27/2026082622505993506" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 글로벌이코노믹, 금투협·증권업계 3년 1조 벤처 세컨더리, 2026-09-01. <a href="https://www.g-enews.com/article/Securities/2026/09/202609011400524449153ddfb15a_1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 인베스트조선, 군인공제회 CIO 관련 압수수색, 2024-11-17. <a href="https://www.investchosun.com/site/data/html_dir/2024/11/17/2024111780075.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 딜사이트, LP Scope — 공제회 PE·VC 출자·모험자본. <a href="https://dealsite.co.kr/articles/165139" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>출자 축소 배경, 3차 리그 개편안, 세컨더리 전용 트랙, 거버넌스 최신 상태, 2026 GP 명단은 '미확인/확인 필요'</b>. 발행 2026-09-30 기준.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note">LP(출자자) 관점의 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 블라인드펀드 출자</h2></div>
+    <div class="q cat1 must"><p class="qtext">2025년 <b>4,800억(역대 최대)에서 2026년 3,000억으로 37% 축소</b>한 진짜 이유는 무엇입니까? 대체투자 비중은 <b>84.8%까지 늘린다면서 국내 PE·VC 블라인드 신규만 줄인 것은 모순</b> 아닙니까? 부동산·PF 익스포저 소화 때문입니까, 총량 조절입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: 4,800→3,000억·대체 84.8% <a href="https://dealsite.co.kr/articles/166391" target="_blank" rel="noopener">[5]</a> <a href="https://view.asiae.co.kr/article/2026080615175315403" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2026 출자에 <b>'국방·방산·우주항공' 가점</b>을 넣으셨습니다. 이는 <b>수익률보다 정책성</b>으로 GP 선정을 왜곡할 우려는 없습니까? 실제 방산 특화 블라인드에 얼마를 배정할 계획입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: 국방 가점 <a href="https://dealsite.co.kr/articles/166391" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 국민성장펀드</h2></div>
+    <div class="q cat2 must"><p class="qtext">200조 국민성장펀드가 사실상 시장의 <b>앵커 LP</b>가 됐습니다. 군인공제회의 GP 선정이 '<b>국민성장펀드에 뽑힌 GP를 따라가는</b>' 구조로 바뀌었습니까, 아니면 정책펀드 미선정 GP에서 차별화된 딜을 찾습니까? <b>매칭·공동출자 제안을 실제로 받았습니까?</b> '블랙홀' 우려에 동의하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 블랙홀·매칭 구조 <a href="https://biz.heraldcorp.com/article/10802060" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">산은이 2027년 3차 사업에서 <b>PE·VC 리그를 분리하고 섹터펀드를 다변화</b>하며 세컨더리펀드 편성까지 검토합니다. 이 개편이 군인공제회의 <b>출자 캘린더·GP 풀 경쟁에 유리합니까 불리합니까?</b> 리그가 세분화되면 공제회의 차별화 여지는 커집니까 줄어듭니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·검증</span><span class="pri high">상</span><span class="basis">근거: 3차 리그 분리·섹터 다변화 <a href="https://dealsite.co.kr/articles/169801" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 크레딧 · 세컨더리</h2></div>
+    <div class="q cat3 must"><p class="qtext"><b>우정사업본부는 크레딧에 적극적</b>(선순위 대출 5,000억)인데, 군인공제회는 2024년 크레딧 900억 경험 뒤 <b>해외 PDF '옥석가리기'로 신중</b>합니다. 크레딧 비중을 어디까지 늘릴 계획이며 <b>선순위 대출 중심입니까, 메자닌·직접대출까지</b> 갑니까? '사모대출 폭탄' 경고 속 디폴트·유동성 리스크는 어떤 지표로 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·검증</span><span class="pri high">상</span><span class="basis">근거: 우본 크레딧 vs 군공 신중 <a href="https://www.etoday.co.kr/news/view/2606097" target="_blank" rel="noopener">[13]</a> <a href="https://www.investchosun.com/site/data/html_dir/2024/08/08/2024080880075.html" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">회수 M&amp;A가 2%대로 떨어지고 <b>일부 LP가 세컨더리에 초점</b>을 맞춥니다. 군인공제회 포트폴리오의 <b>미회수·10년 초과 만기연장 자산 규모</b>는 얼마이며, <b>LP세컨더리·컨티뉴에이션으로 실제 유동화</b>에 나설 계획이 있습니까? 지금 세컨더리 매도가 '거래 절벽' 할인을 감수할 시점입니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: 회수 2.3%·세컨더리 <a href="https://www.mt.co.kr/future/2026/08/27/2026082622505993506" target="_blank" rel="noopener">[14]</a> <a href="https://www.g-enews.com/article/Securities/2026/09/202609011400524449153ddfb15a_1" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 거버넌스 · 자산배분</h2></div>
+    <div class="q cat4 must"><p class="qtext"><b>이사장 사의(직무대행)와 CIO 사법리스크</b>가 겹친 상황에서, 2026 하반기 GP 최종선정과 대형 대체투자 의사결정의 <b>'거버넌스 공백'</b> 우려는 없습니까? 투자심의 지연·중단은 없습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 이사장 사의·CIO 리스크 <a href="https://www.etoday.co.kr/news/view/2620128" target="_blank" rel="noopener">[4]</a> <a href="https://www.investchosun.com/site/data/html_dir/2024/11/17/2024111780075.html" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat4"><p class="qtext"><b>KB자산운용 PE와의 2,100억 공동투자</b>처럼 '기존 GP 재활용형 공동투자'로 방향을 트는데, 이는 <b>신규 GP 발굴 축소·소수 대형 GP 집중</b>을 의미합니까? 향후 2~3년 자산배분에서 <b>PE 에쿼티 vs 크레딧 vs 세컨더리 목표 비중</b>을 숫자로 말씀해 주실 수 있습니까?</p><div class="qmeta"><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: KB 공동투자·GP 집중 <a href="https://dealsite.co.kr/articles/158862" target="_blank" rel="noopener">[7]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <ul class="srclist">
+        <li><span class="n">[2]</span> 아시아경제, 자산배분·해외 50.3%. <a href="https://view.asiae.co.kr/article/2026080615175315403" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[5]</span> 딜사이트, 2026 출자 3,000억·국방 가점. <a href="https://dealsite.co.kr/articles/166391" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[7]</span> 딜사이트, PE 공동투자 2,000억. <a href="https://dealsite.co.kr/articles/158862" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[9]</span> 딜사이트, 국민성장펀드 리그 분리·세컨더리. <a href="https://dealsite.co.kr/articles/169801" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[10]</span> 헤럴드경제, 국민성장펀드 블랙홀. <a href="https://biz.heraldcorp.com/article/10802060" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[12]</span> 인베스트조선, 군공 크레딧 900억. <a href="https://www.investchosun.com/site/data/html_dir/2024/08/08/2024080880075.html" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[13]</span> 이투데이, 우정사업본부 크레딧 5,000억. <a href="https://www.etoday.co.kr/news/view/2606097" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[14]</span> 머니투데이, 회수 2.3%·세컨더리. <a href="https://www.mt.co.kr/future/2026/08/27/2026082622505993506" target="_blank" rel="noopener">링크</a></li>
+        <li><span class="n">[16]</span> 인베스트조선, CIO 압수수색. <a href="https://www.investchosun.com/site/data/html_dir/2024/11/17/2024111780075.html" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+      <p class="src">전체 출처([1]~[17])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-09-30</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
