@@ -9,7 +9,7 @@
     --pri: #d64545;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
       --line: #2b313a; --accent: #e88bb0; --accent-soft: #2a1019;
       --chip: #262c35; --chip-text: #aab4c1;
@@ -20,19 +20,14 @@
     --line: #2b313a; --accent: #e88bb0; --accent-soft: #2a1019;
     --chip: #262c35; --chip-text: #aab4c1;
   }
-  :root[data-theme="light"] {
-    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
-    --line: #e5e8ec; --accent: #9d174d; --accent-soft: #f7e1eb;
-    --chip: #eef1f5; --chip-text: #47505c;
-  }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
     line-height: 1.6; -webkit-text-size-adjust: 100%;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 0 64px; }
-  header.hero { padding: 20px 18px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
   .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
   h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
   .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
@@ -40,7 +35,7 @@
   .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
   .tabs {
     position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
-    padding: 10px 14px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
   }
   .tab-btn {
@@ -49,15 +44,15 @@
     border-radius: 12px; cursor: pointer; transition: .15s;
   }
   .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
-  section.panel { display: none; padding: 16px 14px 0; }
+  section.panel { display: none; padding: 16px 0 0; }
   section.panel.active { display: block; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
   .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
   .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
-  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
   .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
   .card p { margin: 6px 0; font-size: 14.5px; }
-  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14px; }
+  .kv { display: grid; grid-template-columns: 88px 1fr; gap: 6px 10px; font-size: 14px; }
   .kv dt { color: var(--muted); }
   .kv dd { margin: 0; }
   ul.tight { margin: 6px 0; padding-left: 18px; }
@@ -69,9 +64,8 @@
   .def { background: var(--accent-soft); border-radius: 10px; padding: 9px 12px; margin: 4px 0 8px; font-size: 14px; }
   .def b { color: var(--accent); }
   .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
-  :root[data-theme="dark"] .warn{ background:#2c1512; color:#f0b9ae; }
-  :root[data-theme="light"] .warn{ background:#fbe9e7; color:#7a2318; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .warn{ background:#2c1512; color:#f0b9ae; } }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
   .warn b { color: var(--c1); }
   .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
   .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
@@ -79,6 +73,10 @@
   .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
   .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
   .tl-body { font-size: 14.5px; }
+  .vd { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
   .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
   .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; }
   .qcat-head h2 { font-size: 15px; margin: 0; }
@@ -99,7 +97,7 @@
   .cat4 { border-left-color: var(--c4); }
   .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
   .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
-  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 30px; position: relative; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
   .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
   .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
   .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
@@ -111,13 +109,13 @@
 
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">취재 브리핑 · 2026-10-06</div>
+    <div class="kicker">취재 브리핑 · 2026-10-06 (갱신)</div>
     <h1 class="title">스틱인베스트먼트 · 강신우 대표</h1>
-    <p class="subtitle">창업주 도용환이 지분을 팔고 떠난 '제2의 창업' 국면. 크레딧 분사와 국민성장펀드 최대어가 겹친 유일 상장 PEF를, 1세대 펀드매니저 출신 전략총괄이 이끈다</p>
+    <p class="subtitle">창업주가 떠나고 '경영권 없는 외국계 최대주주'가 들어선 유일 상장 PEF. 결성 7년째 회수가 없는 오퍼튜니티 2호, 바이아웃으로 방향을 튼 3호, 크레딧 분사 — 전 KIC CIO 출신 전략총괄에게 물을 것들</p>
     <div class="meta-row">
       <span class="meta-chip">주체: 투자사(상장 PEF·그로스)</span>
-      <span class="meta-chip">코스피 026890 · AUM 6조(계열 10조)</span>
-      <span class="meta-chip">기사 20건+ 종합</span>
+      <span class="meta-chip">코스피 026890 · 3사 AUM 약 9.5조</span>
+      <span class="meta-chip">기사·공시 40건+ 종합</span>
     </div>
   </header>
 
@@ -133,140 +131,245 @@
       <h2><span class="dot"></span>⭐ 지배구조 대전환 '포스트 도용환'</h2>
       <div class="timeline">
         <div class="tl-item"><div class="tl-date">2024.12</div><div class="tl-body"><b>강신우</b> 대표이사 선임, 리스크관리전략부문 신설 총괄 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026.01.20</div><div class="tl-body"><b>도용환 회장이 지분 11.44%(476만주)를 주당 1.26만원·약 600억에 미국계 '미리캐피탈'에 매각</b> → 미리캐피탈 최대주주. 도 회장은 ~2%만 남기고 <b>미등기 창업회장</b>으로 용퇴 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026.03.31</div><div class="tl-body"><b>곽동걸 신임 CEO 겸 이사회 의장</b> 취임 — '소유와 경영 분리' <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.01.20</div><div class="tl-body"><b>도용환 회장이 지분 11.44%를 주당 1.26만원, 약 600억에 미국계 '미리캐피탈'에 매각</b> → 미리캐피탈 25%로 최대주주. 도 회장은 약 2%만 남김 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.01.20</div><div class="tl-body">밸류업 공시: <b>2028년 AUM 15조·ROE 10%</b>, <b>저수익 펀드 조기청산</b> <sup class="ref"><a href="#src-23">[23]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.03</div><div class="tl-body">미리캐피탈, 주총에서 <b>이사회 진입(비상무·사외이사 2명) 검토 후 철회</b> <sup class="ref"><a href="#src-24">[24]</a></sup> / <b>곽동걸 CEO 겸 의장</b> 취임 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
       </div>
       <ul class="tight">
-        <li><b>각자대표 3인</b>: 곽동걸(CEO·의장)·<b>강신우</b>(전략·리스크)·채진호(PE부문). <b>2세 승계는 "계획 없음·불가능"</b> → 전문경영인 체제 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
-        <li><b>얼라인파트너스 등 행동주의</b>(7.6%)가 자사주 전량 소각 요구 → 회사는 M&amp;A·RSU 활용 고수, 공방 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>'경영권 없는 최대주주'</b>: 매매합의에 미리캐피탈의 <b>경영권 행사 3년 금지 조항</b> <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li><b>2세 승계는 "계획 없음"</b> → 전문경영인 체제 <sup class="ref"><a href="#src-4">[4]</a></sup>. 2021년 디피씨와 합병한 <b>국내 유일 상장 PEF</b>(코스피 026890) <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+        <li><b>행동주의</b>: 얼라인 7.63%·페트라 5.09%. 얼라인과 미리를 합치면 의결권 약 21%. 자사주 소각 요구를 두고 공방 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
       </ul>
-      <div class="warn"><b>혼동 주의:</b> 매수자는 <b>미국계 '미리캐피탈(Miri Capital)'</b> — '미래에셋'이 아닙니다.</div>
+      <div class="warn"><b>혼동 주의:</b> 매수자는 <b>미국계 '미리캐피탈(Miri Capital)'</b>입니다. '미래에셋'이 아닙니다.</div>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>강신우 대표 프로필</h2>
       <dl class="kv">
-        <dt>이력</dt><dd>서울대 법학 → <b>1세대 펀드매니저</b>(1999 현대투신 '바이코리아') → <b>한화자산운용 초대 대표</b> → <b>한국투자공사(KIC) CIO</b> → 2024.12 스틱 합류 <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
-        <dt>직함</dt><dd><b>각자대표이사 겸 전략부문 총괄대표(COO·CRSO)</b> — 리스크·전략·운영 총괄 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
-        <dt>역할</dt><dd>특정 딜부문장이 아닌 <b>멀티운용 체계의 전략·리스크 중추</b>. 창업주 퇴장 후 전문경영인 체제의 축</dd>
+        <dt>이력</dt><dd>서울대 법학 → 1988 한국투자신탁 입사, <b>1세대 펀드매니저</b>(1999 현대투신 '바이코리아') → <b>한화자산운용 초대 대표</b> → <b>한국투자공사(KIC) CIO(2016~2019)</b> → 2024.12 스틱 합류 <sup class="ref"><a href="#src-6">[6]</a></sup></dd>
+        <dt>직함</dt><dd><b>각자대표이사 겸 전략부문 총괄대표(COO·CRSO)</b>. 리스크·전략·운영 총괄 <sup class="ref"><a href="#src-5">[5]</a></sup></dd>
+        <dt>성격</dt><dd>딜을 직접 하는 부문장이 아닙니다. <b>LP(국부펀드) 출신으로 GP의 리스크·전략을 맡은 드문 경력</b>입니다.</dd>
       </dl>
-      <p class="src"><span class="flag">※ 정정:</span> '한국투자신탁운용 CIO'설은 부정확 — 입사처는 한국투자신탁(1988), CIO는 <b>KIC(한국투자공사)</b>. <span class="flag">크레딧 분사·국민성장펀드를 강 대표가 직접 주도했다는 근거는 미확인</span>(각각 강일성·이경형 주도).</p>
+      <p class="src"><span class="flag">※ 정정:</span> '한국투자신탁운용 CIO'설은 부정확합니다. CIO를 지낸 곳은 <b>KIC</b>입니다. 크레딧 분사(강일성)나 국민성장펀드(이경형·조영민)를 강 대표가 직접 주도했다는 근거는 없습니다.</p>
     </div>
 
     <div class="card hl">
-      <h2><span class="dot"></span>⭐ 크레딧본부 분사(핵심)</h2>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-date">2022.05</div><div class="tl-body"><b>스틱크레딧 '본부' 출범</b> — 강일성 본부장 등 7명으로 시작 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026.01</div><div class="tl-body">조직개편으로 <b>크레딧·그로쓰캐피탈을 '본부'→'부문' 격상</b>(강일성·이경형 부문대표) <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
-        <div class="tl-item"><div class="tl-date">2026 하반기</div><div class="tl-body"><b>크레딧 전담 별도 법인 '스틱크레딧' 설립, 강일성 수장</b> — 전문성·독자 펀드레이징 목적. VIG에 이은 크레딧 분사 흐름 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+      <h2><span class="dot"></span>⭐ 이사회 체제</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>구분</th><th>인물</th><th>비고</th></tr>
+        <tr><td>사내이사</td><td><b>곽동걸</b></td><td>CEO 겸 <b>이사회 의장(겸직)</b></td></tr>
+        <tr><td>사내이사</td><td><b>강신우</b></td><td>전략·리스크 총괄(COO·CRSO)</td></tr>
+        <tr><td>사내이사</td><td><b>채진호</b></td><td>PE부문 대표. 오퍼튜니티 1·2·3호 대펀 계보</td></tr>
+        <tr><td>사외이사</td><td><b>강면욱</b></td><td>전 국민연금 기금운용본부장(CIO)</td></tr>
+        <tr><td>사외이사</td><td><b>구성훈</b></td><td>전 삼성자산운용 대표</td></tr>
+      </table>
       </div>
       <ul class="tight">
-        <li>배경: 엑시트 절벽·M&amp;A 교착 → 사모대출/크레딧 수요 급증. <b>크레딧 펀드에 1.3조+ 유입</b>(스틱·IMM 합산), AUM ~4,500억→1조 돌파 목표 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
-        <li><b>스틱크레딧 1호 블라인드</b>: 2025.4 <b>1,500억 1차 클로징</b>(목표 3,000억), 메자닌 중심(인터로조·코오롱티슈진 등) <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li>미리캐피탈의 이사회 진입 철회 이유는 <b>'외국계 운용사'로 분류되는 것을 피하려는 것</b>이었습니다. 외국계로 분류되면 정책자금 출자에서 불이익을 받습니다 <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li>실제로 산업은행은 국민성장펀드 서류심사에서 <b>외국계인 어펄마캐피탈을 제외</b>했습니다. 스틱은 산은에 <b>미리캐피탈의 경영권 불행사 확약서와 위반 시 손해배상 각서</b>를 냈습니다 <sup class="ref"><a href="#src-25">[25]</a></sup></li>
       </ul>
-      <p class="src"><span class="flag">※ 미확인:</span> '완전 분사(독립)'인지 사내독립법인(SBU)인지, 인력·펀드·성과보수 분할, 상장사 연결실적 영향은 <b>이사회 논의 중·미확정</b>(내부 이견도 감지).</p>
+      <p class="src"><span class="flag">※ 확인 필요:</span> 사외이사 총원·임기, 이사회 내 위원회 구성은 DART 원문으로 확인해야 합니다. <b>도용환 회장을 사내이사로 적은 보도가 있어, '미등기 창업회장 용퇴' 보도와 상충합니다</b> <sup class="ref"><a href="#src-27">[27]</a></sup>. 현재 등기 여부를 확인하세요.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 오퍼튜니티 펀드 계보 · 취재원 주장 검증</h2>
+      <div class="def"><b>핵심:</b> 'SS펀드(스페셜시츄에이션펀드)'와 '오퍼튜니티'는 <b>같은 시리즈</b>입니다. <b>1호=SSF1, 2호=SSF2</b>이고, 3호부터 '스틱오퍼튜니티'로 이름을 바꿨습니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-29">[29]</a></sup>.</div>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>결성·규모</th><th>현재</th></tr>
+        <tr><td><b>1호</b>(SSF1)</td><td>2016 · 6,032억</td><td><b>청산</b>. 하이브 회수가 대표작 <sup class="ref"><a href="#src-33">[33]</a></sup></td></tr>
+        <tr><td><b>2호</b>(SSF2)</td><td>2019.8 · 1조2,200억</td><td>존속 <b>~2029.8</b>. <b>회수 0건</b>(2026.4 보도) <sup class="ref"><a href="#src-29">[29]</a></sup></td></tr>
+        <tr><td><b>3호</b>(스틱오퍼튜니티)</td><td>2023.2 · 약 2조200억</td><td>존속 ~2033.2. 소진율 약 50~60% <sup class="ref"><a href="#src-37">[37]</a></sup></td></tr>
+      </table>
+      </div>
+      <h3>취재원 주장 5가지 판정</h3>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>주장</th><th>판정</th><th>근거</th></tr>
+        <tr><td>2호는 청산·해산 단계라 재무제표에 안 잡힌다</td><td><span class="vd no">반박</span></td><td>2호는 존속 중입니다. 스틱은 <b>SS2호 지분 2.46%를 당기손익-공정가치 금융자산(약 339억, 2023말)</b>으로 보유합니다 <sup class="ref"><a href="#src-31">[31]</a></sup>. 연결하지 않는 건 지분율이 작아서지, 청산 때문이 아닙니다. 실제 청산된 건 SSF1, 2014 M&amp;A펀드, 스트레티직크레딧2호입니다.</td></tr>
+        <tr><td>2호 성과가 안 좋다</td><td><span class="vd part">부분 확인</span></td><td>회수 0건, 쥬비스 적자 이력, 뮤직카우 밸류 약 -25%, 채비 공모가가 적격상장 기준가에 못 미침. 다만 IRR·멀티플은 비공개라 '부진'은 평가입니다.</td></tr>
+        <tr><td>3호는 2호와 정반대로 투자한다</td><td><span class="vd part">부분 확인·과장</span></td><td>3호는 약정의 <b>60% 이상을 바이아웃</b>에 씁니다 <sup class="ref"><a href="#src-37">[37]</a></sup>. 그러나 2호에도 쥬비스 바이아웃이 있고, 3호에도 오케스트로·재원산업 같은 소수지분 투자가 있습니다. '무게 이동'이 정확합니다. 결성연도는 2024가 아니라 2023입니다.</td></tr>
+        <tr><td>3호는 PE본부 펀드, 대펀은 채진호</td><td><span class="vd ok">대체로 확인</span></td><td>3호는 채진호가 이끕니다. <b>그런데 2호 대펀도 채진호</b>이고, SSF1 운용도 주도했습니다 <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-39">[39]</a></sup>. 1·2·3호는 같은 조직·같은 대펀의 계보입니다.</td></tr>
+        <tr><td>SS펀드가 2호 포트폴리오(쥬비스)에 발을 담갔다</td><td><span class="vd no">반박(구조 오인)</span></td><td>SS펀드가 곧 2호입니다. <b>쥬비스는 SSF2(=2호)가 직접 지분 100%를 인수</b>했습니다 <sup class="ref"><a href="#src-34">[34]</a></sup>. 별도 SS펀드의 공동투자는 보도되지 않았습니다.</td></tr>
+      </table>
+      </div>
+      <p class="src"><span class="flag">※</span> 최근 청산 사례: <b>스틱스트레티직크레딧제2호(1,210억)가 2026.9.30 조기 청산</b>을 결정했습니다. 펀드 손익은 189억, 스틱 성과보수는 9억600만원입니다 <sup class="ref"><a href="#src-32">[32]</a></sup>. 밸류업 공시의 '저수익 펀드 조기청산'과 연결해 볼 수 있습니다.</p>
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>하우스 · 멀티운용 · 실적</h2>
+      <h2><span class="dot"></span>오퍼튜니티 2호 주요 자산 현황</h2>
       <ul class="tight">
-        <li><b>코스피 026890</b> — 2021 디피씨가 스틱 흡수합병한 <b>국내 유일 상장 PEF</b> <sup class="ref"><a href="#src-1">[1]</a></sup></li>
-        <li>AUM <b>본체 ~6조</b>(계열 스틱벤처스·스틱얼터너티브 합산 ~10조). <b>PE·그로쓰캐피탈·크레딧 3부문</b> 멀티운용 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup></li>
-        <li>2025 실적 개선: 영업수익 <b>912억(+15%)</b>·순이익 <b>150억(+61%)</b> — <b>성과보수 154억</b>(전년 88억)이 견인 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
-        <li>최근 수년은 <b>바이아웃보다 그로쓰캐피탈 중심</b></li>
+        <li><b>쥬비스다이어트</b>(2020, 약 2,400억, 100%): 매출 868억(2021)에서 550억(2023)으로 줄고 영업손실 136억을 냈습니다. 2024년 영업이익 49억으로 흑자 전환했습니다. 인수금융 만기를 최대 2년 연장했습니다 <sup class="ref"><a href="#src-34">[34]</a></sup> <sup class="ref"><a href="#src-35">[35]</a></sup>. 위고비 확산으로 회수 길이 막혔다는 보도도 있습니다 <sup class="ref"><a href="#src-44">[44]</a></sup></li>
+        <li><b>그랩</b>(2020, 2억달러): SSF2에서 7,500만달러를 넣고, 나머지는 LP 공동투자펀드 1,583억(교직원공제회·국민연금 등)으로 채웠습니다. 6년째 회수 중입니다 <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+        <li><b>채비</b>(옛 대영채비, 1,100억, 2대주주 26.49%): 2026.4 코스닥에 상장했습니다. 공모가 12,300원은 <b>적격상장 기준가 15,035원보다 낮습니다</b> <sup class="ref"><a href="#src-36">[36]</a></sup></li>
+        <li><b>뮤직카우</b>(1,600억 이상): 기업가치가 약 8,000억에서 6,000억으로 약 25% 떨어졌습니다 <sup class="ref"><a href="#src-45">[45]</a></sup></li>
+        <li><b>휴맥스모빌리티</b>(1,000억, 37.88%): IPO 대신 지분 매각으로 돌았습니다. 트루블루에쿼티와 MOU 후 실사 중입니다 <sup class="ref"><a href="#src-46">[46]</a></sup></li>
+        <li><b>롯데에너지머티리얼즈</b>(일진머티리얼즈 계열 투자): 엑시트 대신 <b>2,052억 리파이낸싱</b>을 택했습니다 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
       </ul>
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>국민성장펀드 최대어 · 주요 펀드·딜</h2>
+      <h2><span class="dot"></span>바이아웃 vs 비상장 그로스</h2>
+      <p>스틱의 원래 주력은 <b>그로스(소수지분)</b>였습니다. 3호부터 <b>바이아웃 비중을 60% 이상</b>으로 늘렸고, 지금은 PE·그로쓰·크레딧 3부문 '멀티운용' 체제입니다 <sup class="ref"><a href="#src-21">[21]</a></sup>.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>유형</th><th>딜</th><th>규모·결과</th></tr>
+        <tr><td>바이아웃</td><td><b>크린토피아</b>(3호)</td><td>2026.2 지분 100% 인수 완료, 약 6,300억 <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+        <tr><td>바이아웃</td><td><b>티맥스데이터</b>(3호)</td><td>캑터스PE와 공동, 약 1조2,000억</td></tr>
+        <tr><td>바이아웃</td><td><b>녹수</b>(3호)</td><td>약 4,500억</td></tr>
+        <tr><td>바이아웃</td><td><b>쥬비스</b>(2호)</td><td>약 2,400억, 100%. 부진 후 흑자 전환</td></tr>
+        <tr><td>바이아웃</td><td><b>한컴라이프케어</b>(1호)</td><td>2017년 60%, 800억 → 2021 상장으로 회수</td></tr>
+        <tr><td>그로스</td><td><b>하이브(옛 빅히트)</b>(1호)</td><td>약 1,040억 → 회수 약 8,500~9,470억(보도별 상이), 약 8~9배 <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-38">[38]</a></sup></td></tr>
+        <tr><td>그로스</td><td><b>그랩</b>(2호)</td><td>2억달러, 회수 지연</td></tr>
+        <tr><td>그로스</td><td><b>재원산업</b>(3호)</td><td>2,828억, 2차전지 소재 <sup class="ref"><a href="#src-43">[43]</a></sup></td></tr>
+        <tr><td>그로스</td><td><b>오케스트로</b>(3호)</td><td>RCPS 1,000억 <sup class="ref"><a href="#src-42">[42]</a></sup></td></tr>
+        <tr><td>그로스</td><td>케어링·에이치에너지·씨너지</td><td>스틱케이그로쓰(400억·400억·100억)</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 크레딧본부 분사</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2022</div><div class="tl-body"><b>스틱크레딧 '본부' 출범</b>, 강일성 본부장 등 7명 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.01</div><div class="tl-body">크레딧·그로쓰캐피탈을 <b>'본부'에서 '부문'으로 격상</b> <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026 하반기</div><div class="tl-body"><b>크레딧 전담 별도 법인 '스틱크레딧' 설립, 강일성 수장</b>. VIG에 이은 크레딧 분사 흐름 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+      </div>
       <ul class="tight">
-        <li><b>국민성장펀드 '최대어'</b>: 2026.7 <b>스케일업 리그 GP</b> 낙점(J&amp;PE 제침). 정책자금 2,000억+<b>하드캡 없어 1조원대 가능</b> — 이경형·조영민 그로쓰 주도 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
-        <li><b>스틱오퍼튜니티 3호</b> 약 <b>2조200억</b>(앵커 국민연금), 소진율 ~60%</li>
-        <li><b>크린토피아(세탁 프랜차이즈) 약 6,500억 인수</b>(JKL서, 가맹 3,200개) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
-        <li>재원산업 2,828억(2차전지)·케어링 400억·씨너지 100억·키즈노트 컨소</li>
+        <li>크레딧 펀드에 1.3조 이상 유입(스틱·IMM 합산). AUM 약 4,500억에서 1조 돌파가 목표입니다 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>스틱크레딧 1호</b>: 1,500억 1차 클로징(목표 3,000억), 메자닌 중심(인터로조·코오롱티슈진 등) <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확정:</span> '완전 분사'인지 사내독립법인인지, 인력·펀드·성과보수 분할, 적용 라이선스(전문사모운용인지 여신전문인지)는 아직 이사회 논의 중이고 내부 이견도 있습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>DART 공시 재무 (2차 보도 교차검증)</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>기간</th><th>영업수익</th><th>영업이익</th><th>순이익</th><th>비고</th></tr>
+        <tr><td>2024</td><td>795억(-15%)</td><td>134억(-60%)</td><td>93억(-66%)</td><td>성과보수 258억→<b>88억</b>, 관리보수 544억→<b>598억</b> <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>2025 1Q</td><td>165억(-25%)</td><td><b>-57억</b></td><td><b>-46억</b></td><td>적자 전환. 지분법손실 9억→120억 <sup class="ref"><a href="#src-22">[22]</a></sup></td></tr>
+        <tr><td>2025 1~3Q</td><td>—</td><td>-81.8%</td><td>—</td><td>회사 설명: "엑시트 전 보수적 밸류에이션"</td></tr>
+        <tr><td>2025 연간</td><td colspan="4"><span class="flag">미확인.</span> 집계사 수치(매출 912억·영업이익 172억·순익 149억)는 DART 원문 인용 보도가 없습니다.</td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>AUM</b>: 스틱 단독 19개 펀드 약 7조5,580억, 3사(스틱벤처스·스틱얼터너티브 포함) 합산 약 9조4,806억 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li><b>GP커밋 예</b>: 국민성장펀드 스케일업 펀드에 스틱 70억, 스틱크레딧 8억 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>2호(SS2) 지분</b>: 2.46%, 공정가치 약 339억(2023말 감사보고서) <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 방법:</span> 이 환경에서는 DART(opendart.fss.or.kr)에 직접 접근할 수 없습니다. 위 수치는 공시를 인용한 보도로 교차검증했습니다. 2025 사업보고서, 2026 반기보고서, 자사주 주요사항보고서는 원문 대조가 필요합니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>자본시장법 쟁점</h2>
+      <ul class="tight">
+        <li><b>2021.10.21 사모펀드 개편</b>: '경영참여형 vs 전문투자형'이 <b>'기관전용 vs 일반 사모펀드'</b>로 바뀌었습니다. 스틱 펀드 대부분은 기관전용입니다 <sup class="ref"><a href="#src-40">[40]</a></sup></li>
+        <li><b>핵심운용인력 요건</b>: 금융회사·<b>KIC</b>·체신관서·기관전용 펀드에서 3년 이상 경력 등이 필요합니다. 강 대표의 KIC 경력과 겹치는 지점입니다.</li>
+        <li><b>상장 GP의 이해상충</b>: 상장사로서 공정공시를 하면서, 동시에 자기 펀드 포트폴리오를 평가하고 성과보수를 인식합니다. 2025년 평가손을 '향후 성과보수의 기반'이라고 설명한 것이 적정한지가 쟁점입니다.</li>
+        <li><b>펀드 간 거래</b>: 2호 자산을 3호나 후속 펀드가 사들이거나 증자에 참여할 경우, LPAC 승인과 공정가치 산정 절차가 필요합니다.</li>
+        <li><b>외국계 대주주</b>: 미리캐피탈 때문에 출자사업에서 배제될 위험이 있고, 확약서로 이를 막고 있습니다 <sup class="ref"><a href="#src-25">[25]</a></sup></li>
       </ul>
     </div>
 
     <div class="card">
-      <h2><span class="dot"></span>회수 · 리스크</h2>
+      <h2><span class="dot"></span>국민성장펀드 · KIC</h2>
       <ul class="tight">
-        <li><b>하이브(HYBE): 1,040억 투자→9,415억 회수, 약 9배</b> — 신규 펀딩 동력 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
-        <li><b>그랩</b>(2억달러, 2020): 6년째 미회수 → 흑자전환으로 <b>회수전 진행</b> <sup class="ref"><a href="#src-19">[19]</a></sup></li>
-        <li><b>롯데에너지머티리얼즈</b>(동박): 엑시트 대신 <b>2,052억 리파이낸싱</b> — 2차전지 캐즘 방어 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
-        <li>해외 축소: 인니·대만 사무소 정리, <b>서울+베트남만 유지</b>. 2025 1분기 적자(연간은 회복)</li>
+        <li><b>국민성장펀드 '최대어'</b>: 2026.7 <b>스케일업 리그 GP</b>로 선정됐습니다. 정책자금 2,000억에 하드캡이 없어 1조원대까지 가능합니다. 이경형·조영민이 주도합니다 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>최근 KIC</b>: 해외 PEF 지분 약 1.4조를 <b>세컨더리로 매각</b>하려 하고, 자문사(PJT)를 선임했습니다 <sup class="ref"><a href="#src-41">[41]</a></sup>. 대형 LP가 유동화에 나선 신호로, 전 KIC CIO에게 물을 거리입니다.</li>
       </ul>
     </div>
 
     <div class="card" id="report-endnotes" style="margin-top:6px;">
-      <h2><span class="dot"></span>출처(기사 20건+)</h2>
-      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 이동합니다. <span class="flag">※ egress 정책상 한국 도메인 원문이 직접 차단(403)돼 검색 요약을 교차검증했습니다. 분사 확정 여부·펀드 결성액·멀티플·AUM 세부는 게재 전 원문·본인 확인이 필요합니다.</span></p>
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="flag">※ 이 환경에서는 한국 도메인 원문과 DART에 직접 접근할 수 없어(egress 403), 검색 요약으로 교차검증했습니다. 수치·지분율·청산 연도는 게재 전 원문·공시로 확인하세요.</span></p>
       <ul class="srclist">
-        <li id="src-1"><span class="n">[1]</span> 파이낸셜뉴스, 디피씨, 스틱 흡수합병→유일 상장 PEF, 2021-10-16. <a href="https://www.fnnews.com/news/202110160939169141" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-1"><span class="n">[1]</span> 파이낸셜뉴스, 디피씨가 스틱 흡수합병, 유일 상장 PEF, 2021-10-16. <a href="https://www.fnnews.com/news/202110160939169141" target="_blank" rel="noopener">링크</a></li>
         <li id="src-2"><span class="n">[2]</span> 서울경제 시그널, 도용환 11.44% 미리캐피탈 매각·용퇴, 2026-01-20. <a href="https://news.nate.com/view/20260120n30361" target="_blank" rel="noopener">링크</a></li>
         <li id="src-3"><span class="n">[3]</span> 머니투데이, 곽동걸 신임 CEO 체제 출범, 2026-03-31. <a href="https://www.mt.co.kr/stock/2026/03/31/2026033116402299469" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-4"><span class="n">[4]</span> 딜사이트, 스틱 지배구조·2세 승계 불가. <a href="https://dealsite.co.kr/articles/123299" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-5"><span class="n">[5]</span> 서울경제 시그널, 강신우 前 KIC CIO 전략부문 총괄대표 선임. <a href="https://www.sedaily.com/article/13809130" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-6"><span class="n">[6]</span> 이투데이, '1세대 펀드매니저' 강신우(바이코리아·한화운용·KIC) 이력. <a href="https://www.etoday.co.kr/news/view/1321043" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-7"><span class="n">[7]</span> 딜사이트, 스틱 크레딧 법인 신설…강일성 체제 시동, 2026. <a href="https://dealsite.co.kr/articles/169773" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-8"><span class="n">[8]</span> 아시아경제, VIG 이어 스틱인베 크레딧 분사(전문화 vs 효율), 2026-09-30. <a href="https://view.asiae.co.kr/article/2026093015563179637" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-9"><span class="n">[9]</span> 아시아경제, 크레딧·그로쓰캐피탈 본부→부문 격상 조직개편, 2026-01-02. <a href="https://view.asiae.co.kr/article/2026010218070582705" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, 스틱 지배구조·2세 승계 계획 없음. <a href="https://dealsite.co.kr/articles/123299" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 서울경제 시그널, 강신우 前 KIC CIO, 전략부문 총괄대표 선임. <a href="https://www.sedaily.com/article/13809130" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 이투데이, '1세대 펀드매니저' 강신우 이력. <a href="https://www.etoday.co.kr/news/view/1321043" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 스틱 크레딧 법인 신설…강일성 체제. <a href="https://dealsite.co.kr/articles/169773" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 아시아경제, VIG 이어 스틱인베 크레딧 분사, 2026-09-30. <a href="https://view.asiae.co.kr/article/2026093015563179637" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 아시아경제, 크레딧·그로쓰 본부→부문 격상, 2026-01-02. <a href="https://view.asiae.co.kr/article/2026010218070582705" target="_blank" rel="noopener">링크</a></li>
         <li id="src-10"><span class="n">[10]</span> 딜사이트, 엑시트 절벽 대안…크레딧에 1.3조 유입. <a href="https://dealsite.co.kr/articles/152936" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-11"><span class="n">[11]</span> 아시아경제, 스틱크레딧 1호 1,500억 1차 클로징(목표 3,000억), 2025-04-16. <a href="https://core.asiae.co.kr/article/2025041616401024691" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-12"><span class="n">[12]</span> 파이낸셜뉴스, 스틱 국민성장펀드 '최대어' 확보(스케일업 1조), 2026-07-13. <a href="https://m.news.nate.com/view/20260713n32990" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-13"><span class="n">[13]</span> 딜사이트, 국민성장펀드 스케일업…이경형·조영민 1조 펀드. <a href="https://dealsite.co.kr/articles/165262" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-14"><span class="n">[14]</span> 더벨, 스틱 AUM ~6조·국내 세 손가락, 2024-12-17. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412172117211840103838" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-15"><span class="n">[15]</span> 알파비즈, 2025 실적 성과보수 견인 수익성 개선. <a href="https://alphabiz.co.kr/news/view/1065569059829962" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-16"><span class="n">[16]</span> 헤럴드경제, 스틱 크린토피아 약 6,500억 인수, 2025-08-25. <a href="https://www.heraldk.com/article/2025082518344005251" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-17"><span class="n">[17]</span> 다음뉴스, 스틱 하이브 투자 약 9배 회수·신규 펀딩, 2026-07-17. <a href="https://v.daum.net/v/20260717060247922" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-18"><span class="n">[18]</span> 뉴스토마토, 스틱 롯데에너지머티 2,052억 리파이낸싱(캐즘). <a href="https://www.newstomato.com/readnews.aspx?no=1306897" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-19"><span class="n">[19]</span> 뉴스토마토, 스틱 그랩 2,400억 회수전 돌입. <a href="https://newstomato.com/ReadNews.aspx?no=1309840" target="_blank" rel="noopener">링크</a></li>
-        <li id="src-20"><span class="n">[20]</span> 아시아경제, 얼라인 스틱 자사주 처분 반발(행동주의), 2025-11-05. <a href="https://www.asiae.co.kr/article/2025110512002634080" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 아시아경제, 스틱크레딧 1호 1,500억 1차 클로징, 2025-04-16. <a href="https://core.asiae.co.kr/article/2025041616401024691" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 파이낸셜뉴스, 스틱 국민성장펀드 '최대어' 확보, 2026-07-13. <a href="https://m.news.nate.com/view/20260713n32990" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 국민성장펀드 스케일업 이경형·조영민, GP커밋 70억. <a href="https://dealsite.co.kr/articles/165262" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, 스틱 3사 AUM 9.48조·단독 19개 펀드 7.56조. <a href="https://dealsite.co.kr/articles/133233" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 헤럴드경제 하우스리뷰, 2024 실적·성과보수 급감·멀티운용, 2026-09-19. <a href="https://www.heraldk.com/article/2026091917531463380" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 더벨, 크린토피아 지분 100% 인수 완료, 2026-02. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602041747029240108959" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 다음뉴스, 스틱 하이브 투자 약 9배 회수, 2026-07-17. <a href="https://v.daum.net/v/20260717060247922" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 뉴스토마토, 롯데에너지머티리얼즈 2,052억 리파이낸싱. <a href="https://www.newstomato.com/readnews.aspx?no=1306897" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 뉴스토마토, 스틱 그랩 회수전 돌입. <a href="https://newstomato.com/ReadNews.aspx?no=1309840" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 아시아경제, 얼라인 스틱 자사주 처분 반발, 2025-11-05. <a href="https://www.asiae.co.kr/article/2025110512002634080" target="_blank" rel="noopener">링크</a></li>
         <li id="src-21"><span class="n">[21]</span> 이투데이, '넥스트 스틱' PE·그로쓰·크레딧 멀티운용. <a href="https://www.etoday.co.kr/news/view/2615743" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 스틱 2025년 1분기 적자전환. <a href="https://dealsite.co.kr/articles/141672" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 딜사이트, 밸류업 공시(AUM 15조·ROE 10%·저수익 펀드 조기청산). <a href="https://dealsite.co.kr/articles/155401" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 딜사이트, 미리캐피탈 이사회 진입 철회(외국계 분류 우려). <a href="https://dealsite.co.kr/articles/156122" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 딜사이트, 산은 국민성장펀드 외국계 심사·스틱 확약서. <a href="https://dealsite.co.kr/articles/164987" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 아시아경제(다음), 미리캐피탈 경영권 행사 3년 금지, 2026-07-08. <a href="https://v.daum.net/v/20260708170254338" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 딜사이트, 스틱 이사회 구성(사외이사 강면욱·구성훈). <a href="https://dealsite.co.kr/articles/137447" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 더벨, 오퍼튜니티 1호 6,032억·2호 1조2,200억, 2023-08-12. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202308121120145600105537" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 아시아경제, 오퍼튜니티 2호 결성 7년 회수 0건·LP 압박, 2026-04-21. <a href="https://www.asiae.co.kr/article/2026042116183313979" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 딜사이트, 스페셜시츄에이션 2호 운용 개시·대펀 채진호, 2019. <a href="https://dealsite.co.kr/articles/51765" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> KIND 감사보고서, SS2호 지분 2.46% 공정가치 측정, 2024-03-19. <a href="https://kind.krx.co.kr/external/2024/03/19/000702/20240319003140/11011.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 디지털투데이, 스트레티직크레딧제2호 조기 청산(성과보수 9.06억). <a href="https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=703845" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 이투데이, SSF1 청산 '9년 대장정'. <a href="https://www.etoday.co.kr/news/view/2579840" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 딜사이트, 쥬비스 흑자전환·에쿼티 전손 위기 해소. <a href="https://dealsite.co.kr/articles/165261" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 인베스트조선, 쥬비스 인수금융 만기 연장, 2025-09-18. <a href="https://www.investchosun.com/site/data/html_dir/2025/09/18/2025091880214.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 머니투데이, 채비 상장 공모가 vs 적격상장 기준가, 2026-04-20. <a href="https://www.mt.co.kr/stock/2026/04/20/2026042016323038921" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 헤럴드 투자360, 3호 약정 60% 이상 바이아웃·소진율, 2025-08-26. <a href="https://biz.heraldcorp.com/article/10561745" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 딜사이트, 채진호 지배구조 리포트(이력·하이브 IRR). <a href="https://dealsite.co.kr/articles/123440" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 딜사이트, 라지캡부문 출범(SSF1·2 공동운용). <a href="https://dealsite.co.kr/articles/68806" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 금융위원회, 사모펀드 체계 개편(기관전용 vs 일반). <a href="https://www.fsc.go.kr/po010102/76710" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 파이낸셜뉴스, KIC 해외 PEF 지분 1.4조 매각 추진, 2026-09-23. <a href="https://www.fnnews.com/news/202609230842244465" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 딜사이트, 3호 오케스트로 RCPS 1,000억. <a href="https://dealsite.co.kr/articles/112572" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 딜사이트, 3호 재원산업 2,828억. <a href="https://dealsite.co.kr/articles/124972" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 블로터, 쥬비스 회수 난항(위고비 확산). <a href="https://www.bloter.net/news/articleView.html?idxno=637621" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 톱데일리, 뮤직카우 기업가치 하락. <a href="https://www.topdaily.kr/articles/108111" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 네이트, 휴맥스모빌리티 트루블루에쿼티 MOU, 2026-09-08. <a href="https://m.news.nate.com/view/20260908n33000" target="_blank" rel="noopener">링크</a></li>
       </ul>
     </div>
 
-    <p class="note">⚠️ 공개 자료 기반이며 원문 접근 제한 항목은 검색 요약을 교차검증했습니다. <b>크레딧 완전 분사 확정 여부, 국민성장펀드 최종 결성액, 강신우의 분사·펀드 직접 관여, 미리캐피탈 경영개입 강도, 멀티플·AUM 세부는 '미확인/확인 필요'</b>. 발행 2026-10-06 기준.</p>
+    <p class="note">⚠️ 공개 자료를 기반으로 했고, 원문 접근이 막힌 항목은 검색 요약으로 교차검증했습니다. <b>2025 연간 실적, 크레딧 완전 분사 여부, 도용환 사내이사 등기 여부, 2호 IRR·NAV, 뮤직카우 누적 투자액, SSF1 청산 연도는 확인이 필요합니다.</b> 갱신 2026-10-06.</p>
   </section>
 
   <!-- ================= 질문지 탭 ================= -->
   <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
-    <p class="note">강신우 대표(전략·리스크 총괄)에 맞춘 심층 질문입니다. <span class="tag req">핵심</span>=꼭 물을 것. <span class="tag">태그</span>=기법, [번호]=근거.</p>
+    <p class="note">강신우 대표(전략·리스크 총괄, 전 KIC CIO)에 맞춘 질문입니다. <span class="tag req">핵심</span>은 꼭 물을 것, <span class="tag">태그</span>는 질문 기법, [번호]는 근거 기사입니다.</p>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 지배구조 · 강신우 권한</h2></div>
-    <div class="q cat1 must"><p class="qtext">창업주 도용환 회장이 <b>미리캐피탈에 경영권을 넘긴</b> 지금, 각자대표 3인(곽동걸·강신우·채진호) 체제에서 <b>대표님의 전략·리스크 총괄 권한은 실제로 어디까지</b>이며, <b>최대주주 미리캐피탈(미국계)과 투자·인사 의사결정은 어떻게 조율</b>됩니까? 미리캐피탈의 경영 개입 강도는?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: 미리캐피탈 최대주주·각자대표 <a href="https://news.nate.com/view/20260120n30361" target="_blank" rel="noopener">[2]</a> <a href="https://www.mt.co.kr/stock/2026/03/31/2026033116402299469" target="_blank" rel="noopener">[3]</a></span></div></div>
-    <div class="q cat1"><p class="qtext">스틱은 <b>투자처 기업엔 밸류업·주주환원을 요구해온 행동주의적 하우스</b>였는데, 정작 본사는 <b>얼라인파트너스의 자사주 소각 요구를 거부</b>했습니다. '행동주의 압박 속에 창업주가 지분을 팔아 떠난' 이번 구도를 어떻게 설명하시겠습니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: 얼라인 행동주의 <a href="https://www.asiae.co.kr/article/2025110512002634080" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 지배구조 · 이사회</h2></div>
+    <div class="q cat1 must"><p class="qtext">미리캐피탈이 600억을 들여 25% 최대주주가 됐는데, <b>경영권 행사는 3년간 금지</b>됐고 이사회 진입도 철회했습니다. 이 <b>'경영권 없는 최대주주'</b> 구조에서 투자·인사의 실질적 결정권자는 누구입니까? 3년 뒤 미리캐피탈이 경영에 들어오면 대표님 권한은 어떻게 됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.nate.com/view/20260120n30361" target="_blank" rel="noopener">[2]</a> <a href="https://dealsite.co.kr/articles/156122" target="_blank" rel="noopener">[24]</a> <a href="https://v.daum.net/v/20260708170254338" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">산업은행은 외국계라는 이유로 어펄마를 국민성장펀드 심사에서 뺐고, 스틱은 <b>경영권 불행사 확약서와 손해배상 각서</b>로 소명했습니다. <b>외국계 분류 리스크를 각서로 막는 구조</b>가 3년 뒤에도 유지될 수 있습니까? 정책자금 의존도가 큰 하우스로서 대안은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164987" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">곽동걸 부회장이 <b>CEO와 이사회 의장을 겸직</b>합니다. 얼라인이 요구해 온 이사회 독립성(의장·CEO 분리)을 밸류업 계획에 반영할 생각이 있습니까? 그리고 도용환 창업회장은 지금 등기이사입니까, 미등기입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/137447" target="_blank" rel="noopener">[27]</a> <a href="https://www.asiae.co.kr/article/2025110512002634080" target="_blank" rel="noopener">[20]</a></span></div></div>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 크레딧 분사</h2></div>
-    <div class="q cat2 must"><p class="qtext">크레딧을 별도 법인으로 떼어낸 것이 <b>'완전 분사'인지 '사내독립법인'에 그치는지</b>가 시장의 관심입니다. <b>인력·펀드·성과보수 체계는 모회사와 어떻게 나뉘며</b>, 상장사 스틱의 <b>연결실적·주주가치에는 득입니까 실입니까?</b> 내부 이견은 어떻게 정리됐습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: 분사 미확정·내부 이견 <a href="https://dealsite.co.kr/articles/169773" target="_blank" rel="noopener">[7]</a> <a href="https://view.asiae.co.kr/article/2026093015563179637" target="_blank" rel="noopener">[8]</a></span></div></div>
-    <div class="q cat2"><p class="qtext">엑시트 절벽 대안으로 크레딧에 1.3조가 몰렸습니다. 스틱크레딧 AUM을 <b>4,500억→1조로 키울 로드맵</b>은? 사모대출 과열·'폭탄' 경고 속에서 <b>크레딧 리스크(디폴트·유동성)</b>는 전략총괄로서 어떤 지표로 관리하십니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: 크레딧 1.3조·1조 목표 <a href="https://dealsite.co.kr/articles/152936" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 오퍼튜니티 2·3호 · 펀드 성과</h2></div>
+    <div class="q cat2 must"><p class="qtext">오퍼튜니티 2호(SSF2, 1조2,200억)는 <b>결성 7년째인데 회수가 0건</b>이라는 보도가 있습니다. 2029년 8월 만기까지 그랩·채비·휴맥스모빌리티·쥬비스를 어떤 순서로 회수할 계획입니까? 현재 NAV 기준 <b>순 멀티플이 1.0배를 넘습니까?</b> LP와 존속기간 연장을 논의하고 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.asiae.co.kr/article/2026042116183313979" target="_blank" rel="noopener">[29]</a> <a href="https://kind.krx.co.kr/external/2024/03/19/000702/20240319003140/11011.htm" target="_blank" rel="noopener">[31]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">1·2·3호 대표펀드매니저는 모두 채진호 대표입니다. 3호에서 <b>바이아웃을 60% 이상</b>으로 늘린 것은 2호의 해외 그로스·소수지분 투자(그랩·뮤직카우 등) 회수 부진에서 얻은 교훈입니까? <b>리스크 총괄로서 2호에서 무엇이 잘못됐다고 봅니까?</b></p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://biz.heraldcorp.com/article/10561745" target="_blank" rel="noopener">[37]</a> <a href="https://dealsite.co.kr/articles/51765" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">2호 자산(채비·뮤직카우 등)에 후속투자가 필요하거나 회수가 막힐 때, <b>3호나 새 1조원 펀드가 그 자산을 사들이거나 증자에 참여</b>할 가능성이 있습니까? 그런 경우 LPAC 승인과 공정가치 산정은 어떻게 합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">이해상충</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/stock/2026/04/20/2026042016323038921" target="_blank" rel="noopener">[36]</a> <a href="https://www.topdaily.kr/articles/108111" target="_blank" rel="noopener">[45]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">쥬비스는 약 2,400억에 100% 인수한 뒤 적자를 냈다가 2024년 흑자로 돌아섰고, 인수금융 만기는 최대 2년 늘렸습니다. <b>에쿼티 원금을 회복할 수 있다고 봅니까?</b> 매각과 추가 구조조정 중 어느 쪽을 보고 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/165261" target="_blank" rel="noopener">[34]</a> <a href="https://www.investchosun.com/site/data/html_dir/2025/09/18/2025091880214.html" target="_blank" rel="noopener">[35]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">롯데에너지머티리얼즈를 매각하지 않고 <b>2,052억 리파이낸싱</b>한 것은 사실상 손실 확정을 미룬 것 아닙니까? 동박 업황이 회복되지 않으면 LP에게 어떤 시나리오를 제시합니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newstomato.com/readnews.aspx?no=1306897" target="_blank" rel="noopener">[18]</a></span></div></div>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 국민성장펀드 · 멀티운용</h2></div>
-    <div class="q cat3 must"><p class="qtext">국민성장펀드 <b>스케일업 리그는 하드캡이 없어 '최대어'</b>로 불립니다. 정책자금 2,000억에 <b>민간 LP를 더해 실제 1조원을 채울 자신</b>이 있습니까? 정책자금 중심 메가펀드가 <b>성과보수로 이어질 회수 전략</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: 국민성장펀드 스케일업 1조 <a href="https://m.news.nate.com/view/20260713n32990" target="_blank" rel="noopener">[12]</a></span></div></div>
-    <div class="q cat3"><p class="qtext">바이아웃이 약화되고 <b>그로쓰·크레딧 중심으로 재편</b>됐습니다. '멀티운용'이 <b>포트폴리오 분산인지, 바이아웃 경쟁력 후퇴를 메우는 고육책인지?</b> MBK 등이 주도하는 빅딜 시장에서 스틱이 다시 <b>경영권 인수(바이아웃) 전면에 설 계획</b>은?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: 멀티운용·바이아웃 약화 <a href="https://www.etoday.co.kr/news/view/2615743" target="_blank" rel="noopener">[21]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 크레딧 분사 · 자본시장법</h2></div>
+    <div class="q cat3 must"><p class="qtext">크레딧을 별도 법인으로 뗀 것이 <b>완전 분사입니까, 사내독립법인입니까?</b> 인력·펀드·성과보수는 어떻게 나뉘고, 사모대출 확대 시 <b>적용 라이선스(전문사모운용인지 여신전문인지)</b>는 무엇입니까? 스트레티직크레딧2호를 조기 청산(성과보수 9억)한 것과는 어떤 관계입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/169773" target="_blank" rel="noopener">[7]</a> <a href="https://view.asiae.co.kr/article/2026093015563179637" target="_blank" rel="noopener">[8]</a> <a href="https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=703845" target="_blank" rel="noopener">[32]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">스틱은 상장사로서 공정공시 의무를 지면서, 자기 펀드 포트폴리오를 평가하고 성과보수를 인식합니다. 2025년 평가손을 <b>"향후 성과보수의 기반"</b>이라고 설명했는데, <b>이해상충과 공정공시의 경계</b>는 어떻게 관리합니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/141672" target="_blank" rel="noopener">[22]</a> <a href="https://www.fsc.go.kr/po010102/76710" target="_blank" rel="noopener">[40]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">밸류업 공시에 <b>'저수익 펀드 조기청산'</b>을 넣었습니다. 대상은 어떤 펀드들이고, LP 입장에서는 손실 확정, 회사 입장에서는 관리보수 포기인데 이것이 주주가치에 어떻게 도움이 됩니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/155401" target="_blank" rel="noopener">[23]</a></span></div></div>
 
-    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 회수 · 리스크</h2></div>
-    <div class="q cat4 must"><p class="qtext"><b>롯데에너지머티리얼즈를 엑시트 대신 2,052억 리파이낸싱</b>한 것은 사실상 '<b>손실 확정 유예</b>' 아닙니까? 만기까지 동박 업황이 회복 안 되면 <b>3호 펀드 LP(국민연금 등)에 어떤 시나리오</b>를 제시하고 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: 롯데에너지머티 리파이낸싱 <a href="https://www.newstomato.com/readnews.aspx?no=1306897" target="_blank" rel="noopener">[18]</a></span></div></div>
-    <div class="q cat4"><p class="qtext"><b>그랩은 6년째 미회수</b>입니다. 국민연금·공제회 자금이 묶인 이 해외 투자의 <b>현재 평가 멀티플·예상 회수 시점</b>은? 해외를 <b>베트남만 남기고 축소</b>한 것이 크로스보더 전략 후퇴를 뜻합니까? 그리고 크린토피아 <b>6,500억의 밸류(EBITDA 멀티플)와 엑시트 경로</b>는?</p><div class="qmeta"><span class="tag">비교·검증</span><span class="pri mid">중</span><span class="basis">근거: 그랩·크린토피아 <a href="https://newstomato.com/ReadNews.aspx?no=1309840" target="_blank" rel="noopener">[19]</a> <a href="https://www.heraldk.com/article/2025082518344005251" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ KIC 경험 · LP 시각 · 국민성장펀드</h2></div>
+    <div class="q cat4 must"><p class="qtext">KIC가 해외 PEF 지분 약 1.4조를 세컨더리로 팔려고 합니다. <b>전 KIC CIO로서 이것을 대형 LP의 유동성 압박 신호로 보십니까?</b> 스틱의 LP(국민연금·교직원공제회 등)도 2호 지분을 세컨더리로 넘기려 할 가능성이 있습니까? GP 주도 컨티뉴에이션 펀드를 검토합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202609230842244465" target="_blank" rel="noopener">[41]</a> <a href="https://www.asiae.co.kr/article/2026042116183313979" target="_blank" rel="noopener">[29]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">KIC에서 외부 운용사를 심사하던 시절의 기준으로 보면, 스틱의 <b>"엑시트 전 보수적 밸류에이션 → 성과보수 이연"</b> 설명은 LP가 납득할 만큼 투명합니까? GP 쪽으로 와서 보니 LP 시절과 다르게 보이는 것이 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/141672" target="_blank" rel="noopener">[22]</a> <a href="https://www.sedaily.com/article/13809130" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">국민성장펀드 스케일업 리그는 하드캡이 없어 1조원까지 가능합니다. 외국계 최대주주 리스크를 안은 채 <b>민간 LP를 모아 실제 1조원을 채울 수 있습니까?</b> 2028년 AUM 15조 목표에서 바이아웃·그로쓰·크레딧 중 어디에 고유계정(GP커밋)을 더 쓸 계획입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://m.news.nate.com/view/20260713n32990" target="_blank" rel="noopener">[12]</a> <a href="https://dealsite.co.kr/articles/165262" target="_blank" rel="noopener">[13]</a></span></div></div>
 
     <div class="card" style="margin-top:20px;">
       <h2><span class="dot"></span>출처</h2>
-      <ul class="srclist">
-        <li><span class="n">[2]</span> 서울경제 시그널, 도용환 지분 매각. <a href="https://news.nate.com/view/20260120n30361" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[7]</span> 딜사이트, 크레딧 법인 신설. <a href="https://dealsite.co.kr/articles/169773" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[8]</span> 아시아경제, 스틱 크레딧 분사. <a href="https://view.asiae.co.kr/article/2026093015563179637" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[10]</span> 딜사이트, 크레딧 1.3조 유입. <a href="https://dealsite.co.kr/articles/152936" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[12]</span> 파이낸셜뉴스, 국민성장펀드 최대어. <a href="https://m.news.nate.com/view/20260713n32990" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[16]</span> 헤럴드경제, 크린토피아 6,500억. <a href="https://www.heraldk.com/article/2025082518344005251" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[18]</span> 뉴스토마토, 롯데에너지머티 리파이낸싱. <a href="https://www.newstomato.com/readnews.aspx?no=1306897" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[19]</span> 뉴스토마토, 그랩 회수전. <a href="https://newstomato.com/ReadNews.aspx?no=1309840" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[20]</span> 아시아경제, 얼라인 행동주의. <a href="https://www.asiae.co.kr/article/2025110512002634080" target="_blank" rel="noopener">링크</a></li>
-        <li><span class="n">[21]</span> 이투데이, 멀티운용. <a href="https://www.etoday.co.kr/news/view/2615743" target="_blank" rel="noopener">링크</a></li>
-      </ul>
-      <p class="src">전체 출처([1]~[21])는 보고서 탭 하단 "출처"를 참고하세요.</p>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[46]은 보고서 탭 하단에 있습니다.</p>
     </div>
   </section>
 
-  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-06</p>
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-06 갱신</p>
 </div>
 
 <script>
