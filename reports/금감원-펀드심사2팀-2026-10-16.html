@@ -1,0 +1,335 @@
+<meta charset="utf-8" />
+<title>금감원 펀드심사2팀 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1f4e5f; --accent-soft: #dfeaee;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #7fc0d3; --accent-soft: #12232a;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #7fc0d3; --accent-soft: #12232a;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .warn b { color: var(--c1); }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .fix { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 8px; padding: 6px 9px; margin: 0 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .tag.orig { background: var(--chip); color: var(--chip-text); }
+  .tag.new { background: #2f8f5b; color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-16</div>
+    <h1 class="title">금감원 펀드심사2팀</h1>
+    <p class="subtitle">PEF 제도개선안은 10개월째 국회에 묶였고, MBK 제재는 금융위에서 100일 넘게 멈췄다. 법이 없을 때 감독당국이 쥔 수단은 무엇인가 — 기자 질의서 9개에 새 쟁점 7개를 더했다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 감독당국(사모펀드 심사)</span>
+      <span class="meta-chip">질문 15개(원안 9 + 신규 6)</span>
+      <span class="meta-chip">기사 48건 종합</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 질의서 사전 점검</h2>
+      <ul class="tight">
+        <li><b>조직(1번·7번)</b>: 2025.12.22 개편으로 펀드심사가 2개 팀에서 3개 팀으로 늘었고, 새 <b>특별심사팀이 외국계 펀드·BDC·해외 대체투자 심사</b>를 맡는다는 보도가 있습니다 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup>. "2팀이 외국계도 맡는다"는 전제는 <b>현장에서 먼저 확인</b>하세요.</li>
+        <li><b>검사 주체(1번)</b>: PEF 운용사 <b>검사는 금융투자검사3국 검사4팀</b>이 합니다 <sup class="ref"><a href="#src-16">[16]</a></sup>. 2팀은 심사·제도·운용현황 쪽이며, 올해 6월 '2025년 기관전용 사모펀드 운용현황'을 펴냈습니다 <sup class="ref"><a href="#src-15">[15]</a></sup>.</li>
+        <li><b>제도 개선방안(2번)</b>: <b>2025.12.22 금융위 발표안</b>입니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup>. 법 개정이 필요한 핵심은 아직 국회에 묶여 있습니다.</li>
+        <li><b>CEO 간담회(9번)</b>: <b>2026.1.20</b>, 이찬진 원장 취임 후 첫 간담회, 12개사 참석, <b>MBK 미초청</b> <sup class="ref"><a href="#src-17">[17]</a></sup>. 업계는 해외 PEF 대비 역차별 해소를 건의했습니다 <sup class="ref"><a href="#src-18">[18]</a></sup>.</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 2025.12.22 PEF 제도 개선방안</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>항목</th><th>내용</th><th>상태</th></tr>
+        <tr><td>GP 책임</td><td><b>대주주 적격요건</b> 신설(금융사 수준). 이미 등록한 GP도 대주주가 요건을 잃으면 등록 취소 <sup class="ref"><a href="#src-3">[3]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>퇴출</td><td><b>원스트라이크 아웃</b>: 미공개정보 이용 등 중대 위반 1회로 등록 취소. 1년 이상 미영업 GP 등록 취소 <sup class="ref"><a href="#src-3">[3]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>차입</td><td>한도 순자산 400% 유지, <b>200% 초과 시 사유·관리방안 보고</b> <sup class="ref"><a href="#src-4">[4]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>내부통제</td><td>운용규모 5,000억 이상 GP <b>준법감시인 의무</b> <sup class="ref"><a href="#src-3">[3]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>보고</td><td>보고 단위를 <b>펀드에서 GP로</b>. 레버리지·수익률·GP 보수·인수기업 경영정보 일괄 보고 <sup class="ref"><a href="#src-5">[5]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>LP 정보</td><td>투자내역·인수기업 현황·GP 보수를 LP에 정기 제공 <sup class="ref"><a href="#src-4">[4]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>이해관계자</td><td>인수 후 <b>근로자대표에게 고용 영향 통지</b>(2주 이내) <sup class="ref"><a href="#src-3">[3]</a></sup></td><td>법 개정 필요</td></tr>
+        <tr><td>자율규제</td><td>'PEF 위탁운용 가이드라인'(GP-LP 표준계약서, 성과·비용 산출 표준화) TF <sup class="ref"><a href="#src-4">[4]</a></sup></td><td><span class="flag">발표 미확인</span></td></tr>
+        <tr><td>표준내부통제기준</td><td>대표이사를 내부통제 최종책임자로, 준법담당자의 투자 의사결정 배제, 내부제보자 보호, 임직원 계좌 신고 <sup class="ref"><a href="#src-7">[7]</a></sup></td><td><b>2026.3.9 시행</b>(자율)</td></tr>
+      </table>
+      </div>
+      <p class="src">법 개정은 의원입법으로 하고 2026년 상반기 통과가 목표였습니다 <sup class="ref"><a href="#src-6">[6]</a></sup>. 법률 사항 중 시행된 것은 확인되지 않습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 국회 'MBK 방지법' 표류</h2>
+      <ul class="tight">
+        <li><b>정부안을 담은 의원안</b>(2025.12.31 발의) <sup class="ref"><a href="#src-8">[8]</a></sup>
+          <ul class="tight">
+            <li><b>한정애안</b>: 차입 200% 초과 보고, 근로자대표 통지, GP 보수·임직원 보수 합계 보고</li>
+            <li><b>유동수안</b>: GP 주주 적격성, 등록취소·직권말소 강화, 준법감시인 의무(위반 시 과태료 1억 이하)</li>
+          </ul>
+        </li>
+        <li><b>더 센 의원안</b>: 김남근(<b>차입 한도 200%로 축소</b>), 서왕진(<b>당기순이익 넘는 배당 금지</b>) <sup class="ref"><a href="#src-48">[48]</a></sup>, 민병덕(PEF 공시 의무화), 한민수(자산평가·신탁업자 감시 면제 특례 폐지)</li>
+        <li>2025.7 이후 기관전용 PEF 법안만 11건. 당정은 정기국회 병합 심사 방침이지만 <b>법안소위 상정이 계속 밀렸습니다</b> <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup>. "정치 일정에 밀려 관심이 줄었다"는 평가도 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>업계 반발</b>: 국내 GP에만 적용돼 외국계 역외펀드가 유리해지는 역차별, 보수 공개에 따른 인재 유출, 배당 제한에 따른 인수금융 상환 부담 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 혼동 주의:</span> 9월 17일 정무위를 통과한 것은 PEF 법안이 아니라 '의무공개매수' 법안입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>MBK 제재 · 수사</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025.04</div><div class="tl-body">신용등급 하락을 알고도 단기채를 발행한 혐의로 김병주 회장 등 검찰 패스트트랙 통보</div></div>
+        <div class="tl-item"><div class="tl-date">2025.11.21</div><div class="tl-body">금감원, <b>직무정지 포함 중징계안</b> 사전통지</div></div>
+        <div class="tl-item"><div class="tl-date">2026.01.14</div><div class="tl-body">김병주 회장 등 4명 구속영장 <b>모두 기각</b> <sup class="ref"><a href="#src-21">[21]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.07.02</div><div class="tl-body">제재심 종결, 중징계안 유지. <b>기관전용 PEF GP 첫 직무정지</b> 사례 <sup class="ref"><a href="#src-19">[19]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.09 하순</div><div class="tl-body">검찰 수사팀이 무혐의 의견 포함 처분 방향을 대검에 보고, 대검이 추가 검토 지시 보도 <sup class="ref"><a href="#src-22">[22]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.10.08</div><div class="tl-body">금융위 국감: "제재심 종료 후 98일 무결정" 질타, 금융위원장 "검토 중" <sup class="ref"><a href="#src-20">[20]</a></sup></div></div>
+      </div>
+      <p class="src"><b>쟁점</b>: 홈플러스 인수 SPC가 RCPS 조건을 바꾸고 상환권을 포기해 국민연금 등 LP의 회수 가능성을 떨어뜨렸는지(금감원). MBK는 "합리적 운용 판단, 다른 증권"이라고 반론 <sup class="ref"><a href="#src-23">[23]</a></sup>. <span class="flag">금융위 최종 의결·검찰 최종 처분 모두 미확정.</span></p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 검사 · 점검 현황</h2>
+      <ul class="tight">
+        <li><b>검사 실적</b>: 2021년 검사권 이후 누적 <b>25건</b>, 검사 인력 <b>6명</b>(2023년 이후 그대로). 제재 완료 6개사 중 <b>4건이 'LP의 GP 고유업무 관여 금지' 위반</b>(국회의원실 자료) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>스톤브릿지캐피탈</b>: MBK에 이어 두 번째 현장검사(2025.9), 2025.11 <b>직무정지 포함 조치안 사전통지</b>, 제재심은 결론 없이 연기 <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup>. <span class="flag">확정 전</span></li>
+        <li><b>VIG파트너스</b>: 2026.4 정기 성격 현장검사, 결과 미확인 <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+        <li><b>내부통제 실태점검</b>(10.12 발표): 전업 GP <b>약 30곳</b>(전체 약정액의 46.5%). 준법감시인, 정보교류 차단, 이해상충, 임직원 거래 점검. 결과로 <b>검사 강도를 차등화</b> <sup class="ref"><a href="#src-28">[28]</a></sup></li>
+        <li><b>미공개정보 카르텔</b>(9.29 적발): PEF·상장사 임원 5명 안팎이 공개매수 정보 등을 5년간 공유, 부당이득 200억원대 추정 <sup class="ref"><a href="#src-29">[29]</a></sup>. 2월에는 MBK 계열 SS 전 직원 등 3명이 공개매수 미공개정보 이용으로 집행유예 <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>PEF 시장 숫자 (2025말, 금감원)</h2>
+      <ul class="tight">
+        <li>PEF <b>1,195개</b>, GP <b>455곳</b>(+4.1%), 출자약정 <b>167.5조</b>(+9.0%) <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li>신규 약정 27.8조(+44.8%), 신설 211개, 해산 153개</li>
+        <li><b>미집행 약정 43.2조</b>, <b>대형 GP 펀드 비중 68.7%</b>로 양극화</li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 2025~2026 GP 등록 말소·직권 말소 건수, '휴면 GP' 공식 기준. 좀비 GP 질문(8번)에서 숫자를 직접 물어보세요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>PEF를 둘러싼 주변 규제</h2>
+      <h3>의무공개매수</h3>
+      <ul class="tight">
+        <li>9.17 정무위 의결: 상장사 지분 25% 이상 취득해 최대주주가 되면 <b>50%+1주까지 공개매수</b> 의무, 공포 1년 뒤 시행 <sup class="ref"><a href="#src-33">[33]</a></sup></li>
+        <li>운용사 18곳 보류 요구(대주주 지분 선행 장외매수 허용 구조 문제) <sup class="ref"><a href="#src-34">[34]</a></sup>, 10.1 본회의 미상정 <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+      </ul>
+      <h3>금융사를 인수한 PEF의 책임</h3>
+      <ul class="tight">
+        <li><b>롯데카드(MBK)</b>: 해킹으로 영업정지 1.5개월·과징금 50억(해킹 첫 영업정지) <sup class="ref"><a href="#src-36">[36]</a></sup>. 영업 재개 하루 전 <b>382억 중간배당</b> 결정 논란 <sup class="ref"><a href="#src-37">[37]</a></sup>. 비은행 금융사 대주주에 주식 처분을 강제할 근거가 약하다는 지적 <sup class="ref"><a href="#src-38">[38]</a></sup></li>
+        <li><b>롯데손보(JKL)</b>: 경영개선요구 뒤 10.13 신한금융과 매매계약(지분 77.04%, 6,933억, 승인 남음) <sup class="ref"><a href="#src-39">[39]</a></sup></li>
+      </ul>
+      <h3>'외국계' 기준</h3>
+      <ul class="tight">
+        <li>국민성장펀드에서 <b>어펄마는 외국계라 탈락, 최대주주가 미국계인 스틱은 확약서로 선정</b> → 형평성 논란 <sup class="ref"><a href="#src-40">[40]</a></sup> <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+        <li>외국 자본이 국내 PEF 운용사 최대주주가 되면 금융위가 적격요건을 심사하는 조항이 발의안에 담길 수 있다는 보도 <sup class="ref"><a href="#src-42">[42]</a></sup>. 금융위원장은 해외 PEF의 기간산업 인수 규제를 "검토"하겠다고 답변(고려아연 분쟁 관련) <sup class="ref"><a href="#src-47">[47]</a></sup></li>
+      </ul>
+      <h3>회수 경로 · 신제도</h3>
+      <ul class="tight">
+        <li><b>중복상장 가이드라인</b>(8.3 시행): 인수·신설 자회사도 대상 <sup class="ref"><a href="#src-43">[43]</a></sup>. SK에코플랜트가 IPO를 접고 FI에 약 1조500억 상환 <sup class="ref"><a href="#src-44">[44]</a></sup></li>
+        <li><b>코너스톤 투자자</b> 11.13 시행 <sup class="ref"><a href="#src-45">[45]</a></sup>, <b>BDC</b> 3.17 시행 <sup class="ref"><a href="#src-46">[46]</a></sup>. 기관전용 PEF의 참여 가능 여부는 미확인</li>
+      </ul>
+      <h3>업계·LP의 움직임</h3>
+      <ul class="tight">
+        <li>산은·국민연금 등 LP 5곳 <b>'PEF 투자 핵심원칙'</b>(10.2): 이해관계 일치, 운용 투명성, GP 내부통제 <sup class="ref"><a href="#src-32">[32]</a></sup></li>
+        <li><b>PEF운용사협의회 사단법인 전환</b>: 10.28 총회 결의 후 금융위 허가 신청, 회원사 AUM에 따른 차등 의결권 <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다. 제재 건은 모두 확정 전 단계입니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 파이낸셜뉴스, PEF 제도 개선방안 발표, 2025-12-22. <a href="https://www.fnnews.com/news/202512221426117688" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국경제, PEF 제도 개선방안, 2025-12-22. <a href="https://www.hankyung.com/article/202512228760r" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 한국일보, 원스트라이크 아웃·대주주 적격성, 2025-12-22. <a href="https://www.hankookilbo.com/News/Read/A2025122215280002115" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 더벨, 차입 보고·LP 정보제공·위탁운용 가이드라인, 2025-12-24. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512240945053640108616" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 한국경제, GP 단위 일괄 보고, 2025-12-22. <a href="https://www.hankyung.com/article/2025122292131" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 김앤장 뉴스레터, PEF 제도 개선방안 해설, 2026-01. <a href="https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=33810" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 비즈워치, GP 표준내부통제기준, 2026-03-09. <a href="https://news.bizwatch.co.kr/article/market/2026/03/09/0006" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 한정애·유동수 의원안, 2026-01-06. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=03&newskey=202601061418194680105415" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 한국경제, 'MBK 방지법' 병합 심사 방침, 2026-07-21. <a href="https://www.hankyung.com/article/2026072176941" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> SBS Biz, PEF 법안 6개월 표류, 2026-09-07. <a href="https://biz.sbs.co.kr/amp/article/20000333109" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 인베스트조선, LP 핵심원칙·법 개정 지연, 2026-10-12. <a href="https://www.investchosun.com/site/data/html_dir/2026/10/12/2026101280105.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 서울경제 시그널(네이트), 보수 공개·역차별 반발, 2026-08-06. <a href="https://m.news.nate.com/view/20260806n29295" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 메트로신문, 금감원 조직개편(특별심사팀 신설), 2025-12-22. <a href="https://www.metroseoul.co.kr/article/20251222500005" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 헤럴드경제, 금감원 조직개편, 2025-12-21. <a href="https://www.heraldk.com/article/2025122117000058889" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> KDI 경제정보센터, 2025 기관전용 사모펀드 운용현황(펀드심사2팀). <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=282799" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 아시아경제, PEF 검사 25건·인력 6명, 2026-10-14. <a href="https://view.asiae.co.kr/article/2026101414485757585" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 아시아경제, 금감원 PEF CEO 간담회, 2026-01-20. <a href="https://view.asiae.co.kr/article/2026012011541742525" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 뉴스핌, CEO 간담회 업계 건의, 2026-01-20. <a href="https://www.newspim.com/news/view/20260120000900" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 아시아경제, MBK 제재심 종결, 2026-07-03. <a href="https://view.asiae.co.kr/article/2026070307412966023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 아주경제, 금융위 국감 MBK 98일, 2026-10-08. <a href="https://www.ajunews.com/view/20261008151941759" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 이투데이, MBK 경영진 구속영장 기각. <a href="https://www.etoday.co.kr/news/view/2545288" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 스포츠경향, 검찰 무혐의 의견 보고, 2026-09-27. <a href="https://sports.khan.co.kr/article/202609271738003/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> SBS Biz, MBK 제재 쟁점(RCPS). <a href="https://biz.sbs.co.kr/amp/article/20000320534" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 한국경제, 2025 PEF 운용현황 통계, 2026-06-17. <a href="https://www.hankyung.com/article/2026061710766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 네이트, 스톤브릿지캐피탈 검사의견서, 2026-01-23. <a href="https://m.news.nate.com/view/20260123n24010" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 네이트, MBK·스톤브릿지 제재심 연기, 2026-04-06. <a href="https://m.news.nate.com/view/20260406n26754" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 파이낸셜뉴스, VIG파트너스 현장검사, 2026-04-20. <a href="https://www.fnnews.com/news/202604201406209738" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 파이낸셜뉴스, PEF 30곳 내부통제 실태점검, 2026-10-12. <a href="https://www.fnnews.com/news/202610121037437529" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 매일신문, M&A 미공개정보 카르텔 적발, 2026-09-29. <a href="https://www.imaeil.com/page/view/2026092910175002246" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 경기일보, MBK SS 전 직원 미공개정보 이용 집행유예, 2026-02. <a href="https://kyeonggi.com/article/20260211580513" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 머니투데이, PEF운용사협의회 사단법인화, 2026-09-30. <a href="https://www.mt.co.kr/stock/2026/09/30/2026093015532591325" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> EBN, LP 5곳 'PEF 투자 핵심원칙', 2026-10-02. <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1726635" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 법무법인 태평양, 의무공개매수 정무위 대안. <a href="https://www.bkl.co.kr/law/insight/newsletter/6763" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 머니투데이, 운용사 18곳 의무공개매수 보류 요구, 2026-09-30. <a href="https://www.mt.co.kr/stock/2026/09/30/2026093014461560802" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> MTN, 의무공개매수 본회의 미상정, 2026-10-01. <a href="https://news.mtn.co.kr/news-detail/2026100113171855492" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 디지털데일리, 롯데카드 영업정지·과징금, 2026-08-04. <a href="https://www.ddaily.co.kr/page/view/2026080417285749214" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> MTN, 롯데카드 382억 중간배당 논란, 2026-09-15. <a href="https://news.mtn.co.kr/news-detail/2026091521134148463" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> IB토마토, PEF 소유 금융사 대주주 적격성·처분 근거. <a href="https://newstomato.com/ReadNews.aspx?no=1282982" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> MTN, 신한금융 롯데손보 인수 계약, 2026-10-13. <a href="https://news.mtn.co.kr/news-detail/2026101316142450819" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 아시아경제, 국민성장펀드 어펄마 탈락, 2026-07-01. <a href="https://view.asiae.co.kr/article/2026070115350529043" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 딜사이트, 스틱 확약서·형평성 논란. <a href="https://dealsite.co.kr/articles/164987" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 아시아경제, 외국계 최대주주 적격요건 심사 조항, 2026-03-27. <a href="https://core.asiae.co.kr/article/2026032715271367803" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 뉴시스, 중복상장 가이드라인, 2026-07-06. <a href="https://www.newsis.com/view/NISX20260706_0003697201" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 헤럴드경제, SK에코플랜트 FI 투자금 상환, 2026-05-28. <a href="https://www.heraldk.com/article/2026052818435368540" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 금융위원회, 코너스톤 투자자 제도 하위법규. <a href="https://fsc.go.kr/po010103/87440" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 쿠키뉴스, BDC 시행, 2026-03-05. <a href="https://www.kukinews.com/article/view/kuk202603050088" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> SBS Biz, 금융위원장 해외 PEF 기간산업 인수 규제 검토. <a href="https://biz.sbs.co.kr/amp/article/20000325740" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 이투데이, 당기순이익 초과 배당 금지 법안. <a href="https://www.etoday.co.kr/news/view/2628916" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ <b>MBK·스톤브릿지 제재는 확정 전 단계입니다.</b> 펀드심사2팀의 정확한 업무 분장, 준법감시인 기준(5,000억 이상인지 초과인지), 검사 인력(6명인지 5명 안팎인지), GP 등록 말소 건수는 확인이 필요합니다. 발행 2026-10-16.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag orig">원안</span>은 기자님 질의서(사실관계에 맞게 다듬음, 회색 칸은 고친 이유), <span class="tag new">신규</span>는 새로 찾은 쟁점입니다. <span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사입니다. 첫 질문에서 2팀의 업무 범위를 먼저 확인하면 뒤 질문의 강약을 조절하기 쉽습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 조직 · 제도 개선</h2></div>
+    <div class="q cat1 must"><p class="qtext">지난해 12월 조직개편으로 펀드심사가 3개 팀으로 나뉘고 특별심사팀이 생겼습니다. 지금 <b>펀드심사2팀이 맡는 범위</b>(PEF 제도·심사, GP 관리, 외국계 펀드)는 정확히 어디까지이고, 검사4팀과는 어떻게 역할을 나눕니까? 신임 팀장으로서 가장 중점을 두는 기조는 무엇입니까?</p><div class="fix">고친 이유: 외국계 펀드 심사는 특별심사팀으로, PEF 검사는 검사4팀으로 갔다는 보도가 있어 '2팀이 관리·감독 전담' 전제를 질문으로 바꿨습니다.</div><div class="qmeta"><span class="tag orig">원안 1</span><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.metroseoul.co.kr/article/20251222500005" target="_blank" rel="noopener">[13]</a> <a href="https://view.asiae.co.kr/article/2026101414485757585" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">지난해 12월 22일 발표한 기관전용사모펀드 제도 개선방안으로 당국이 의도하는 <b>국내 PEF 시장의 가장 핵심적인 체질 변화</b>는 무엇입니까? 대주주 적격요건, 원스트라이크 아웃, GP 단위 보고 가운데 가장 중요한 것을 하나 꼽는다면?</p><div class="fix">보강: 발표일과 구체 항목을 넣어 답변이 원론으로 흐르지 않게 했습니다.</div><div class="qmeta"><span class="tag orig">원안 2</span><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202512221426117688" target="_blank" rel="noopener">[1]</a> <a href="https://www.hankookilbo.com/News/Read/A2025122215280002115" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">핵심 법안(한정애·유동수안)이 10개월째 법안소위에 오르지 못했습니다. <b>법 개정 없이 감독당국이 먼저 할 수 있는 것</b>, 예컨대 보고서식 변경, 'PEF 위탁운용 가이드라인'·GP-LP 표준계약서는 어디까지 진행됐고 언제 나옵니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/amp/article/20000333109" target="_blank" rel="noopener">[10]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512240945053640108616" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">차입 규제를 두고 <b>금융위안(400% 유지, 200% 초과 보고)</b>과 <b>의원안(한도 200%로 축소)</b>이 갈립니다. 감독당국은 어느 쪽을 기준으로 준비합니까? 지금 차입이 순자산의 200%를 넘는 PEF는 몇 개입니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag">비교·검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512240945053640108616" target="_blank" rel="noopener">[4]</a> <a href="https://www.hankyung.com/article/2026072176941" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② GP 건전성 · 내부통제 · 퇴출</h2></div>
+    <div class="q cat2"><p class="qtext">PEF 시장이 커지면서 GP 난립과 중소형 운용사의 내부통제 부실 우려가 나옵니다. 지난해 말 GP는 455곳이고 대형 GP 펀드 비중이 68.7%로 양극화됐습니다. 양적 팽창에 걸맞은 질적 성장을 위해 <b>펀드 심사 때 어떤 요건을 깐깐하게</b> 보실 계획입니까?</p><div class="fix">보강: 금감원 운용현황 통계를 넣었습니다.</div><div class="qmeta"><span class="tag orig">원안 3</span><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/2026061710766" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">이번 달 전업 GP 약 30곳의 내부통제 실태점검을 시작했습니다. <b>결과를 언제 공개하고, 검사 대상 선정에 어떤 지표로</b> 반영합니까? 검사 인력 6명, 누적 검사 25건으로 455개 GP를 감독할 수 있습니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610121037437529" target="_blank" rel="noopener">[28]</a> <a href="https://view.asiae.co.kr/article/2026101414485757585" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">원스트라이크 아웃의 '중대한 법령 위반'에 9월 적발된 <b>PE 임원 미공개정보 카르텔</b>처럼 <b>임직원 개인의 위법</b>도 들어갑니까? 개인 일탈과 GP 조직 책임은 어떤 기준으로 가릅니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.imaeil.com/page/view/2026092910175002246" target="_blank" rel="noopener">[29]</a> <a href="https://kyeonggi.com/article/20260211580513" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">장기간 펀드를 결성하지 못하거나 자본잠식에 빠진 '좀비 GP' 정리를 이어가고 있습니다. 2025~2026년 <b>등록 말소·직권 말소 건수</b>는 얼마이고, 1년 이상 미영업 GP 등록 취소가 법제화되면 상시 퇴출을 어느 강도로 가져갑니까? 신생 GP 진입을 막는다는 비판에는 어떻게 답합니까?</p><div class="fix">보강: 말소 건수가 공개 자료에 없어 숫자를 직접 묻도록 했습니다.</div><div class="qmeta"><span class="tag orig">원안 8</span><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankookilbo.com/News/Read/A2025122215280002115" target="_blank" rel="noopener">[3]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ LP 보호 · 이해상충 · 제재</h2></div>
+    <div class="q cat3"><p class="qtext">기관전용사모펀드는 전문투자자가 LP지만 국민연금 같은 공적 자금이 엮여 있습니다. 운용 자율성과 LP 보호 강화의 균형점은 어디입니까? 특히 제재가 끝난 6개사 중 <b>4건이 오히려 'LP의 GP 고유업무 관여'</b> 위반이었는데, LP 보호를 강화하는 흐름과 이 규제는 어떻게 맞춰 갑니까?</p><div class="fix">보강: 제재 통계를 넣어 '균형'을 구체적으로 묻게 했습니다.</div><div class="qmeta"><span class="tag orig">원안 4</span><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://view.asiae.co.kr/article/2026101414485757585" target="_blank" rel="noopener">[16]</a> <a href="https://www.ebn.co.kr/news/articleView.html?idxno=1726635" target="_blank" rel="noopener">[32]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">펀드 운용이나 인수 후 경영 과정의 이해상충, GP 모럴해저드를 막기 위해 추가로 검토하는 장치가 있습니까? 롯데카드처럼 <b>제재 직후 대규모 배당</b>을 결정하는 사례나, 당기순이익을 넘는 배당을 막자는 의원안은 어떻게 보십니까?</p><div class="fix">보강: 롯데카드 배당과 배당 제한 법안을 붙였습니다.</div><div class="qmeta"><span class="tag orig">원안 5</span><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.mtn.co.kr/news-detail/2026091521134148463" target="_blank" rel="noopener">[37]</a> <a href="https://www.etoday.co.kr/news/view/2628916" target="_blank" rel="noopener">[48]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">MBK 제재심이 7월 2일 끝났는데 금융위 의결이 100일 넘게 없습니다. 금융위가 <b>보완이나 재검토를 요청</b>한 적이 있습니까? 직무정지가 확정되면 MBK가 운용 중인 <b>기존 펀드의 회수와 LP 보호</b>는 어떤 감독 절차로 관리합니까? 롯데카드 대주주 적격성 판단과는 어떻게 연결됩니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://view.asiae.co.kr/article/2026070307412966023" target="_blank" rel="noopener">[19]</a> <a href="https://www.ajunews.com/view/20261008151941759" target="_blank" rel="noopener">[20]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1282982" target="_blank" rel="noopener">[38]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">의무공개매수 법안이 통과되면 PEF의 상장사 인수(대주주 지분 선행매수 → 공개매수 → 자진상폐) 과정에서 <b>공개매수신고서 심사</b>는 어떻게 바뀝니까? 가격 산정 근거와 이해상충 기재를 더 깐깐하게 볼 계획입니까?</p><div class="qmeta"><span class="tag new">신규</span><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bkl.co.kr/law/insight/newsletter/6763" target="_blank" rel="noopener">[33]</a> <a href="https://www.mt.co.kr/stock/2026/09/30/2026093014461560802" target="_blank" rel="noopener">[34]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 시장 · 역차별 · 소통</h2></div>
+    <div class="q cat4"><p class="qtext">업계는 M&amp;A와 구조조정을 지원하는 모험자본 역할을 내세워 규제 완화를 요구합니다. '생산적 금융' 측면에서 열어둘 수 있는 완화의 폭은 어느 정도입니까? 코너스톤 투자자(11.13 시행)나 BDC(3월 시행)에 <b>기관전용 PEF가 참여할 길</b>도 그 안에 있습니까?</p><div class="fix">보강: 신제도 참여 가능성을 붙여 답을 구체화했습니다.</div><div class="qmeta"><span class="tag orig">원안 6</span><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://fsc.go.kr/po010103/87440" target="_blank" rel="noopener">[45]</a> <a href="https://www.kukinews.com/article/view/kuk202603050088" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext">국내 PEF와 글로벌 대형 PEF 사이의 '기울어진 운동장' 해소가 이번 개선안에 들어 있습니까? 반대로 국민성장펀드에서는 <b>어펄마는 외국계라 탈락하고 최대주주가 미국계인 스틱은 확약서로 선정</b>됐습니다. 당국이 보는 <b>'외국계 운용사'의 기준</b>은 무엇입니까?</p><div class="fix">고친 이유: 외국계 펀드 심사가 특별심사팀으로 갔을 수 있어 '2팀이 외국계도 맡는다'는 전제를 뺐고, 외국계 기준 논란을 붙였습니다.</div><div class="qmeta"><span class="tag orig">원안 7</span><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://view.asiae.co.kr/article/2026070115350529043" target="_blank" rel="noopener">[40]</a> <a href="https://dealsite.co.kr/articles/164987" target="_blank" rel="noopener">[41]</a> <a href="https://core.asiae.co.kr/article/2026032715271367803" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">1월 20일 PEF 운용사 CEO 간담회에서 업계는 "해외 PEF와 같은 투자에서 국내 PEF만 불리하지 않게 해 달라"고 건의했습니다. 이 건의를 심사 실무에 어떻게 반영하고 있습니까? 10월 말 사단법인 전환을 앞둔 PEF운용사협의회에 <b>어떤 자율규제 업무를 맡길</b> 생각입니까?</p><div class="fix">보강: 간담회 날짜·건의 내용과 협의회 사단법인화를 붙였습니다.</div><div class="qmeta"><span class="tag orig">원안 9</span><span class="tag">개방·확인</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20260120000900" target="_blank" rel="noopener">[18]</a> <a href="https://www.mt.co.kr/stock/2026/09/30/2026093015532591325" target="_blank" rel="noopener">[31]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[48]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-16</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
