@@ -1,0 +1,353 @@
+<meta charset="utf-8" />
+<title>퓨처플레이 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #5f4b8b; --accent-soft: #ebe6f4;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1; --c5: #0e7490;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #b9a7e0; --accent-soft: #211c2e;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #b9a7e0; --accent-soft: #211c2e;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #15111f; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #15111f; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .cat5 { border-left-color: var(--c5); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-21</div>
+    <h1 class="title">퓨처플레이</h1>
+    <p class="subtitle">컴퍼니빌더에서 출발해 AC·VC·PE 라이선스를 모두 갖춘 '전주기 투자사'가 됐다. 그런데 AC는 초장기펀드에서 서류 단계에서 전원 탈락했고, AC협회는 첫 경선으로 차기 회장을 뽑았다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(AC·VC·PE)</span>
+      <span class="meta-chip">대표: 권오형</span>
+      <span class="meta-chip">질문 22개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 취재 전 알아둘 것</h2>
+      <ul class="tight">
+        <li><b>초장기펀드</b>: 퓨처플레이는 <b>선정 7곳에도, 보도된 AC 지원 6곳 명단에도 없습니다</b> <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-39">[39]</a></sup>. VC 라이선스로 지원했는지는 확인되지 않아 직접 물어야 합니다.</li>
+        <li><b>AC협회장</b>: 퓨처플레이 인사가 협회장·후보·부회장이라는 근거는 없습니다. 현 회장은 전화성(씨엔티테크, 임기 2027.2)이고, 10.16 <b>첫 경선</b>에서 <b>홍종철 인포뱅크(아이엑셀) 부회장</b>이 차기 최종 후보로 뽑혔습니다 <sup class="ref"><a href="#src-45">[45]</a></sup> <sup class="ref"><a href="#src-46">[46]</a></sup>.</li>
+        <li><b>포트폴리오 주의</b>: 뤼이드, 스트라드비젼, 마인즈랩, 클래스101 등은 퓨처플레이가 투자했다는 근거를 찾지 못했습니다. 아래 확인된 기업만 쓰세요.</li>
+        <li><b>류중희</b>: 2025.4 대표에서 물러나 벤처파트너가 됐고, 지금은 로봇 AI 스타트업 리얼월드(RLWRLD) 대표입니다 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup>.</li>
+        <li><b>재무(DART)·임직원 수·2025년 이후 AUM</b>은 확인하지 못했습니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2013</div><div class="tl-body">컴퍼니빌더·AC로 출범(류중희) <sup class="ref"><a href="#src-1">[1]</a></sup>. AC 등록 연도는 2019년이라는 보도도 있습니다 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022</div><div class="tl-body">대신증권을 IPO 주관사로 선정, 프리IPO 150억에서 <b>기업가치 2,000억</b> <sup class="ref"><a href="#src-11">[11]</a></sup>. 상장은 하지 않음. 10월 권오형 각자대표 선임 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023.11</div><div class="tl-body"><b>VC(창투사) 라이선스</b> 취득. IPO에 적합한 회사가 되려는 목적으로 보도 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.04</div><div class="tl-body"><b>권오형 단독대표 '퓨처플레이 3.0'</b>. 류중희는 벤처파트너로 <sup class="ref"><a href="#src-5">[5]</a></sup>. 권 대표는 딜로이트 출신으로 2015년 공채 입사해 투자 총괄을 맡았음 <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.05</div><div class="tl-body">LB인베스트먼트·해시드가 퓨처플레이 지분 처분. VC가 다른 VC 지분을 가질 수 없는 규정을 해소하려는 것으로 분석("류중희 퇴사와 무관") <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.11</div><div class="tl-body"><b>기관전용 PEF GP 라이선스</b> 취득, 'AC·VC·PE 전주기 투자사' <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup>. PE는 이원규 파트너(CFO 출신)가 맡고, 업계는 <b>IPO 재추진 포석</b>으로 봄 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.01~03</div><div class="tl-body"><b>밸류업(보육)팀 축소</b>: "AC보다 VC 집중" 해석에 회사는 "단순 인력 이동"이라고 해명 <sup class="ref"><a href="#src-27">[27]</a></sup>. 3명 중 팀장 포함 2명 퇴사, 내부에선 "사실상 권고사직"이라는 말도 나옴(내부 전언) <sup class="ref"><a href="#src-28">[28]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.02</div><div class="tl-body">권 대표: "올해 <b>1,500억 펀드 조성</b>, <b>첫 펀드 청산</b>" 목표 <sup class="ref"><a href="#src-18">[18]</a></sup></div></div>
+      </div>
+      <p class="src">전략 키워드는 딥테크(로보틱스·우주·AI)와 글로벌입니다 <sup class="ref"><a href="#src-29">[29]</a></sup>. 류중희가 이끄는 리얼월드는 210억 시드로 출범했고 390억을 추가로 조달했습니다 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup>. 퓨처플레이가 리얼월드에 투자했는지는 미확인입니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 투자 실적 · 펀드</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>연도</th><th>투자액</th><th>건수</th><th>비고</th></tr>
+        <tr><td>2024</td><td>272억</td><td>29건(신규 19·후속 10)</td><td>AUM 2,768억(직전 2,155억) <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>2025</td><td><b>517억</b>(약 +90%)</td><td>43건(신규 25·후속 18)</td><td>누적 포트폴리오 283개. <b>아스테로모프 30억(사상 최대 시드)</b>, 라이온로보틱스 40억 후속 <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>2026</td><td colspan="2">연간 집계 미확인</td><td>1,500억 조성 목표 <sup class="ref"><a href="#src-18">[18]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>AUM 구성</b>(2024말): 벤처펀드 1,732억, 개인투자조합·본계정 1,036억 <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li><b>주요 펀드</b>
+          <ul class="tight">
+            <li>혁신솔루션펀드 297.5억(모태·성장금융 출자) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+            <li>2023년 3개 펀드 701억: 혁신성장 1호 420억(1차 클로징), 파이오니어 1호 124억, 유니콘 2호 157억 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+            <li>2024년 스타트업코리아펀드 초격차 'IBKVC-FP 2024'(IBK벤처투자와 Co-GP, 모태 150억) <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+          </ul>
+        </li>
+        <li><b>정책 출자</b>: 2025년 모태 2차 정시 AI융합 분야에 지원, 결과 미확인 <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+        <li><b>팁스</b>: 2014년부터 운영사, 11년 연속 '우수', 팁스 누적 투자 803억 <sup class="ref"><a href="#src-20">[20]</a></sup>. 글로벌 특화형 운영사 <sup class="ref"><a href="#src-21">[21]</a></sup>, '2025 올해의 팁스 운영사' 장관 표창 <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 미확인:</span> 파이오니어 2호 420억(2026.6 결성, 운용 펀드 14개)은 THE VC 요약에만 있어 언론 보도로는 확인하지 못했습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 대표 포트폴리오 · 회수</h2>
+      <h3>확인된 대표 포트폴리오</h3>
+      <ul class="tight">
+        <li><b>로보틱스·모빌리티</b>: 베어로보틱스, 서울로보틱스(50억, 당시 최대 후속투자), 라이온로보틱스, 위로보틱스, 로보스 <sup class="ref"><a href="#src-23">[23]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li><b>반도체·AI</b>: 퓨리오사AI, 모빌린트(딥테크 채용박람회 참여사, 투자 시점 미확인) <sup class="ref"><a href="#src-26">[26]</a></sup>. 2026.3 얀 르쿤의 <b>AMI Labs 시드</b> 참여(금액 비공개) <sup class="ref"><a href="#src-25">[25]</a></sup></li>
+        <li><b>우주·센서·헬스</b>: 이노스페이스, 에스오에스랩, 뷰노, 아스테로모프 <sup class="ref"><a href="#src-23">[23]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li>2022년 기준 포트폴리오 기업가치 합계 <b>6조원</b>, 투자 후 지분가치 <b>23.5배</b>(자체 집계) <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+      </ul>
+      <h3>회수</h3>
+      <ul class="tight">
+        <li><b>2024</b>: 에스오에스랩, 이노스페이스 코스닥 상장. EPD바이오테라퓨틱스는 제넥신에, 맨드언맨드는 마음AI에 인수 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>2025</b>: 뉴로핏 코스닥 상장, 로컬스티치의 DDPS 인수 <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li>건별 회수 배수는 보도되지 않았습니다.</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 초장기펀드와 'AC 배제' 논란</h2>
+      <ul class="tight">
+        <li><b>구조</b>: 총 8,800억 중 정책자금 6,800억(첨단전략산업기금 6,000억 + 재정 800억), 민간 2,000억. 존속기간 13~15년에 1년 연장이 가능해 최대 16년 <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+        <li>리그: 소형 3곳 각 800억, 중형 4곳 각 1,600억. 결성액 75% 이상을 주목적에 투자하고, 그중 40% 이상은 AI·반도체 외 분야 <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+        <li><b>유인책</b>: 재정이 민간 출자액의 최대 40%까지 손실을 먼저 부담 <sup class="ref"><a href="#src-32">[32]</a></sup>. 10년간 관리보수 상향, 기준수익률 7%→5%, 10년 뒤 컨티뉴에이션 펀드 검토 <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+        <li><b>결과</b>: 55곳 지원(평균 7.86대1, 소형 13.7대1) <sup class="ref"><a href="#src-35">[35]</a></sup>. 10.14 최종 선정: 중형은 스마일게이트인베스트먼트·위벤처스·코오롱인베스트먼트·퀀텀벤처스코리아, 소형은 지앤텍벤처투자·한화투자증권·타임폴리오(Co-GP). 12월 말까지 결성 <sup class="ref"><a href="#src-36">[36]</a></sup></li>
+      </ul>
+      <h3>AC는 왜 떨어졌나</h3>
+      <ul class="tight">
+        <li>금융위는 처음엔 AC를 모집 대상에서 뺐다가 막판에 넣었고, 공청회에도 VC·PEF·LP만 불렀습니다 <sup class="ref"><a href="#src-37">[37]</a></sup>. 산은이 "소형리그 규모를 다룰 AC가 없다"며 사실상 배제했다는 보도도 있습니다 <sup class="ref"><a href="#src-38">[38]</a></sup></li>
+        <li>지원한 AC 6곳(블루포인트, 선보엔젤, 제피러스랩, 슈미트, 연세대기술지주, 한국과학기술지주)은 <b>모두 서류에서 탈락</b>했습니다. 대형 펀드 운용 경험과 회수 이력 부족이 이유로 꼽혔고, AC의 88%가 누적 투자액 200억 미만입니다 <sup class="ref"><a href="#src-39">[39]</a></sup> <sup class="ref"><a href="#src-58">[58]</a></sup></li>
+        <li><b>비판</b>: 성과보수 정산이 15년 뒤라 인력을 붙잡기 어렵다 <sup class="ref"><a href="#src-33">[33]</a></sup>. 민간 2,000억을 연말까지 모아야 한다 <sup class="ref"><a href="#src-40">[40]</a></sup>. 대형 GP 쏠림으로 초기 생태계가 양극화될 수 있다 <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+        <li><b>AC 쪽 반론</b>: 투자기간 6~7년이면 연 100억대 집행이라 AC에 무리한 규모가 아니다. Co-GP 트랙 같은 연결고리를 만들자는 제안 <sup class="ref"><a href="#src-35">[35]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup></li>
+      </ul>
+      <p class="src">참고: 지원했던 AC 중 제피러스랩은 10.15 한국벤처투자 국감에서 핵심운용인력 변경을 4년 6개월간 허위 보고한 사례로 지적됐습니다 <sup class="ref"><a href="#src-55">[55]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>AC협회 · 업계 현안</h2>
+      <h3>협회장</h3>
+      <ul class="tight">
+        <li>현 회장: <b>전화성 씨엔티테크 대표</b>, 2024.2 제4대 취임 <sup class="ref"><a href="#src-43">[43]</a></sup>. 2024.5 한국초기투자기관협회와 통합해 '초기투자액셀러레이터협회'가 됨 <sup class="ref"><a href="#src-48">[48]</a></sup>. 1년 연임해 임기는 2027.2 <sup class="ref"><a href="#src-44">[44]</a></sup></li>
+        <li>차기: 부회장 홍종철(인포뱅크 아이엑셀)과 명승은(벤처스퀘어)의 2파전 <sup class="ref"><a href="#src-44">[44]</a></sup>. 10.16 이사회 무기명 경선(<b>협회 첫 복수 후보 경선</b>)에서 <b>홍종철 최종 후보</b>, 2027.2 총회 의결 후 취임 <sup class="ref"><a href="#src-45">[45]</a></sup> <sup class="ref"><a href="#src-57">[57]</a></sup> <sup class="ref"><a href="#src-46">[46]</a></sup></li>
+        <li>홍 후보 공약 <sup class="ref"><a href="#src-47">[47]</a></sup>
+          <ul class="tight">
+            <li>모태펀드 등 정부 출자 확대, 중·대형 LP의 AC 출자 확대</li>
+            <li>초기투자 규제 개선(벤처스튜디오 제도화)</li>
+            <li>생태계 상생, AC 글로벌 진출</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>업계 숫자 · 규제</h3>
+      <ul class="tight">
+        <li><b>2025년 AC 투자 1조117억</b>으로 처음 1조원을 넘었습니다(2017년 69억). 다만 투자액의 4분의 3 이상이 54개사에 몰렸고, <b>등록 AC 495곳 중 5곳에 1곳은 투자 실적이 없습니다</b>. 수도권 비중 75.8% <sup class="ref"><a href="#src-52">[52]</a></sup></li>
+        <li><b>벤처투자법 개정</b>(2025.12 국회 통과): AC 개인투자조합 투자 대상을 업력 5년 이하로 넓혔지만 '투자유치 이력 없음' 단서가 붙어 반응이 미지근 <sup class="ref"><a href="#src-49">[49]</a></sup>. 시행령은 2026.7.1 시행 <sup class="ref"><a href="#src-50">[50]</a></sup></li>
+        <li>업계 숙원인 <b>AC 후속투자 허용</b> 법안은 국회 산자중기위 심의 중 <sup class="ref"><a href="#src-51">[51]</a></sup></li>
+        <li>전화성 회장은 청년창업사관학교 개편과 벤처스튜디오 문턱 완화를 요구했습니다 <sup class="ref"><a href="#src-53">[53]</a></sup>. AC 전용 세컨더리펀드 요구도 나옵니다 <sup class="ref"><a href="#src-54">[54]</a></sup></li>
+        <li>정책 출자 환경: 모태 1차 정시 선정 GP 60곳 중 42곳이 기한 안에 결성하지 못했습니다(국민성장펀드 쏠림) <sup class="ref"><a href="#src-56">[56]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 딜사이트, 퓨처플레이 출범·VC 라이선스(일자 미확인). <a href="https://dealsite.co.kr/articles/140667" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 바이라인네트워크, PE 라이선스 취득, 2025-11-03. <a href="https://byline.network/2025/11/3-320/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 유니콘팩토리, 전주기 투자사, 2025-11-03. <a href="https://www.unicornfactory.co.kr/article/2025110309315060677" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, 권오형 각자대표 선임, 2022-10. <a href="https://dealsite.co.kr/articles/92728" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 머니투데이, 권오형 단독대표 '퓨처플레이 3.0', 2025-04-08. <a href="https://news.mt.co.kr/mtview.php?no=2025040810492615955" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 딜사이트, 권오형 대표 프로필. <a href="https://dealsite.co.kr/articles/139545" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 아시아경제, 류중희 리얼월드 출범, 2025-04-15. <a href="https://core.asiae.co.kr/article/2025041514084821647" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 유니콘팩토리, 리얼월드 390억 추가 조달, 2026-02-26. <a href="https://www.unicornfactory.co.kr/article/2026022610304349194" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 유니콘팩토리, LB·해시드 지분 처분, 2025-05-02. <a href="https://www.unicornfactory.co.kr/article/2025050212272182760" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 유니콘팩토리, PE 조직·IPO 포석, 2025-11-07. <a href="https://www.unicornfactory.co.kr/article/2025110713504137293" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 한국경제, 대신증권 주관사·기업가치 2000억, 2022-06-13. <a href="https://www.hankyung.com/amp/202206136438d" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> IB토마토, IPO 재추진 관측. <a href="https://newstomato.com/ReadNews.aspx?no=1280526" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 아시아경제, 2024 투자·AUM·회수, 2024-12-16. <a href="https://core.asiae.co.kr/article/2024121608441129526" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, AUM 구성·2024 펀드. <a href="https://dealsite.co.kr/articles/133816" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 유니콘팩토리, 2025 투자 517억·43건, 2025-12-22. <a href="https://www.unicornfactory.co.kr/article/2025122210241482735" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 딜사이트, 혁신솔루션펀드 결성. <a href="https://dealsite.co.kr/articles/75100" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 바이라인네트워크, 2023년 펀드 3개 701억, 2023-12-18. <a href="https://byline.network/2023/12/18-288/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 이데일리(네이트), 1500억 조성·첫 펀드 청산 목표, 2026-02-04. <a href="https://news.nate.com/view/20260204n36040" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 모태 2차 정시 AI융합 지원. <a href="https://dealsite.co.kr/articles/147295" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 유니콘팩토리, 팁스 11년 연속 우수, 2025-05-21. <a href="https://www.unicornfactory.co.kr/article/2025052109565456073" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 유니콘팩토리, 글로벌 팁스 운영사, 2025-09-08. <a href="https://www.unicornfactory.co.kr/article/2025090809581560045" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 유니콘팩토리, 올해의 팁스 운영사, 2025-12-19. <a href="https://www.unicornfactory.co.kr/article/2025121912424796108" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 딜사이트, 포트폴리오 6조·23.5배, 2022-08. <a href="https://dealsite.co.kr/articles/91067" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 혁신의숲 리포트, 2025 회수. <a href="https://www.innoforest.co.kr/report/433/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 와우테일, AMI Labs 시드 참여, 2026-03-19. <a href="https://wowtale.net/2026/03/19/255856/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 와우테일, 딥테크 인재채용 박람회, 2026-10-02. <a href="https://wowtale.net/2026/10/02/265672/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 유니콘팩토리, 밸류업팀 축소, 2026-01-20. <a href="https://www.unicornfactory.co.kr/article/2026012013135424264" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 딜사이트, 밸류업팀 퇴사·내부 전언, 2026-03. <a href="https://dealsite.co.kr/articles/157422" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 머니투데이, 딥테크·글로벌 전략, 2025-02-16. <a href="https://www.mt.co.kr/future/2025/02/16/2025021503154892654" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 경향신문, 초장기펀드 공청회안, 2026-07-20. <a href="https://www.khan.co.kr/article/202607201533001" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 이메트로, 초장기펀드 모집공고, 2026-08-20. <a href="https://api.emetro.co.kr/article/20260820500336" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 파이낸셜뉴스, 재정 후순위 최대 40%, 2026-08-20. <a href="https://www.fnnews.com/news/202608202051080938" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 아시아경제, 보수 구조·성과보수 우려, 2026-07-30. <a href="https://view.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 블로터, 초장기펀드 보수·컨티뉴에이션.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=668472" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 유니콘팩토리, 초장기펀드 55곳 지원, 2026-09-09. <a href="https://www.unicornfactory.co.kr/article/2026090915031731452" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 파이낸셜뉴스, 초장기펀드 최종 7곳, 2026-10-14. <a href="https://www.fnnews.com/news/202610142048201914" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 유니콘팩토리 기자수첩, AC 배제 후 막판 포함, 2026-07-26. <a href="https://www.unicornfactory.co.kr/article/2026072601260938753" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 블로터, 산은 AC 배제.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=668586" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 머니투데이, AC 6곳 서류 탈락, 2026-09-29. <a href="https://www.mt.co.kr/future/2026/09/29/2026092915081841249" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 녹색경제신문, 민간 2,000억 과제. <a href="https://www.greened.kr/news/articleView.html?idxno=352103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 헤럴드경제, 대형 GP 쏠림 우려, 2026-02-05. <a href="https://www.heraldk.com/article/2026020518394716811" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 아시아경제 기자수첩, AC Co-GP 제안, 2026-07-22. <a href="https://view.asiae.co.kr/article/2026072216122761583" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 머니투데이, 전화성 4대 회장 취임, 2024-02-19. <a href="https://www.mt.co.kr/future/2024/02/19/2024021914204520425" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> MTN, 협회장 연임·차기 2파전, 2026-09-23. <a href="https://news.mtn.co.kr/news-detail/2026092310413881982" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 파이낸셜뉴스, 홍종철 최종 후보, 2026-10-16. <a href="https://www.fnnews.com/news/202610161907320976" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 전자신문, 협회장 첫 경선, 2026-10-14. <a href="https://www.etnews.com/20261014000094?m=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 벤처스퀘어, 홍종철 5대 공약. <a href="https://www.venturesquare.net/1120571" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 유니콘팩토리, AC협회·초기투자기관협회 통합, 2024-05-27. <a href="https://www.unicornfactory.co.kr/article/2024052716313079490" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 유니콘팩토리, 벤처투자법 개정 개인투자조합, 2025-12-03. <a href="https://www.unicornfactory.co.kr/article/2025120317211833147" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 아시아경제, 시행령 5년차 확대, 2026-06-23. <a href="https://view.asiae.co.kr/article/2026062309393041442" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 머니투데이, AC 후속투자 허용 법안, 2026-07-14. <a href="https://www.mt.co.kr/future/2026/07/14/2026071311260472854" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> MTN, AC 산업백서 2026(투자 1조117억), 2026-09-29. <a href="https://news.mtn.co.kr/news-detail/2026092917024023082" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 머니투데이, 전화성 회장 벤처스튜디오 요구, 2026-09-30. <a href="https://www.mt.co.kr/future/2026/09/30/2026093011315382295" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 유니콘팩토리, AC 전용 세컨더리 요구, 2025-12-16. <a href="https://www.unicornfactory.co.kr/article/2025121614253550947" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 뉴스핌, 한국벤처투자 국감 허위보고 지적, 2026-10-15. <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 머니투데이, 모태 1차 정시 70% 기한 내 미결성, 2026-10-02. <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> ZDNet, 홍종철 차기 회장 후보, 2026-10-17. <a href="https://zdnet.co.kr/view/?no=20261017171123" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 중기이코노미, AC 88% 누적 투자 200억 미만. <a href="https://www.junggi.co.kr/news/articleView.html?idxno=37944" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 관계자 직책이 정해지지 않아 질문은 하우스 공통으로 짰습니다. 퓨처플레이의 초장기펀드 지원 여부, 재무, 2025년 이후 AUM, 회수 배수, 리얼월드 투자 여부는 공개 자료로 확인되지 않았습니다. 발행 2026-10-21.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 — 전주기 투자사와 IPO</h2></div>
+    <div class="q cat1 must"><p class="qtext">컴퍼니빌더로 시작해 AC, VC, 지난해 11월 PE 라이선스까지 갖췄습니다. AC 하우스가 PE까지 가는 건 드문데, <b>지금 퓨처플레이의 정체성은 AC입니까, VC입니까?</b> 운용자산과 수익에서 각 사업의 비중은 어떻게 됩니까?</p><p class="follow">↳ "전주기로 포트폴리오를 끝까지 지원하려는 것"이라고 답하면: PE 1호 펀드는 언제, 어떤 딜(바이아웃·그로스)을 겨냥합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://byline.network/2025/11/3-320/" target="_blank" rel="noopener">[2]</a> <a href="https://www.unicornfactory.co.kr/article/2025110713504137293" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">2022년 대신증권을 주관사로 뽑고 기업가치 2,000억을 인정받았지만 상장은 하지 않았습니다. 업계는 VC·PE 라이선스를 <b>IPO 재추진 포석</b>으로 봅니다. 상장 일정은 언제쯤으로 보고, 그때와 지금 무엇이 달라졌습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.hankyung.com/amp/202206136438d" target="_blank" rel="noopener">[11]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1280526" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">올해 초 밸류업(보육)팀이 줄면서 "AC보다 VC에 집중하는 것 아니냐"는 해석이 나왔습니다. 회사는 "단순 인력 이동"이라고 했지만 팀장을 포함해 2명이 나갔습니다. <b>보육 기능은 지금 누가, 어떤 방식으로</b> 맡고 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026012013135424264" target="_blank" rel="noopener">[27]</a> <a href="https://dealsite.co.kr/articles/157422" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">올해 목표로 '첫 펀드 청산'을 밝혔습니다. 어떤 펀드이고 <b>DPI나 IRR은 어느 정도</b>로 마무리됩니까? 1,500억 조성 목표는 지금 얼마나 채웠습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.nate.com/view/20260204n36040" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">운용자산은 2024년 말 2,768억이었고, 그중 1,036억은 개인투자조합과 본계정이었습니다. 지금 AUM은 얼마이고, <b>기관 펀드 비중</b>은 얼마나 늘었습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2024121608441129526" target="_blank" rel="noopener">[13]</a> <a href="https://dealsite.co.kr/articles/133816" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 경영진 · 조직</h2></div>
+    <div class="q cat2 must"><p class="qtext">권오형 단독대표 '퓨처플레이 3.0'이 1년 반 됐습니다. 창업자인 류중희 대표 시절과 비교해 <b>투자 의사결정과 하우스 운영에서 가장 크게 바뀐 것</b>은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.mt.co.kr/mtview.php?no=2025040810492615955" target="_blank" rel="noopener">[5]</a> <a href="https://dealsite.co.kr/articles/139545" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">류중희 전 대표는 벤처파트너이면서 리얼월드 대표로 시드 210억에 이어 390억을 더 투자받았습니다. <b>퓨처플레이도 리얼월드에 투자했습니까?</b> 벤처파트너가 창업한 회사에 투자할 때 이해상충은 어떻게 관리합니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2025041514084821647" target="_blank" rel="noopener">[7]</a> <a href="https://www.unicornfactory.co.kr/article/2026022610304349194" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">LB인베스트먼트와 해시드가 지분을 정리했습니다. 지금 <b>주요 주주는 누구</b>이고, IPO를 앞두고 지분 구조를 더 바꿀 계획이 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2025050212272182760" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 초장기펀드 · 정책펀드</h2></div>
+    <div class="q cat3 must"><p class="qtext">초장기펀드에 AC 6곳이 지원해 <b>전원 서류에서 떨어졌고</b>, 산은 쪽에서는 "소형리그 규모를 다룰 AC가 없다"는 말까지 나왔습니다. 퓨처플레이는 VC 라이선스가 있는데 <b>지원하셨습니까?</b> 지원했다면 결과는, 안 했다면 이유는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/09/29/2026092915081841249" target="_blank" rel="noopener">[39]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=668586" target="_blank" rel="noopener">[38]</a> <a href="https://www.fnnews.com/news/202610142048201914" target="_blank" rel="noopener">[36]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">존속기간이 최대 16년이고 성과보수는 15년 뒤에야 정산합니다. 기준수익률을 5%로 낮추고 재정이 손실을 40%까지 먼저 떠안아도, <b>초기 딥테크 투자사에 맞는 구조</b>라고 보십니까? 퓨처플레이라면 어떤 조건이어야 들어가겠습니까?</p><p class="follow">↳ AC에 Co-GP 트랙을 따로 열자는 제안은 어떻게 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://view.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">[33]</a> <a href="https://www.fnnews.com/news/202608202051080938" target="_blank" rel="noopener">[32]</a> <a href="https://view.asiae.co.kr/article/2026072216122761583" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">초장기펀드는 결성액의 40% 이상을 AI·반도체 외 분야에 투자해야 합니다. 퓨처플레이가 강한 <b>로보틱스·우주 같은 분야로 자금이 실제로 내려올 거라고</b> 보십니까, 아니면 결국 대형 GP의 후기 딜로 갈까요?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://api.emetro.co.kr/article/20260820500336" target="_blank" rel="noopener">[31]</a> <a href="https://www.heraldk.com/article/2026020518394716811" target="_blank" rel="noopener">[41]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">모태 1차 정시에서 선정 GP 70%가 기한 안에 결성하지 못했습니다. 국민성장펀드로 LP가 쏠렸다는 분석인데, <b>퓨처플레이 펀드레이징에서도 체감</b>하십니까? 지난해 지원한 모태 AI융합 분야는 결과가 어땠습니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">[56]</a> <a href="https://dealsite.co.kr/articles/147295" target="_blank" rel="noopener">[19]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 포트폴리오 · 투자 전략</h2></div>
+    <div class="q cat4 must"><p class="qtext">에스오에스랩, 이노스페이스, 뉴로핏이 상장했고 EPD바이오와 맨드언맨드는 인수됐습니다. 이 회수들의 <b>배수는 어느 정도</b>였고, 지금 대표 포트폴리오를 하나만 꼽는다면 어디입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2024121608441129526" target="_blank" rel="noopener">[13]</a> <a href="https://www.innoforest.co.kr/report/433/" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">지난해 투자가 517억으로 90% 늘었고 아스테로모프에는 사상 최대인 30억 시드를 넣었습니다. <b>시드 한 건에 30억이면 AC가 아니라 VC의 투자 단위</b>인데, 딥테크 시드 밸류가 너무 올랐다는 우려는 없습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2025122210241482735" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">얀 르쿤의 AMI Labs 시드에 들어갔습니다. 한국 초기 투자사가 해외 대형 시드에 들어가는 건 이례적인데, 투자 금액과 지분은 어느 정도이고 <b>국내 포트폴리오에 어떤 연결고리</b>를 기대합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://wowtale.net/2026/03/19/255856/" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">베어로보틱스, 서울로보틱스, 라이온로보틱스, 위로보틱스까지 로보틱스 포트폴리오가 두텁습니다. 휴머노이드와 피지컬 AI 붐에서 <b>후속 투자와 회수 순서</b>는 어떻게 그리고 계십니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/91067" target="_blank" rel="noopener">[23]</a> <a href="https://wowtale.net/2026/10/02/265672/" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">팁스 11년 연속 우수에 '올해의 팁스 운영사'까지 받았습니다. 팁스 의존도는 어느 정도이고, 팁스가 개편되면 <b>초기 딜 소싱 구조</b>는 어떻게 바뀝니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2025052109565456073" target="_blank" rel="noopener">[20]</a> <a href="https://www.unicornfactory.co.kr/article/2025121912424796108" target="_blank" rel="noopener">[22]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c5)"></span><h2>⑤ AC협회장 · 업계</h2></div>
+    <div class="q cat5 must"><p class="qtext">초기투자액셀러레이터협회가 처음으로 경선을 치러 홍종철 인포뱅크 부회장을 차기 회장 최종 후보로 뽑았습니다. <b>첫 경선 자체는 어떻게 보셨고</b>, 새 회장이 가장 먼저 풀어야 할 과제는 무엇이라고 보십니까?</p><p class="follow">↳ 공약 중 '중·대형 LP의 AC 출자 확대'와 '벤처스튜디오 제도화' 가운데 퓨처플레이에 더 절실한 건 어느 쪽입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610161907320976" target="_blank" rel="noopener">[45]</a> <a href="https://www.venturesquare.net/1120571" target="_blank" rel="noopener">[47]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">퓨처플레이는 AC·VC·PE를 다 가진 하우스입니다. AC협회와 벤처캐피탈협회 중 <b>어느 쪽 목소리가 퓨처플레이를 대변</b>한다고 보십니까? 전주기 하우스가 AC협회에서 할 역할이 있습니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2025110309315060677" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">AC 투자가 지난해 처음 1조원을 넘었지만, 4분의 3이 54개사에 몰렸고 등록 AC 5곳 중 1곳은 투자 실적이 없습니다. <b>AC 업계에도 옥석 가리기</b>가 필요하다고 보십니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.mtn.co.kr/news-detail/2026092917024023082" target="_blank" rel="noopener">[52]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">AC 후속투자 허용 법안이 국회에 계류 중입니다. 퓨처플레이는 VC 라이선스가 있어 이미 후속투자를 하는데, <b>AC 라이선스만 가진 하우스와의 격차</b>를 어떻게 보십니까? 개인투자조합 5년차 확대에 '투자유치 이력 없음' 단서가 붙은 건 실효성이 있습니까?</p><div class="qmeta"><span class="tag">비교</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/07/14/2026071311260472854" target="_blank" rel="noopener">[51]</a> <a href="https://www.unicornfactory.co.kr/article/2025120317211833147" target="_blank" rel="noopener">[49]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">초장기펀드에 지원했던 AC 가운데 한 곳이 이번 국감에서 핵심운용인력 변경을 4년 넘게 허위 보고한 사례로 지적됐습니다. AC가 큰 정책자금을 맡으려면 <b>업계 전체의 신뢰 문제</b>부터 풀어야 하지 않습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">[55]</a> <a href="https://www.mt.co.kr/future/2026/09/29/2026092915081841249" target="_blank" rel="noopener">[39]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[58]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-21</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
