@@ -1,0 +1,322 @@
+<meta charset="utf-8" />
+<title>SV인베스트먼트 이효상 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #5c4033; --accent-soft: #f1e9e3;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1; --c5: #0e7490;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #d9b99b; --accent-soft: #261d17;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #d9b99b; --accent-soft: #261d17;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #1c140f; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #1c140f; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .tag.risk { background: #0e7490; color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .cat5 { border-left-color: var(--c5); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-26</div>
+    <h1 class="title">SV인베스트먼트 — 이효상 부사장</h1>
+    <p class="subtitle">티앤이코리아(10.29)와 래블업(11.3) 상장으로 회수 시즌이 열린다. 그 사이 2년 연속 적자, 정책 출자 3연속 탈락, 한 종목에 450억 집중이 겹쳐 있다. LP와의 관계를 책임지는 RM부문장에게 "이 리스크를 LP에게 어떻게 설명하나"를 묻는다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(상장 VC·PE)</span>
+      <span class="meta-chip">관계자: RM(대외관계)부문장</span>
+      <span class="meta-chip">질문 23개(리스크 특화 9)</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 취재 전 꼭 알아둘 것</h2>
+      <ul class="tight">
+        <li><b>RM = Relationship Management(대외 관계 관리).</b> 리스크관리(Risk Management)가 아닙니다. 더벨이 RM을 이렇게 풀어 썼고 <sup class="ref"><a href="#src-1">[1]</a></sup>, 4월 승진 기사도 "투자전략과 대외 네트워크 담당"으로 소개합니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 회사의 <b>리스크관리팀은 장필식 전무의 경영기획부문 소속</b>입니다 <sup class="ref"><a href="#src-5">[5]</a></sup>. → 리스크 질문은 "LP와 시장에 어떻게 설명하고 관리하나"의 각도로 짰습니다.</li>
+        <li><b>정책 출자 3연속 탈락</b>: 초장기펀드(NH와 Co-GP, 중형)는 10.14 최종 7곳에 들지 못했고 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup>, 국민성장펀드 2차 7곳에도 없으며 <sup class="ref"><a href="#src-45">[45]</a></sup>, 산은 세컨더리 소형 리그는 지원사 전원이 서류에서 떨어졌습니다 <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-44">[44]</a></sup>.</li>
+        <li><b>실적 정정</b>: 2025년 상반기는 흑자전환이 아니라 <b>손실 축소</b>(영업손실 16억, 순손실 2억)입니다 <sup class="ref"><a href="#src-13">[13]</a></sup>. 3월 결산법인이라 '제20기 = 2025.4~2026.3'입니다.</li>
+        <li><b>바로 앞의 이벤트</b>: 티앤이코리아 10.29 상장(공모가 상단), 래블업 11.3 상장(공모가 하단) <sup class="ref"><a href="#src-29">[29]</a></sup> <sup class="ref"><a href="#src-27">[27]</a></sup>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요 · 조직</h2>
+      <ul class="tight">
+        <li>코스닥 상장 VC(289080), 박성호·홍원호 각자대표 <sup class="ref"><a href="#src-4">[4]</a></sup>. 최대주주는 박성호 외 2인 24.78%, 시가총액 약 1,380억(9.4 기준) <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li>AUM 약 1.9조(2025말). 2026년 목표는 2조 이상이고, 홍원호 대표의 올해 키워드는 '후적박발(厚積薄發, 두텁게 쌓아 천천히 터뜨린다)' <sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>해외 현지법인: 상하이(2015), 보스턴(2018), 싱가포르(2020). 중국·미국은 회수, 동남아는 투자 발굴에 무게 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup>. 홍 대표는 이 법인들을 "운영해 왔다"고 과거형으로 말했고, 상하이 법인은 매각 이력이 있다는 기록이 있음(시점 미확인) <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+      </ul>
+      <h3>2026.4 조직개편 — 4개 부문</h3>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>부문</th><th>책임자</th><th>비고</th></tr>
+        <tr><td>VC</td><td>류지화 부사장</td><td>2021년부터 나뉘어 있던 '프라이드' 체제를 하나로 통합</td></tr>
+        <tr><td>PE</td><td>유상현 대표</td><td>PE 임원 2명 채용 중</td></tr>
+        <tr><td><b>RM</b>(Relationship Management)</td><td><b>이효상 부사장</b></td><td>4월 전무에서 승진. 투자전략·대외 네트워크(LP·파트너 관계)</td></tr>
+        <tr><td>경영기획</td><td>장필식 전무</td><td>펀드레이징·관리. <b>리스크관리팀</b>, 6월 주총 사내이사 안건 <sup class="ref"><a href="#src-40">[40]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">바이오헬스케어실(그로쓰캐피탈)도 새로 만들었습니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup>. 리스크관리팀은 2021년 "펀드와 회사 전반의 리스크 관리 강화"를 위해 신설됐고 <sup class="ref"><a href="#src-5">[5]</a></sup>, 2024년 펀딩과 리스크 관리를 세분화하려고 경영기획실이 생겼습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup>. 이효상 부사장의 입사 시점, 전 직장, 등기임원 여부는 확인되지 않았습니다. THE VC는 '임원·투자심사'로 표기합니다 <sup class="ref"><a href="#src-3">[3]</a></sup>.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 실적 · 자본</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>기간</th><th>영업수익</th><th>영업손익</th><th>순손익</th><th>비고</th></tr>
+        <tr><td>제19기(2024.4~2025.3)</td><td>–</td><td>-61억 또는 -84억</td><td>-52억 또는 -71억</td><td>성과보수 없음, 지분법·평가손실 <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup>. <span class="flag">수치 불일치</span></td></tr>
+        <tr><td>2025 상반기(4~9월)</td><td>–</td><td>-16억</td><td>-2억</td><td>손실 축소 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>제20기(2025.4~2026.3)</td><td>214억(+2.1%)</td><td>-27억</td><td>-10억</td><td><b>2년 연속 적자</b>. Gap-Coverage 2호 성과보수 17억(3년 만), 처분이익 19억 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>변동성의 원인</b>: 조합지분법손실과 <b>파생상품부채평가손실</b> 증가 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>배당 재개</b>: 적자에도 주당 20원(약 11억), 2년 만. 기사는 오버행 부담도 지적 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>CB</b>: 3월 4회차 CB(85억) 콜옵션 25.5억을 지정하면서 <b>특수관계인 에스브이파트너스에 약 9.1억</b>을 배정 <sup class="ref"><a href="#src-22">[22]</a></sup>. 4월 말 전환가 1,460원에 전환청구가 이어져 5월 신주 상장 <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+        <li><b>주가</b>: 엔비디아-리벨리온 협업 보도로 8.21 시간외 상한가 <sup class="ref"><a href="#src-25">[25]</a></sup>, 8.24 장중 상한가 <sup class="ref"><a href="#src-24">[24]</a></sup>. 포트폴리오 뉴스 하나에 주가가 크게 흔들리는 구조</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 회수 파이프라인</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>기업</th><th>상태</th><th>SV 관련 수치</th></tr>
+        <tr><td><b>티앤이코리아</b></td><td>10.29 상장, 공모가 상단 15,300원, 청약 1,253대1 <sup class="ref"><a href="#src-30">[30]</a></sup></td><td>2019년 한중 문화·ICT 융합펀드로 15억 → 지분 5.68%, 공모가 기준 약 98.6억(<b>약 6.6배</b>) <sup class="ref"><a href="#src-29">[29]</a></sup></td></tr>
+        <tr><td><b>래블업</b></td><td>11.3 상장, 공모가 <b>하단</b> 19,000원, 의무보유확약 2.09% <sup class="ref"><a href="#src-27">[27]</a></sup></td><td>SV 지분 3.8%(날짜 미확인) <sup class="ref"><a href="#src-28">[28]</a></sup>. ※ '12배'는 LB인베 수치 <sup class="ref"><a href="#src-48">[48]</a></sup></td></tr>
+        <tr><td>엔키화이트햇</td><td>11.12~13 청약</td><td>SV 지분 미확인 <sup class="ref"><a href="#src-32">[32]</a></sup></td></tr>
+        <tr><td>이노보테라퓨틱스</td><td>10.15 예심 승인 <sup class="ref"><a href="#src-31">[31]</a></sup></td><td>SV 지분 미확인</td></tr>
+        <tr><td>패턴그룹(나스닥)</td><td>2025.9 상장, 회수 마무리 단계 <sup class="ref"><a href="#src-34">[34]</a></sup></td><td>원금 226억 → 1,074억(<b>약 4.8배</b>) <sup class="ref"><a href="#src-33">[33]</a></sup></td></tr>
+        <tr><td>세미파이브</td><td>2025.12 상장</td><td>투자 약 150억, 6개월 락업 해제 물량이 변수 <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td><b>리벨리온</b></td><td>비상장</td><td><b>누적 약 450억</b>. 프리IPO 투자심의위원회는 열린 적 없음(SV 관계자) <sup class="ref"><a href="#src-35">[35]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">과거 대표 회수는 빅히트(현 하이브) 약 27배 <sup class="ref"><a href="#src-47">[47]</a></sup>. 아픈 손가락은 모스트엑스(구 모두렌탈, AJ그룹과 약 1,000억 투입)로, 실적 하락에 회수가 난항이라는 보도가 있습니다(2025.3) <sup class="ref"><a href="#src-36">[36]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 · LP</h2>
+      <ul class="tight">
+        <li><b>Gap-Coverage 5호</b>: 2026.1 1,545억 결성 → 3월 <b>2,240억</b>으로 증액. LP는 산은(앵커), 성장금융, 과기공, 새마을금고. 목표 2,600억 달성의 관건이던 국민연금 매칭 결과는 미확인 <sup class="ref"><a href="#src-37">[37]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>글로벌 오픈이노베이션</b>: 위고그룹과 Co-GP(위고 30%, 성장금융 50%), 430억 확보 <sup class="ref"><a href="#src-38">[38]</a></sup>. THE VC에는 500억 결성으로 표기(언론 미확인) <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>미국 바이오</b>(캐나다 Seido Capital과 Co-GP), <b>동남아 Web3 역외펀드</b>(1,000만달러): 결성 결과 미확인 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>싱가포르 펀드</b>: 실리콘박스(600만달러)·베리파이VASP(360만달러) 미국 상장 검토, 숍백(200만달러) 싱가포르 상장 기대. "연 20% 이상" 목표 <sup class="ref"><a href="#src-39">[39]</a></sup></li>
+        <li><b>정책 출자</b>: 2025년 산은 혁신성장펀드 중형에는 선정 <sup class="ref"><a href="#src-46">[46]</a></sup>. 2026년엔 위 3건 모두 고배</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 리스크 지도 — LP가 물어볼 리스크</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>리스크</th><th>SV 사례</th></tr>
+        <tr><td><b>집중</b></td><td>리벨리온 누적 약 450억. AUM 대비 단일 종목 비중이 크고, 주가가 리벨리온 뉴스에 연동 <sup class="ref"><a href="#src-35">[35]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup></td></tr>
+        <tr><td><b>국가·지정학</b></td><td>2015년 한중 문화·ICT 융합펀드(SV 운용분 460억)는 한한령으로 고전해 <b>만기 연장</b> <sup class="ref"><a href="#src-9">[9]</a></sup>. 같은 펀드에서 티앤이코리아 6.6배 성과 <sup class="ref"><a href="#src-29">[29]</a></sup></td></tr>
+        <tr><td><b>평가·회계</b></td><td>조합지분법손실, 파생상품부채평가손실로 적자 <sup class="ref"><a href="#src-10">[10]</a></sup>. 제19기 수치는 출처마다 다름. 모태는 자펀드 외부 공정가치 평가를 연 2회에서 1회로 완화 <sup class="ref"><a href="#src-19">[19]</a></sup></td></tr>
+        <tr><td><b>회수·유동성</b></td><td>래블업 공모가 하단·확약 2.09%로 상장 후 매물 부담 <sup class="ref"><a href="#src-27">[27]</a></sup>. 세미파이브 락업 해제 <sup class="ref"><a href="#src-12">[12]</a></sup>. 모스트엑스 회수 난항 <sup class="ref"><a href="#src-36">[36]</a></sup></td></tr>
+        <tr><td><b>지배구조·이해상충</b></td><td>CB 콜옵션 일부를 특수관계인에게 배정 <sup class="ref"><a href="#src-22">[22]</a></sup>. 정관에서 사외이사를 '독립이사'로 변경 <sup class="ref"><a href="#src-40">[40]</a></sup></td></tr>
+        <tr><td><b>규제·컴플라이언스</b></td><td>벤처투자법 개정(2026.9.29 공포, <b>2027.3.30 시행</b>): 대주주·특수관계인의 투자의사결정 부당 영향 금지, 검사·등록취소 근거 신설 <sup class="ref"><a href="#src-17">[17]</a></sup>. 국감에서 한 AC가 핵심운용인력 변경을 4년 6개월간 허위 보고한 일이 지적됨 <sup class="ref"><a href="#src-18">[18]</a></sup>. 중기부 정기검사에서 VC 7곳 경고·시정명령 <sup class="ref"><a href="#src-20">[20]</a></sup>. 투자의무 이행기간 3년→5년 완화 <sup class="ref"><a href="#src-21">[21]</a></sup></td></tr>
+        <tr><td><b>펀드레이징</b></td><td>정책 출자 3연속 탈락 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-45">[45]</a></sup>. Gap-Coverage 5호 국민연금 매칭 불확실 <sup class="ref"><a href="#src-37">[37]</a></sup></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다. 실적 수치는 DART 원문 대조가 필요합니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 더벨, SV인베 4개 부문 개편·임원 승진, 2026-04-07. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604071411482920103528" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 뉴스워커, 이효상 부사장 승진, 2026-04-10. <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421437" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> THE VC, SV인베스트먼트 기업 페이지(2차 자료). <a href="https://thevc.kr/svinvestment" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴시스, 각자대표 체제·경영기획부문, 2024-06-11. <a href="https://www.newsis.com/view/NISX20240611_0002768414" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트, 리스크관리팀 신설 조직개편, 2021. <a href="https://dealsite.co.kr/articles/74266" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 넘버스, 경영기획실장 이사 승진, 2024.<span class="own">자사</span> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=4980" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 블로터, SV인베 해외 현지법인.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=643354" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 지역별 해외 전략, 2023-03-08. <a href="https://www.thebell.co.kr/front/newsview.asp?code=0303&key=202303081014006880104821" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 한중 융합펀드 한한령·만기 연장. <a href="https://dealsite.co.kr/articles/153631/075023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 지분법·파생상품부채평가손실 적자전환. <a href="https://dealsite.co.kr/articles/143786" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 블로터, 제20기 성과보수 17억·배당 재개·G-C 5호 증액, 2026-06-12.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=665234" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> IB토마토, 제20기 실적·세미파이브. <a href="https://www.newstomato.com/ReadNews.aspx?no=1304959" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 블로터, 2025 상반기 손실 축소.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=647693" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 더벨, 홍원호 대표 '후적박발', 2026-01-21. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601211542229080107787" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 더벨, AUM 2조 가시권·글로벌 펀드 3종, 2026-01-20. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202601201410498640102058" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 디지털투데이, 2024 적자전환. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=566562" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 법률신문, 벤처투자법 개정(2027.3.30 시행). <a href="https://www.lawtimes.co.kr/news/articleView.html?idxno=228348" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 뉴스핌, 국감 핵심운용인력 허위보고 지적, 2026-10-15. <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 모태 자펀드 공정가치 평가 완화, 2026. <a href="https://dealsite.co.kr/articles/163103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 뉴스톱, 중기부 정기검사 VC 7곳 경고. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=44329" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 머니투데이, 투자의무 이행기간 5년, 2026-01-06. <a href="https://www.mt.co.kr/future/2026/01/06/2026010610512223219" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 데이터투자, 4회차 CB 콜옵션 지정, 2026-03-16. <a href="https://www.datatooza.com/article/20260316175533920652ef34c9b2_80" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 디지털투데이, CB 전환청구, 2026-04-28. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=661079" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 뉴스핌, 장중 상한가, 2026-08-24. <a href="https://www.newspim.com/news/view/20260824000201" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 프라임경제(네이트), 엔비디아-리벨리온 시간외 상한가, 2026-08-21. <a href="https://news.nate.com/view/20260821n25621" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 와이즈리포트, 주가·최대주주, 2026-09-04. <a href="https://comp.wisereport.co.kr/company/c1020001.aspx?cmp_cd=289080&cn=" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> ZDNet, 래블업 공모가 하단 확정, 2026-10-23. <a href="https://zdnet.co.kr/view/?no=20261023155138" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 뉴스톱, 래블업 SV 지분. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=45179" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 뉴스톱, 티앤이코리아 SV 6.6배, 2026-10. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=48258" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 이투데이, 티앤이코리아 청약, 2026-10. <a href="https://www.etoday.co.kr/news/view/2639306" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> MTN, 이노보테라퓨틱스 예심 승인, 2026-10-16. <a href="https://news.mtn.co.kr/article/2026101609492212929" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 이데일리 마켓인(네이트), 포트폴리오 5곳 상장 추진, 2026-08-04. <a href="https://m.news.nate.com/view/20260804n28615" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 데이터투자, 패턴그룹 4.8배 회수, 2026-09-08. <a href="https://www.datatooza.com/article/20260908124259897e80ea65769_80" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 더벨, 패턴그룹 회수 마무리, 2026-07-09. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202607091500324040105857" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 넘버스(네이트), 리벨리온 누적 450억·프리IPO 투심위, 2026-03-31.<span class="own">자사</span> <a href="https://news.nate.com/view/20260331n34080" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 딜사이트, 모스트엑스 회수 난항, 2025-03. <a href="https://dealsite.co.kr/articles/138157/068030" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 딜사이트, Gap-Coverage 5호 국민연금 매칭 관건, 2025-12. <a href="https://dealsite.co.kr/articles/153513" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 유니콘팩토리, 글로벌 오픈이노베이션 펀드, 2025-12-08. <a href="https://www.unicornfactory.co.kr/article/2025120809242194237" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 아시아경제, 싱가포르 펀드 포트폴리오 상장, 2026-08-14. <a href="https://view.asiae.co.kr/en/article/2026081414175782478" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 톱데일리, 장필식 사내이사·독립이사 정관. <a href="https://www.topdaily.kr/articles/110458" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 파이낸셜뉴스, 초장기펀드 최종 7곳, 2026-10-14. <a href="https://www.fnnews.com/news/202610142048201914" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 딜사이트, 증권사·VC 연합(SV·NH 등). <a href="https://dealsite.co.kr/articles/168554" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 딜사이트, 산은 세컨더리 지원 7곳, 2026-06-02. <a href="https://dealsite.co.kr/articles/162937" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 이코노미스트, 산은 세컨더리 소형 재공고·컴퍼니케이, 2026-08-20. <a href="https://economist.co.kr/article/view/ecn202608200058" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 워크투데이, 국민성장펀드 2차 운용사 7곳, 2026-07-13. <a href="http://www.worktoday.co.kr/news/articleView.html?idxno=86697" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 딜사이트, 2025 산은 혁신성장펀드 GP. <a href="https://dealsite.co.kr/articles/141162" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 플래텀, SV인베 회수 트랙(빅히트 등). <a href="https://platum.kr/archives/103678" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 딜사이트, 래블업 12배는 LB인베 수치. <a href="https://dealsite.co.kr/articles/163182" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 이효상 부사장의 경력·입사 시점·등기 여부, RM부문의 공식 업무 범위, 제19기 실적의 정확한 수치, Gap-Coverage 5호 국민연금 매칭, 해외 펀드 결성 결과, 리벨리온 지분율은 공개 자료로 확인되지 않았습니다. 발행 2026-10-26.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, <span class="tag risk">리스크</span>는 리스크 특화 질문, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다. <b>RM은 Relationship Management(대외 관계 관리) 부문입니다.</b> 리스크 질문은 "LP와 시장에 리스크를 어떻게 설명하고 관리하나"의 각도로 짰습니다. 내부통제 세부가 막히면 리스크관리팀(경영기획부문) 확인을 요청하세요.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>① 이효상 부사장 · RM(대외관계)부문</h2></div>
+    <div class="q cat2 must"><p class="qtext">RM(Relationship Management)부문은 <b>실제로 어떤 일을 하는 조직</b>입니까? LP 관리, IR, 펀드레이징, 투자전략 가운데 무게중심은 어디이고, 펀드레이징·리스크관리팀을 둔 경영기획부문과는 일을 어떻게 나눕니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604071411482920103528" target="_blank" rel="noopener">[1]</a> <a href="http://www.newsworker.co.kr/news/articleView.html?idxno=421437" target="_blank" rel="noopener">[2]</a> <a href="https://dealsite.co.kr/articles/74266" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">4월 조직개편에서 부사장으로 승진하셨고, 2021년부터 이어진 '프라이드' 체제를 VC부문 하나로 합쳤습니다. <b>왜 다시 합쳤습니까?</b> 의사결정이 빨라진 것과 견제 장치가 약해진 것, 어느 쪽이 더 크다고 보십니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604071411482920103528" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">SV의 LP는 산은·성장금융·과기공·새마을금고 등 정책·공적 자금 비중이 큽니다. 올해 정책 출자에서 연달아 떨어진 상황에서 <b>LP 구성을 어떻게 다변화</b>하실 계획입니까? 위고그룹·Seido Capital 같은 해외 파트너를 통한 해외 LP 유치는 어디까지 왔습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/153513" target="_blank" rel="noopener">[37]</a> <a href="https://www.unicornfactory.co.kr/article/2025120809242194237" target="_blank" rel="noopener">[38]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202601201410498640102058" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">한중 융합펀드가 한한령으로 만기를 연장해야 했을 때처럼, <b>LP에게 나쁜 소식(손실, 만기 연장, 회수 지연)을 전해야 할 때</b> RM부문은 어떻게 설득합니까? 그 과정에서 LP와 신뢰가 흔들린 적은 없었습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/153631/075023" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">부사장님이 대외 네트워크를 맡고 계신다는데, 요즘 LP들이 GP에 가장 까다롭게 요구하는 것은 무엇입니까? 사후관리 강화, 규약 충돌(산은 vs 국민연금), 공정가치 평가 가운데 <b>SV가 체감하는 가장 큰 변화</b>는?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/163103" target="_blank" rel="noopener">[19]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>② 하우스 현안 — 실적과 주주</h2></div>
+    <div class="q cat1 must"><p class="qtext">제20기도 순손실 10억으로 2년 연속 적자였습니다. 티앤이코리아(약 6.6배)와 래블업 상장이 이번 기에 반영되면 <b>제21기 흑자전환을 자신</b>하십니까? 성과보수는 언제부터 본격적으로 들어옵니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.newstomato.com/ReadNews.aspx?no=1304959" target="_blank" rel="noopener">[12]</a> <a href="https://www.newstopkorea.com/news/articleView.html?idxno=48258" target="_blank" rel="noopener">[29]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">적자 속에서도 주당 20원 배당을 2년 만에 재개했습니다. <b>적자 상장 VC의 배당</b>은 어떤 원칙으로 결정했습니까? 자사주 소각 규정도 정비했는데, 실제 소각 계획이 있습니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=665234" target="_blank" rel="noopener">[11]</a> <a href="https://www.topdaily.kr/articles/110458" target="_blank" rel="noopener">[40]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">지난해 상반기를 흑자전환으로 쓴 기사도 있었지만 실제로는 손실 축소였고, 제19기 영업손실도 61억과 84억으로 보도가 엇갈립니다. <b>공식 수치는 무엇이고, 수정(재작성)이 있었습니까?</b></p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=647693" target="_blank" rel="noopener">[13]</a> <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=566562" target="_blank" rel="noopener">[16]</a> <a href="https://www.newstomato.com/ReadNews.aspx?no=1304959" target="_blank" rel="noopener">[12]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 펀드레이징 · 정책 출자</h2></div>
+    <div class="q cat3 must"><p class="qtext">올해 초장기펀드(NH와 Co-GP), 국민성장펀드 2차, 산은 세컨더리 소형에서 모두 고배를 마셨습니다. <b>정책 출자에서 SV가 밀리는 이유</b>를 내부적으로 어떻게 진단하셨습니까?</p><p class="follow">↳ "경쟁이 치열했다"고 답하면: 지난해 산은 혁신성장펀드에선 선정됐는데, 올해 무엇이 달라졌습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610142048201914" target="_blank" rel="noopener">[41]</a> <a href="http://www.worktoday.co.kr/news/articleView.html?idxno=86697" target="_blank" rel="noopener">[45]</a> <a href="https://dealsite.co.kr/articles/162937" target="_blank" rel="noopener">[43]</a> <a href="https://dealsite.co.kr/articles/141162" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">Gap-Coverage 5호는 2,240억까지 키웠지만 목표는 2,600억이었고, 국민연금 매칭이 관건이었습니다. <b>국민연금은 들어왔습니까?</b> 최종 클로징 규모는?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/153513" target="_blank" rel="noopener">[37]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=665234" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">연초 밝힌 글로벌 펀드 3종(위고그룹 오픈이노베이션, 미국 바이오, 동남아 Web3)은 <b>각각 결성됐습니까?</b> AUM 2조는 돌파했습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202601201410498640102058" target="_blank" rel="noopener">[15]</a> <a href="https://www.unicornfactory.co.kr/article/2025120809242194237" target="_blank" rel="noopener">[38]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 포트폴리오 · 회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">티앤이코리아(15억 → 약 98.6억), 래블업, 엔키화이트햇, 이노보테라퓨틱스까지 연말 상장이 몰립니다. 패턴그룹은 4.8배로 회수를 마무리했습니다. <b>올해 회수 총액과 성과보수 기대치</b>는 어느 정도입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.newstopkorea.com/news/articleView.html?idxno=48258" target="_blank" rel="noopener">[29]</a> <a href="https://www.datatooza.com/article/20260908124259897e80ea65769_80" target="_blank" rel="noopener">[33]</a> <a href="https://m.news.nate.com/view/20260804n28615" target="_blank" rel="noopener">[32]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">싱가포르 펀드는 실리콘박스·베리파이VASP 미국 상장, 숍백 싱가포르 상장을 기대한다고 했습니다. <b>해외 포트폴리오 회수 일정</b>은 어떻게 보십니까? 해외 상장 회수는 국내와 무엇이 다릅니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://view.asiae.co.kr/en/article/2026081414175782478" target="_blank" rel="noopener">[39]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">4월에 그로쓰캐피탈 중심의 바이오헬스케어실을 새로 만들었습니다. 바이오 IPO 시장이 까다로운데 <b>왜 지금 바이오 그로쓰</b>입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604071411482920103528" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c5)"></span><h2>⑤ ★ 리스크 특화 — LP가 묻는 리스크</h2></div>
+    <div class="q cat5 must"><p class="qtext">리벨리온에 누적 약 450억을 넣었고, 엔비디아 협업 보도 하나에 SV 주가가 상한가를 쳤습니다. LP들이 <b>단일 종목 집중 리스크</b>를 물을 때 어떻게 답하십니까? 내부적으로 집중 한도를 두고 있고, 리벨리온 상장이 늦어지거나 밸류가 꺾이는 시나리오에는 어떻게 대비합니까?</p><p class="follow">↳ 프리IPO 투자심의위원회를 열지 않은 것이 밸류에이션 부담 때문이었습니까, 집중 한도 때문이었습니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.nate.com/view/20260331n34080" target="_blank" rel="noopener">[35]</a> <a href="https://www.newspim.com/news/view/20260824000201" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat5 must"><p class="qtext">적자의 큰 원인이 조합지분법손실과 파생상품부채평가손실이었습니다. 상장 VC는 포트폴리오 평가가 곧 회사 실적입니다. <b>평가손익 변동성을 LP와 주주에게 어떻게 설명하고 관리</b>하십니까? 공정가치 평가는 내부와 외부 중 누가 최종 판단합니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/143786" target="_blank" rel="noopener">[10]</a> <a href="https://dealsite.co.kr/articles/163103" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat5 must"><p class="qtext">2015년 한중 융합펀드는 한한령으로 고전해 만기를 연장했지만, 같은 펀드에서 티앤이코리아가 6.6배를 냈습니다. 해외 펀드에 출자하는 LP들에게 <b>국가·지정학 리스크를 어떻게 설명하고 관리</b>하십니까? 국가별 노출 한도나 환헤지 원칙이 있습니까? 상하이 법인은 지금 어떤 상태입니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/153631/075023" target="_blank" rel="noopener">[9]</a> <a href="https://www.newstopkorea.com/news/articleView.html?idxno=48258" target="_blank" rel="noopener">[29]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601211542229080107787" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">래블업은 공모가 하단에 의무보유확약이 2.09%에 그쳐 상장 직후 매물 부담이 큽니다. 세미파이브도 락업이 풀렸습니다. 상장 후 <b>매도 타이밍과 물량은 어떤 원칙</b>으로 정합니까? 수익 확정과 추가 상승 기대 사이에서 누가 결정합니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://zdnet.co.kr/view/?no=20261023155138" target="_blank" rel="noopener">[27]</a> <a href="https://www.newstomato.com/ReadNews.aspx?no=1304959" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">PE 쪽 모스트엑스(구 모두렌탈)는 약 1,000억이 들어갔는데 회수가 난항이라는 보도가 있었습니다. 지금 상황은 어떻습니까? <b>PE 딜의 하방 리스크</b>를 VC와 다르게 관리합니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/138157/068030" target="_blank" rel="noopener">[36]</a></span></div></div>
+    <div class="q cat5 must"><p class="qtext">내년 3월 시행되는 벤처투자법 개정으로 대주주·특수관계인이 투자 결정에 부당한 영향을 주는 행위가 금지되고, 검사·등록취소 근거도 생깁니다. <b>SV는 내부통제를 어떻게 바꿀 계획</b>입니까? 준법감시 기능은 누가 맡고 있습니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.lawtimes.co.kr/news/articleView.html?idxno=228348" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">3월 CB 콜옵션 25.5억 중 약 9.1억을 특수관계인 에스브이파트너스에 배정했습니다. 상장사로서 <b>이해상충 우려에 어떻게 답하시겠습니까?</b> 콜옵션 배정 기준은 무엇이었습니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.datatooza.com/article/20260316175533920652ef34c9b2_80" target="_blank" rel="noopener">[22]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">국감에서 한 운용사가 핵심운용인력 변경을 4년 넘게 허위 보고한 일이 드러났습니다. SV는 4월 조직개편으로 VC부문이 합쳐졌는데, <b>핵심운용인력이 바뀔 때 LP 보고는 어떻게 관리</b>합니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag">비교</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">[18]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604071411482920103528" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">투자의무 이행기간이 3년에서 5년으로 늘고 모태 공정가치 평가도 연 1회로 줄었습니다. <b>규제가 느슨해지는 만큼 GP 스스로 챙겨야 할 리스크</b>는 오히려 커진 것 아닙니까? 중기부 정기검사에서 VC 7곳이 경고를 받았는데, SV가 최근 받은 검사 지적은 있었습니까?</p><div class="qmeta"><span class="tag risk">리스크</span><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/01/06/2026010610512223219" target="_blank" rel="noopener">[21]</a> <a href="https://www.newstopkorea.com/news/articleView.html?idxno=44329" target="_blank" rel="noopener">[20]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[48]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-26</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
