@@ -1,0 +1,361 @@
+<meta charset="utf-8" />
+<title>메타인베스트먼트 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2e6b5e; --accent-soft: #e2efec;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8fd1c1; --accent-soft: #13241f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8fd1c1; --accent-soft: #13241f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #0e1a17; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #0e1a17; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 540px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-26</div>
+    <h1 class="title">메타인베스트먼트 — 이근창 전무</h1>
+    <p class="subtitle">"국내 최초 LP세컨더리 전문 운용사"로 7년을 달려왔다. 만기 물량은 쌓이는데, 올해 정책 세컨더리 출자는 IMM·LB 같은 대형사가 가져갔다. 작은 전문 하우스의 다음 수는?</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(VC·세컨더리)</span>
+      <span class="meta-chip">설립 2019.3 · 업력 7년차</span>
+      <span class="meta-chip">질문 22개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에 보기</h2>
+      <p class="def"><b>세컨더리란?</b> 새로 발행하는 주식(신주) 대신, 이미 있는 지분을 사는 투자입니다. 메타의 주력은 <b>LP세컨더리</b>입니다. 만기가 다가온 벤처펀드에서 출자자(LP)가 가진 지분을 사들이거나, 펀드에 남은 포트폴리오를 통째로 새 펀드로 옮겨 담습니다. 기존 LP는 돈을 일찍 돌려받고, 기업은 상장·매각까지 시간을 법니다 <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-27">[27]</a></sup>.</p>
+      <ul class="tight">
+        <li><b>업력</b>: 2019년 3월 유한회사로 설립 → 2025년 주식회사 전환. 7년차 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>규모</b>: 약정 기준 AUM <b>3,037억, 펀드 11개</b>(2025.2). 누적 분배 800억 이상(AUM의 약 27%) <sup class="ref"><a href="#src-3">[3]</a></sup>. 2023.1에는 약 2,400억·8개 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>사람</b>: 사내이사는 김준민 대표이사(창업자), 정윤홍 부사장, <b>이근창 전무</b> 3명 <sup class="ref"><a href="#src-2">[2]</a></sup>. 소수 정예(채용 사이트 기준 7명, 시점 미확인)</li>
+        <li><b>자체 주장</b>: "국내 LP세컨더리 딜의 <b>절반 이상</b>을 메타가 소화한다"(김 대표, 외부 검증 자료 없음) <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>올해의 공백</b>: 2026년 모태 정시·수시, 산은, 성장사다리 세컨더리 출자사업 <b>선정 명단에 메타가 없습니다</b>(지원 여부는 미확인) <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 연혁 · 지배구조</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2014</div><div class="tl-body">김준민(창업자)이 케이투인베스트먼트 시절 830억 규모 <b>"국내 1호 세컨더리펀드"</b>를 조성 <sup class="ref"><a href="#src-4">[4]</a></sup>. 원익투자·K2·엔베스터를 거침 <sup class="ref"><a href="#src-3">[3]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2019.03</div><div class="tl-body">메타인베스트먼트 설립(유한회사), "국내 최초 LP세컨더리 전문 운용사" <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2020</div><div class="tl-body">성장금융 LP지분 세컨더리 GP 선정 <sup class="ref"><a href="#src-11">[11]</a></sup>. 11월 <b>국내 첫 테일엔드 딜</b>(캡스톤3호 잔여자산 일괄 인수) <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022.03</div><div class="tl-body"><b>이근창</b> 신한캐피탈 투자금융4부장 영입 → 김준민·최배호·정윤홍·이근창 4인 파트너 체제 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024.03</div><div class="tl-body">"3세대 세컨더리 펀드 시대" 선언, 2,000억 결성 목표(달성 보도 없음) <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-52">[52]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><b>주식회사 전환</b>. 커지는 GP 의무출자(커밋) 부담과 외부 투자 유치를 염두에 둔 조치. 자본금 3억, 파트너 유상증자 <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.01</div><div class="tl-body">'탑업캐피탈인퓨전' 딜과 <b>1,000억 신규 펀드</b> 추진 발표 <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.07</div><div class="tl-body">밸류업 전담 자회사 <b>메타에셋매니지먼트</b> 설립. 전문인력을 피투자기업에 파견하는 구조이며, 사업목적에 기관전용 사모펀드·개인투자조합 포함. 사내이사는 김준민·이근창 <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+      </div>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 펀드 결성 이력</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>시기</th><th>규모</th><th>특징</th></tr>
+        <tr><td>메타 벤처자산 유동화 1호</td><td>2020.11</td><td>440억</td><td>캡스톤파트너스와 함께 캡스톤3호(모태 앵커) 잔여 포트폴리오 일괄 인수. 직방·샌드버드·왓챠·마이리얼트립 등 <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></td></tr>
+        <tr><td>케이클라비스-메타 세컨더리 1호</td><td>2020<span class="flag">(연도 엇갈림)</span></td><td>860억</td><td>성장금융 400억 출자. 반도체펀드 LP지분 5%를 23억에 인수 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td>케이클라비스-메타 2호</td><td>2021</td><td>103억</td><td>당근마켓 구주 약 100억 매입(핵심인력 정윤홍) <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td>세븐트리 창업벤처전문 4호</td><td>2021</td><td>119억</td><td>만기 임박 세븐트리 펀드 3개 인수. 에이피알 5배, 엑소코바이오 2배 회수, 자체 추산 IRR 약 23% <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td>하이브리드 ESG 세컨더리 1호</td><td>2022~23</td><td>미확인</td><td>포스코기술투자 Co-GP. 첫 투자로 약 40개사 포트폴리오에 33.5억 <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>메타-엔코어 소부장 신기술조합 1호</td><td>2023</td><td>–</td><td>2차전지 장비업체 지피아이에 엔코어와 총 150억(CB) <sup class="ref"><a href="#src-25">[25]</a></sup></td></tr>
+        <tr><td><b>메타 세컨더리 제이호</b></td><td>2023.07</td><td><b>500억</b>(목표 1,000억)</td><td>성장금융 앵커 150억, 우리은행·하나캐피탈 등. <b>대표펀드매니저 이근창</b>. 약 10개월 만에 소진, 만기 2031 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>모태 LP지분유동화(리딩에이스 Co-GP)</td><td>2023</td><td>모태 200억, 400억+</td><td>2파전에서 승리. 최종 결성액 미확인 <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td>하나캐피탈 공동운용 LP세컨더리</td><td>2025</td><td><span class="flag">미확인</span></td><td>성장사다리2 앵커(성장금융 250억). 1,000억 이상 결성 의무, 계획은 "최대 1,700억" <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup>. "700억" 표기는 THE VC에만 있어 검증 안 됨 <sup class="ref"><a href="#src-53">[53]</a></sup></td></tr>
+        <tr><td>탑업 신규 펀드</td><td>2026 추진</td><td>1,000억 목표</td><td>진척 미확인 <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src"><b>패턴</b>: 목표 대비 결성액이 꾸준히 작습니다. 제이호는 1,000억 목표에 500억이었고, 2024년 2,000억 목표는 보도가 없습니다. 2025년 성장사다리 펀드도 최종 결성액이 확인되지 않습니다. 2024년에는 "펀드레이징 경쟁 때문에 신규 결성에 신중하다"고 밝히기도 했습니다 <sup class="ref"><a href="#src-9">[9]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>주요 투자 · 회수</h2>
+      <ul class="tight">
+        <li><b>에이피알</b>: 세븐트리4호로 <b>5배</b> 회수. 에이피알에쿼티홀딩스 구주를 매입해 지배구조 보완을 도움 <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>직방·샌드버드·왓챠·마이리얼트립</b>: 테일엔드 1호로 넘겨받은 포트폴리오. 직방은 55억 투자로 약 160억 차익을 냈다는 보도가 있지만 스니펫마다 엇갈려 미확인 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>당근마켓</b>: 2021년 구주 약 100억 매입 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>알지노믹스</b>: 김 대표는 LP지분을 가진 한 펀드가 알지노믹스 한 건으로 약정총액 2배를 회수할 것으로 "예상"했습니다 <sup class="ref"><a href="#src-17">[17]</a></sup>. <span class="flag">주의:</span> 알지노믹스로 실제 2배 분배가 보도된 곳은 LSK인베스트먼트 펀드입니다 <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li><b>지피아이</b>(아픈 손가락): 2023년 엔코어와 150억 CB 투자 <sup class="ref"><a href="#src-25">[25]</a></sup>. 2026년 5월 실적 부진과 IPO 차질로 SI·FI가 <b>풋옵션을 행사</b>했고, 최대주주 유니트론텍 지분이 38.8%에서 70.4%로 늘 예정 <sup class="ref"><a href="#src-26">[26]</a></sup>. 메타의 회수액·손익은 미확인</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 투자 성향 — 무엇을 선호하나</h2>
+      <ul class="tight">
+        <li><b>주력은 LP-led</b>: 만기 펀드의 LP지분을 일부 또는 전부 인수하고, 포트폴리오를 새 펀드로 옮김. 대상은 대부분 <b>설립 7년 이내 기업</b> <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>4대 전략</b> <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-52">[52]</a></sup>
+          <ul class="tight">
+            <li>① LP세컨더리</li>
+            <li>② 테일엔드(펀드 잔여자산 일괄 인수)</li>
+            <li>③ GP-led LP세컨더리</li>
+            <li>④ 한국형 <b>탑업캐피탈인퓨전</b></li>
+          </ul>
+        </li>
+        <li><b>탑업캐피탈인퓨전</b>: 만기 펀드 자산을 인수하면서 우량 포트폴리오에 새 돈을 더 넣는 방식입니다. 한국은 LP 동의 없이 펀드를 운용할 수 없고 민법·자본시장법 제약도 있어, 기존 LP를 세컨더리 LP로 교체하고 규약을 바꾸는 구조를 설계했다고 합니다. 김 대표는 "만기가 됐는데 회수 못 한 자산이 지난해에만 1조원"이라고 했습니다 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>직접 구주 비중 확대</b>: 성장사다리 앵커 조건상 약정의 30%는 LP지분, 60%는 중소벤처 구주에 투자해야 합니다 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>밸류업으로 확장</b>: 자회사를 통해 인력을 파견하는 구조조정형 투자로 영역을 넓히는 중 <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 이근창 전무 프로필</h2>
+      <ul class="tight">
+        <li>1980년생, 서강대 경영학과. 2006년 신한캐피탈에 입사해 10년 넘게 <b>간접·대체투자(LP 쪽)</b>를 맡았고, 투자금융4부장을 지냄 <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li>2022.3 메타 파트너(상무)로 합류 → 현재 전무·사내이사 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup>. 김 대표가 엔베스터 시절 '신한-엔베스터 유동화전문펀드'를 함께 운용한 인연. 합류 당시 "GP로 일해보겠다"는 결의가 보도됨</li>
+        <li><b>메타 세컨더리 제이호(500억) 대표펀드매니저</b>. 2023.10 투자를 시작해 약 10개월 만에 소진(업계 통상 3년) <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>최근 발언</b>(10.8 금융투자협회 '벤처 회수시장 활성화 세미나' 패널) <sup class="ref"><a href="#src-27">[27]</a></sup> <sup class="ref"><a href="#src-28">[28]</a></sup>
+          <ul class="tight">
+            <li>"회수시장 병목을 기업 엑시트만의 문제로 볼 필요 없다"</li>
+            <li>LP지분을 새 투자자에게 넘기면 기업은 시간을, 기존 LP는 유동성을 얻고 GP의 성장 전략도 지킬 수 있다</li>
+            <li>컨티뉴에이션(존속)펀드는 GP가 거래 양쪽에 관여하므로 <b>가격 결정과 이해상충 관리</b>가 특히 중요하다</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="src">LP(신한캐피탈)에서 GP로 옮긴 경력이라 "LP는 왜 할인 매각을 꺼리나" 같은 질문에 양쪽 시각으로 답할 수 있는 인물입니다. 전무 승진 시점과 현재 공식 직책(CIO 여부)은 미확인입니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 세컨더리 시장 지금</h2>
+      <h3>수요: 만기 벽</h3>
+      <ul class="tight">
+        <li>2024~2028년 만기 벤처펀드 <b>1,411개, 33.8조</b>. 반면 2015~2024년 정책 모펀드가 만든 세컨더리 펀드는 5.6조 <sup class="ref"><a href="#src-36">[36]</a></sup></li>
+        <li>10.15 국감: "2028년까지 30조 만기인데 세컨더리·M&amp;A 펀드 결성이 지연된다", 한국벤처투자 대표가 인정 <sup class="ref"><a href="#src-37">[37]</a></sup></li>
+        <li>지난해 회수 원금 중 매각(구주·M&amp;A) 52.3%, IPO 33.2%. 그러나 매각의 실질수익률은 0.96%, IPO는 3.33배 <sup class="ref"><a href="#src-38">[38]</a></sup>. 7월까지 신규 상장은 21곳으로 53.3% 감소 <sup class="ref"><a href="#src-43">[43]</a></sup></li>
+      </ul>
+      <h3>가격: 매수자 우위</h3>
+      <ul class="tight">
+        <li>구주는 통상 신주 대비 <b>10~30% 할인</b>(힐링페이퍼 약 17%) <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+        <li>AI 쏠림으로 AI가 아닌 구주와 펀드 지분 매물이 쌓임. "LP지분은 골라낼 수 없으니 더 싸야 한다"(위벤처스) <sup class="ref"><a href="#src-42">[42]</a></sup></li>
+        <li>기관 LP가 비상장 지분을 취득원가로 평가해 할인 매각을 꺼린다는 지적 <sup class="ref"><a href="#src-30">[30]</a></sup>. 증권사는 NCR 위험값 완화와 표준 공정가치 가이드라인을 요구 <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+      </ul>
+      <h3>공급: 돈은 대형사로</h3>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>2026 정책 출자</th><th>선정</th><th>비고</th></tr>
+        <tr><td>모태 1차 정시 세컨더리</td><td>일반: 얼머스(단독), 소형: 오엔벤처·이에스인베스터 <sup class="ref"><a href="#src-31">[31]</a></sup></td><td>얼머스 1,040억 → 1,500억 증액 계획 <sup class="ref"><a href="#src-32">[32]</a></sup></td></tr>
+        <tr><td>모태 5월 수시 세컨더리</td><td>IMM인베, 디티앤, 엑스퀘어드 <sup class="ref"><a href="#src-19">[19]</a></sup></td><td>11곳 지원 <sup class="ref"><a href="#src-51">[51]</a></sup>. IMM은 모태·산은 650억 확보, 7호 1,500억~3,000억 <sup class="ref"><a href="#src-33">[33]</a></sup></td></tr>
+        <tr><td>산은 회수시장 세컨더리</td><td>중형: IMM·LB(각 1,500억), 소형: 컴퍼니케이(재공고) <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup></td><td>7곳 지원 <sup class="ref"><a href="#src-34">[34]</a></sup>. 2025년은 우리벤처·TS <sup class="ref"><a href="#src-48">[48]</a></sup></td></tr>
+        <tr><td>성장사다리2 3차 세컨더리</td><td>앵커: 에스제이지, 매칭: 브레이브뉴-문채이스 <sup class="ref"><a href="#src-22">[22]</a></sup></td><td>2025 앵커는 메타-하나캐피탈</td></tr>
+        <tr><td><b>모태 LP성장펀드 세컨더리 리그(신설)</b></td><td>11.6~13 접수, 연내 선정</td><td>250억×3곳. <b>LP지분 인수도 투자로 인정</b>, 기준수익률 7% <sup class="ref"><a href="#src-23">[23]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>새 돈</b>: 증권업계가 3년간 1조(초대형IB 7곳 + 3,000억 공동펀드) <sup class="ref"><a href="#src-44">[44]</a></sup>, 거래소·예탁원 등 유관기관이 1조 세컨더리 펀드 <sup class="ref"><a href="#src-45">[45]</a></sup>. 모태는 구주 매입을 결성액 최대 20%까지 주목적 투자로 인정(2025~26 한시) <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li><b>경쟁 펀드</b>: KB 세컨더리 1,075억 <sup class="ref"><a href="#src-39">[39]</a></sup>, 키움 800억 목표 <sup class="ref"><a href="#src-40">[40]</a></sup>. 민간 LP(총회연금재단)도 세컨더리를 내세운 IMM·LB 등을 숏리스트에 올림 <sup class="ref"><a href="#src-47">[47]</a></sup></li>
+        <li><b>성과 벤치마크</b>: IMM 세컨더리 1호 IRR 55%(성과보수 지급 후). 세컨더리는 멀티플은 낮아도 기간이 짧아 IRR이 높다는 평가 <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li><b>바람</b>: 국민성장펀드로 LP가 쏠려 모태 GP 70%가 기한 안에 결성하지 못함 <sup class="ref"><a href="#src-46">[46]</a></sup>. BDC는 초기에 세컨더리 위주로 운용될 거라는 전망 <sup class="ref"><a href="#src-50">[50]</a></sup>. 딥엑스 구주가 1.5조 밸류로 시장에 나오는 등 대형 구주 거래도 활발 <sup class="ref"><a href="#src-49">[49]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다. 딜사이트 기사 일부는 날짜가 추정입니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 딜사이트, 국내 최초 LP세컨더리·2,000억 목표·4대 전략, 2024-03-20. <a href="https://dealsite.co.kr/articles/119623" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 톱데일리, 주식회사 전환·사내이사, 2025. <a href="https://www.topdaily.kr/articles/104589" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 넘버스, [VC 하우스 돋보기] 메타인베스트, 2025-02-14.<span class="own">자사</span> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=8237" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 머니투데이, 김준민 국내 1호 세컨더리펀드, 2023-05-16. <a href="https://www.mt.co.kr/future/2023/05/16/2023051517202566972" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트(팍스넷뉴스), 이근창 영입 "사각편대 완성", 2022-03. <a href="https://dealsite.co.kr/articles/84278" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 블로터, 파트너진·최대 1,700억 계획, 2025-02.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=631729" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, AUM 2,400억·테일엔드 포트폴리오, 2023-01(추정). <a href="https://dealsite.co.kr/articles/97938" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 톱데일리, 메타에셋매니지먼트 설립, 2026-07. <a href="https://www.topdaily.kr/articles/110780" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, LP지분 유동화 집중·세븐트리4호 IRR, 2024-08(추정). <a href="https://dealsite.co.kr/articles/126226" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 케이클라비스-메타 1호 LP지분 인수, 2021. <a href="https://dealsite.co.kr/articles/76729" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, 성장금융 LP지분 세컨더리 GP 선정, 2020. <a href="https://dealsite.co.kr/articles/56778" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 딜사이트, 당근마켓 구주 매입, 2021. <a href="https://dealsite.co.kr/articles/79238" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 메타 세컨더리 제이호 10개월 소진, 2024-07. <a href="https://dealsite.co.kr/articles/125183" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, 모태 LP지분유동화 메타-리딩에이스, 2023(추정). <a href="https://dealsite.co.kr/articles/107759" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 딜사이트, 하이브리드 ESG 세컨더리 1호. <a href="https://dealsite.co.kr/articles/82709" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 딜사이트, 성장사다리2 세컨더리 앵커 메타-하나캐피탈, 2025-01-28. <a href="https://dealsite.co.kr/articles/135736" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 더벨, 김준민 대표 인터뷰(탑업캐피탈인퓨전), 2026-01-20. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601200924397840101129" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 딜사이트, 모태 1차 정시 세컨더리 얼머스 단독, 2026. <a href="https://dealsite.co.kr/articles/161523" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 모태 수시 세컨더리 IMM·디티앤·엑스퀘어드, 2026-07-22. <a href="https://dealsite.co.kr/articles/165703" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트, 산은 세컨더리 중형 IMM·LB, 2026-07-01. <a href="https://dealsite.co.kr/articles/164541" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 이코노미스트, 산은 세컨더리 소형 컴퍼니케이, 2026-08-20. <a href="https://economist.co.kr/article/view/ecn202608200058" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 성장사다리2 3차 세컨더리 GP, 2026-08. <a href="https://dealsite.co.kr/articles/167115" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 딜사이트, LP성장펀드 세컨더리 리그 신설, 2026-10. <a href="https://dealsite.co.kr/articles/171103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 톱데일리, 알지노믹스 LSK 펀드 2배 분배. <a href="https://www.topdaily.kr/articles/110952" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 딜사이트, 지피아이 150억 투자, 2023. <a href="https://dealsite.co.kr/articles/103456" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 딜사이트, 지피아이 풋옵션 행사, 2026-05. <a href="https://dealsite.co.kr/articles/161448" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> SBS Biz, 벤처 회수시장 세미나(이근창 발언), 2026-10. <a href="https://biz.sbs.co.kr/article/20000338057" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 아주경제, 회수시장 세미나, 2026-10-08. <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 아시아경제, 회수시장 세미나(NCR·IPO 박스권), 2026-10-08. <a href="https://core.asiae.co.kr/article/2026100817483955989" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 주간한국, LP 취득원가 평가·할인 매각 기피, 2026-10. <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7188126" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 더벨, 모태 1차 정시 세컨더리 선정, 2026-04-30. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202604300857452800103713" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 딜사이트, 얼머스 1,040억 결성·증액. <a href="https://dealsite.co.kr/articles/164401" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> IB토마토, IMM 세컨더리 7호. <a href="https://www.ibtomato.com/ExternalView.aspx?no=18995&type=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 딜사이트, 산은 세컨더리 7곳 지원, 2026-06-02. <a href="https://dealsite.co.kr/articles/162937" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 딜사이트, 구주 20% 특례·IMM 1호 IRR, 2025-03. <a href="https://dealsite.co.kr/articles/137798" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 유니콘팩토리, 만기 펀드 33.8조 vs 세컨더리 5.6조, 2024-11-19. <a href="https://www.unicornfactory.co.kr/article/2024111910345576901" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 뉴스핌, 국감 30조 만기·회수펀드 지연, 2026-10-15. <a href="https://www.newspim.com/news/view/20261015000951" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 톱데일리, 회수 경로별 비중·수익률. <a href="https://www.topdaily.kr/articles/112293" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 블로터, KB 세컨더리 1,075억.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=631071" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 유니콘팩토리, 키움 세컨더리 GP, 2025-09-01. <a href="https://www.unicornfactory.co.kr/article/2025090114295039179" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 딜사이트, 구주 할인율 10~30%, 2025-07. <a href="https://dealsite.co.kr/articles/145043" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 딜사이트, 위벤처스 세컨더리 전략·매수자 우위, 2026. <a href="https://dealsite.co.kr/articles/169405" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 뉴스토마토, 신규 상장 21곳(-53.3%). <a href="https://newstomato.com/ReadNews.aspx?no=1309482" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 한국경제, 증권업계 3년 1조 세컨더리, 2026-08-31. <a href="https://www.hankyung.com/article/2026083138326" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 머니투데이, 증권 유관기관 1조 세컨더리, 2026-09-30. <a href="https://www.mt.co.kr/stock/2026/09/30/2026093016233320344" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 머니투데이, 모태 1차 정시 70% 기한 내 미결성, 2026-10-02. <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 넘버스, 총회연금재단 VC 숏리스트, 2026-08-07.<span class="own">자사</span> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21601" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 딜사이트, 2025 산은 세컨더리 우리벤처·TS, 2025-10. <a href="https://dealsite.co.kr/articles/149197" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 더벨, 딥엑스 구주 1.5조 밸류, 2026-04-06. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604061522310960107271" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 아시아경제, BDC 초기 세컨더리 전망, 2026-04-16. <a href="https://core.asiae.co.kr/article/2026041616353553832" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 넘버스, 모태 수시 세컨더리 11곳 지원.<span class="own">자사</span> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21311" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 톱데일리, "3세대 세컨더리 펀드 시대", 2024-03. <a href="https://www.topdaily.kr/articles/96796" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> THE VC, 메타인베스트먼트 기업 페이지(2차 자료). <a href="https://thevc.kr/metainvestmentlc" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 2025년 이후 AUM, 하나캐피탈 공동운용 펀드의 최종 결성액, 2026년 1,000억 펀드 진척, 올해 정책 출자사업 지원 여부, 청산 펀드의 확정 수익률, 지피아이 회수 결과는 공개 자료로 확인되지 않았습니다. 넘버스 자사 기사(2025-02)는 사내 DB에서 원문을 확인하길 권합니다. 발행 2026-10-26.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 하우스 현안 — 펀드레이징</h2></div>
+    <div class="q cat1 must"><p class="qtext">지난해 성장사다리2 세컨더리 앵커로 하나캐피탈과 함께 선정돼 "1,000억 이상, 최대 1,700억"을 계획했습니다. <b>최종 결성액은 얼마였습니까?</b> 결성 시점과 주요 LP도 궁금합니다.</p><p class="follow">↳ 700억이라는 얘기도 있는데, 1,000억 의무를 못 채웠다면 성장금융과 어떻게 조율했습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/135736" target="_blank" rel="noopener">[16]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=631729" target="_blank" rel="noopener">[6]</a> <a href="https://thevc.kr/metainvestmentlc" target="_blank" rel="noopener">[53]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">올해 모태 정시·수시, 산은, 성장사다리 세컨더리 출자사업은 IMM·LB·얼머스 등이 가져갔고 메타는 명단에 없습니다. <b>지원하셨습니까?</b> 정책자금이 대형 하우스로 몰리는 구조에서 LP세컨더리 전문 하우스의 경쟁력은 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/161523" target="_blank" rel="noopener">[18]</a> <a href="https://dealsite.co.kr/articles/165703" target="_blank" rel="noopener">[19]</a> <a href="https://dealsite.co.kr/articles/164541" target="_blank" rel="noopener">[20]</a> <a href="https://dealsite.co.kr/articles/167115" target="_blank" rel="noopener">[22]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">모태 LP성장펀드가 처음으로 세컨더리 리그(250억×3곳)를 만들었고, <b>LP지분 인수도 투자로 인정</b>합니다. 메타에 딱 맞는 조건으로 보이는데, 다음 달 접수에 지원하십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171103" target="_blank" rel="noopener">[23]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">올해 초 밝힌 1,000억 탑업 펀드는 지금 어디까지 왔습니까? 앵커 LP는 정해졌습니까? 국민성장펀드로 LP가 쏠린 올해 <b>펀드레이징 분위기</b>는 어떻게 체감하십니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601200924397840101129" target="_blank" rel="noopener">[17]</a> <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">제이호는 1,000억 목표에 500억이었고, 2024년 2,000억 목표도 달성 소식이 없었습니다. <b>목표와 실제 결성액의 간극</b>이 반복되는 이유는 무엇이라고 보십니까? 지금 AUM은 얼마입니까(2025.2 3,037억)?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/125183" target="_blank" rel="noopener">[13]</a> <a href="https://dealsite.co.kr/articles/119623" target="_blank" rel="noopener">[1]</a> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=8237" target="_blank" rel="noopener">[3]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">지난해 주식회사로 바꾸면서 GP 커밋 부담과 외부 투자 유치를 이유로 들었습니다. <b>외부 투자를 실제로 받았습니까?</b> 올해 세운 메타에셋매니지먼트는 사업목적에 기관전용 사모펀드가 있는데, PE·구조조정 투자로 넓히려는 것입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.topdaily.kr/articles/104589" target="_blank" rel="noopener">[2]</a> <a href="https://www.topdaily.kr/articles/110780" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 이근창 전무 — LP에서 GP로</h2></div>
+    <div class="q cat2 must"><p class="qtext">신한캐피탈에서 16년 가까이 LP 쪽 간접투자를 하다 GP로 옮기셨습니다. <b>LP 시절에 본 세컨더리와 지금 GP로서 보는 세컨더리는 무엇이 다릅니까?</b> 기관 LP들이 비상장 지분을 취득원가로 평가해 할인 매각을 꺼린다는데, LP 출신으로서 그 속사정은?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/84278" target="_blank" rel="noopener">[5]</a> <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7188126" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">대표펀드매니저로 운용하신 제이호(500억)는 약 10개월 만에 다 썼습니다. 업계에선 보통 3년 걸린다는데, <b>딜이 그만큼 많았던 겁니까, 펀드가 작았던 겁니까?</b> 지금까지 분배(DPI)는 어느 정도입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/125183" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">이달 세미나에서 "컨티뉴에이션 펀드는 GP가 거래 양쪽에 관여해 가격 결정과 이해상충 관리가 중요하다"고 하셨습니다. 메타가 GP-led 딜을 할 때 <b>가격 공정성은 누가 어떻게 검증</b>합니까(외부 평가, LP 자문위원회 승인 등)?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/article/20000338057" target="_blank" rel="noopener">[27]</a> <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">우리은행, 하나캐피탈 같은 금융사가 메타 펀드의 주요 LP입니다. 요즘 <b>LP지분을 팔고 싶어 하는 쪽은 주로 누구</b>입니까? 금융사, 공제회, 일반 법인 가운데 어디서 매물이 많이 나옵니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/125183" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 세컨더리 시장 · 정책</h2></div>
+    <div class="q cat3 must"><p class="qtext">2028년까지 만기 벤처펀드가 30조원대인데, 정책 세컨더리 펀드는 5조원대에 그쳤습니다. 김준민 대표는 "만기가 됐는데 회수 못 한 자산이 지난해에만 1조"라고 했습니다. <b>시장에 나온 매물 중 실제로 거래되는 비율</b>은 어느 정도로 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2024111910345576901" target="_blank" rel="noopener">[36]</a> <a href="https://www.newspim.com/news/view/20261015000951" target="_blank" rel="noopener">[37]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601200924397840101129" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">구주는 보통 10~30% 할인되고, AI가 아닌 자산은 매물이 쌓여 매수자 우위라는 분석이 있습니다. 메타의 최근 딜 <b>할인율은 어느 수준</b>이고, LP지분과 직접 구주의 할인 폭은 어떻게 다릅니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/145043" target="_blank" rel="noopener">[41]</a> <a href="https://dealsite.co.kr/articles/169405" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">지난해 회수 원금의 절반 이상이 구주·M&amp;A 매각이었지만 실질수익률은 0.96%였습니다(IPO는 3.33배). <b>세컨더리가 결국 '손실 정리' 통로가 됐다</b>는 비판에는 어떻게 답하시겠습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.topdaily.kr/articles/112293" target="_blank" rel="noopener">[38]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">증권업계 1조, 거래소·예탁원 등 유관기관 1조, IMM 7호 최대 3,000억까지 세컨더리 자금이 대거 들어옵니다. 매수 경쟁으로 <b>할인율이 줄고 가격이 오르면</b> 메타 같은 전문 하우스엔 기회입니까, 위협입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.hankyung.com/article/2026083138326" target="_blank" rel="noopener">[44]</a> <a href="https://www.mt.co.kr/stock/2026/09/30/2026093016233320344" target="_blank" rel="noopener">[45]</a> <a href="https://www.ibtomato.com/ExternalView.aspx?no=18995&type=1" target="_blank" rel="noopener">[33]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">모태 GP 70%가 기한 안에 결성하지 못할 만큼 LP가 국민성장펀드로 쏠렸습니다. 이게 <b>LP지분 매물 증가</b>로 이어지고 있습니까? 국민성장펀드에 세컨더리 리그가 없는 건 아쉽지 않습니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">세컨더리를 키우려면 <b>제도에서 가장 먼저 풀어야 할 것</b>은 무엇입니까? 공정가치 평가 가이드라인, LP 동의 요건, 구주 매입 주목적 인정 확대(현재 결성액의 최대 20%) 가운데 우선순위를 꼽아 주십시오.</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2026100817483955989" target="_blank" rel="noopener">[29]</a> <a href="https://dealsite.co.kr/articles/137798" target="_blank" rel="noopener">[35]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 전략 · 포트폴리오</h2></div>
+    <div class="q cat4 must"><p class="qtext">'탑업캐피탈인퓨전'은 기존 LP를 세컨더리 LP로 바꾸고 규약을 고쳐 우량 기업에 새 돈을 넣는 구조라고 했습니다. <b>올해 첫 딜이 성사됐습니까?</b> 민법·자본시장법상 걸림돌은 어떻게 넘었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601200924397840101129" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">세븐트리4호로 에이피알 5배, 엑소코바이오 2배를 회수했고, 자체 추산 IRR은 약 23%입니다. <b>청산을 마친 펀드의 확정 수익률</b>을 공개할 수 있습니까? 테일엔드 1호로 넘겨받은 직방·샌드버드·왓챠·마이리얼트립은 지금 어떻게 정리되고 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/126226" target="_blank" rel="noopener">[9]</a> <a href="https://dealsite.co.kr/articles/97938" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">대표님은 알지노믹스 한 건으로 한 펀드가 약정총액의 2배를 회수할 것으로 예상했습니다. <b>그 회수는 실현됐습니까?</b> 어느 펀드를 통해서였습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601200924397840101129" target="_blank" rel="noopener">[17]</a> <a href="https://www.topdaily.kr/articles/110952" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2023년 엔코어와 함께 지피아이에 150억을 넣었는데, 올해 실적 부진과 IPO 차질로 투자자들이 풋옵션을 행사했습니다. 메타의 <b>회수 결과와 이 건에서 얻은 교훈</b>은 무엇입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/103456" target="_blank" rel="noopener">[25]</a> <a href="https://dealsite.co.kr/articles/161448" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">LP지분을 살 때 대상 기업은 대부분 설립 7년 이내라고 했습니다. <b>어떤 포트폴리오를 가장 선호하고, 무엇이면 바로 거르십니까?</b> AI 쏠림 속에서 AI가 아닌 자산은 기회입니까, 함정입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/126226" target="_blank" rel="noopener">[9]</a> <a href="https://dealsite.co.kr/articles/169405" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">신규 상장이 올해 절반 넘게 줄었습니다. IPO가 막히면 세컨더리 펀드도 결국 다른 세컨더리에 되파는 구조가 될 수 있는데, 메타 펀드의 <b>주요 회수 경로 비중</b>(IPO, M&amp;A, 구주 재매각)은 어떻게 됩니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://newstomato.com/ReadNews.aspx?no=1309482" target="_blank" rel="noopener">[43]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[53]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-26</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
