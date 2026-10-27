@@ -1,0 +1,313 @@
+<meta charset="utf-8" />
+<title>코오롱인베스트먼트 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #34495e; --accent-soft: #e4e9ef;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1; --c5: #0e7490;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #a9bcd0; --accent-soft: #1a222c;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #a9bcd0; --accent-soft: #1a222c;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #10161d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #10161d; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .tag.ask { background: #0e7490; color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .cat5 { border-left-color: var(--c5); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-27</div>
+    <h1 class="title">코오롱인베스트먼트 — 문수경 전무</h1>
+    <p class="subtitle">하우스 최대 펀드(2,030억)를 만들고 초장기펀드까지 따냈다. 그런데 그룹은 티슈진 쇼크와 리밸런싱 중이고, 업계는 관리보수가 깎이고 창업 세대가 물러나는 전환기다. 살림을 맡은 기획본부장에게 묻는다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(그룹 계열 VC)</span>
+      <span class="meta-chip">관계자: 기획본부장</span>
+      <span class="meta-chip">질문 18개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 취재 전 알아둘 것</h2>
+      <ul class="tight">
+        <li><b>문수경 전무는 투자 담당이 아닙니다.</b> 회사 홈페이지에 "기획본부장: 기획관리 총괄"로 나오고, 기획본부 아래에 기획관리·경영관리·<b>투자관리·리스크관리</b> 담당이 있습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 스튜어드십 코드 책임자이기도 합니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 투자심사 임원은 따로 있습니다 <sup class="ref"><a href="#src-3">[3]</a></sup>. → <b>관리보수·펀드 관리·LP·승계 질문이 이 분에게 잘 맞습니다.</b> 개별 투자 딜 질문은 "회사 차원에서" 답하도록 물으세요.</li>
+        <li><b>최근 최대 뉴스</b>: 10.14 <b>초장기기술투자펀드 중형 리그 선정</b>(중형 14곳 중 4곳, 1,600억) <sup class="ref"><a href="#src-13">[13]</a></sup>. 상반기에는 '코오롱 2025 AI 코리아 투자조합' 2,030억으로 VC 펀드레이징 2위를 기록했습니다 <sup class="ref"><a href="#src-6">[6]</a></sup>.</li>
+        <li><b>AUM은 기준마다 다릅니다</b>: 6,675억(더벨 리그테이블) <sup class="ref"><a href="#src-7">[7]</a></sup>, 7,555억(700억 펀드 결성 후) <sup class="ref"><a href="#src-8">[8]</a></sup>, "연내 8,000억 돌파·1조 클럽 목전" 전망 <sup class="ref"><a href="#src-4">[4]</a></sup>.</li>
+        <li><b>일반지주 CVC 규제 적용 여부는 미확인</b>입니다. 주요 주주는 "㈜코오롱 및 관계인"으로만 알려져 있습니다(2018년 이웅열 회장 12.5% 보도) <sup class="ref"><a href="#src-46">[46]</a></sup>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>하우스 개요</h2>
+      <ul class="tight">
+        <li>2000년 3월 설립, 임직원 24명, 포트폴리오 121개사 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>안상준 대표</b>: 2009년 합류, 2018년 대표 승진, 7년째 재임. <b>25년 동안 대표가 3명뿐</b>입니다 <sup class="ref"><a href="#src-4">[4]</a></sup>. VC협회 부회장으로 "VC는 IPO 이후 시장에서 배제된다"며 회수시장 제도 개선을 요구해 왔습니다 <sup class="ref"><a href="#src-49">[49]</a></sup></li>
+        <li>딜사이트 평가: "제2의 전성기". 행정공제회(300억)와 군인공제회를 새 LP로 확보했고, 2025년 IBK혁신펀드 K-AI 분야와 우체국보험에도 선정됐습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li>코오롱그룹 계열사 44곳 집계에서 코오롱인베는 '금융사'로 따로 분류됩니다 <sup class="ref"><a href="#src-45">[45]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 펀드 결성 · 실적</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>규모</th><th>내용</th></tr>
+        <tr><td>스타트업코리아 IBKVC-코오롱 2024</td><td>500억</td><td>IBK벤처투자와 Co-GP, 모태 150억, 2024.12 <sup class="ref"><a href="#src-10">[10]</a></sup></td></tr>
+        <tr><td>코오롱2024청년창업</td><td>최소 200억</td><td>모태 120억. 청년창업 운용 이력이 없는 GP로는 유일하게 선정 <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td>기술혁신전문펀드</td><td>700억</td><td>2025.3. 성장금융 350억, <b>계열사 코오롱ENP 80억</b>. AI 자율제조·디지털바이오·기후테크 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td><b>코오롱 2025 AI 코리아</b></td><td><b>2,030억</b></td><td>하우스 최대(종전 1,950억). 산은 앵커, 성장금융·행공. 목표 1,000억 → 1,500억 → 2,030억. 대표펀드매니저 김보영 상무 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td><b>초장기기술투자펀드</b></td><td>1,600억(중형)</td><td>12월 결성 목표. 제안 내용·Co-GP·대표매니저는 미확인 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>실적</b>: 2025년 투자 1,036억, 회수 1,265억 <sup class="ref"><a href="#src-7">[7]</a></sup>. 2024년 성과보수 약 48.5억(감사보고서) <sup class="ref"><a href="#src-9">[9]</a></sup>. 2026년 상반기 신규 투자 600억, 남은 투자 여력 1,796억 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>펀드 규모는 1년 새 두 배 이상 커졌는데, 임직원은 24명입니다</li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 초장기기술투자펀드 — 선정 조건</h2>
+      <ul class="tight">
+        <li>총 7곳 선정(55곳 지원). 중형은 스마일게이트·위벤처스·<b>코오롱인베</b>·퀀텀벤처스코리아, GP당 1,600억 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>목표액의 75% 이상을 첨단전략산업 기술평가 중소·중견기업에 투자. 그중 <b>40% 이상은 AI·반도체 외 분야</b>(7월 초안은 20%). 투자기간 최대 7년, <b>존속 최대 16년</b>, 12월까지 결성 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li>재원 8,800억 중 정책자금이 77%. <b>민간 2,000억 이상 모집이 첫 관문</b> <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>보수</b>: 설립 후 10년간 관리보수를 올려 주고 성과보수 기준수익률을 7%에서 5%로 낮췄습니다 <sup class="ref"><a href="#src-18">[18]</a></sup>. 그래도 <b>보수율 0.35%</b> 수준이라 업계에서 우려가 나왔고, 성과보수 정산이 15년 뒤라 인력 유지가 어렵다는 지적도 있습니다 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 업계 흐름 ① 관리보수가 낮아진다</h2>
+      <ul class="tight">
+        <li><b>업계 전언(기자 취재)</b>: 최근 관리보수가 낮아지는 추세</li>
+        <li>투자시장 위축으로 국민연금·산은 등 LP들이 펀드 관리보수를 줄이고 있다는 보도. 해당 모펀드 관리보수는 0.3~0.45% 수준 <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+        <li>펀드가 커질수록 보수율은 낮아지는 구조입니다. 초장기펀드조차 0.35% 수준이라는 우려가 나왔습니다 <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li>모태는 자본잠식 기업의 경영 개선이 예상되면 관리보수 삭감을 미룰 수 있게 기준을 완화했습니다 <sup class="ref"><a href="#src-28">[28]</a></sup>. 반면 국감에서 핵심인력 허위보고가 드러난 운용사에는 관리보수 삭감이 통보됐습니다 <sup class="ref"><a href="#src-31">[31]</a></sup>. 관리보수가 '보상'이자 '제재 수단'이 된 셈입니다</li>
+        <li>출자 문턱이 높아지면서 LP 돈은 대형 GP로 쏠립니다(과기공의 바벨형 배분) <sup class="ref"><a href="#src-29">[29]</a></sup>. 중소형 VC의 LP 자금이 대형 펀드 중심으로 재편될 가능성도 지적됐습니다 <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+      </ul>
+      <h2 style="margin-top:14px;"><span class="dot"></span>⭐ 업계 흐름 ② VC·PE 승계구조 개편</h2>
+      <ul class="tight">
+        <li><b>에이티넘</b>: 신기천·이승용 2인 대표 체제에 딥테크 총괄 맹두진 사장(삼성 종합기술원 출신)을 더해 <b>3인 각자대표</b>로 전환했습니다. '포스트 신기천' 대비로 해석됩니다 <sup class="ref"><a href="#src-32">[32]</a></sup></li>
+        <li><b>스틱</b>은 승계 대신 경영권 매각을 택했습니다 <sup class="ref"><a href="#src-33">[33]</a></sup>. "승계 대신 매각…세대교체 앞둔 시장의 반면교사" <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+        <li><b>IMM</b>은 공동 창업자 3인이 대표이사에서 물러났습니다(2026.6) <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li><b>코오롱인베</b>는 창업자형 VC가 아닙니다. 그룹 계열이라 대표를 그룹이 정하는 구조이고, 25년간 대표 3명, 현 대표 7년째입니다 <sup class="ref"><a href="#src-4">[4]</a></sup>. 13~16년 초장기펀드를 운용하는 동안 핵심인력 세대교체는 피할 수 없습니다</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>포트폴리오 · 회수</h2>
+      <ul class="tight">
+        <li><b>폴레드</b>: 2020년 약 17억 투자. 2026.5 상장 첫날 상한가에 99억을 팔고, 이후 26억을 더 회수해 누적 126억(<b>약 7.4배</b>). 기사 시점 주가는 3,600원대(공모가 5,000원) <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+        <li><b>뉴로핏</b>: 2025.8 지분 약 1.78%를 팔아 22억 회수. <b>매각가가 공모가를 밑돌았습니다</b>. 같은 주주였던 SBI는 100억대 수익 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>이노스페이스</b>: 코오롱인베 38억(2019~2021) + 코오롱글로텍 SI 60억 = 그룹 합계 108억. 코오롱스페이스웍스가 부품을 공급하는 <b>FI+SI 협업 모델</b> <sup class="ref"><a href="#src-22">[22]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+        <li>과거 회수: 압타바이오(20억 → 179억), 유틸렉스, 슈어소프트테크, 시지트로닉스. IPO 회수 비중이 높은 하우스 <sup class="ref"><a href="#src-21">[21]</a></sup></li>
+        <li>2026년 딜: 어피닛 시리즈E(프리IPO) <sup class="ref"><a href="#src-24">[24]</a></sup>, 에이디시스템 시리즈A <sup class="ref"><a href="#src-25">[25]</a></sup>, 벙커키즈(카카오벤처스와 함께) <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 코오롱그룹 — 지금 무슨 일이</h2>
+      <ul class="tight">
+        <li><b>티슈진 쇼크</b>: TG-C 1차 미국 3상이 1차 지표의 통계적 유의성을 확보하지 못했습니다(7.20) <sup class="ref"><a href="#src-36">[36]</a></sup>. 코오롱 3사 시총이 3거래일 만에 3.4조 증발했습니다 <sup class="ref"><a href="#src-38">[38]</a></sup>. 2차 3상 결과는 <b>12월로 연기</b>됐습니다 <sup class="ref"><a href="#src-37">[37]</a></sup></li>
+        <li><b>지주사 부담</b>: ㈜코오롱의 티슈진 투입액은 누적 3,160억(올해 유증 600억 + EB 600억 포함) <sup class="ref"><a href="#src-39">[39]</a></sup>. 12월 결과가 부진하면 지주사도 재무 충격을 받을 수 있다는 분석 <sup class="ref"><a href="#src-40">[40]</a></sup></li>
+        <li><b>승계</b>: 이웅열 명예회장의 ㈜코오롱 지분은 49.74%, 이규호 부회장은 0% <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+        <li><b>리밸런싱</b>: 1년 새 계열사 7곳을 정리하고 AI·우주에 베팅 <sup class="ref"><a href="#src-42">[42]</a></sup>. 코오롱인더는 OC·OLED 봉지재·DFR 사업을 팔려고 IMM PE와 MOU를 맺었습니다 <sup class="ref"><a href="#src-43">[43]</a></sup>. 코오롱인더 영업이익은 2년 연속 감소(2025년 1,089억) <sup class="ref"><a href="#src-39">[39]</a></sup>. 코오롱글로벌은 2025년 순손실 2,004억 <sup class="ref"><a href="#src-44">[44]</a></sup>. 계열사 16곳이 자본잠식 <sup class="ref"><a href="#src-45">[45]</a></sup></li>
+        <li><b>CVC 규제</b>: 일반지주 CVC는 외부자금 40%, 해외투자 20% 한도. 완화 개정안은 계류 중 <sup class="ref"><a href="#src-47">[47]</a></sup> <sup class="ref"><a href="#src-48">[48]</a></sup>. 코오롱인베 적용 여부는 미확인</li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 코오롱인베스트먼트 홈페이지, 임직원 소개(날짜 미표기). <a href="http://www.koloninvest.com/about/infomation2.asp" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 코오롱인베스트먼트 홈페이지, 스튜어드십 코드. <a href="http://koloninvest.com/about/stewardship_%20code.asp" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> THE VC, 코오롱인베스트먼트(2차 자료). <a href="https://thevc.kr/koloninvestment" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, "1조 클럽 목전"·안상준 대표·신규 LP, 2026-01-09. <a href="https://dealsite.co.kr/articles/154738" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트, AI 코리아 펀드 증액·김보영 상무, 2026-01-20. <a href="https://dealsite.co.kr/articles/154988" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 딜사이트, 상반기 VC 펀드레이징 2위, 2026-07-22. <a href="https://dealsite.co.kr/articles/164984" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 더벨, 2025 리그테이블(AUM·투자·회수), 2026-01-19. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601191011093120105932" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, 700억 펀드 결성·AUM 7,555억, 2025-03-27. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202503271523598000109691" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 이데일리 마켓인, 기술혁신전문펀드·성과보수, 2025. <a href="https://marketin.edaily.co.kr/News/Read?newsId=04218086642164984" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 파이낸셜뉴스, 스타트업코리아 IBKVC-코오롱 결성, 2024-12-18. <a href="https://www.fnnews.com/news/202412181758596003" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, 청년창업 분야 선정, 2024. <a href="https://dealsite.co.kr/articles/120553" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 딜사이트, IBK혁신펀드 K-AI 선정, 2025-11-28. <a href="https://dealsite.co.kr/articles/152419" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 인베스트조선, 초장기기술투자펀드 선정, 2026-10-14. <a href="https://www.investchosun.com/site/data/html_dir/2026/10/14/2026101480185.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 아주경제, 초장기펀드 중형 1,600억, 2026-10-14. <a href="https://www.ajunews.com/view/20261014180054514" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 데일리안, 초장기펀드 투자 조건, 2026-10-14. <a href="https://www.dailian.co.kr/news/view/1701599" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 녹색경제신문, 민간 2,000억 첫 관문, 2026-10. <a href="https://www.greened.kr/news/articleView.html?idxno=352103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 아시아경제, 초장기펀드 보수율·인력 우려, 2026-07-30. <a href="https://core.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 블로터, 관리보수 상향·기준수익률 인하.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=668472" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 폴레드 7.4배 회수, 2026-08-11. <a href="https://dealsite.co.kr/articles/166909" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트, 뉴로핏 공모가 밑 매각, 2025-09. <a href="https://dealsite.co.kr/articles/148011" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 딜사이트, 압타바이오 등 회수 이력. <a href="https://dealsite.co.kr/articles/104152" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 뉴데일리, 이노스페이스 FI+SI, 2026-06-18. <a href="https://biz.newdaily.co.kr/site/data/html/2026/06/18/2026061800094.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 뉴시스, 이노스페이스 상장 지분, 2024-07-01. <a href="https://www.newsis.com/view/NISX20240701_0002793753" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 한국경제, 어피닛 시리즈E, 2026-02-10. <a href="https://www.hankyung.com/article/202602106307i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 머니투데이, 에이디시스템 시리즈A, 2026-07-05. <a href="https://www.mt.co.kr/future/2026/07/05/2026070514472622754" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 아시아경제, 벙커키즈 150억, 2026-08-11. <a href="https://view.asiae.co.kr/article/2026081108291714766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 딜사이트, LP들 관리보수 축소. <a href="https://dealsite.co.kr/articles/134593" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 유니콘팩토리, 모태 관리보수 삭감 완화, 2025-01-06. <a href="https://www.unicornfactory.co.kr/article/2025010614255175510" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 파이낸셜뉴스, 과기공 바벨형 출자, 2026-08-14. <a href="https://www.fnnews.com/news/202608142214464790" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 인베스트조선, 중소형 VC LP 자금 재편, 2025-11-10. <a href="https://www.investchosun.com/site/data/html_dir/2025/11/10/2025111080142.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 뉴스핌, 국감 허위보고 운용사 관리보수 삭감, 2026-10-15. <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 유니콘팩토리, 에이티넘 3인 각자대표, 2026-02-03. <a href="https://www.unicornfactory.co.kr/article/2026020315525689771" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 스마트투데이, 스틱 매각 vs 에이티넘 3인 대표. <a href="https://www.smarttoday.co.kr/ko-kr/articles/102744" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 헤럴드경제, 승계 대신 매각, 2026-01-22. <a href="https://www.heraldk.com/article/2026012221000010075" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 아시아경제, IMM 공동 창업자 3인 대표 사임, 2026-06-26. <a href="https://view.asiae.co.kr/article/2026062612174810996" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 뉴시스, TG-C 1차 3상 결과, 2026-07-21. <a href="https://www.newsis.com/view/NISX20260721_0003716745" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 머니투데이, 2차 3상 결과 12월 연기, 2026-08-21. <a href="https://www.mt.co.kr/article/2026082116510767077" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 데일리팜, 코오롱 3사 시총 3.4조 증발, 2026-07. <a href="https://dailypharm.com/user/news/340666" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 인사이트, ㈜코오롱 티슈진 투입·코오롱인더 실적, 2026-07-10. <a href="https://www.insight.co.kr/news/555272" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> IB토마토, 2차 결과 부진 시 지주사 충격, 2026-10-13. <a href="https://newstomato.com/ReadNews.aspx?no=1316166" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> CEO스코어데일리, 이웅열·이규호 지분, 2025-09-17. <a href="https://ceoscoredaily.com/page/view/2025091716335724589" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 다음, 계열사 7곳 정리·AI·우주 베팅, 2026-05-27. <a href="https://v.daum.net/v/20260527050344017" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> MTN, 코오롱인더-IMM PE 사업 매각 MOU, 2026-07-13. <a href="https://news.mtn.co.kr/news-detail/2026071315473733427" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> CEO스코어데일리, 코오롱글로벌 순손실, 2026-05-07. <a href="https://ceoscoredaily.com/page/view/2026050716384021406" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 딜사이트, 코오롱 계열사 44곳·자본잠식 16곳, 2025-08. <a href="https://dealsite.co.kr/articles/146985" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 이투데이, 이웅열 코오롱인베 지분(2018). <a href="https://www.etoday.co.kr/news/view/1572073" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 뉴시스, CVC 규제 완화 개정안 계류, 2025-12-03. <a href="https://www.newsis.com/view/NISX20251203_0003427573" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 경기일보, CVC 외부자금 40% 한도, 2026-06-24. <a href="https://www.kyeonggi.com/article/20260624580278" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 아시아경제, 안상준 대표 회수시장 개선 요구, 2025-07-03. <a href="https://www.asiae.co.kr/article/2025070315052119651" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 문수경 전무의 입사 시점·이전 경력, 코오롱인베 주주 구성과 CVC 규제 적용 여부, 최신 AUM 공식 수치, 초장기펀드 제안 내용과 민간 LP 확보 현황, 그룹 계열사 출자 비중은 공개 자료로 확인되지 않았습니다. '관리보수 하락 추세'는 기자 취재 정보와 일부 보도에 근거합니다. 발행 2026-10-27.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, <span class="tag ask">요청</span>은 기자님이 추가 요청한 주제(관리보수·VC 승계)입니다. [번호]는 근거 기사이고, ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다. 문수경 전무는 기획본부장이라 ①번 질문이 가장 잘 맞습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>① 기획본부 — 관리보수 · 승계 · 펀드 관리</h2></div>
+    <div class="q cat2 must"><p class="qtext">요즘 LP들이 관리보수를 낮추는 추세라는 얘기가 많습니다. 펀드가 커질수록 보수율은 내려가고, 초장기펀드조차 보수율이 0.35% 수준이라는 우려가 나왔습니다. 코오롱인베가 <b>체감하는 관리보수율 변화</b>는 어느 정도입니까? 관리보수만으로 하우스 운영비가 감당됩니까?</p><p class="follow">↳ "펀드 대형화로 상쇄된다"고 답하면: 영업수익에서 관리보수와 성과보수의 비중은 각각 얼마입니까? 2024년 성과보수 48.5억 이후 성과보수 파이프라인은?</p><div class="qmeta"><span class="tag ask">요청</span><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/134593" target="_blank" rel="noopener">[27]</a> <a href="https://core.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">[17]</a> <a href="https://marketin.edaily.co.kr/News/Read?newsId=04218086642164984" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">관리보수가 낮아지는 한편, 초장기펀드는 설립 후 10년간 관리보수를 올려 주는 구조입니다. 관리보수가 <b>LP가 GP를 길들이는 수단</b>(성과 따라 깎거나 올리는)이 됐다는 시각에 동의하십니까? LP와 보수 협상을 할 때 가장 크게 밀리는 지점은 어디입니까?</p><div class="qmeta"><span class="tag ask">요청</span><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=668472" target="_blank" rel="noopener">[18]</a> <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">[31]</a> <a href="https://www.unicornfactory.co.kr/article/2025010614255175510" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">VC 업계가 승계구조 개편기에 들어섰습니다. 에이티넘은 3인 각자대표로 '포스트 신기천'을 준비하고, 스틱은 매각을 택했고, IMM은 창업자 3인이 대표에서 물러났습니다. 코오롱인베는 25년간 대표가 3명이었고 현 대표는 7년째입니다. <b>그룹 계열 VC의 승계는 창업자형 VC와 무엇이 다르고</b>, 다음 리더십은 어떻게 길러지고 있습니까?</p><div class="qmeta"><span class="tag ask">요청</span><span class="tag req">핵심</span><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026020315525689771" target="_blank" rel="noopener">[32]</a> <a href="https://www.smarttoday.co.kr/ko-kr/articles/102744" target="_blank" rel="noopener">[33]</a> <a href="https://view.asiae.co.kr/article/2026062612174810996" target="_blank" rel="noopener">[35]</a> <a href="https://dealsite.co.kr/articles/154738" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">초장기펀드는 최대 16년을 가고 성과보수는 15년 뒤에야 정산됩니다. 그 사이 <b>핵심운용인력이 바뀌는 건 피할 수 없는데</b>, 키맨 조항이나 인력 승계 계획은 어떻게 설계하셨습니까? 성과보수를 기다리지 못하고 떠나는 인력은 어떻게 붙잡습니까?</p><div class="qmeta"><span class="tag ask">요청</span><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">[17]</a> <a href="https://www.dailian.co.kr/news/view/1701599" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">펀드 규모가 1년 새 두 배 넘게 커졌는데 임직원은 24명입니다. 기획본부가 맡은 투자관리·리스크관리·LP 보고 부담은 어떻게 감당하고 있습니까? 이번 국감에서 한 운용사가 핵심인력 변경을 4년 넘게 허위 보고한 일이 드러났는데, <b>코오롱인베의 LP 보고 체계</b>는 어떻게 점검됩니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://thevc.kr/koloninvestment" target="_blank" rel="noopener">[3]</a> <a href="http://www.koloninvest.com/about/infomation2.asp" target="_blank" rel="noopener">[1]</a> <a href="https://www.newspim.com/news/view/20261015000562" target="_blank" rel="noopener">[31]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">스튜어드십 코드 책임자로 계신데, 포트폴리오 주총에서 <b>의결권을 실제로 행사하거나 반대한 사례</b>가 있습니까? 그룹 계열 VC로서 계열사와 관련된 안건에서는 어떤 원칙을 따릅니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="http://koloninvest.com/about/stewardship_%20code.asp" target="_blank" rel="noopener">[2]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>② 하우스 현안 — 규모와 펀드레이징</h2></div>
+    <div class="q cat1 must"><p class="qtext">AUM이 6,675억, 7,555억, "연내 8,000억·1조 클럽 목전"으로 기사마다 다릅니다. <b>현재 약정 기준 공식 AUM</b>은 얼마이고, 초장기펀드를 결성하면 1조를 넘습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601191011093120105932" target="_blank" rel="noopener">[7]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202503271523598000109691" target="_blank" rel="noopener">[8]</a> <a href="https://dealsite.co.kr/articles/154738" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">AI 코리아 펀드는 목표 1,000억에서 2,030억까지 커졌습니다. 모태 자펀드 70%가 기한 안에 결성하지 못할 만큼 LP가 국민성장펀드로 쏠린 해에 <b>코오롱인베는 어떻게 LP를 모았습니까?</b> 행공·군공 같은 새 LP는 무엇을 보고 들어왔다고 보십니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/154988" target="_blank" rel="noopener">[5]</a> <a href="https://dealsite.co.kr/articles/164984" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 초장기펀드 · 정책펀드</h2></div>
+    <div class="q cat3 must"><p class="qtext">초장기펀드 중형 리그에서 14곳 중 4곳에 들었습니다. <b>무엇이 심사에서 통했다고 보십니까?</b> 1,600억 가운데 민간 몫은 12월까지 어떻게 채웁니까? 그룹 계열사도 출자합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/10/14/2026101480185.html" target="_blank" rel="noopener">[13]</a> <a href="https://www.greened.kr/news/articleView.html?idxno=352103" target="_blank" rel="noopener">[16]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">초장기펀드는 주목적 투자의 40% 이상을 AI·반도체 외 분야에 써야 합니다(초안은 20%). 기술혁신펀드에서 해 온 <b>기후테크·디지털바이오·소재 같은 분야</b>로 채울 계획입니까? 코오롱그룹의 소재·수소 역량과는 연결됩니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.dailian.co.kr/news/view/1701599" target="_blank" rel="noopener">[15]</a> <a href="https://marketin.edaily.co.kr/News/Read?newsId=04218086642164984" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 포트폴리오 · 회수</h2></div>
+    <div class="q cat4 must"><p class="qtext">폴레드는 상장 첫날 상한가에 99억을 팔아 누적 약 7.4배를 거뒀지만, 뉴로핏은 공모가보다 낮게 팔았습니다. 같은 IPO 회수인데 결과가 갈렸습니다. <b>상장 후 매도 시점은 어떤 원칙</b>으로 정하고, 누가 결정합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/166909" target="_blank" rel="noopener">[19]</a> <a href="https://dealsite.co.kr/articles/148011" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">이노스페이스에는 코오롱인베(38억)와 계열사 코오롱글로텍(60억)이 함께 투자했고, 코오롱스페이스웍스가 부품을 공급합니다. 이런 <b>FI+SI 협업 모델을 계속 키울 생각</b>입니까? 계열사와 같은 회사에 투자할 때 가격과 이해상충은 어떻게 관리합니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://biz.newdaily.co.kr/site/data/html/2026/06/18/2026061800094.html" target="_blank" rel="noopener">[22]</a> <a href="https://www.newsis.com/view/NISX20240701_0002793753" target="_blank" rel="noopener">[23]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">올해 어피닛 시리즈E, 에이디시스템 시리즈A, 벙커키즈 등에 투자했습니다. AI 코리아 펀드로 'AI 밸류체인 초기 단계 선제 투자'를 내세웠는데, <b>AI 밸류가 높을 때 들어가는 위험</b>은 어떻게 보십니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164984" target="_blank" rel="noopener">[6]</a> <a href="https://www.hankyung.com/article/202602106307i" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">안상준 대표는 "VC는 IPO 이후 시장에서 배제된다"며 회수시장 개선을 요구해 왔습니다. 코오롱인베처럼 <b>IPO 회수 비중이 높은 하우스</b>에 지금 가장 필요한 제도 변화는 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.asiae.co.kr/article/2025070315052119651" target="_blank" rel="noopener">[49]</a> <a href="https://dealsite.co.kr/articles/104152" target="_blank" rel="noopener">[21]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c5)"></span><h2>⑤ 코오롱그룹과의 관계</h2></div>
+    <div class="q cat5 must"><p class="qtext">티슈진 1차 3상 결과 뒤 코오롱 3사 시총이 3.4조 증발했고, ㈜코오롱은 티슈진에 누적 3,160억을 넣었습니다. 12월 2차 결과를 앞두고 <b>그룹 재무 부담이 코오롱인베의 출자나 지원에 영향</b>을 주고 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dailypharm.com/user/news/340666" target="_blank" rel="noopener">[38]</a> <a href="https://www.insight.co.kr/news/555272" target="_blank" rel="noopener">[39]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1316166" target="_blank" rel="noopener">[40]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">그룹은 1년 새 계열사 7곳을 정리하고 코오롱인더 사업 일부도 팔고 있습니다. 리밸런싱 속에서 <b>코오롱인베의 그룹 내 역할</b>은 무엇입니까? AI·우주에 베팅한다는 그룹 방향과 AI 코리아 펀드는 어떻게 맞물립니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://v.daum.net/v/20260527050344017" target="_blank" rel="noopener">[42]</a> <a href="https://news.mtn.co.kr/news-detail/2026071315473733427" target="_blank" rel="noopener">[43]</a> <a href="https://dealsite.co.kr/articles/146985" target="_blank" rel="noopener">[45]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">코오롱인베는 일반지주 CVC 규제(외부자금 40%, 해외투자 20%)를 적용받습니까? <b>지금 주주 구성</b>은 어떻게 되어 있고, 규제 완화 개정안이 통과되면 달라지는 게 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newsis.com/view/NISX20251203_0003427573" target="_blank" rel="noopener">[47]</a> <a href="https://www.kyeonggi.com/article/20260624580278" target="_blank" rel="noopener">[48]</a> <a href="https://www.etoday.co.kr/news/view/1572073" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat5"><p class="qtext">확인된 계열사 출자는 기술혁신펀드에 코오롱ENP 80억 정도입니다. 전체 운용자산에서 <b>그룹 계열사 출자 비중</b>은 얼마이고, 외부 LP 비중을 늘리는 건 의도적인 전략입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://marketin.edaily.co.kr/News/Read?newsId=04218086642164984" target="_blank" rel="noopener">[9]</a> <a href="https://dealsite.co.kr/articles/154738" target="_blank" rel="noopener">[4]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[49]는 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-27</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
