@@ -1,0 +1,275 @@
+<meta charset="utf-8" />
+<title>성장금융 김희진 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #7a5c00; --accent-soft: #f4eedb;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #e3c56b; --accent-soft: #262010;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #e3c56b; --accent-soft: #262010;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #1d1705; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #1d1705; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .conf { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; }
+  .conf.hi { background: #2f8f5b; }
+  .conf.md { background: #b9791f; }
+  .conf.lo { background: #8a8f98; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 500px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-28</div>
+    <h1 class="title">한국성장금융 — 김희진 팀장</h1>
+    <p class="subtitle">이달 초 금투협 회수시장 세미나에서 "만기가 와도 회수가 안 되면 민간 자금이 떠난다"고 경고한 산업금융3팀장. 그 팀이 속한 산업금융실은 10월 26일 개편으로 사라졌다. 새 자리와 세컨더리 해법을 묻는다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: LP기관(정책 출자)</span>
+      <span class="meta-chip">직함: 산업금융3팀장(개편 전)</span>
+      <span class="meta-chip">질문 16개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 소속 · 업무 추정</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>추정</th><th>근거</th><th>신뢰도</th></tr>
+        <tr><td><b>개편 전: 투자운용본부 산업금융실 산업금융3팀장</b></td><td>10.8 금투협 '벤처 회수시장 활성화 정책 세미나' 발제자로 여러 매체가 같은 직함을 씀 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></td><td><span class="conf hi">높음</span></td></tr>
+        <tr><td><b>담당 사업: IBK 성장 M&amp;A펀드(3차)</b> 등 은행 협업 출자</td><td>성장금융 출자공고 목록에 이 펀드의 담당팀이 '산업금융3팀'으로 적혀 있음 <sup class="ref"><a href="#src-8">[8]</a></sup>. 김 팀장이 직접 맡는다고 쓴 기사는 없음</td><td><span class="conf md">중간</span></td></tr>
+        <tr><td><b>전문 분야: 회수·세컨더리, 시장 분석</b></td><td>세미나 발제 주제가 '벤처투자 시장 현황 및 개선 필요성'이었고 LP지분 세컨더리·컨티뉴에이션 펀드를 대안으로 제시 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></td><td><span class="conf md">중간</span></td></tr>
+        <tr><td><b>개편 후(10.26~) 새 소속</b>: 투자운용1·2실의 투자운용팀이나 프로젝트투자팀, 또는 운용지원실(조사분석팀)</td><td>산업금융실이 폐지됐고, 산업금융실장이던 김봉섭 실장은 운용지원실장으로 이동 <sup class="ref"><a href="#src-11">[11]</a></sup>. 시장 분석 발제 이력으로 보면 조사분석팀 가능성도 있음</td><td><span class="conf lo">낮음</span></td></tr>
+      </table>
+      </div>
+      <p class="src"><span class="flag">※</span> 공개 자료에서 김희진 팀장이 등장하는 건 이번 세미나가 사실상 유일합니다. 입사 시기, 경력, 개편 후 직함은 확인되지 않았습니다. <b>첫 질문으로 새 소속과 담당을 확인하세요.</b> 금투협 세미나 자료집을 미리 받아 두면 좋습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 김희진 팀장 세미나 발언 요지 (10.8)</h2>
+      <ul class="tight">
+        <li><b>시장 규모</b>: 국내 VC 펀드 신규 결성액은 2015년 2.6조에서 지난해 14.3조로, PEF는 10조에서 30조로 커짐 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>회수 구조</b>: IPO와 프리IPO 성격의 장외매각이 약 85%. 지난해 기준 IPO 약 36%, 장외매각 약 49% <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+        <li><b>세컨더리 비중</b>: 신규 벤처펀드 중 세컨더리펀드는 국내 5~8%, 해외 약 24% <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>병목</b>: 기관 대부분이 비상장 지분을 취득원가로 평가해 <b>할인 매각할 유인이 없음</b> <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>해법</b>: LP지분 세컨더리, 컨티뉴에이션 펀드 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>경고</b>: "펀드 만기가 도래했음에도 회수가 이뤄지지 않는 경험이 쌓인다면 민간 자금의 이탈은 지금보다 훨씬 심해질 수도 있다" <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li>같은 세미나에서 한국성장금융은 "IPO 시장이 10년째 박스권"이라고 진단했고, 증권사는 NCR 위험값 완화와 공정가치 가이드라인을 요구했습니다 <sup class="ref"><a href="#src-16">[16]</a></sup>. 패널로는 메타인베스트먼트 이근창 전무 등이 참석했습니다 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+      </ul>
+      <p class="src"><span class="flag">※ 수치 비교:</span> 다른 집계(지난해 회수 원금 기준)는 매각 52.3%, IPO 33.2%로 김 팀장 수치와 조금 다릅니다 <sup class="ref"><a href="#src-25">[25]</a></sup>. 기준(원금인지 회수액인지)을 물어볼 만합니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 성장금융 10.26 조직개편</h2>
+      <p>투자운용본부를 '성장금융실·산업금융실·혁신금융실' 3실에서 4실로 바꿨습니다 <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup>.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>실</th><th>실장</th><th>산하 팀 · 역할</th></tr>
+        <tr><td>투자운용1실</td><td>정종호(전 성장금융실장)</td><td>투자기획팀, 투자운용1팀, 프로젝트투자1팀</td></tr>
+        <tr><td>투자운용2실</td><td>이동관 직무대행(전 성장금융1팀장)</td><td>투자운용2팀, 투자운용3팀, 프로젝트투자2팀</td></tr>
+        <tr><td><b>투자관리실(신설)</b></td><td>장철영(전 혁신금융실장)</td><td><b>자펀드 사후관리 전담</b>. 사후관리 업무를 경영기획 쪽에서 투자운용본부로 옮김</td></tr>
+        <tr><td>운용지원실</td><td>김봉섭(전 산업금융실장)</td><td>조사분석팀, 운용지원팀. 집합투자재산 평가임원 직도 넘겨받음</td></tr>
+      </table>
+      </div>
+      <p class="src">'성장·산업·혁신'처럼 사업 분야별로 나누던 체계를 '운용(1·2실)–관리–지원'처럼 기능별로 바꾼 셈입니다. 6월 취임한 장상익 대표(한국벤처투자 16년 출신)와 이민우 CIO 체제의 첫 개편입니다 <sup class="ref"><a href="#src-29">[29]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup>. 산업금융3팀이 맡던 사업이 어느 팀으로 넘어갔는지는 확인되지 않았습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>담당 추정 사업 — IBK 협업 출자</h2>
+      <ul class="tight">
+        <li><b>IBK 성장 M&amp;A펀드(3차)</b>: 1,000억(블라인드 800억 + 프로젝트 200억). 블라인드 운용사는 펀드당 최소 2,000억 이상을 결성해야 하고, 결성 시한은 <b>2026.12.31</b> <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup>. 최종 GP는 미확인</li>
+        <li><b>IBK 생산적금융펀드 1호(일반매칭)</b>: 9.18 공고, 10.8 접수. 350억으로 GP 10곳(소형 20억×5, 중형 50억×5). 담당팀과 선정 결과는 미확인 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>세컨더리 · 회수 시장 배경</h2>
+      <ul class="tight">
+        <li><b>만기 벽</b>: 2024~2028년 만기 벤처펀드 33.8조. 반면 2015~2024년 정책 세컨더리 펀드는 5.6조 <sup class="ref"><a href="#src-17">[17]</a></sup>. 국감에서도 "2028년까지 30조 만기인데 회수펀드 결성이 늦다"는 지적 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+        <li><b>새 돈</b>: 증권업계 3년 1조 <sup class="ref"><a href="#src-19">[19]</a></sup>, 거래소·예탁원 등 유관기관 1조 <sup class="ref"><a href="#src-20">[20]</a></sup>. 모태 LP성장펀드는 처음으로 세컨더리 리그(250억×3, LP지분 인수 인정)를 만들었고 11.6~13 접수 <sup class="ref"><a href="#src-21">[21]</a></sup></li>
+        <li><b>성장금융의 세컨더리</b>: 성장사다리2 세컨더리 앵커로 2025년엔 메타인베스트먼트-하나캐피탈 <sup class="ref"><a href="#src-23">[23]</a></sup>, 2026년 3차년도엔 에스제이지파트너스(앵커)와 브레이브뉴-문채이스(매칭)를 선정 <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+        <li><b>가격</b>: 구주는 통상 10~30% 할인 <sup class="ref"><a href="#src-24">[24]</a></sup>. 모태는 구주 매입을 결성액 최대 20%까지 주목적 투자로 인정 <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>성장금융 다른 현안 (요약)</h2>
+      <ul class="tight">
+        <li><b>연기금 국민성장매칭펀드</b>: 여러 모펀드가 함께 출자하는 방식으로 재공고. 블라인드에 첨단전략산업기금 공동출자 사업을 추가했고, 규모는 최대 5,000억 전망 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li><b>국민참여형 2차</b>: 목표 6,000억 중 5,198억(86.6%) <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+        <li><b>6월의 과열</b>: 매칭 공고 전에 유력 GP에 "출자 자리를 비워 두라"고 요청할 정도였음 <sup class="ref"><a href="#src-28">[28]</a></sup></li>
+        <li>성장금융 전반(방산, 국민성장펀드, 한국벤처투자와의 비교)은 10.20 브리핑을 참고하세요.</li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> MTN, 금투협 회수시장 세미나 개최 안내(김희진 산업금융3팀장 발제), 2026-10-02. <a href="https://news.mtn.co.kr/news-detail/2026100213523590318" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> SBS Biz, 회수시장 세미나. <a href="https://biz.sbs.co.kr/amp/article/20000338057" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 아주경제, 회수시장 세미나(김희진 발언), 2026-10-08. <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 이투데이, 회수시장 세미나, 2026-10-08. <a href="https://www.etoday.co.kr/news/view/2634039" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 한국금융신문, 회수시장 세미나, 2026-10-08. <a href="https://www.fntimes.com/html/view.php?ud=202610082002587029179ad43907_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 아시아투데이, 회수시장 세미나, 2026-10-08. <a href="https://www.asiatoday.co.kr/kn/view.php?key=20261008010002639" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 주간한국, 회수시장 세미나. <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7188120" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 한국성장금융 홈페이지, IBK 성장 M&amp;A펀드(3차) 공고(담당 산업금융3팀). <a href="https://m.kgrowth.or.kr/notice_view.asp?page=1&str_type=1&search_colume=&search_text=&idx=913&tab=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 인베스트조선, IBK 성장 M&amp;A펀드 3차, 2026-02-03. <a href="https://www.investchosun.com/site/data/html_dir/2026/02/03/2026020380219.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 유니콘팩토리, IBK 성장 M&amp;A펀드 3차, 2026-02-02. <a href="https://www.unicornfactory.co.kr/article/2026020215095823642" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, 성장금융 조직개편(4실 체제), 2026-10. <a href="https://dealsite.co.kr/articles/171100" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 블로터, 성장금융 조직개편, 2026-10.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=676664" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 파이낸셜뉴스, 연기금 매칭 재공고, 2026-10-12. <a href="https://www.fnnews.com/news/202610120906526518" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, 연기금 매칭 공동출자 방식. <a href="https://dealsite.co.kr/articles/170405" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 딜사이트, IBK 생산적금융펀드 1호, 2026-09. <a href="https://dealsite.co.kr/articles/169361" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 아시아경제, 회수시장 세미나(IPO 박스권·NCR), 2026-10-08. <a href="https://core.asiae.co.kr/article/2026100817483955989" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 유니콘팩토리, 만기 33.8조 vs 세컨더리 5.6조, 2024-11-19. <a href="https://www.unicornfactory.co.kr/article/2024111910345576901" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 뉴스핌, 국감 30조 만기·회수펀드 지연, 2026-10-15. <a href="https://www.newspim.com/news/view/20261015000951" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 한국경제, 증권업계 3년 1조 세컨더리, 2026-08-31. <a href="https://www.hankyung.com/article/2026083138326" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 머니투데이, 증권 유관기관 1조 세컨더리, 2026-09-30. <a href="https://www.mt.co.kr/stock/2026/09/30/2026093016233320344" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 딜사이트, LP성장펀드 세컨더리 리그 신설, 2026-10. <a href="https://dealsite.co.kr/articles/171103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 성장사다리2 3차 세컨더리 GP, 2026-08. <a href="https://dealsite.co.kr/articles/167115" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 딜사이트, 성장사다리2 세컨더리 앵커 메타-하나캐피탈, 2025-01-28. <a href="https://dealsite.co.kr/articles/135736" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 딜사이트, 구주 할인율 10~30%, 2025-07. <a href="https://dealsite.co.kr/articles/145043" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 톱데일리, 회수 경로별 비중·수익률. <a href="https://www.topdaily.kr/articles/112293" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 딜사이트, 구주 매입 20% 주목적 인정, 2025-03. <a href="https://dealsite.co.kr/articles/137798" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 이투데이, 국민참여형 2차 86.6%, 2026-10-15. <a href="https://www.etoday.co.kr/news/view/2636415" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 딜사이트, 성장금융 "출자 룸 비워 달라", 2026-06-30. <a href="https://dealsite.co.kr/articles/163875" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 블로터, 장상익 대표 취임·경영진, 2026-06-08.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=664888" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 더벨, 이민우 CIO 선임, 2026-05-20. <a href="https://www.thebell.co.kr/front/newsview.asp?code=0402&key=202605201724277560104931" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 김희진 팀장의 개편 후 소속·직급, 경력, 직접 맡은 펀드, IBK 생산적금융펀드 담당팀과 선정 결과는 공개 자료로 확인되지 않았습니다. 발행 2026-10-28.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다. 첫 질문의 답(새 소속)에 따라 ③번 묶음의 비중을 조절하세요.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>① 소속 · 담당 확인</h2></div>
+    <div class="q cat2 must"><p class="qtext">10월 26일 조직개편으로 산업금융실이 없어지고 투자운용1·2실, 투자관리실, 운용지원실 체제가 됐습니다. 팀장님은 <b>지금 어느 실·팀에서 무엇을 맡고 계십니까?</b> 산업금융3팀이 하던 일은 어디로 넘어갔습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171100" target="_blank" rel="noopener">[11]</a> <a href="https://news.mtn.co.kr/news-detail/2026100213523590318" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">'성장·산업·혁신'으로 나누던 조직을 '운용–관리–지원'의 기능별 조직으로 바꿨습니다. <b>왜 지금 이렇게 바꿨고</b>, GP 입장에서는 무엇이 달라집니까? 한 GP가 여러 출자사업에 걸쳐 있을 때 창구가 하나로 정리되는 겁니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171100" target="_blank" rel="noopener">[11]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=676664" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">자펀드 사후관리를 전담하는 투자관리실을 새로 만들고, 사후관리 업무를 경영기획에서 투자운용본부로 옮겼습니다. 한국벤처투자는 자펀드 관리 인력을 늘리고도 국감에서 허위보고를 못 잡았다고 지적받았습니다. <b>성장금융 사후관리는 무엇이 강화됩니까?</b></p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171100" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>② 세미나 발언 심화 — 회수 · 세컨더리</h2></div>
+    <div class="q cat1 must"><p class="qtext">세미나에서 "만기가 와도 회수가 안 되는 경험이 쌓이면 민간 자금 이탈이 훨씬 심해질 수 있다"고 하셨습니다. <b>성장금융 자펀드에서 실제로 그런 조짐</b>이 보입니까? 만기 연장 요청이나 청산 지연 건수가 늘었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">[3]</a> <a href="https://www.newspim.com/news/view/20261015000951" target="_blank" rel="noopener">[18]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">기관이 비상장 지분을 취득원가로 평가해 할인 매각할 유인이 없다고 지적하셨습니다. 그렇다면 <b>성장금융 자신은 LP로서 보유 지분을 할인해 팔 의향이 있습니까?</b> 정책 모펀드가 먼저 LP지분 매각에 나서야 시장이 열린다는 주장도 있습니다.</p><p class="follow">↳ "공공기관이라 손실 확정이 어렵다"고 답하면: 그 제약을 풀려면 어떤 제도(평가 기준, 감사 면책 등)가 필요합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.asiatoday.co.kr/kn/view.php?key=20261008010002639" target="_blank" rel="noopener">[6]</a> <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7188120" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">신규 벤처펀드 중 세컨더리 비중이 국내 5~8%, 해외 약 24%라고 하셨습니다. <b>국내 적정 비중은 얼마로 보십니까?</b> 증권업계 1조, 유관기관 1조, 모태 세컨더리 리그까지 돈이 몰리는데 그 정도면 충분합니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">[3]</a> <a href="https://www.hankyung.com/article/2026083138326" target="_blank" rel="noopener">[19]</a> <a href="https://www.mt.co.kr/stock/2026/09/30/2026093016233320344" target="_blank" rel="noopener">[20]</a> <a href="https://dealsite.co.kr/articles/171103" target="_blank" rel="noopener">[21]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">컨티뉴에이션 펀드를 대안으로 제시하셨는데, 같은 세미나에서 한 세컨더리 운용사는 "GP가 거래 양쪽에 관여해 가격과 이해상충 관리가 중요하다"고 했습니다. 성장금융이 출자자라면 <b>CV펀드 가격의 공정성을 어떻게 검증</b>하시겠습니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/amp/article/20000338057" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">지난해 회수 비중을 IPO 약 36%, 장외매각 약 49%로 제시하셨는데, 다른 집계는 매각 52.3%, IPO 33.2%입니다. <b>기준이 무엇이었습니까?</b> 장외매각의 실제 수익률(다른 집계에선 0.96%)은 어떻게 보십니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.etoday.co.kr/news/view/2634039" target="_blank" rel="noopener">[4]</a> <a href="https://www.topdaily.kr/articles/112293" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">성장사다리2 세컨더리 앵커로 2025년 메타-하나캐피탈, 올해는 에스제이지파트너스·브레이브뉴-문채이스를 뽑았습니다. 대형사 위주인 모태·산은과 달리 <b>중소형·신생 세컨더리 하우스를 고른 이유</b>는 무엇입니까? 이들 펀드는 목표대로 결성되고 있습니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/167115" target="_blank" rel="noopener">[22]</a> <a href="https://dealsite.co.kr/articles/135736" target="_blank" rel="noopener">[23]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 담당 추정 사업 — IBK 협업 · M&amp;A</h2></div>
+    <div class="q cat3 must"><p class="qtext">IBK 성장 M&amp;A펀드 3차는 블라인드 운용사에 펀드당 최소 2,000억 결성을 요구하고, 결성 시한이 올해 12월 31일입니다. <b>지금 결성 진척은 어떻습니까?</b> LP가 국민성장펀드로 쏠린 해에 2,000억 하한은 너무 높지 않았습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/02/03/2026020380219.html" target="_blank" rel="noopener">[9]</a> <a href="https://m.kgrowth.or.kr/notice_view.asp?page=1&str_type=1&search_colume=&search_text=&idx=913&tab=1" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">국내 M&amp;A 시장은 회수 경로로서 비중이 작습니다. M&amp;A펀드가 <b>실제로 벤처 회수에 기여한 사례</b>(벤처 인수, 볼트온 등)가 있습니까? 아니면 주로 중견기업 PE 딜로 흘러갑니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026020215095823642" target="_blank" rel="noopener">[10]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">IBK 생산적금융펀드 1호(350억, GP 10곳)는 소형 20억·중형 50억으로 쪼개 많은 GP에 나눠 줍니다. <b>소액 다수 배분</b>은 신생 GP 지원에는 좋지만, 그 돈으로 펀드 결성이 가능합니까? 선정 결과와 경쟁률은?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/169361" target="_blank" rel="noopener">[15]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 성장금융 출자 방향</h2></div>
+    <div class="q cat4"><p class="qtext">연기금 국민성장매칭펀드를 여러 모펀드 공동출자 방식으로 다시 공고했고, 규모가 최대 5,000억까지 커질 전망입니다. 6월엔 GP에 "출자 자리를 비워 두라"고 할 만큼 과열이었는데, <b>지금 GP들의 수요는 어떻습니까?</b></p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610120906526518" target="_blank" rel="noopener">[13]</a> <a href="https://dealsite.co.kr/articles/163875" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">새 경영진 체제의 첫 개편 이후 <b>내년 출자사업은 어디에 무게</b>를 둡니까? 세컨더리·회수 분야 출자를 늘릴 계획이 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=664888" target="_blank" rel="noopener">[29]</a> <a href="https://dealsite.co.kr/articles/171100" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">국민참여형 2차는 86.6%에 그쳤습니다. 회수 시장을 연구해 온 입장에서, <b>개인 투자자가 들어간 정책펀드의 회수 리스크</b>는 기관 펀드와 무엇이 다르다고 보십니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.etoday.co.kr/news/view/2636415" target="_blank" rel="noopener">[27]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">PE 결성액이 10년 새 10조에서 30조로 커졌다고 하셨습니다. VC보다 PE가 빨리 커지는 지금, 성장금융은 <b>VC와 PE 사이 출자 균형</b>을 어떻게 잡습니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.ajunews.com/view/20261008162835022" target="_blank" rel="noopener">[3]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[30]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-28</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
