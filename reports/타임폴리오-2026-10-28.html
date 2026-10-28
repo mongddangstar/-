@@ -1,0 +1,334 @@
+<meta charset="utf-8" />
+<title>타임폴리오 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #b0413e; --accent-soft: #f6e4e3;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #f0a29f; --accent-soft: #2a1716;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #f0a29f; --accent-soft: #2a1716;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #1f0f0e; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #1f0f0e; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 500px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-10-28</div>
+    <h1 class="title">타임폴리오자산운용 · 타임폴리오캐피탈</h1>
+    <p class="subtitle">10년 무손실을 내세우는 헤지펀드, 1년 반 만에 10조가 된 액티브 ETF. 그 '단기 성과의 집'이 이번엔 최장 16년짜리 초장기 벤처펀드 운용사로 뽑혔다. VC 기자가 물어야 할 것은 그 간극이다</p>
+    <div class="meta-row">
+      <span class="meta-chip">주체: 투자사(자산운용사·신기사)</span>
+      <span class="meta-chip">관계자: 미정</span>
+      <span class="meta-chip">질문 18개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 이 회사의 특징 5가지</h2>
+      <ul class="tight">
+        <li><b>① 헤지펀드 명가</b>: 대표 펀드 '더 타임'은 NAV 2조를 넘었고 연평균 23%. 2016년 설정 후 10년간 연간 손실이 없다는 게 회사 주장. 여러 매니저가 각자 운용하는 멀티매니저 시스템(MMS)이 특징 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>② 액티브 ETF 급성장</b>: 'TIME' ETF가 2025년 1월 약 9,300억에서 2026년 6월 <b>10조</b>로 1년 5개월 만에 10배. <b>독립계 운용사 최초</b> 10조 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>③ 숨은 비상장 큰손</b>: 2015년 대체투자부문을 만든 뒤 직접투자가 약 <b>560건</b>. 시리즈 단계부터 프리IPO, 상장 이후까지 같은 회사에 반복 투자 <sup class="ref"><a href="#src-32">[32]</a></sup></li>
+        <li><b>④ VC·PE 자회사</b>: 2022년 세운 <b>타임폴리오캐피탈</b>(신기술사업금융업자, 100% 자회사). 프리IPO, 메자닌, 바이아웃까지 <sup class="ref"><a href="#src-33">[33]</a></sup></li>
+        <li><b>⑤ 초장기펀드 운용사</b>: 10.14 국민성장펀드 초장기기술투자펀드 <b>소형 리그(800억)</b>에 운용·캐피탈 Co-GP로 선정(소형 13.7대1) <sup class="ref"><a href="#src-45">[45]</a></sup> <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+      </ul>
+      <p class="src">만나는 분의 직책이 정해지지 않아 질문은 하우스 전반으로 짰습니다. 대체투자(안승우 부사장 라인)나 캐피탈 쪽 인사라면 질문지의 ②·③번 묶음이 핵심입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 개요 · 지배구조</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2008</div><div class="tl-body">황성환 대표가 타임폴리오투자자문 설립. 서울대 투자동아리 출신으로, 대우증권을 거쳐 1,600만원으로 투자를 시작했다는 일화 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup>. THE VC는 법인 설립을 2006년으로 표기(미확인) <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2016.04</div><div class="tl-body">자산운용사로 전환. 2015년 대체투자부문 출범 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022.07</div><div class="tl-body">타임폴리오캐피탈 설립(자본금 150억 → 200억) <sup class="ref"><a href="#src-33">[33]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023</div><div class="tl-body">김홍기 CSO 영입, 하반기 각자대표 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.07</div><div class="tl-body"><b>차문현 부사장(COO)이 황성환 사장과 각자대표</b>. 주식투자부문을 새로 만들고 CIO를 외부에서 영입(심현수 전무). 안승우 부사장이 대체투자 CIO. 박정림 전 KB증권 대표를 사외이사로. ETF 조직은 3본부로 확대 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+      </div>
+      <ul class="tight">
+        <li>금융지주에 속하지 않은 독립계. 임직원 89명(2026.6) <sup class="ref"><a href="#src-2">[2]</a></sup>. 주주 구성은 미확인</li>
+        <li><b>실적</b>: 2025 회계연도 3분기 누적 영업수익 1,025억(+58.6%), 순이익 775억(+95.8%). "연간 순이익 1,000억 상회 전망". 수탁고는 2월에 8조를 돌파 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li>공모 재간접 '위드타임'이 사모재간접 공모펀드 최초로 1조를 넘었고, 위험등급이 내려가 퇴직연금에도 편입할 수 있게 됨 <sup class="ref"><a href="#src-10">[10]</a></sup>. 한국경제 펀드대상 첫 베스트 ETF 운용사 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>TIME 액티브 ETF</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>시점</th><th>순자산</th><th>비고</th></tr>
+        <tr><td>2025.01</td><td>1조</td><td>액티브 ETF 1조 돌파 <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td>2025말</td><td>3조8,834억</td><td>리그테이블 8위 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>2026.01</td><td>4조</td><td>액티브 전문 운용사 최초 <sup class="ref"><a href="#src-14">[14]</a></sup>. 브랜드를 'TIME'으로 변경 <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr>
+        <tr><td>2026.05</td><td>9조747억</td><td><sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>2026.06.22</td><td><b>10조1,074억</b></td><td>19개 상품. 미국나스닥100액티브 2.7조, 글로벌AI 약 3조, Korea플러스배당 1조 <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">신상품으로 코스닥액티브(3월) <sup class="ref"><a href="#src-18">[18]</a></sup>, 휴머노이드로봇(5월) <sup class="ref"><a href="#src-19">[19]</a></sup>을 냈고, 스페이스X를 상장 당일 ETF 3종에 편입했습니다 <sup class="ref"><a href="#src-20">[20]</a></sup>.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 비상장 · 프리IPO · 메자닌 (VC 기자가 볼 지점)</h2>
+      <ul class="tight">
+        <li><b>투자 철학</b>(안승우 대체투자 CIO): "숫자로 증명되는 구간", 즉 검증 직전 단계에 투자. 멀티전략 헤지펀드 약 1.8조 중 약 25%가 대체투자 <sup class="ref"><a href="#src-32">[32]</a></sup>. '더 타임' 구성은 롱숏 80%, 메자닌·비상장 20%, 공모주·이벤트드리븐 5% 이내 <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+        <li><b>리브스메드</b>: 2020년 첫 투자 뒤 누적 600억 이상. <b>상장 후인 올해 1월에도 약 31억을 더 사서</b> 지분율이 9.07%에서 9.28%로 올라감 <sup class="ref"><a href="#src-47">[47]</a></sup></li>
+        <li><b>딥엑스</b>: 2024년 시리즈C 참여. 올해 프리IPO에서 프로젝트펀드로 앵커를 맡는 방안이 거론됐지만, 기업가치 2조 안팎이라 LP 설득이 어려워 무산. 앵커는 금융지주들이 맡음 <sup class="ref"><a href="#src-48">[48]</a></sup></li>
+        <li><b>메이사</b>: 누적 약 370억, 하반기 IPO 목표 <sup class="ref"><a href="#src-30">[30]</a></sup>. <b>더에스엠씨</b>: 200억 프리IPO에 LB인베·코오롱인베와 함께 참여 <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+        <li><b>리테일 상품</b>: 코스닥벤처 'Agile 대체투자 5호'(약 150억, 비상장 70~90%, 구주 매입 포함. 1호는 3년간 80%+ 수익 후 청산) <sup class="ref"><a href="#src-28">[28]</a></sup>, 'Mezzanine K 1호' 110억, 코스닥벤처 운용 약 2,300억 <sup class="ref"><a href="#src-8">[8]</a></sup>. 2021년엔 5년 만기 비상장 블라인드펀드도 냄 <sup class="ref"><a href="#src-49">[49]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 타임폴리오캐피탈</h2>
+      <ul class="tight">
+        <li>2022.7 설립, 약 3개월 만에 신기술사업금융전문회사 등록. <b>최근 전업 면허를 반납하고 겸영 신기사로 전환</b>해 시설대여·할부금융업도 할 수 있게 됨. 연간 순이익 73억(+844.7%, 실적 연도 미확인) <sup class="ref"><a href="#src-33">[33]</a></sup></li>
+        <li><b>대표 김광수</b>: 운용 PE본부장 출신. PE본부를 캐피탈로 옮기며 대표가 됨 <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+        <li><b>산일전기</b>: 2023년 프리IPO 약 130억(당시 기업가치 2,600억) → 상장 후 장내매도로 <b>5배, IRR 약 216%</b>, 펀드 청산 <sup class="ref"><a href="#src-38">[38]</a></sup></li>
+        <li><b>티씬 바이아웃</b>: 밸브 포지셔너 업체. 약 1,130억(프로젝트펀드 900억 + <b>리테일 230억</b>, 원문 미확인) <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li><b>한컴인스페이스</b>: 한컴 보유 지분 28.32% 우선협상대상자로 뽑혔지만 <sup class="ref"><a href="#src-36">[36]</a></sup>, 이후 지분이 여러 FI에 쪼개 팔림(인수 철회 경위 미확인) <sup class="ref"><a href="#src-37">[37]</a></sup></li>
+        <li>신한자산운용의 첫 신기술조합을 공동운용(타임폴리오 측 후순위, 메자닌 리테일화) <sup class="ref"><a href="#src-39">[39]</a></sup>. 운용 조합 9개(프리IPO 1호, 테크 2호 등, 규모 대부분 비공개) <sup class="ref"><a href="#src-40">[40]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 초장기기술투자펀드 선정</h2>
+      <ul class="tight">
+        <li>소형 리그 3곳 중 하나(지앤텍벤처투자, 한화투자증권과 함께). <b>"대학 기술창업 지원 경험 + 신기사 심사 역량"</b>을 내세워 800억 결성 계획 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-45">[45]</a></sup></li>
+        <li>모회사-자회사 조합인데도 Co-GP로 분류됐다는 지적 <sup class="ref"><a href="#src-42">[42]</a></sup>. 소형 41곳 중 Co-GP 지원은 9곳 <sup class="ref"><a href="#src-43">[43]</a></sup>. AC 6곳은 서류에서 전원 탈락 <sup class="ref"><a href="#src-44">[44]</a></sup>. 한화투자증권은 증권사 중 유일한 단독 GP <sup class="ref"><a href="#src-46">[46]</a></sup></li>
+        <li><b>조건</b>: 12월 말까지 결성, 추가 모집은 2027년 3월까지. 재정이 민간 출자액의 최대 40%까지 손실을 먼저 부담 <sup class="ref"><a href="#src-58">[58]</a></sup>. 민간 몫 모집이 첫 관문 <sup class="ref"><a href="#src-57">[57]</a></sup>. 성과보수 정산이 15년 뒤라 인력 유지가 어렵다는 우려 <sup class="ref"><a href="#src-56">[56]</a></sup></li>
+      </ul>
+      <p class="src"><b>긴장 포인트</b>: 매일 가격이 매겨지는 헤지펀드·ETF 하우스가 최장 16년 동안 팔 수 없는 딥테크 펀드를 운용합니다. 보상 체계, 인력, 투자 문화가 맞물리는지가 핵심 질문입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>논란 · 리스크</h2>
+      <ul class="tight">
+        <li><b>아이티켐(2026.4)</b>: CB 400억 가운데 250억짜리 사모펀드에 앵커로 출자했고, 주식 지분도 보유(0.60%와 6.12%로 보도 엇갈림)했으며 ETF에도 편입. 감사의견 거절로 즉시상환이 발생해 300억은 먼저 받고 100억은 나눠 받기로 함 <sup class="ref"><a href="#src-22">[22]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+        <li><b>TIME 코스닥액티브</b>: 동시 출시된 코스닥 액티브 ETF 중 성과 최하위. 삼천당제약 비중을 나흘 새 8.95%에서 2.36%로 줄임 <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li><b>ETF 상장폐지</b>: TIME 미국배당다우존스액티브가 수익률은 비교지수보다 좋았지만, 비교지수와의 상관계수가 0.7에 못 미친 기간이 3개월을 넘어 상장폐지 <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li><b>공매도 과징금</b>: 싱가포르법인 무차입 공매도로 2024년 과징금 3.48억("입력 착오") <sup class="ref"><a href="#src-21">[21]</a></sup></li>
+        <li><b>넥스트증권</b>: CB를 약 1개월 만에 조기전환해 베이트리와 함께 지분 약 9.9% 확보 <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>업계 맥락 — 운용사의 벤처 진출</h2>
+      <ul class="tight">
+        <li>국민성장펀드 1차 코스닥 분야에 미래에셋벤처·브레인자산운용 Co-GP <sup class="ref"><a href="#src-50">[50]</a></sup></li>
+        <li>오라이언자산운용-삼성증권 메자닌 신기술조합 <sup class="ref"><a href="#src-51">[51]</a></sup>, 신한투자증권-DB자산운용 500억 신기술조합(메자닌+프리IPO) <sup class="ref"><a href="#src-52">[52]</a></sup>, 라이프자산운용-서울대기술지주 벤처조합 <sup class="ref"><a href="#src-53">[53]</a></sup>, 아이온 계열 벤처 자회사 설립 <sup class="ref"><a href="#src-54">[54]</a></sup></li>
+        <li><b>BDC</b>: 종합 자산운용사 42곳이 인가를 받은 것으로 간주되지만, 지금까지 설정된 상품은 신한자산운용 1호뿐 <sup class="ref"><a href="#src-55">[55]</a></sup>. <b>코너스톤 투자자</b> 제도는 11.13 시행 <sup class="ref"><a href="#src-59">[59]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card" id="report-endnotes" style="margin-top:6px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">본문 <sup class="ref">[n]</sup>을 누르면 여기로 이동합니다. <span class="own">자사</span>는 블로터·넘버스 기사입니다. <span class="flag">※ 한국 도메인 원문은 직접 열 수 없어 검색 요약으로 교차검증했습니다.</span></p>
+      <ul class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 파이낸셜뉴스, 타임폴리오 각자대표 체제·연혁, 2020-07. <a href="https://www.fnnews.com/news/202007131801430587" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> THE VC, 타임폴리오자산운용(2차 자료). <a href="https://thevc.kr/timefolioassetmanagement" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 딜사이트, 황성환 대표 이야기. <a href="https://dealsite.co.kr/articles/76985" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, 김홍기 각자대표. <a href="https://dealsite.co.kr/articles/98400" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 한국경제, 2026 정기인사(차문현 각자대표), 2026-06-15. <a href="https://www.hankyung.com/article/202606156108i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 아시아경제, 2026 정기인사, 2026-06-15. <a href="https://view.asiae.co.kr/article/2026061510113878813" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 실적·수탁고 8조, 2026-02-10. <a href="https://dealsite.co.kr/articles/156600" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 딜사이트, 더 타임 NAV 2조·Mezzanine K, 2026-02. <a href="https://dealsite.co.kr/articles/156522" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 비즈워치, 멀티매니저 시스템, 2026-05-27. <a href="https://news.bizwatch.co.kr/article/market/2026/05/27/0005" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 아시아경제, 위드타임 1조, 2026-06-22. <a href="https://core.asiae.co.kr/article/2026062210223607217" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 한국경제, 펀드대상 베스트 ETF 운용사, 2025-02. <a href="https://www.hankyung.com/article/2025020685191" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 아주경제, 액티브 ETF 1조, 2025-01-08. <a href="https://www.ajunews.com/view/20250108093423996" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 2025말 ETF 3.88조. <a href="https://dealsite.co.kr/articles/150833" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 헤럴드경제, ETF 4조 돌파, 2026-01-06. <a href="https://www.heraldk.com/article/2026010617360902423" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 한국경제, ETF 9조, 2026-06-01. <a href="https://www.hankyung.com/article/202606011311i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 한국경제, ETF 10조 돌파, 2026-06-23. <a href="https://www.hankyung.com/article/202606232051i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 헤럴드경제, 브랜드 TIME 변경, 2026-01-20. <a href="https://www.heraldk.com/article/2026012017000008727" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 이투데이, TIME 코스닥액티브 상장. <a href="https://www.etoday.co.kr/news/view/2563521" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 아시아경제, 휴머노이드로봇 ETF 상장, 2026-05-19. <a href="https://view.asiae.co.kr/article/2026051908152903295" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 뉴스핌, 스페이스X 편입, 2026-06-15. <a href="https://www.newspim.com/news/view/20260615001182" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 다음(헤럴드), 무차입 공매도 과징금, 2024-06-04. <a href="https://v.daum.net/v/20240604170201713" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> MTN, 아이티켐 CB 즉시상환, 2026-04-03. <a href="https://news.mtn.co.kr/news-detail/2026040310531158637" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 스마트투데이, 아이티켐 지분·ETF 편입. <a href="https://www.smarttoday.co.kr/ko-kr/articles/106258" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 스마트투데이, 코스닥액티브·삼천당제약, 2026-04. <a href="https://www.smarttoday.co.kr/ko-kr/articles/106118" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> MTN, 액티브 ETF 상장폐지, 2026-08-21. <a href="https://news.mtn.co.kr/news-detail/2026082116133540004" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 디지털타임스, 상관계수 미달 상장폐지. <a href="https://www.dt.co.kr/article/12077483" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 헤럴드경제, 넥스트증권 CB 조기전환, 2026-08-12. <a href="https://www.heraldk.com/article/2026081217253450601" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 딜사이트, Agile 대체투자 5호, 2025-09. <a href="https://dealsite.co.kr/articles/147341" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 딜사이트, 더 타임 전략 구성. <a href="https://dealsite.co.kr/articles/150539" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 파이낸셜뉴스, 메이사 투자, 2026-04-02. <a href="https://www.fnnews.com/news/202604021510288489" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 와우테일, 더에스엠씨 프리IPO, 2026-06-18. <a href="https://wowtale.net/2026/06/18/260366/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 이데일리 마켓인, 안승우 대체투자 인터뷰(직접투자 560건). <a href="https://marketin.edaily.co.kr/News/Read?newsId=03414486645387584" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 뉴스톱, 타임폴리오캐피탈 겸영 신기사 전환. <a href="https://www.newstopkorea.com/news/articleView.html?idxno=47598" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 서울경제 시그널, 김광수 대표, 2025-06-27. <a href="https://www.sedaily.com/article/14084459" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 한국경제, 티씬 인수, 2025-09-25. <a href="https://www.hankyung.com/article/2025092583321" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 더벨, 한컴인스페이스 우선협상대상자, 2026-04-21. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202604211521480960102245" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 네이트, 한컴인스페이스 분할 매각, 2026-06-18. <a href="https://m.news.nate.com/view/20260618n32647" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 더벨, 산일전기 5배 회수, 2025-09-11. <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509111456578560106850" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 딜사이트, 신한자산운용 신기술조합 Co-GP, 2025-06-30. <a href="https://dealsite.co.kr/articles/143830" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> THE VC, 타임폴리오캐피탈(2차 자료). <a href="https://thevc.kr/timefoliocapital" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 뉴스투데이, 초장기펀드 소형 리그 제안, 2026-10-18. <a href="https://www.news2day.co.kr/article/20261018500082" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> IB토마토, 모자회사 조합 Co-GP 분류, 2026-10-21. <a href="https://www.newstomato.com/ReadNews.aspx?no=1317502" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 유니콘팩토리, 초장기펀드 지원 현황, 2026-09-09. <a href="https://www.unicornfactory.co.kr/article/2026090915031731452" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 머니투데이, AC 6곳 서류 탈락, 2026-09-29. <a href="https://www.mt.co.kr/future/2026/09/29/2026092915081841249" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 인베스트조선, 초장기펀드 7곳 선정, 2026-10-14. <a href="https://www.investchosun.com/site/data/html_dir/2026/10/14/2026101480185.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 블로터, 한화투자증권 단독 GP.<span class="own">자사</span> <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 한국경제, 리브스메드 상장 후 추가 매수, 2026-01-05. <a href="https://www.hankyung.com/article/2026010527691" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 인베스트조선, 딥엑스 프리IPO 앵커, 2026-05-22. <a href="https://www.investchosun.com/site/data/html_dir/2026/05/22/2026052280177.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 더벨, 비상장 블라인드펀드 출시, 2021-06-15. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202106151041289680106224" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 아시아경제, 국민성장펀드 1차 미래에셋벤처·브레인, 2026-05-27. <a href="https://view.asiae.co.kr/article/2026052717332908640" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 더벨, 오라이언-삼성증권 메자닌 조합, 2026-03-03. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202603032234569680101929" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 한국경제, 신한투자-DB운용 신기술조합, 2026-06-15. <a href="https://www.hankyung.com/article/202606156482i" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 머니투데이, 라이프자산운용-서울대기술지주, 2024-11-29. <a href="https://www.mt.co.kr/future/2024/11/29/2024112911264817192" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> THE VC, 아이온벤처파트너스(2차 자료). <a href="https://thevc.kr/aionventurepartners" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 인베스트조선, BDC 현황, 2026-08-13. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/13/2026081380140.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 아시아경제, 초장기펀드 보수·인력 우려, 2026-07-30. <a href="https://core.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 녹색경제신문, 민간 2,000억 첫 관문. <a href="https://www.greened.kr/news/articleView.html?idxno=352103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 파이낸셜뉴스, 재정 후순위 최대 40%, 2026-08-20. <a href="https://www.fnnews.com/news/202608202051080938" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> 금융위원회, 코너스톤 투자자 제도 하위법규. <a href="https://fsc.go.kr/po010103/87440" target="_blank" rel="noopener">링크</a></li>
+      </ul>
+    </div>
+
+    <p class="note">⚠️ 만나는 분의 직책, 주주 구성, 최신 전체 AUM, 초장기펀드 핵심운용인력·주력 섹터·민간 LP 확보 현황, 타임폴리오캐피탈의 조합별 규모, 한컴인스페이스 인수 철회 경위는 공개 자료로 확인되지 않았습니다. 발행 2026-10-28.</p>
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 예상되는 방어성 답변에 이어 던질 질문입니다. VC 기자 관점에서 ① 초장기펀드, ② 비상장 투자를 먼저 물으세요.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>① 초장기펀드 — 헤지펀드 하우스의 16년 베팅</h2></div>
+    <div class="q cat3 must"><p class="qtext">매일 가격이 매겨지는 헤지펀드·ETF가 주력인 하우스가 최장 16년 동안 팔 수 없는 초장기 딥테크 펀드를 맡았습니다. <b>왜 이 펀드에 지원했고</b>, 하우스 문화와 어떻게 맞춰 갈 생각입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/10/14/2026101480185.html" target="_blank" rel="noopener">[45]</a> <a href="https://news.bizwatch.co.kr/article/market/2026/05/27/0005" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">운용과 캐피탈이 모자회사인데 Co-GP로 지원했습니다. <b>두 회사의 역할은 어떻게 나뉩니까?</b> 선정 사유로 꼽힌 "대학 기술창업 지원 경험"은 구체적으로 어떤 이력입니까?</p><p class="follow">↳ "모자회사 조합인데 Co-GP 가점을 받은 것 아니냐"는 시각에는 어떻게 답하시겠습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.news2day.co.kr/article/20261018500082" target="_blank" rel="noopener">[41]</a> <a href="https://www.newstomato.com/ReadNews.aspx?no=1317502" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">헤지펀드는 해마다 성과급을 주는데, 초장기펀드의 성과보수는 15년 뒤에야 정산됩니다. <b>운용인력 보상은 어떻게 설계하셨습니까?</b> 핵심인력이 그 사이 떠나면 어떻게 합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2026073014591932013" target="_blank" rel="noopener">[56]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">800억 가운데 민간 몫은 12월 말까지 채워야 합니다. 리테일 고객 기반이 강점인데, <b>초장기펀드 민간 LP는 어디서 구합니까?</b> 재정이 민간 출자액의 40%까지 손실을 먼저 떠안는 구조가 LP 설득에 실제로 통합니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.greened.kr/news/articleView.html?idxno=352103" target="_blank" rel="noopener">[57]</a> <a href="https://www.fnnews.com/news/202608202051080938" target="_blank" rel="noopener">[58]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">소형 리그는 13.7대1이었고, 지원한 AC 6곳은 서류에서 전원 떨어졌습니다. 초기 기술기업을 키워 온 AC 대신 <b>운용사가 뽑힌 걸 VC 업계가 어떻게 볼 거라고 생각하십니까?</b> 초기 투자 역량은 어디서 보완합니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/09/29/2026092915081841249" target="_blank" rel="noopener">[44]</a> <a href="https://www.unicornfactory.co.kr/article/2026090915031731452" target="_blank" rel="noopener">[43]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 비상장 · 프리IPO 투자</h2></div>
+    <div class="q cat2 must"><p class="qtext">2015년 이후 비상장 직접투자가 약 560건이고, 멀티전략 헤지펀드의 약 25%가 대체투자라고 들었습니다. <b>환매가 가능한 개방형 헤지펀드에 비상장 자산을 담으면 유동성이 맞지 않는 문제</b>는 어떻게 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://marketin.edaily.co.kr/News/Read?newsId=03414486645387584" target="_blank" rel="noopener">[32]</a> <a href="https://dealsite.co.kr/articles/150539" target="_blank" rel="noopener">[29]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">리브스메드에는 누적 600억 이상을 넣었고, VC들이 팔고 나가는 상장 후에도 오히려 31억을 더 샀습니다. <b>상장 전후를 잇는 크로스오버 투자</b>가 VC와 비교해 어떤 강점이 있습니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/2026010527691" target="_blank" rel="noopener">[47]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">딥엑스 프리IPO에서 프로젝트펀드로 앵커를 맡으려다 기업가치 2조 수준에 LP 설득이 어려워 접은 것으로 알려졌습니다. <b>요즘 AI·반도체 비상장 밸류는 거품입니까?</b> 어디까지면 들어가십니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/05/22/2026052280177.html" target="_blank" rel="noopener">[48]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">"숫자로 증명되는 구간"에 투자한다는 철학인데, 그 구간은 VC가 가장 좋은 값을 받고 싶어 하는 구간이기도 합니다. 더에스엠씨처럼 <b>VC와 함께 들어갈 때 VC는 경쟁자입니까, 파트너입니까?</b></p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://marketin.edaily.co.kr/News/Read?newsId=03414486645387584" target="_blank" rel="noopener">[32]</a> <a href="https://wowtale.net/2026/06/18/260366/" target="_blank" rel="noopener">[31]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">코스닥벤처펀드 'Agile 대체투자' 1호는 3년간 80% 넘는 수익을 냈다고 합니다. 5호는 구주 매입도 담습니다. <b>개인투자자에게 비상장을 파는 상품</b>의 투자자 보호와 가치평가는 어떻게 합니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/147341" target="_blank" rel="noopener">[28]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>③ 타임폴리오캐피탈 · PE</h2></div>
+    <div class="q cat4 must"><p class="qtext">산일전기 프리IPO로 5배, IRR 약 216%를 내고 펀드를 청산했습니다. 그런데 최근 <b>전업 신기사 면허를 반납하고 겸영 신기사로 바꿔</b> 시설대여·할부금융도 할 수 있게 됐습니다. 벤처·PE 투자회사에서 금융회사로 성격을 넓히는 이유는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thebell.co.kr/free/content/ArticleView.asp?key=202509111456578560106850" target="_blank" rel="noopener">[38]</a> <a href="https://www.newstopkorea.com/news/articleView.html?idxno=47598" target="_blank" rel="noopener">[33]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">티씬 바이아웃에 리테일 자금 230억이 들어간 것으로 보도됐습니다. <b>바이아웃처럼 위험이 큰 딜에 리테일 돈</b>을 넣는 것에 대한 우려는 어떻게 보십니까? 한컴인스페이스는 우선협상대상자가 된 뒤 왜 인수가 무산됐습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/2025092583321" target="_blank" rel="noopener">[35]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202604211521480960102245" target="_blank" rel="noopener">[36]</a> <a href="https://m.news.nate.com/view/20260618n32647" target="_blank" rel="noopener">[37]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">신한자산운용의 첫 신기술조합을 함께 운용하면서 타임폴리오가 후순위로 들어갔습니다. 대형 운용사·증권사가 메자닌을 리테일에 파는 흐름에서 <b>타임폴리오캐피탈의 지금 운용 규모와 조합 수</b>는 어떻게 됩니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/143830" target="_blank" rel="noopener">[39]</a> <a href="https://thevc.kr/timefoliocapital" target="_blank" rel="noopener">[40]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>④ 하우스 현안 · 정책</h2></div>
+    <div class="q cat1 must"><p class="qtext">아이티켐에는 CB 펀드 앵커, 주식 보유, ETF 편입이 한꺼번에 걸려 있었습니다. 감사의견 거절로 즉시상환 사태가 났는데, <b>같은 회사에 메자닌·주식·ETF로 동시에 노출되는 이해상충과 집중 리스크</b>는 어떻게 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">이해상충</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.mtn.co.kr/news-detail/2026040310531158637" target="_blank" rel="noopener">[22]</a> <a href="https://www.smarttoday.co.kr/ko-kr/articles/106258" target="_blank" rel="noopener">[23]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">ETF가 1년 반 만에 10조가 됐습니다. 헤지펀드로 이름을 알린 하우스인데, <b>이제 수익의 중심은 ETF입니까?</b> 액티브 ETF 하나는 수익률이 좋았는데도 비교지수와 상관계수가 낮다는 이유로 상장폐지됐습니다. 액티브의 한계라고 보십니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/202606232051i" target="_blank" rel="noopener">[16]</a> <a href="https://news.mtn.co.kr/news-detail/2026082116133540004" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">7월부터 창업자 황성환 사장과 차문현 대표의 각자대표 체제가 됐고, 주식·대체투자 CIO를 나눴습니다. VC·PE 업계가 승계구조 개편기인데(에이티넘 3인 대표, IMM 창업자 퇴진), <b>타임폴리오도 창업자 이후를 준비하는 겁니까?</b> 자사 상장 계획은 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/202606156108i" target="_blank" rel="noopener">[5]</a> <a href="https://view.asiae.co.kr/article/2026061510113878813" target="_blank" rel="noopener">[6]</a> <a href="https://dealsite.co.kr/articles/156600" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">종합 자산운용사는 BDC 인가를 받은 것으로 간주되지만 지금까지 설정된 건 신한자산운용 1호뿐입니다. 비상장 투자 경험이 많은 타임폴리오는 <b>BDC를 낼 계획</b>이 있습니까? 11월 13일 시행되는 코너스톤 투자자 제도에는 참여합니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/08/13/2026081380140.html" target="_blank" rel="noopener">[55]</a> <a href="https://fsc.go.kr/po010103/87440" target="_blank" rel="noopener">[59]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">오라이언·신한투자·DB운용·라이프·아이온까지 운용사와 증권사의 벤처 진출이 늘고 있습니다. VC 업계 일부는 이를 '단기 자금의 유입'으로 경계합니다. <b>운용사가 VC 시장에 가져오는 것과 VC보다 약한 것</b>은 무엇이라고 보십니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202603032234569680101929" target="_blank" rel="noopener">[51]</a> <a href="https://www.hankyung.com/article/202606156482i" target="_blank" rel="noopener">[52]</a> <a href="https://view.asiae.co.kr/article/2026052717332908640" target="_blank" rel="noopener">[50]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[59]는 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-10-28</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
