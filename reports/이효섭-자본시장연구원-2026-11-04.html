@@ -1,0 +1,330 @@
+<meta charset="utf-8" />
+<title>이효섭 자본연 인터뷰 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2d5f8a; --accent-soft: #e3edf6;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #9cc3e6; --accent-soft: #132130;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #9cc3e6; --accent-soft: #132130;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #0e1a26; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #0e1a26; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-04</div>
+    <h1 class="title" style="word-break:keep-all">이효섭 자본시장연구원 선임연구위원</h1>
+    <p class="subtitle">종투사·한국형 IB 담론과 증권사 건전성 연구를 함께 해온 증권업 전문가. 최근 관심은 '생산적 금융'과 금융세제, 즉 부동산에서 자본시장으로의 머니무브다</p>
+    <div class="meta-row">
+      <span class="meta-chip">자본시장연구원 금융산업실</span>
+      <span class="meta-chip">질문 18개</span>
+      <span class="meta-chip">출처 35개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에 — 왜 이 사람인가</h2>
+      <ul class="tight">
+        <li><b>증권업·IB 정책 담론을 만든 연구자 가운데 한 명</b>입니다. 2023년 금융위 릴레이 세미나에서 '한국형 IB 과제'를 발표했습니다 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup>. 2025년 4월에는 IMA·모험자본 의무가 담긴 「증권업 기업금융 경쟁력 제고방안」 발표 당일, 종투사 CEO 간담회에서 해외 IB와 국내 종투사를 비교하는 발제를 맡았습니다 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup>.</li>
+        <li><b>건전성 논리도 함께 갖고 있습니다.</b> 증권사 총위험액이 6년 만에 약 4배로 늘었다며 차등 NCR과 스트레스 유동성비율을 제안했습니다 <sup class="ref"><a href="#src-18">[18]</a></sup>. 레고랜드 때는 CP·ABCP 유동성 위험을 경고했습니다 <sup class="ref"><a href="#src-19">[19]</a></sup>. 그래서 "IB를 키우자"와 "리스크를 조이자" 양쪽 질문에 모두 답할 수 있는 상대입니다.</li>
+        <li><b>최근 관심사는 '생산적 금융'과 금융세제입니다.</b> 부동산에 묶인 돈을 자본시장으로 옮기자는 머니무브 논리를 펴고 있습니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup>. 밸류업은 의무 공시보다 인센티브를 주자는 쪽입니다 <sup class="ref"><a href="#src-26">[26]</a></sup>.</li>
+        <li><b>IB 기사와 연결되는 지점:</b> 종투사·IMA·발행어음, 모험자본 공급의 질, 부동산PF 이후 증권사 사업 재편, 국민성장펀드와 증권사 PE, 머니무브가 ECM(IPO·유상증자)에 미칠 영향.</li>
+      </ul>
+      <p class="warn"><b>직함 확인 필요</b>: 2022~2024년 자료와 2026년 4월 보도에는 '금융산업실장'으로 나옵니다 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup>. 그런데 2026년 1월 연구원 세미나에는 이석훈 연구위원이 금융산업실장으로 적혀 있고 <sup class="ref"><a href="#src-4">[4]</a></sup>, 2026년 9월 보도는 '선임연구위원'으로 씁니다 <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup>. 인터뷰 첫머리에 현재 보직을 확인하세요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>프로필</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:26%">항목</th><th>내용</th></tr>
+        <tr><td>소속·직함</td><td>자본시장연구원 금융산업실 선임연구위원. 2010년 6월 입사 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>전문 분야</td><td>증권업, 자산관리·신탁, 위험관리 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>학력</td><td>포스텍 수학·컴퓨터공학, KAIST 경영대학원 경영공학(재무) 박사 <sup class="ref"><a href="#src-6">[6]</a></sup></td></tr>
+        <tr><td>대외 활동</td><td>서울IB포럼 사무국장(2019~) <sup class="ref"><a href="#src-1">[1]</a></sup>. 한국거래소 밸류업 자문단(2024) <sup class="ref"><a href="#src-8">[8]</a></sup>. 금투협 K-자본시장포럼 전문가그룹 대표(2026.4 출범) <sup class="ref"><a href="#src-5">[5]</a></sup></td></tr>
+        <tr><td>초기 대표작</td><td>금융위 제출 「금융투자회사의 경쟁력 강화방안」 공동연구(2015) <sup class="ref"><a href="#src-9">[9]</a></sup>. 「디지털 혁신을 위한 한국 금융투자업계의 과제」(2019) <sup class="ref"><a href="#src-33">[33]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">한국증권학회 부회장, KAIST 겸임 등 일부 경력은 검색 요약에만 나오고 출처로 확인하지 못해 뺐습니다. 동명이인에 주의하세요. 법무법인 세종의 '안효섭' 위원은 다른 사람입니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 연구 실적 — 주제별</h2>
+      <h3>① IB·종투사 사업모델 (가장 직접적인 연결고리)</h3>
+      <ul class="tight">
+        <li><b>2023.3 「해외 IB 발전전략 및 한국형 IB 과제」</b>: 국내 증권사는 양적으로 컸지만 질적 성과가 부족하다는 진단입니다. 한국형 IB의 자기자본 순위가 2011년과 2021년 모두 32위로 제자리라는 점을 근거로 들었습니다. 법인 지급결제·외국환 허용 등 업무범위 확대, 기업금융 역량 강화, 신뢰 회복을 포함한 5대 과제를 내놨습니다 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>2023 이슈보고서 「종투사 10년 평가 및 한국형 IB의 발전전략」</b>: 종투사 제도의 목표였던 모험자본 공급 확대는 달성하지 못했다고 평가했습니다 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>2025.4 「해외IB 사업전략 및 국내 종투사 시사점」</b>(정부 방안 별첨): 국내 종투사 ROE가 최근 3년 6.3%로 글로벌 IB(10~15%)에 못 미친다고 분석했습니다. 수익 70~80%가 위탁·자기매매에 쏠렸고, 부동산금융 의존이 크며, 해외 대형 IB와의 자본 격차가 크다는 점도 짚었습니다 <sup class="ref"><a href="#src-14">[14]</a></sup>. 같은 날 정부는 모험자본 공급 의무, 발행어음 부동산 운용 한도 축소, IMA 세부 제도를 발표했습니다 <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>2025.4 발행어음 운용 지적</b>: "대부분 증권사 발행어음 운용자산은 부동산 비중이 높은 편"이라며, 부동산PF용 SPC 지분 투자로 우회하는 사례를 짚었습니다 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+      </ul>
+      <h3>② 증권사 건전성·리스크</h3>
+      <ul class="tight">
+        <li><b>2022 「해외사례 조사를 통한 한국 증권업 건전성 규제의 개선 방향」</b>: NCR 제도를 평가한 보고서로, 학술논문 인용으로 확인했습니다 <sup class="ref"><a href="#src-21">[21]</a></sup></li>
+        <li><b>2022.10 레고랜드</b>: 증권사 재무구조 자체는 양호하지만, 만기가 돌아오는 CP·ABCP를 소화하지 못하면 유동성 문제로 번질 수 있다고 경고했습니다 <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+        <li><b>2023.1 증권산업 전망</b>: 하반기 실적 개선과 대형 IPO 재추진을 내다봤습니다. 부동산PF가 구조적 리스크로 번지지 않게 선제 관리해야 한다고도 했습니다 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>2023.6 「증권사 리스크 관리 역량 강화」</b>: 총위험액이 2016년 대비 약 4배인 33.7조원으로 늘어 자기자본 증가 속도를 앞질렀고, PF 익스포저가 신용위험을 키웠다고 봤습니다. 처방은 종투사와 중소형사의 NCR 차등 적용, 스트레스 유동성비율 도입입니다 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+      </ul>
+      <h3>③ 내부통제·투자자 보호</h3>
+      <ul class="tight">
+        <li>2021~2023년 내부통제 세미나와 포럼에서 감독자 책임을 분명히 하자고 했습니다. 대신 의무를 성실히 이행한 회사에는 제재를 줄여주는 인센티브를 주자는 입장입니다 <sup class="ref"><a href="#src-34">[34]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup>. 현재 책무구조도의 문제의식과 겹칩니다.</li>
+        <li>홍콩 ELS 사태에 대해서는 고령자 상당수에게 부적합한 상품이었고, 해외에서는 일반투자자에게 짧은 기간에 이만큼 판 사례를 찾기 어렵다고 말했습니다 <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li>2024.10 리서치 인터뷰: 매수 의견 편중을 풀려면 유료 리서치 플랫폼을 키우고 이해상충 구조를 해소해야 한다고 했습니다 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+      </ul>
+      <h3>④ 밸류업·금융세제 (2024~)</h3>
+      <ul class="tight">
+        <li>2024.2 밸류업 1차 세미나: 일본 사례를 따라가는 데 그치지 말고 세제 등 강한 인센티브와 스튜어드십 코드 반영이 필요하다고 했습니다. PBR 1배 미만 기업에 맹목적으로 투자하는 것은 경계했습니다 <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li>2024.4 밸류업 자문단 활동 중에는 상법 개정에 신중한 입장이었습니다 <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li>2026.4 국회 세미나: 밸류업 공시를 법으로 의무화하는 데 신중해야 한다고 했습니다. 대신 공시를 잘하는 기업에 상속·증여세 감면, 법인세 할인, 지수 편입 비중 확대를 주자고 제안했습니다 <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li>2026.7 아시아재무학회: 한국 투자자의 요구수익률이 12%에서 9.5%로 낮아졌고, 저PBR의 핵심 원인은 낮은 ROE라고 진단했습니다 <sup class="ref"><a href="#src-27">[27]</a></sup> <span class="flag">기사 연결 추정</span></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 최근 관심 주제 (2025~2026)</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025.04.09</div><div class="tl-body">종투사 CEO 간담회 발제 「해외IB 사업전략 및 국내 종투사 시사점」 → 같은 날 IMA·모험자본 의무를 담은 정부 방안 발표 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.03.19</div><div class="tl-body">쿠키뉴스 미래경제포럼 강연 「생산적 금융의 현실과 과제」. 생산적 금융을 "부동산·예금 등 안전자산을 위험자산으로 옮겨 부가가치를 높이는 것"으로 정의했습니다. <b>국민성장펀드에 한해 이해상충이 없다는 전제로 금산분리 완화</b>, 일반지주회사의 투자전문회사(GP) 설립 허용, 금융회사·지주회사의 Co-GP 참여 검토를 제안했고, RWA 규제 완화도 언급했습니다 <sup class="ref"><a href="#src-28">[28]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.04</div><div class="tl-body">국회 세미나에서 밸류업 공시 의무화 신중론 <sup class="ref"><a href="#src-26">[26]</a></sup>. 금투협 K-자본시장포럼 전문가그룹 대표로 참여. 포럼은 2027년 상반기 정책보고서를 낼 예정입니다 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.06.30</div><div class="tl-body">문화금융리포트 「코스피 10000 시대」 주제발표 「지속가능한 증시 성장의 필요조건」. 발표 내용은 확인하지 못했습니다 <sup class="ref"><a href="#src-29">[29]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.09.18</div><div class="tl-body">연구원 개원 29주년 컨퍼런스 첫 발표 「생산적 금융을 위한 금융세제 개선 방향」. 20년 보유를 가정한 세후 연평균 수익률은 서울 부동산 11.6%, S&amp;P500 7.1%, 코스피 6.0%였습니다. 제안은 ISA 확대, 국내주식 장기보유 인센티브, 배당소득 분리과세 대상 확대, 손실이월공제, 펀드·신탁·ELS의 '동일자산 동일과세', <b>부동산 보유세의 단계적 정상화</b>입니다 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup></div></div>
+      </div>
+      <h3>관심 주제 순위 (추정)</h3>
+      <ol class="tight" style="padding-left:20px;font-size:14.5px">
+        <li><b>생산적 금융·머니무브</b>(부동산 → 자본시장) <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>종투사·한국형 IB의 질적 전환</b>(ROE, 자본 규모, 모험자본) <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>발행어음·IMA 자금의 운용 구조</b>(부동산 쏠림 해소) <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+        <li><b>금융세제 개편</b>(ISA, 배당 분리과세, 손실이월, 보유세) <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+        <li><b>규제 완화와 국민성장펀드</b>(금산분리, RWA, GP·Co-GP) <sup class="ref"><a href="#src-28">[28]</a></sup></li>
+        <li><b>밸류업·증시 고도화</b>(인센티브형 공시, 요구수익률) <sup class="ref"><a href="#src-26">[26]</a></sup> <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+      </ol>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ IB 기사와 연결 지도</h2>
+      <p>넘버스 IB 기사에서 자주 다루는 주제별로, 이 연구위원의 연구·발언을 어떤 기사 각도로 쓸 수 있는지 정리했습니다.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th style="width:22%">IB 이슈</th><th style="width:40%">이효섭의 연구·발언</th><th>기사 활용 각도</th></tr>
+        <tr><td><b>종투사·IMA·발행어음</b></td><td>ROE 6.3% 대 10~15%, 수익 70~80%가 위탁·자기매매, 자본 격차 <sup class="ref"><a href="#src-14">[14]</a></sup>. 질적 성과 부족 <sup class="ref"><a href="#src-10">[10]</a></sup></td><td>IMA 도입 이후 점검: 증권사 수익 구조가 실제로 기업금융으로 옮겨갔는지 검증</td></tr>
+        <tr><td><b>모험자본 공급 의무</b></td><td>종투사 10년 동안 모험자본 확대 목표는 미달 <sup class="ref"><a href="#src-13">[13]</a></sup>. 7개 종투사 공급비율 19.5%로 올해 의무치 초과 <sup class="ref"><a href="#src-17">[17]</a></sup></td><td>숫자는 넘겼는데 실제 질은 어떤가. A급 채권 등 '안전한 모험자본' 인정 범위 논란</td></tr>
+        <tr><td><b>부동산PF·발행어음 운용</b></td><td>발행어음 운용의 부동산 쏠림, SPC 우회 투자 <sup class="ref"><a href="#src-16">[16]</a></sup>. 총위험액 4배 <sup class="ref"><a href="#src-18">[18]</a></sup>. 레고랜드 유동성 경고 <sup class="ref"><a href="#src-19">[19]</a></sup></td><td>부동산 운용 한도 축소 뒤 증권사 PF 북 재편, 우회 투자 감독 공백</td></tr>
+        <tr><td><b>NCR·건전성</b></td><td>종투사와 중소형사 차등 NCR, 스트레스 유동성비율 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup></td><td>발행어음·IMA 조달이 커지는 만큼 단기 조달·장기 운용의 만기 불일치 리스크</td></tr>
+        <tr><td><b>PE·국민성장펀드</b></td><td>국민성장펀드 한정 금산분리 완화, 지주사 GP, Co-GP <sup class="ref"><a href="#src-28">[28]</a></sup></td><td>증권사 PE 본부·계열 운용사에 기회인지 위협인지. 대기업 지주사의 GP 진출과 이해상충</td></tr>
+        <tr><td><b>ECM(IPO·유상증자)</b></td><td>머니무브 세제 <sup class="ref"><a href="#src-3">[3]</a></sup>. 밸류업 인센티브 <sup class="ref"><a href="#src-26">[26]</a></sup>. 대형 IPO 전망(2023) <sup class="ref"><a href="#src-20">[20]</a></sup></td><td>부동산 자금이 증시로 들어오면 공모 수요가 실제로 늘까. 코스피 1만 시대의 ECM</td></tr>
+        <tr><td><b>내부통제·리서치</b></td><td>감독자 책임과 제재 감경 인센티브 <sup class="ref"><a href="#src-22">[22]</a></sup>. 리서치 이해상충 <sup class="ref"><a href="#src-6">[6]</a></sup>. ELS 판매 <sup class="ref"><a href="#src-24">[24]</a></sup></td><td>IB 딜과 리서치 사이의 차이니즈월, 책무구조도 시행 뒤 IB 부문 내부통제</td></tr>
+      </table>
+      </div>
+      <p class="note">기자님이 쓴 IB 기사 목록은 확인하지 않았습니다. 이 표는 넘버스 IB 비트에서 자주 다루는 주제를 기준으로 만들었습니다. 특정 기사와 엮고 싶으면 제목을 알려주세요. 그 기사에 맞춘 질문으로 바꿔 드리겠습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>입장 지형 — 업계 편인가, 감독 편인가</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th>증권업계에 불편한 진단</th><th>증권업계에 유리한 논리</th></tr>
+        <tr><td>종투사 10년 동안 모험자본 공급 목표 미달 <sup class="ref"><a href="#src-13">[13]</a></sup><br>발행어음 자금의 부동산 쏠림과 SPC 우회 투자 <sup class="ref"><a href="#src-16">[16]</a></sup><br>총위험액 급증, 차등 NCR <sup class="ref"><a href="#src-18">[18]</a></sup><br>ELS 불완전판매 비판 <sup class="ref"><a href="#src-24">[24]</a></sup></td><td>해외 IB 대비 자본 열위 → 대형화 필요 <sup class="ref"><a href="#src-14">[14]</a></sup><br>업무범위 확대(지급결제·외국환) <sup class="ref"><a href="#src-10">[10]</a></sup><br>금산분리·RWA 완화, Co-GP 허용 <sup class="ref"><a href="#src-28">[28]</a></sup><br>제재 감경 인센티브 <sup class="ref"><a href="#src-22">[22]</a></sup>, 밸류업 공시 의무화 신중론 <sup class="ref"><a href="#src-26">[26]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">양쪽 논리를 모두 제공하는 위치에 있습니다. 질문할 때 "그렇다면 어느 쪽이 먼저인가"(규제 완화가 먼저인지, 건전성이 먼저인지)를 묻는 트레이드오프형 질문이 잘 먹힙니다.</p>
+      <h3>공개 입장을 찾지 못한 영역 (새 발언을 받아낼 기회)</h3>
+      <p>IPO 제도 개편(수요예측, 의무보유확약, 상장폐지 요건), BDC, 토큰증권(STO), 공매도, 코스닥 개편, '안전한 모험자본' 인정 범위. 2025~2026년에 그의 이름으로 나온 자료를 찾지 못했습니다. 기사에 쓸 새 코멘트를 받아낼 수 있는 영역입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했고, 자본시장연구원 사이트에는 직접 접속하지 못했습니다. 2025년 4월 정부 방안의 발제자료와 보도자료는 개인 사이트에 올라온 사본이라 원본(금융위원회)을 확인해야 합니다. [27]은 기사와 발언의 연결이 추정입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 자본시장연구원 전문가 소개 페이지(금융산업실 선임연구위원). <a href="https://www.kcmi.re.kr/expert/expert_list?exp_num=28562" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 뉴스웨이, 개원 29주년 컨퍼런스 금융세제 발표, 2026-09-18. <a href="https://www.newsway.co.kr/news/view?ud=2026091810462842777" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 더팩트, 생산적 금융 위한 금융세제 개선 방향, 2026-09-18. <a href="https://news.tf.co.kr/read/economy/2367552.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 자본시장연구원, 2026 자본시장 전망 세미나 프로그램(이석훈 금융산업실장), 2026-01-27. <a href="https://www.kcmi.re.kr/seminar/seminar_program?eno=311" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 아시아경제, 금투협 K-자본시장포럼 출범, 2026-04-27. <a href="https://core.asiae.co.kr/article/2026042710360931322" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 쿠키뉴스, 증권사 리서치 매수 편중 인터뷰(학력 포함), 2024-10. <a href="https://www.kukinews.com/article/view/kuk202410110112" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 쿠키뉴스, 2025 자본시장·밸류업 인터뷰, 2024-12-30. <a href="https://www.kukinews.com/article/view/kuk202412300178" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 비즈워치, 거래소 밸류업 자문단·상법 개정 신중론, 2024-04-24. <a href="https://news.bizwatch.co.kr/article/market/2024/04/24/0001" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 금융위 제출 보고서 「금융투자회사의 경쟁력 강화방안」(공동연구), 2015-10. <a href="https://www.smallake.kr/wp-content/uploads/2019/09/금융투자회사의-경쟁력-강화방안최종.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 메트로서울, 한국형 IB 과제 세미나, 2023-03-14. <a href="https://www.metroseoul.co.kr/article/20230314500493" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 금융위원회, 금융투자업 릴레이 세미나 보도자료, 2023-03. <a href="https://fsc.go.kr/po010101/79607" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 발표자료 「해외 IB 발전전략 및 한국형 IB 과제」, 2023-03-14. <a href="https://www.smallake.kr/wp-content/uploads/2023/03/230314-별첨3-해외-IB-발전전략-한국형-IB-과제주제발표1.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 자본시장연구원 이슈보고서 「종투사 10년 평가 및 한국형 IB의 발전전략」, 2023. <a href="https://www.kcmi.re.kr/common/downloadw?fid=26514&fgu=002002&fty=004003" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 발제자료 「해외IB 사업전략 및 국내 종투사 시사점」(4·9 방안 별첨1, 제3자 사본), 2025-04. <a href="https://cleanlight93.github.io/static/250409_별첨1_해외IB-사업전략-및-국내-종투사-시사점.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 금융위 「증권업 기업금융 경쟁력 제고방안」 보도자료(제3자 사본), 2025-04-09. <a href="https://cleanlight93.github.io/static/250409_증권업-기업금융-경쟁력-제고방안-보도자료.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 머니투데이, IMA·발행어음 가이드라인과 부동산 운용 비중, 2025-04-09. <a href="https://www.mt.co.kr/stock/2025/04/09/2025040907550566201" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> SBS Biz, 종투사 모험자본 공급비율 19.5%, 2026. <a href="https://biz.sbs.co.kr/amp/article/20000337771" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 금융위원회, 증권사 리스크 관리 역량 강화 세미나, 2023-06-08. <a href="https://fsc.go.kr/no010101/80142" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 비즈워치, 레고랜드 사태와 증권사 유동성, 2022-10-27. <a href="https://news.bizwatch.co.kr/article/market/2022/10/27/0004" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 블루밍비트, 2023년 증권산업 전망, 2023-01-26. <a href="https://bloomingbit.io/feed/news/41774" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 한국학술지(KoreaScience), 증권업 건전성 규제 보고서(2022) 인용 논문. <a href="https://koreascience.kr/article/JAKO202320554475146.page" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 내부통제 해외 운영사례 세미나, 2022-12. <a href="https://dealsite.co.kr/articles/95986" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 아시아경제, 서울아시아금융포럼 내부통제 기조발표, 2023-05. <a href="https://www.asiae.co.kr/en/article/2023052513434007795" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 노컷뉴스, 홍콩 ELS 판매 적합성 발언. <a href="https://www.nocutnews.co.kr/news/6081576" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 뉴데일리, 밸류업 1차 세미나 해외사례 발표, 2024-02-26. <a href="https://biz.newdaily.co.kr/site/data/html/2024/02/26/2024022600233.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 비즈워치, 국회 세미나 밸류업 공시 의무화 신중론, 2026-04-16. <a href="https://news.bizwatch.co.kr/article/market/2026/04/16/0024" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 아시아경제, 아시아재무학회 특별세션 요구수익률·저PBR, 2026-07. <a href="https://core.asiae.co.kr/article/2026070316223217019" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 쿠키뉴스 미래경제포럼, 생산적 금융의 현실과 과제, 2026-03-19. <a href="https://www.kukinews.com/article/view/kuk202603190180" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 문화일보, 문화금융리포트(MFiR) 2026 「코스피 10000 시대」 안내, 2026-06. <a href="https://www.munhwa.com/company/sago/11597924" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 머니투데이, 금융세제 개선 방향 발표, 2026-09-18. <a href="https://www.mt.co.kr/stock/2026/09/18/2026091813212195109" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 한국금융신문, 개원 29주년 컨퍼런스, 2026-09-18. <a href="https://www.fntimes.com/html/view.php?ud=202609181539599065179ad43907_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 자본시장연구원, 개원 29주년 컨퍼런스 프로그램, 2026-09. <a href="https://www.kcmi.re.kr/seminar/seminar_program?eno=317" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 이슈보고서 19-12 「디지털 혁신을 위한 한국 금융투자업계의 과제」, 2019-12. <a href="https://www.smallake.kr/wp-content/uploads/2019/12/19-12-디지털-혁신을-위한-한국-금융투자업계의-과제.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 뉴데일리, 내부통제 세미나, 2021-04-28. <a href="https://biz.newdaily.co.kr/site/data/html/2021/04/28/2021042800186.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 자본시장연구원, 밸류업 1차 세미나 프로그램, 2024-02. <a href="https://www.kcmi.re.kr/seminar/seminar_program?eno=287" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 자료(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 연구자라 개별 증권사 이름을 들면 답을 피할 수 있으니, "업계 전반"으로 묻고 사례는 기자가 제시하는 편이 낫습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 종투사·IMA·모험자본</h2></div>
+    <div class="q cat1 must"><p class="qtext">2025년 4월 발제에서 종투사 ROE가 6.3%로 글로벌 IB(10~15%)에 못 미친다고 진단하셨습니다. IMA와 모험자본 의무가 시행된 지금, <b>국내 대형사의 수익 구조가 실제로 위탁·자기매매에서 기업금융으로 옮겨가고 있다고 보십니까?</b></p><p class="follow">↳ "아직 이르다"면: 어떤 지표가 나오면 전환됐다고 판단하시겠습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://cleanlight93.github.io/static/250409_별첨1_해외IB-사업전략-및-국내-종투사-시사점.pdf" target="_blank" rel="noopener">[14]</a> <a href="https://cleanlight93.github.io/static/250409_증권업-기업금융-경쟁력-제고방안-보도자료.pdf" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">종투사 공급비율이 19.5%로 올해 의무치를 넘겼다는 집계가 나왔습니다. 2023년 보고서에서는 종투사 10년 동안 모험자본 목표가 미달이라고 평가하셨는데, <b>지금 숫자는 질적으로 달라진 겁니까, 인정 범위가 넓어진 덕분입니까?</b></p><p class="follow">↳ A급 채권 등 이른바 '안전한 모험자본'을 실적으로 인정하는 범위는 좁혀야 합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/amp/article/20000337771" target="_blank" rel="noopener">[17]</a> <a href="https://www.kcmi.re.kr/common/downloadw?fid=26514&fgu=002002&fty=004003" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">IMA·발행어음은 1년 안팎의 단기 조달로 장기 기업금융에 투자하는 구조입니다. 2023년에 스트레스 유동성비율을 제안하셨는데, <b>IMA 규모가 커질 때 만기 불일치 리스크는 어떻게 관리해야 합니까?</b></p><div class="qmeta"><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://fsc.go.kr/no010101/80142" target="_blank" rel="noopener">[18]</a> <a href="https://cleanlight93.github.io/static/250409_증권업-기업금융-경쟁력-제고방안-보도자료.pdf" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">2023년에 법인 지급결제·외국환 등 업무범위 확대를 한국형 IB 과제로 꼽으셨습니다. <b>그 가운데 지금 가장 시급하거나, 반대로 이제는 덜 중요해진 과제</b>는 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.metroseoul.co.kr/article/20230314500493" target="_blank" rel="noopener">[10]</a> <a href="https://www.smallake.kr/wp-content/uploads/2023/03/230314-별첨3-해외-IB-발전전략-한국형-IB-과제주제발표1.pdf" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">대형사 중심의 종투사·IMA 체제가 굳어지면 <b>중소형 증권사 IB는 어디서 살길을 찾아야 합니까?</b> 차등 NCR이 그 답이 될 수 있습니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://fsc.go.kr/no010101/80142" target="_blank" rel="noopener">[18]</a> <a href="https://cleanlight93.github.io/static/250409_별첨1_해외IB-사업전략-및-국내-종투사-시사점.pdf" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 부동산PF·건전성</h2></div>
+    <div class="q cat2 must"><p class="qtext">"발행어음 운용자산의 부동산 비중이 높다", "SPC 지분으로 우회 투자한다"고 지적하셨습니다. 발행어음 부동산 운용 한도가 단계적으로 줄어드는데, <b>우회 투자를 실제로 걸러낼 감독 수단이 있습니까?</b></p><p class="follow">↳ 한도가 줄면 증권사 PF 인력과 북은 어디로 갑니까? 인프라·기업대출로 옮겨갈까요?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/stock/2025/04/09/2025040907550566201" target="_blank" rel="noopener">[16]</a> <a href="https://cleanlight93.github.io/static/250409_증권업-기업금융-경쟁력-제고방안-보도자료.pdf" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">2023년에 총위험액이 6년 만에 약 4배로 늘었다고 분석하셨습니다. PF 정리를 거친 지금 <b>증권사 리스크의 중심은 어디로 옮겨갔다고 보십니까?</b> 해외 대체투자입니까, 기업 신용입니까, 유동성입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://fsc.go.kr/no010101/80142" target="_blank" rel="noopener">[18]</a> <a href="https://news.bizwatch.co.kr/article/market/2022/10/27/0004" target="_blank" rel="noopener">[19]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">레고랜드 때 CP·ABCP 차환 리스크를 경고하셨습니다. <b>지금 단기자금시장에서 그때와 비슷한 신호</b>가 보입니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.bizwatch.co.kr/article/market/2022/10/27/0004" target="_blank" rel="noopener">[19]</a> <a href="https://bloomingbit.io/feed/news/41774" target="_blank" rel="noopener">[20]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 생산적 금융·국민성장펀드·PE</h2></div>
+    <div class="q cat3 must"><p class="qtext">국민성장펀드에 한해 금산분리를 완화하고, 일반지주회사의 GP 설립과 Co-GP 참여를 허용하자고 하셨습니다. <b>대기업 지주사가 GP로 들어오면 증권사 PE 본부와 독립계 운용사에는 기회입니까, 위협입니까?</b></p><p class="follow">↳ "이해상충이 없다는 전제"는 구체적으로 어떤 장치로 담보합니까? 계열사 투자 금지입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.kukinews.com/article/view/kuk202603190180" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">RWA 규제 완화도 언급하셨습니다. 은행·보험 같은 LP의 위험가중치가 낮아지면 <b>PE·VC 펀드레이징 시장이 어떻게 바뀐다고 보십니까?</b></p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.kukinews.com/article/view/kuk202603190180" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">생산적 금융을 "안전자산을 위험자산으로 옮기는 것"으로 정의하셨습니다. 정책자금이 몰리면 <b>위험은 결국 누가 지는 겁니까?</b> 정부, 금융회사, 개인 투자자 가운데 누구입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.kukinews.com/article/view/kuk202603190180" target="_blank" rel="noopener">[28]</a> <a href="https://news.tf.co.kr/read/economy/2367552.htm" target="_blank" rel="noopener">[3]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 밸류업·세제·ECM</h2></div>
+    <div class="q cat4 must"><p class="qtext">서울 부동산의 20년 세후 연평균 수익률이 11.6%로 코스피 6.0%의 약 두 배라고 하셨습니다. 세제를 바꿔 <b>머니무브가 일어나면 IPO·유상증자 수요가 실제로 늘어난다고 보십니까?</b> 아니면 대형주 쏠림만 커집니까?</p><p class="follow">↳ 부동산 보유세 '단계적 정상화'는 정치적으로 민감합니다. 연구원 차원의 공식 제안입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.tf.co.kr/read/economy/2367552.htm" target="_blank" rel="noopener">[3]</a> <a href="https://www.mt.co.kr/stock/2026/09/18/2026091813212195109" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">펀드·신탁·ELS에 '동일자산 동일과세'를 적용하고 계좌를 '생산적 금융 ISA'로 통합하자고 하셨습니다. <b>증권사 상품 판매 구도는 어떻게 달라집니까?</b></p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/stock/2026/09/18/2026091813212195109" target="_blank" rel="noopener">[30]</a> <a href="https://www.kcmi.re.kr/seminar/seminar_program?eno=317" target="_blank" rel="noopener">[32]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">밸류업 공시는 의무화보다 상속·증여세 감면, 법인세 할인 같은 인센티브를 주자고 하셨습니다. 상법 개정에도 신중론을 펴셨고요. <b>인센티브만으로 지배주주가 움직인다고 보는 근거</b>는 무엇입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.bizwatch.co.kr/article/market/2026/04/16/0024" target="_blank" rel="noopener">[26]</a> <a href="https://news.bizwatch.co.kr/article/market/2024/04/24/0001" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">한국 투자자의 요구수익률이 12%에서 9.5%로 낮아졌고 저PBR의 원인은 낮은 ROE라고 진단하셨습니다. <b>증권사 스스로의 PBR이 낮은 이유</b>도 같은 논리로 설명됩니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2026070316223217019" target="_blank" rel="noopener">[27]</a> <a href="https://cleanlight93.github.io/static/250409_별첨1_해외IB-사업전략-및-국내-종투사-시사점.pdf" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>⑤ 공개 입장이 없는 영역 (새 코멘트 받기)</h2></div>
+    <div class="q cat4"><p class="qtext">IPO 제도 개편(수요예측 참여 요건, 의무보유확약, 상장폐지 요건 강화)은 <b>공모 시장과 주관사 IB에 어떤 영향을 준다고 보십니까?</b></p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://bloomingbit.io/feed/news/41774" target="_blank" rel="noopener">[20]</a> <a href="https://www.kcmi.re.kr/common/downloadw?fid=26514&fgu=002002&fty=004003" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">2024년 리서치 인터뷰에서 매수 편중과 이해상충 문제를 짚으셨습니다. <b>IB가 주관한 종목에 같은 증권사 리서치가 내는 리포트</b>는 어떻게 관리해야 합니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.kukinews.com/article/view/kuk202410110112" target="_blank" rel="noopener">[6]</a> <a href="https://dealsite.co.kr/articles/95986" target="_blank" rel="noopener">[22]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">금투협 K-자본시장포럼은 2027년 상반기 정책보고서를 낼 예정입니다. <b>본인이 맡은 의제</b>는 무엇이고, 증권업 쪽에서 가장 먼저 바꿔야 할 규제 하나를 꼽는다면 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2026042710360931322" target="_blank" rel="noopener">[5]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[35]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-04</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
