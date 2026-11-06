@@ -1,0 +1,301 @@
+<meta charset="utf-8" />
+<title>머스트자산운용 대표 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1f6f6a; --accent-soft: #e1f1ef;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #7fd1c8; --accent-soft: #10221f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #7fd1c8; --accent-soft: #10221f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #0b1d1b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #0b1d1b; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-06</div>
+    <h1 class="title" style="word-break:keep-all">머스트자산운용 — 리파인과 의무공개매수</h1>
+    <p class="subtitle">가치투자 헤지펀드에서 행동주의로. 지금은 PEF가 인수한 리파인의 2대주주로 최대주주와 맞서면서, 의무공개매수 입법전의 한복판에 서 있다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 김두용 대표</span>
+      <span class="meta-chip">질문 14개</span>
+      <span class="meta-chip">출처 43개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에 — 요즘 머스트의 이슈 3가지</h2>
+      <ul class="tight">
+        <li><b>① 리파인: PEF 대주주와 정면충돌.</b> 스톤브릿지캐피탈·LS증권이 세운 SPC '리얼티파인'이 9월 공개매수로 지분을 47.96%에서 76.52%로 높였습니다. 2대주주 머스트(10.21%)는 "경영권 지분을 살 때 일반주주에게는 같은 값에 팔 기회가 없었다"며 공개서한을 내고 법적 대응을 예고했습니다 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup>. 1년 전에는 자사주를 교환대상으로 한 EB 발행에 찬성한 이사 6명의 해임을 요구했습니다 <sup class="ref"><a href="#src-18">[18]</a></sup></li>
+        <li><b>② 의무공개매수 입법전.</b> 국내외 운용사 18곳과 함께 공동성명을 내고 기자회견에 참여했습니다. 국회 정무위원회 안이 대주주 '선행매수'를 허용하는 데 반대하고, 일반주주도 같은 비율로 팔 수 있게 하는 '비례적 공개매수'를 요구했습니다 <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup> <sup class="ref"><a href="#src-35">[35]</a></sup>. 법안은 본회의 상정이 보류됐고, 대통령이 공개토론을 제안했습니다 <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-37">[37]</a></sup>. <b>리파인 사례가 곧 머스트의 입법 논리</b>입니다.</li>
+        <li><b>③ 소수 지분으로 이긴 경험.</b> 파마리서치는 약 1.2% 지분으로 인적분할을 철회시켰고 <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup>, 영풍은 약 2%로 자사주 소각과 액면분할을 끌어냈습니다 <sup class="ref"><a href="#src-27">[27]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup>.</li>
+      </ul>
+      <p class="def"><b>PE·IB 기자에게 의미</b>: 리파인 건은 'PEF가 상장사를 인수하는 방식(경영권 지분만 프리미엄을 받고 사는 구조, 인수금융 담보, 자사주 EB)'을 행동주의 펀드가 정면으로 문제 삼은 사례입니다. 의무공개매수가 도입되면 PEF 바이아웃의 비용 구조가 바뀝니다.</p>
+      <p class="warn"><b>헷갈리기 쉬운 사례</b>: 태광산업 자사주 EB 가처분은 <b>트러스톤자산운용</b> 건이고 <sup class="ref"><a href="#src-40">[40]</a></sup>, 영원무역 공개서한은 <b>쿼드자산운용</b> 건입니다 <sup class="ref"><a href="#src-41">[41]</a></sup>. 머스트와 섞지 마세요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회사·대표 프로필</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:24%">항목</th><th>내용</th></tr>
+        <tr><td>대표</td><td><b>김두용</b>(1979년생). 서울대 주식투자 동아리 SMIC 출신 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup>. 대표이사 선임일은 2024년 9월로 기록돼 있음(재선임 여부 미확인) <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>연혁</td><td>2006년 김두용·구은미 공동대표가 머스트투자자문 설립 <sup class="ref"><a href="#src-2">[2]</a></sup>. 2015년 9월 투자일임·자문업을 분할해 머스트자산운용 설립 <sup class="ref"><a href="#src-3">[3]</a></sup>. 이후 전문투자형 사모(헤지펀드) 중심 운용 <sup class="ref"><a href="#src-4">[4]</a></sup></td></tr>
+        <tr><td>지배구조</td><td>구은미 머스트홀딩스 대표는 김 대표의 배우자. 2020년 기준 머스트홀딩스가 머스트삼일저축은행 지분 66.3%, 김 대표가 25.0% 보유 <sup class="ref"><a href="#src-3">[3]</a></sup>. 운용사의 현재 주주 구성은 미확인</td></tr>
+        <tr><td>인력</td><td>27명(2026년 5월). 최근 1년 입사 12명, 퇴사 5명 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>스타일</td><td>가치투자 표방, 롱온리 집중투자 <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-27">[27]</a></sup>. 언론 노출을 꺼리고 입소문 영업 중심 <sup class="ref"><a href="#src-2">[2]</a></sup>. 해외 주식 비중이 큼(13F 기준 Sea Limited 등, 시점 미상) <sup class="ref"><a href="#src-42">[42]</a></sup></td></tr>
+      </table>
+      </div>
+      <h3>성과의 굴곡</h3>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2018~2019</div><div class="tl-body">대표 헤지펀드의 설정 후 연환산 수익률 45%(2018.8) <sup class="ref"><a href="#src-8">[8]</a></sup>. 운용 10년 연평균 28%로 소개됨 <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2020.1</div><div class="tl-body">약 5,000억 규모의 롱온리 헤지펀드로 소개 <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022</div><div class="tl-body"><b>큰 손실.</b> Sea, 카바나, 파페치 등 해외 주력 종목이 75~98% 급락. 순자산이 1월 6,123억에서 2,507억으로 59% 감소, 고객은 평균 50%대 손실을 본 것으로 추정 <sup class="ref"><a href="#src-6">[6]</a></sup>. 이후 공개 서신으로 반성의 뜻을 밝혔다는 보도 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024</div><div class="tl-body">연간 약 50% 수익 <sup class="ref"><a href="#src-7">[7]</a></sup>. 신한투자증권을 통해 공모 재간접펀드 '머스트원앤온리' 출시 <sup class="ref"><a href="#src-10">[10]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025~2026</div><div class="tl-body">원앤온리 규모 약 1,582억 <sup class="ref"><a href="#src-11">[11]</a></sup>. 2026년 4월 10호 펀드를 편입한 재간접펀드 출시 <sup class="ref"><a href="#src-12">[12]</a></sup>. 증시 활황으로 사모운용사 성과보수가 늘어난 해 <sup class="ref"><a href="#src-43">[43]</a></sup></div></div>
+      </div>
+      <p class="src">현재 AUM, 2025~2026 수익률, 영업이익·성과보수는 공개 기사에서 찾지 못했습니다. 인터뷰에서 확인하거나 금융투자협회 공시와 DART 감사보고서를 확인하세요.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 리파인 — 지금 가장 뜨거운 건</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025.7</div><div class="tl-body">지분 6.9% 신규 보고, 목적은 단순투자 <sup class="ref"><a href="#src-21">[21]</a></sup>. 7.6%로 늘리며 일반투자로 바꾸고, 7.23 법원에 임시주총 소집허가 신청 <sup class="ref"><a href="#src-22">[22]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.8</div><div class="tl-body">약 295억을 들여 9.85%까지 확대. 자본준비금을 줄여 배당 재원으로 쓰자는(감액배당) 안건 제안 <sup class="ref"><a href="#src-23">[23]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.9</div><div class="tl-body">임시주총에서 감액배당 안건 부결. 최대주주(47.96%) 반대 <sup class="ref"><a href="#src-18">[18]</a></sup>. 같은 달 리파인이 쿠폰 6% EB를 발행, 교환대상은 자사주 241만주 전량. 머스트는 "현금이 1,300억 넘게 있는데 고금리 EB가 왜 필요하냐"며 찬성 이사 6명의 사임·해임을 요구하고, 감사에게 이사 상대 손해배상 소송을 청구 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.8~9</div><div class="tl-body">리얼티파인이 주당 1만7,600원에 발행주식 30%까지 공개매수(8.18~9.16) <sup class="ref"><a href="#src-14">[14]</a></sup>. 지분 76.52%가 되어 단독으로 특별결의가 가능해짐. 머스트는 9.4·9.14 두 차례 공개서한, 법적 대응 예고 <sup class="ref"><a href="#src-13">[13]</a></sup>. "최대주주 지분 매각 시 동일 가액 적용"도 요구 <sup class="ref"><a href="#src-15">[15]</a></sup>. 차파트너스도 이해상충이라고 비판 <sup class="ref"><a href="#src-16">[16]</a></sup></div></div>
+      </div>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>쟁점</th><th>머스트</th><th>최대주주·회사 측</th></tr>
+        <tr><td>자사주 EB</td><td>현금이 많은데 고금리 EB는 불필요. 교환가 1만4,709원은 최대주주 인수가 2만7,159원의 반값 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup></td><td>LP 자금을 맡은 운용사로서 선관주의에 따른 결정. 교환가는 당시 주가보다 10% 높아 헐값 아님(LS증권) <sup class="ref"><a href="#src-19">[19]</a></sup></td></tr>
+        <tr><td>자사주 매입·환원</td><td>주주환원 확대 요구 <sup class="ref"><a href="#src-23">[23]</a></sup></td><td>성장자금을 소모해 부적절 <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr>
+        <tr><td>공개매수</td><td>경영권 프리미엄을 일반주주와 나누지 않은 구조</td><td>상장은 유지한다는 방침 <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td>그린메일 의혹</td><td>"대주주에 고가 매각할 가능성 없다"며 일축(출처 신뢰도 낮음, 날짜 미상) <sup class="ref"><a href="#src-39">[39]</a></sup></td><td>—</td></tr>
+      </table>
+      </div>
+      <p class="src">리얼티파인 보유 지분 전량이 NH투자증권에 담보로 잡혀 있고(차입 1,350억), 거래소는 공시불이행 2건으로 불성실공시법인 지정을 예고했다는 보도가 있습니다 <sup class="ref"><a href="#src-13">[13]</a></sup>. 실제 소송을 냈는지는 확인하지 못했습니다. 더벨은 이를 "거버넌스 소송전"으로 표현했습니다 <sup class="ref"><a href="#src-24">[24]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>다른 캠페인 — 파마리서치·영풍</h2>
+      <h3>파마리서치 (2025.6~7) — 대표 성공 사례</h3>
+      <ul class="tight">
+        <li>약 1.2% 지분으로 인적분할에 반대했습니다. 분할 뒤 현물출자를 하면 대주주가 돈을 들이지 않고 지배력을 키울 수 있다는 논리였고, "중복상장 없는 물적분할이 최선"이라고 주장했습니다 <sup class="ref"><a href="#src-25">[25]</a></sup></li>
+        <li>회사는 7월 8일 분할을 철회했고 주가는 13.73% 올랐습니다 <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+      </ul>
+      <h3>영풍 (2024.11~2025.3) — 고려아연 분쟁 속 캐스팅보트</h3>
+      <ul class="tight">
+        <li>약 2% 지분으로 공개 캠페인을 시작했습니다. 자사주 6.62% 전량 소각, 무상증자·액면분할 등 5가지를 요구했습니다 <sup class="ref"><a href="#src-27">[27]</a></sup> <sup class="ref"><a href="#src-28">[28]</a></sup></li>
+        <li>주주제안을 냈다가 <sup class="ref"><a href="#src-29">[29]</a></sup>, 영풍 이사회가 자사주 소각과 액면분할을 결정하자 철회했습니다 <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+        <li>2025.3 주총: 머스트가 추천한 전영준 변호사가 회사(영풍) 측 감사위원 후보로 올라 선임됐습니다. 최윤범 회장 측 영풍정밀이 제안한 집중투표제는 부결됐습니다 <sup class="ref"><a href="#src-31">[31]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup>. 결과적으로 머스트는 <b>영풍 경영진과 손잡은 모양새</b>가 됐습니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>정책 환경</h2>
+      <ul class="tight">
+        <li><b>3차 상법 개정(자사주 의무소각)</b>이 2026년 2월 25일 국회를 통과했습니다 <sup class="ref"><a href="#src-38">[38]</a></sup>. 영풍·리파인에서 쟁점이 된 '자사주 활용'의 여지가 줄어듭니다.</li>
+        <li><b>의무공개매수</b>: 머스트는 도입에 찬성하지만, 정무위원회 안에 담긴 대주주 '선행매수' 허용에는 반대합니다. 대신 일반주주도 같은 비율로 팔 수 있는 비례적 공개매수를 요구합니다 <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup>. 법안은 상정이 보류됐고(10.16), 대통령이 공개토론을 제안했습니다(10.28) <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-37">[37]</a></sup>. 공동성명과 기자회견에서 <b>김두용 대표 개인의 발언은 찾지 못했습니다</b>. 인터뷰에서 직접 받아낼 만합니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했습니다. 리파인 관련 수치(지분율, 교환가, 차입금)와 소송 여부는 DART 공시로 다시 확인하세요. [39] g9inside는 신뢰도가 낮은 출처입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> THE VC, 머스트자산운용 기업정보(대표·인원). <a href="https://thevc.kr/mustassetmanagement" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 이코노미스트, 머스트 창업자 김두용·구은미, 2016-05. <a href="https://economist.co.kr/article/view/ecn201605080017" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 비즈워치, 머스트홀딩스·저축은행 지배구조, 2020-06-18. <a href="https://news.bizwatch.co.kr/article/finance/2020/06/18/0023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 뉴스토마토, 김두용 대표 인터뷰 "기업 스토킹은 해외로까지", 2019. <a href="https://www.newstomato.com/readNews.aspx?no=885486" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 서울경제, 김두용 대표·SMIC 출신·손실 이후. <a href="https://www.sedaily.com/NewsView/29KE9PA4VK" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 한국경제, '게임스톱 대박' 머스트운용 2022년 부진, 2022-12-19. <a href="https://www.hankyung.com/amp/2022121963601" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> Bloomberg, 50% 수익 헤지펀드의 한국 기업 비판, 2024-12-23. <a href="https://www.bloomberg.com/news/articles/2024-12-23/hedge-fund-returning-50-calls-out-korean-corporate-hypocrisy" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 머니투데이, 머스트 헤지펀드 수익률, 2018-08. <a href="https://www.mt.co.kr/stock/2018/08/10/2018080715504822894" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> The Star(로이터), 한국 지배구조 베팅 펀드, 2020-01-21. <a href="https://www.thestar.com.my/business/business-news/2020/01/21/korean-funds-governance-bet" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> CEO스코어데일리, 머스트원앤온리 공모 재간접펀드 출시, 2024-09-30. <a href="https://ceoscoredaily.com/page/view/2024093009585069390" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 펀드정보(FunETF), 머스트원앤온리 펀드 규모. <a href="https://www.funetf.co.kr/product/fund/view/K553M3ED5185" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 더벨, 머스트 10호 편입 재간접펀드, 2026-04. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604081021338920101722" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 리파인 공개매수·머스트 공개서한·담보 지분, 2026-09. <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> SBS Biz, 스톤브릿지·LS증권 리파인 공개매수 조건, 2026-08. <a href="https://biz.sbs.co.kr/amp/article/20000329150" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 네이트(뉴스), 머스트 "최대주주 지분 매각 시 동일 가액" 요구, 2026-09-13. <a href="https://m.news.nate.com/view/20260913n05326" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 아시아경제, 차파트너스 리파인 공개매수 비판, 2026-09-04. <a href="https://core.asiae.co.kr/article/2026090416483552236" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 아시아경제, 리파인 최대주주 측 반론, 2026-09-11. <a href="https://core.asiae.co.kr/article/2026091113444677504" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 헤럴드경제, 리파인 EB 반대·이사 해임 요구, 2025-09-27. <a href="https://www.heraldk.com/article/2025092716000020819" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 헤럴드경제, EB 교환가격 논쟁·LS증권 반박, 2025-09-01. <a href="https://www.heraldk.com/article/2025090117000008231" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 서울경제, 머스트 "자본시장에 있어선 안 될 사태", 2025-09. <a href="https://www.sedaily.com/article/14111595" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 디지털투데이, 머스트 리파인 5% 신규 보고, 2025-07. <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=578272" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 한국경제, 머스트 리파인 임시주총 소집 청구, 2025-07-24. <a href="https://www.hankyung.com/article/2025072404211" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 헤럴드경제, 머스트 리파인 9.85% 취득, 2025-08-19. <a href="https://www.heraldk.com/article/2025081918120202612" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 더벨, 2026 행동주의 리포트(리파인 소송전), 2026-04. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604131022297000108787" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 다음(뉴스), 머스트 파마리서치 인적분할 반대, 2025-06-24. <a href="https://v.daum.net/v/20250624155724576?f=p" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 한국경제, 파마리서치 인적분할 철회, 2025-07-08. <a href="https://www.hankyung.com/article/2025070856701" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> Business Wire, MUST Asset Management 영풍 캠페인 착수, 2024-12-03. <a href="https://www.businesswire.com/news/home/20241203602153/en/MUST-Asset-Management-Launches-Activist-Campaign-on-Young-Poong-Corporation" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 아시아경제, 머스트 영풍 주주가치 제고 제언, 2024-11-26. <a href="https://www.asiae.co.kr/en/article/2024112609371321400" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 시대일보, 영풍 주주제안, 2025-02-07. <a href="https://www.sidae.com/article/2025020713471939907" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 스마트투데이, 영풍 자사주 소각·액면분할 결정 후 제안 철회. <a href="https://www.smarttoday.co.kr/ko-kr/articles/66840" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 더팩트, 영풍 정기주총 집중투표제 부결·감사위원 선임, 2025-03-27. <a href="https://news.tf.co.kr/read/economy/2191903.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 비즈워치, 영풍 정기주총 결과, 2025-03-27. <a href="https://news.bizwatch.co.kr/article/market/2025/03/27/0056" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 머니투데이, 운용사 18곳 의무공개매수 공동성명, 2026-09-29. <a href="https://www.mt.co.kr/stock/2026/09/29/2026092913375691605" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 아이뉴스24, 대주주 선행매수 허용 반대·비례적 공개매수 요구. <a href="https://www.inews24.com/view/2010421" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 아시아경제, 운용사 공동 기자회견, 2026-09-30. <a href="https://core.asiae.co.kr/article/2026093016240325886" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 아시아경제, 의무공개매수 본회의 상정 보류, 2026-10-16. <a href="https://core.asiae.co.kr/article/2026101611583968065" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 딜사이트, 대통령 의무공개매수 공개토론 제안, 2026-10-28. <a href="https://dealsite.co.kr/articles/171546" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 시대일보, 3차 상법 개정(자사주 의무소각) 본회의 통과, 2026-02-25. <a href="https://www.sidae.com/article/2026022510291241878" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> g9inside, 머스트 그린메일 의혹 일축(날짜 미상). <a href="https://g9inside.com/?p=52456" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 메트로서울, 트러스톤 태광산업 EB 가처분, 2025-07-03. <a href="https://www.metroseoul.co.kr/article/20250703500115" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> MTN, 쿼드자산운용 영원무역 공개서한, 2026-07. <a href="https://news.mtn.co.kr/news-detail/2026070710525665733" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> Fintel, Must Asset Management 13F 보유 종목. <a href="https://fintel.io/ko/i/must-asset-management-inc" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 비즈워치, 증시 활황기 사모운용사 성과보수 증가, 2026-08-19. <a href="https://news.bizwatch.co.kr/article/market/2026/08/19/0050" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 김 대표는 언론 노출을 꺼리는 편이라, 정책 의견처럼 말하기 편한 주제로 시작해 리파인으로 좁혀 가는 순서를 권합니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>① 의무공개매수·정책 (워밍업)</h2></div>
+    <div class="q cat2 must"><p class="qtext">운용사 18곳 공동성명에 참여해 대주주 '선행매수' 허용에 반대하셨습니다. 법안 상정이 보류되고 대통령이 공개토론을 제안했습니다. <b>최종안에 무엇이 꼭 들어가야 합니까?</b></p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/stock/2026/09/29/2026092913375691605" target="_blank" rel="noopener">[33]</a> <a href="https://www.inews24.com/view/2010421" target="_blank" rel="noopener">[34]</a> <a href="https://core.asiae.co.kr/article/2026101611583968065" target="_blank" rel="noopener">[36]</a> <a href="https://dealsite.co.kr/articles/171546" target="_blank" rel="noopener">[37]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">비례적 공개매수를 의무화하면 <b>PEF 바이아웃 비용이 크게 늘어 M&amp;A 시장이 위축된다</b>는 반론이 있습니다. PE 업계를 어떻게 설득하시겠습니까?</p><p class="follow">↳ 인수금융 담보로 경영권 지분을 잡는 지금의 구조는 어떻게 바뀌어야 한다고 봅니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.inews24.com/view/2010421" target="_blank" rel="noopener">[34]</a> <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">자사주 의무소각이 통과됐습니다. <b>자사주 EB 같은 수단이 막힌 뒤 대주주들이 새로 쓰는 우회로</b>는 무엇이고, 행동주의의 무기는 어떻게 바뀝니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.sidae.com/article/2026022510291241878" target="_blank" rel="noopener">[38]</a> <a href="https://www.heraldk.com/article/2025092716000020819" target="_blank" rel="noopener">[18]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>② 리파인</h2></div>
+    <div class="q cat1 must"><p class="qtext">9월 공개서한에서 법적 대응을 예고하셨습니다. <b>실제로 소송을 냈습니까?</b> 상대방, 청구 내용, 일정을 알려주실 수 있습니까?</p><p class="follow">↳ 감사에게 청구했던 이사 상대 손해배상 소송은 진행됐습니까? 안 됐다면 주주대표소송으로 갑니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">[13]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604131022297000108787" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">최대주주가 76.52%를 확보해 혼자서 특별결의도 할 수 있게 됐습니다. 10.21%를 가진 2대주주로서 <b>남은 지렛대와 출구 전략</b>은 무엇입니까? 공개매수에는 응했습니까? 응하지 않았다면 그 이유는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">[13]</a> <a href="https://biz.sbs.co.kr/amp/article/20000329150" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">최대주주 측은 "LP 자금을 맡은 운용사로서 선관주의를 지킨 결정"이라고 말합니다. <b>PEF 대주주가 자기 LP의 이익을 지키는 것과 일반주주 보호가 충돌</b>할 때, 기준은 무엇이어야 합니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.heraldk.com/article/2025090117000008231" target="_blank" rel="noopener">[19]</a> <a href="https://core.asiae.co.kr/article/2026091113444677504" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">"대주주에게 지분을 비싸게 팔고 나가려는 것 아니냐"는 그린메일 의혹이 있습니다. 머스트는 가능성이 없다고 했는데, <b>그 약속을 어떻게 담보</b>합니까?</p><div class="qmeta"><span class="tag">확인형 압박</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://g9inside.com/?p=52456" target="_blank" rel="noopener">[39]</a> <a href="https://m.news.nate.com/view/20260913n05326" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">증권사(LS증권)가 PE 투자자로 참여한 구조입니다. <b>증권사 PE·인수금융이 상장사 인수에 들어올 때 생기는 이해상충</b>을 어떻게 봅니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/amp/article/20000329150" target="_blank" rel="noopener">[14]</a> <a href="https://www.heraldk.com/article/2025090117000008231" target="_blank" rel="noopener">[19]</a> <a href="https://dealsite.co.kr/articles/169502" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 캠페인 방식·타깃</h2></div>
+    <div class="q cat3"><p class="qtext">파마리서치는 1.2%로 인적분할을 철회시켰습니다. <b>작은 지분으로 이긴 결정적 요인</b>은 무엇이었습니까? 다른 기관과의 연대입니까, 여론입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://v.daum.net/v/20250624155724576?f=p" target="_blank" rel="noopener">[25]</a> <a href="https://www.hankyung.com/article/2025070856701" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">영풍에서는 머스트가 추천한 감사위원이 회사 측 후보로 선임됐고, 고려아연 측 집중투표제는 부결됐습니다. <b>결과적으로 경영권 분쟁에서 한쪽 편을 든 것</b> 아니냐는 시각에 어떻게 답하십니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.tf.co.kr/read/economy/2191903.htm" target="_blank" rel="noopener">[31]</a> <a href="https://news.bizwatch.co.kr/article/market/2025/03/27/0056" target="_blank" rel="noopener">[32]</a> <a href="https://www.asiae.co.kr/en/article/2024112609371321400" target="_blank" rel="noopener">[28]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2026년 정기주총 시즌에는 머스트의 공개 캠페인이 보이지 않았습니다. <b>타깃을 고르는 기준</b>은 무엇이고, 지금 보고 있는 유형의 회사가 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604131022297000108787" target="_blank" rel="noopener">[24]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 하우스 운용·성과</h2></div>
+    <div class="q cat4 must"><p class="qtext">2022년 해외 성장주 급락으로 순자산이 6,000억대에서 2,500억대로 줄었고, 2024년에는 약 50% 수익을 냈습니다. <b>현재 AUM과 2025~2026년 수익률</b>은 어느 수준입니까?</p><p class="follow">↳ 2022년 이후 리스크 관리에서 바꾼 것은 무엇입니까? 포트폴리오 집중도, 해외 비중을 조정했습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.hankyung.com/amp/2022121963601" target="_blank" rel="noopener">[6]</a> <a href="https://www.bloomberg.com/news/articles/2024-12-23/hedge-fund-returning-50-calls-out-korean-corporate-hypocrisy" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">공모 재간접 '원앤온리'가 약 1,582억으로 커졌고 10호 편입 재간접도 나왔습니다. <b>리테일·퇴직연금 자금이 들어올수록 행동주의 캠페인의 위험(장기 보유, 소송 비용)</b>을 어떻게 설명합니까?</p><div class="qmeta"><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://ceoscoredaily.com/page/view/2024093009585069390" target="_blank" rel="noopener">[10]</a> <a href="https://www.funetf.co.kr/product/fund/view/K553M3ED5185" target="_blank" rel="noopener">[11]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604081021338920101722" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">27명 가운데 최근 1년에 12명이 입사했습니다. <b>어떤 역할을 채우고 있습니까?</b> 행동주의 전담 조직이나 해외 사업 조직입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://thevc.kr/mustassetmanagement" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[43]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-06</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
