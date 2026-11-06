@@ -1,0 +1,345 @@
+<meta charset="utf-8" />
+<title>카카오벤처스 부사장 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #7d6200; --accent-soft: #faf3d6;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #f0cd55; --accent-soft: #262010;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #f0cd55; --accent-soft: #262010;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #1d1700; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #1d1700; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-06</div>
+    <h1 class="title" style="word-break:keep-all">카카오벤처스 — 펀드·포트폴리오·임지훈 소송</h1>
+    <p class="subtitle">시드 단계 '첫 기관투자자'를 내세우는 카카오 100% 자회사 VC. 카카오 의존도를 줄이는 펀드레이징과, 정책자금 문제로 번지는 임지훈 2차 소송이 지금의 숙제다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 부사장(김치원 부대표 추정)</span>
+      <span class="meta-chip">질문 16개</span>
+      <span class="meta-chip">출처 62개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에</h2>
+      <ul class="tight">
+        <li><b>정체성은 '첫 기관투자자'입니다.</b> 2025년 27건, 약 207억을 투자했습니다. 신규 19건 가운데 18건이 시드였고, 17곳에서 첫 기관투자자였습니다. 같은 해 구주 매각 등으로 약 1,300억을 회수했습니다 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></li>
+        <li><b>펀드레이징은 쉽지 않습니다.</b> 2025년 3월 모태펀드가 출자한 '스타트업 코리아 카카오 코파일럿'(440억)을 만들었습니다 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup>. 그러나 국민성장펀드는 1차 숏리스트에 못 들었고, 2차에서는 SL인베스트먼트에 밀렸습니다 <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup>. 2021년 이후 결성한 펀드에는 모두 카카오 관계사가 출자해 의존도가 높다는 지적이 있습니다 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup>. 최근 모태 LP성장펀드 산업안전 분야 GP로 뽑혀 400억 펀드를 결성하는 중으로 보입니다 <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+        <li><b>관심 분야는 AI 에이전트, 딥테크(양자·우주·로봇), 의료 AI, 롱제비티</b>입니다. 미국 대학 연구실 단계 딥테크 소싱과 1인 AI 창업자용 공간 '템프서울'이 새로운 시도입니다 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-33">[33]</a></sup></li>
+        <li><b>임지훈 2차 소송</b>: 2026년 9월 카카오청년창업펀드 성과보수 약 40억을 청구하는 소송이 제기됐습니다. 이 펀드는 모태펀드가 출자해 정책자금 LP 문제로 번질 수 있습니다 <sup class="ref"><a href="#src-52">[52]</a></sup> <sup class="ref"><a href="#src-57">[57]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+      <p class="warn"><b>만날 상대 확인</b>: 기사로 확인된 부사장급은 <b>김치원 부대표</b>(2024년 5월 승진) 한 명입니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup>. 신정호 씨는 2026년 2월 기사에 수석심사역으로 나옵니다 <sup class="ref"><a href="#src-11">[11]</a></sup>. 다른 분이라면 질문지 ①~③은 그대로 쓰고, 헬스케어 질문만 빼면 됩니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>사람 — 대표·부대표·파트너</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>이름·직책</th><th>이력</th><th>메모</th></tr>
+        <tr><td><b>김치원</b><br>부대표(부사장)</td><td>내과 전문의, 서울와이즈재활요양병원장을 지냄. 디지털헬스케어파트너스(DHP)를 운영하다 2021년 3월 상무 겸 파트너로 합류 <sup class="ref"><a href="#src-2">[2]</a></sup>. 2024년 5월 합류 3년 만에 부대표로 승진. 김기준 대표가 올라가면서 빈 자리였음 <sup class="ref"><a href="#src-1">[1]</a></sup></td><td>뇌신경·심전도 등 극초기 디지털헬스에 투자 <sup class="ref"><a href="#src-3">[3]</a></sup>. 2023년에는 병원장을 겸하고 있었음 <sup class="ref"><a href="#src-4">[4]</a></sup>. 지금도 겸직하는지는 미확인</td></tr>
+        <tr><td><b>김기준</b><br>대표</td><td>2018년 부사장 <sup class="ref"><a href="#src-4">[4]</a></sup>. 2023년 12월 대표 내정, 2024년 3월 선임(임기 2년) <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></td><td>임기가 2026년 3월 끝났으나 연임 보도는 찾지 못함. 2026년 10월 기사도 '대표'로 표기 <sup class="ref"><a href="#src-8">[8]</a></sup>. GCV 글로벌 파워리스트 100인(2026.6) <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+        <tr><td><b>장동욱</b><br>상무(서비스 파트너)</td><td>2014년 합류, 2026년 3월 상무 승진 <sup class="ref"><a href="#src-10">[10]</a></sup></td><td>2016년 당근에 기관으로는 처음 투자. 부분 회수 기준 182배 <sup class="ref"><a href="#src-10">[10]</a></sup></td></tr>
+        <tr><td><b>신정호</b><br>수석심사역</td><td>MIT·칼텍 등 미국 대학 연구실을 직접 다니며 딥테크 소싱 <sup class="ref"><a href="#src-11">[11]</a></sup></td><td>같은 기사는 미국 투자에서 아직 회수가 없다고 씀</td></tr>
+      </table>
+      </div>
+      <p class="src">2026년 5월에는 HR 지원 파트너 2명을 영입해 그로스팀을 신설했습니다 <sup class="ref"><a href="#src-12">[12]</a></sup>. 전체 인원은 확인하지 못했습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 펀드 결성 내역</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>규모</th><th>결성</th><th>LP·비고</th></tr>
+        <tr><td>케이큐브1호</td><td>약 116억(추정)</td><td>2012년경</td><td>2013년 두나무에 2억 투자. 2021년 해산하며 두나무 주식을 현물로 분배 <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+        <tr><td>카카오청년창업펀드</td><td>300억</td><td>2013~2014</td><td>모태펀드 180억, 카카오. <b>2026년 7월 청산</b> <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-57">[57]</a></sup></td></tr>
+        <tr><td>카카오 그로스해킹 펀드</td><td>약 1,040억</td><td>2020</td><td>카카오·산은캐피탈·교보생명. 가장 큰 펀드 <sup class="ref"><a href="#src-4">[4]</a></sup></td></tr>
+        <tr><td>카카오 코파일럿 1호</td><td>323억</td><td>2021(추정)</td><td>카카오 200억, 카카오브레인 23억, GP 100억 <sup class="ref"><a href="#src-4">[4]</a></sup></td></tr>
+        <tr><td>카카오 코파일럿 2호</td><td>최종 규모 미확인</td><td>2023.5</td><td>카카오 200억. GP 출자금을 위해 카카오 대상 500억 유상증자 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup></td></tr>
+        <tr><td><b>스타트업 코리아 카카오 코파일럿</b></td><td>440억</td><td>2025.3</td><td>모태펀드(스타트업코리아펀드) 출자. 11번째 펀드 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup></td></tr>
+        <tr><td><b>산업안전 펀드(결성 중, 추정)</b></td><td>400억 목표</td><td>2026 하반기</td><td>모태 LP성장펀드 트랙2 산업안전 분야 GP 선정. 모태 150억 <sup class="ref"><a href="#src-22">[22]</a></sup></td></tr>
+      </table>
+      </div>
+      <h3>짚을 점</h3>
+      <ul class="tight">
+        <li><b>AUM 수치가 엇갈립니다.</b> '누적 11개 펀드 4,400억 이상, 8개 운용 중'이라는 보도가 있고 <sup class="ref"><a href="#src-13">[13]</a></sup>, 다른 숫자도 돌아다닙니다. 현재 운용 펀드 수와 AUM은 직접 확인하세요.</li>
+        <li><b>카카오 의존도</b>: 코파일럿 1·2호는 카카오가 약정액의 60% 넘게 냈습니다 <sup class="ref"><a href="#src-19">[19]</a></sup>. 2021년 이후 펀드에 모두 관계사가 참여했고, 대형 펀드 운용 경험이 부족하다는 지적도 있습니다 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup></li>
+        <li><b>정책자금 출자사업 성적</b>: 국민성장펀드 1차 숏리스트 탈락 <sup class="ref"><a href="#src-19">[19]</a></sup>, 2차 AI·반도체 소형 분야는 SL인베스트먼트가 최종 선정 <sup class="ref"><a href="#src-21">[21]</a></sup>. 산업안전 GP에는 뽑혔지만, 펀드를 400억으로 키워 주목적 투자 비중을 18.75%로 '희석'했다는 비판 기사가 있습니다 <sup class="ref"><a href="#src-22">[22]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+        <li><b>그룹 관계</b>: 2014년 다음카카오가 김범수 의장 지분 100%를 인수해 계열사가 됐고 <sup class="ref"><a href="#src-27">[27]</a></sup>, 지금도 카카오 100% 자회사입니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup>. 매각이나 계열 정리 보도는 없습니다. 2026년 5월 카카오인베스트먼트(카카오벤처스와 다른 회사)가 두나무 지분 6.55%를 약 1조에 하나은행에 팔았습니다 <sup class="ref"><a href="#src-28">[28]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 최근 투자 포트폴리오 (2025.1~2026.10)</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>시기</th><th>기업</th><th>분야</th><th>단계·금액</th><th>공동투자</th></tr>
+        <tr><td>2025.01</td><td><b>텍트그룹</b></td><td>뷰티 브랜드</td><td>시드</td><td>베이스벤처스 <sup class="ref"><a href="#src-51">[51]</a></sup></td></tr><tr><td>2025.02</td><td><b>오큐티(OQT)</b></td><td>양자컴퓨팅</td><td>시드 30억</td><td>블루포인트 <sup class="ref"><a href="#src-35">[35]</a></sup></td></tr><tr><td>2025.05</td><td><b>올리고스페이스(미국)</b></td><td>위성개발 자동화</td><td>시드</td><td>럭스캐피탈 등 <sup class="ref"><a href="#src-36">[36]</a></sup></td></tr><tr><td>2025.05</td><td><b>자폰(미국)</b></td><td>멀티 AI 에이전트</td><td>시드</td><td>– <sup class="ref"><a href="#src-36">[36]</a></sup></td></tr><tr><td>2025.06</td><td><b>홈코</b></td><td>공간 유지보수</td><td>시드 7억</td><td>엑스퀘어드 <sup class="ref"><a href="#src-50">[50]</a></sup></td></tr><tr><td>2025.11</td><td><b>바이버스</b></td><td>기업 AI 전환(AX)</td><td>시드 11억</td><td>서울대기술지주 <sup class="ref"><a href="#src-37">[37]</a></sup></td></tr><tr><td>2025.11</td><td><b>세미에이아이</b></td><td>반도체 수율 AI</td><td>시드</td><td>– <sup class="ref"><a href="#src-38">[38]</a></sup></td></tr><tr><td>2026.02</td><td><b>패럴랙스 월즈(미국)</b></td><td>로봇 시뮬레이션</td><td>시드</td><td>페어VC 리드 <sup class="ref"><a href="#src-39">[39]</a></sup></td></tr><tr><td>2026.04</td><td><b>티냅스</b></td><td>AI 에이전트 신뢰성·보안</td><td>시드 45억</td><td>미래에셋벤처투자 리드, 뮤렉스 등 <sup class="ref"><a href="#src-40">[40]</a></sup></td></tr><tr><td>2026.06</td><td><b>탭제로</b></td><td>AI 롱제비티</td><td>시드</td><td>단독 <sup class="ref"><a href="#src-41">[41]</a></sup></td></tr><tr><td>2026.07</td><td><b>딥그로브</b></td><td>AI 스토리게임</td><td>시드 15억(리드)</td><td>본엔젤스 <sup class="ref"><a href="#src-42">[42]</a></sup></td></tr><tr><td>2026.07</td><td><b>모드픽</b></td><td>AI 에이전트 크로스보더 커머스</td><td>시드</td><td>이화여대기술지주 <sup class="ref"><a href="#src-43">[43]</a></sup></td></tr><tr><td>2026.07</td><td><b>언엑스</b></td><td>AI 크리에이터</td><td>시드(리드)</td><td>슈미트, 마크앤컴퍼니 <sup class="ref"><a href="#src-44">[44]</a></sup></td></tr><tr><td>2026.08</td><td><b>6펜스</b></td><td>K뷰티</td><td>시드 20억(리드)</td><td>아모레퍼시픽, K2인베스트먼트 <sup class="ref"><a href="#src-45">[45]</a></sup></td></tr><tr><td>2026.08</td><td><b>액시옴</b></td><td>롱제비티</td><td>시드</td><td>퓨처플레이 <sup class="ref"><a href="#src-46">[46]</a></sup></td></tr><tr><td>2026.09</td><td><b>인텔리시아</b></td><td>AI 합성소비자 리서치</td><td>프리A 34억(리드)</td><td>뮤렉스, 캡스톤 <sup class="ref"><a href="#src-47">[47]</a></sup></td></tr><tr><td>2026.09</td><td><b>코로로직</b></td><td>심혈관 영상 AI</td><td>시드</td><td>서울대기술지주 <sup class="ref"><a href="#src-48">[48]</a></sup></td></tr><tr><td>2026.10</td><td><b>오큐티 <b>후속</b></b></td><td>양자컴퓨팅</td><td>프리A 140억</td><td>DSC인베스트먼트 리드, 블루포인트 등 <sup class="ref"><a href="#src-49">[49]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">금액이 없는 칸은 비공개입니다. 2025년 신규 투자를 분야별로 보면 딥테크 9건, IT·서비스 6건, 디지털헬스 3건, 게임 1건입니다 <sup class="ref"><a href="#src-14">[14]</a></sup>. 2024년 투자액은 약 140억이었습니다 <sup class="ref"><a href="#src-25">[25]</a></sup>.</p>
+      <h3>대표 포트폴리오</h3>
+      <ul class="tight">
+        <li><b>두나무</b>: 케이큐브1호로 2013년 주당 40원에 투자 <sup class="ref"><a href="#src-16">[16]</a></sup>. 500배 넘는 수익이라는 보도 <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>리벨리온</b>: 설립 초기 시드 투자 <sup class="ref"><a href="#src-29">[29]</a></sup>. 2026년 3월 국민성장펀드 직접투자 1호로 6,400억 프리IPO, 기업가치 3.4조 <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+        <li><b>당근</b>: 2016년 기관 첫 투자, 부분 회수 기준 182배 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>시프트업</b>(2024년 상장): 2개 펀드로 12억 투자, 기사 시점 지분가치 약 977억 <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li>CES 2026에 패밀리사 7곳 참가(뉴로티엑스 혁신상) <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>관심 분야·투자 방식</h2>
+      <ul class="tight">
+        <li><b>2026 전략</b>: 국내는 한국이 강한 제조·반도체·이차전지, 글로벌 소비재, 의료 AI를 결합한 디지털헬스. 해외는 우주·양자 같은 미래 원천기술 팀을 먼저 찾겠다는 계획 <sup class="ref"><a href="#src-13">[13]</a></sup></li>
+        <li><b>AI 에이전트</b>: 특정 버티컬에 집중하는 팀, 기술보다 사업 설계 역량, 외부 도구 연동과 사용자 맞춤화를 본다는 기준(2025.3, 심사역 인터뷰) <sup class="ref"><a href="#src-32">[32]</a></sup>. 실제로 자폰, 티냅스, 모드픽, 인텔리시아 등 에이전트 관련 투자가 이어짐</li>
+        <li><b>미국 딥테크</b>: 올리고스페이스(위성), 패럴랙스 월즈(로봇 시뮬레이션), 자폰(AI 에이전트) 등 미국 시드 투자 <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-39">[39]</a></sup>. 대학 연구실 단계부터 직접 소싱 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>헬스케어·롱제비티</b>(김치원 부대표 영역): 극초기 디지털헬스 <sup class="ref"><a href="#src-3">[3]</a></sup>. 2026년에는 탭제로, 액시옴(롱제비티), 코로로직(심혈관 영상 AI)에 투자 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-46">[46]</a></sup> <sup class="ref"><a href="#src-48">[48]</a></sup></li>
+        <li><b>템프서울(2026.9 개관)</b>: 1인 AI 창업자가 일정 기간 출근해 함께 일하는 공간. 매주 금요일 결과물을 공유하는 'Ship Night', 오픈AI·AWS 크레딧, 상하이 스파크랩 제휴 <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 임지훈 건 — 카카오벤처스 쪽에서 본 쟁점</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2015</div><div class="tl-body">임 전 대표가 카카오 대표로 옮기면서 성과보수 우선귀속분을 낮추는 변경계약을 맺음. 케이큐브1호 70%→44%, 청년창업펀드 60%→22%. 원고 측은 그 대가로 '직무수행기간과 무관하게 지급' 조항을 받았다고 주장 <sup class="ref"><a href="#src-53">[53]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2022.3~2025.3</div><div class="tl-body">1차 소송(케이큐브1호, 두나무) 제기 <sup class="ref"><a href="#src-62">[62]</a></sup>. 약 598억까지 청구를 늘렸으나 2023년 11월 1심 패소. 주주총회 결의가 없었다는 이유 <sup class="ref"><a href="#src-59">[59]</a></sup>. 2심에서 조정이 성립하지 않아 화해권고결정이 났고 2025년 확정. 내용은 비공개 <sup class="ref"><a href="#src-60">[60]</a></sup> <sup class="ref"><a href="#src-61">[61]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.7~8</div><div class="tl-body">청년창업펀드 청산. 임 전 대표가 지급을 청구하자 카카오벤처스는 8월 공문으로 "관련 계약 등을 검토한 결과 귀하가 주장하시는 성과보수금을 지급할 근거가 없다"고 회신 <sup class="ref"><a href="#src-54">[54]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.9.15</div><div class="tl-body">2차 소송. 피고는 카카오벤처스와 김범수 창업자, 청구액 약 40억 <sup class="ref"><a href="#src-52">[52]</a></sup> <sup class="ref"><a href="#src-53">[53]</a></sup>. 원고 측은 펀드 성과보수를 약 366억으로 추정 <sup class="ref"><a href="#src-55">[55]</a></sup>. 근거로 2018년 2월 법인인감이 찍힌 확인서를 제시 <sup class="ref"><a href="#src-54">[54]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.10~</div><div class="tl-body">임 전 대표가 브런치에 "300억 가운데 180억은 정책자금"이라고 써 공적 문제로 쟁점을 키움 <sup class="ref"><a href="#src-57">[57]</a></sup>. 정책 출자사업에 변수가 될 수 있다는 분석 <sup class="ref"><a href="#src-8">[8]</a></sup>. 첫 변론기일이나 답변서 관련 보도는 아직 없음 <sup class="ref"><a href="#src-56">[56]</a></sup></div></div>
+      </div>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>쟁점</th><th>임 전 대표 측</th><th>카카오벤처스 측</th></tr>
+        <tr><td>계약 효력</td><td>펀드 성과 배분 약정이라 주총 결의가 필요 없음 <sup class="ref"><a href="#src-55">[55]</a></sup></td><td>대표이사 보수라 주총 결의가 필요. 1차 1심이 이 논리를 받아들임 <sup class="ref"><a href="#src-59">[59]</a></sup></td></tr>
+        <tr><td>2018 확인서</td><td>법인인감 날인. '기간과 무관하게 지급'을 회사가 확인 <sup class="ref"><a href="#src-54">[54]</a></sup></td><td>공식 반박은 없음. "지급할 근거가 없다", "법적 판단에 따르겠다" <sup class="ref"><a href="#src-54">[54]</a></sup> <sup class="ref"><a href="#src-58">[58]</a></sup></td></tr>
+        <tr><td>1차 화해와의 관계</td><td>다른 펀드라 별개 청구</td><td>화해권고결정 문구가 청년창업펀드까지 포함하는지가 변수(비공개)</td></tr>
+        <tr><td>정책자금</td><td>"180억은 정책자금", LP에게 성과보수 배분이 투명한지 문제 제기 <sup class="ref"><a href="#src-57">[57]</a></sup></td><td>모태펀드 등 정책 LP의 평가에 부담 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="note">법리 분석(상법 388조, 화해권고 효력, 유사 판례)은 앞서 만든 <a href="https://claude.ai/artifact/NAGhB33QF4wp4f3Z5Y6ZUW" target="_blank" rel="noopener" style="color:var(--accent)">임지훈 소송 브리핑</a>에 자세히 있습니다. 부대표는 소송 당사자가 아니어서 "회사 공식 입장대로"라고 답할 가능성이 큽니다. 소송 자체보다 성과보수 배분 규정, LP 소통 같은 제도 쪽으로 묻는 편이 답을 받기 쉽습니다.</p>
+      <p class="src">김범수 창업자의 별도 형사 재판(SM엔터 시세조종 혐의)이 LP 모집에 부담이 될 수 있다는 분석도 있습니다 <sup class="ref"><a href="#src-20">[20]</a></sup>. 재판이 진행 중인 사안이라 무죄추정 원칙에 유의하세요.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했습니다. 금액과 날짜는 기사에 쓰기 전에 원문을 한 번 더 확인하세요. <span class="own">자사</span>는 블로터·넘버스 기사입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 더벨, 김치원 부대표 승진, 2024-05. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202405130932136080106219" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 메디게이트뉴스, 김치원 상무 겸 파트너 합류, 2021-03. <a href="https://medigatenews.com/news/2539025211" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 메디게이트뉴스, 김치원 부대표 극초기 디지털헬스 투자, 2025-07. <a href="https://medigatenews.com/news/2252965360" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, 카카오벤처스 펀드·카카오 지분 구조, 2023. <a href="https://dealsite.co.kr/articles/104084" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 바이라인네트워크, 김기준 신임 대표 내정, 2023-12-18. <a href="https://byline.network/2023/12/18-285/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 바이라인네트워크, 김기준 대표 선임(임기 2년), 2024-03-27. <a href="https://byline.network/2024/03/27-336/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 넘버스, 김기준 대표 체제 <span class="own">자사</span>. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=2762" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 딜사이트, 청년창업펀드 청산·정책 출자 변수, 2026-10. <a href="https://dealsite.co.kr/articles/170468" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 유니콘팩토리, 김기준 대표 GCV 파워리스트 선정, 2026-06-25. <a href="https://www.unicornfactory.co.kr/article/2026062515324372289" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 바이라인네트워크, 장동욱 상무 승진, 2026-03-24. <a href="https://byline.network/2026/03/24_102983-2/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 머니투데이, 신정호 수석 미국 딥테크 소싱, 2026-02-13. <a href="https://www.mt.co.kr/future/2026/02/13/2026021113270030730" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 유니콘팩토리, 그로스팀 신설, 2026-05-21. <a href="https://www.unicornfactory.co.kr/article/2026052109002884516" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 아이뉴스24, 2025 실적·2026 투자 전략, 2026-01. <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 유니콘팩토리, 2025 실적·코리아 코파일럿 펀드, 2026-01-20. <a href="https://www.unicornfactory.co.kr/article/2026012009111257546" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 아주경제, 2025 투자 실적, 2026-01-20. <a href="https://www.ajunews.com/view/20260120093519566" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 머니투데이, 케이큐브1호 해산·두나무 현물 분배, 2021-11-16. <a href="https://www.mt.co.kr/stock/2021/11/16/2021111513300572103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> sateconomy.co.kr, 카카오청년창업펀드. <a href="https://sateconomy.co.kr/news/view/179591124846785" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> THE VC, 카카오벤처스 펀드 결성 기록. <a href="https://thevc.kr/KakaoVentures" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 딜사이트, 코파일럿 펀드 카카오 출자 비중·국민성장펀드 1차. <a href="https://dealsite.co.kr/articles/164006" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트, 관계사 출자·두나무 회수·사법리스크. <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 유니콘팩토리, 국민성장펀드 2차 AI·반도체 소형 선정, 2026-07-13. <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 모태 LP성장펀드 산업안전 GP 선정. <a href="https://dealsite.co.kr/articles/171242" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> dhilbo.co.kr, 산업안전 펀드 주목적 비중 '희석' 비판. <a href="https://www.dhilbo.co.kr/news/articleView.html?idxno=2142" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 딜사이트, 관계사 의존·대형 펀드 경험 부족 지적. <a href="https://dealsite.co.kr/articles/163442" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 바이라인네트워크, 2024 투자 실적, 2025-01-14. <a href="https://byline.network/2025/01/14-414/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 뉴스토마토, 시프트업 투자 지분가치. <a href="https://newstomato.com/ReadNews.aspx?no=1233966" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 카카오, 케이큐브벤처스 계열 편입 공지, 2014. <a href="https://www.kakaocorp.com/page/detail/7711" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 디지털데일리, 카카오인베스트먼트 두나무 지분 매각, 2026-05-15. <a href="https://www.ddaily.co.kr/page/view/2026051509243734600" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 블로터, 리벨리온 초기 투자 <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 유니콘팩토리, 리벨리온 6400억 프리IPO, 2026-03-31. <a href="https://www.unicornfactory.co.kr/article/2026033111025632012" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 머니투데이, CES 2026 패밀리사 참가, 2025-12-04. <a href="https://www.mt.co.kr/future/2025/12/04/2025120409085985957" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 바이라인네트워크, AI 에이전트 투자 기준, 2025-03-28. <a href="https://byline.network/2025/03/28-443/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 머니투데이, 템프서울 개관, 2026-09-18. <a href="https://www.mt.co.kr/future/2026/09/18/2026091809205774678" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 벤처스퀘어, 템프서울 운영 방식. <a href="https://www.venturesquare.net/1115005/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 머니투데이, 오큐티 시드 30억, 2025-02-16. <a href="https://www.mt.co.kr/future/2025/02/16/2025021611112632958" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 유니콘팩토리, 올리고스페이스·자폰 투자, 2025-05-29. <a href="https://www.unicornfactory.co.kr/article/2025052913105847726" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 플래텀, 바이버스 시드 11억, 2025-11. <a href="https://platum.kr/archives/275155" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 유니콘팩토리, 세미에이아이 투자, 2025-11-26. <a href="https://www.unicornfactory.co.kr/article/2025112609010779126" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 네이트(뉴스), 패럴랙스 월즈 시드, 2026-02-05. <a href="https://m.news.nate.com/view/20260205n36419" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 스타트업레시피 위클리, 티냅스 시드 45억, 2026-04. <a href="https://startuprecipe.co.kr/wp-content/uploads/2026/05/260427_weekly_startuprecipe_v001.pdf" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 유니콘팩토리, 탭제로 시드, 2026-06-08. <a href="https://www.unicornfactory.co.kr/article/2026060808462773082" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 유니콘팩토리, 딥그로브 시드 15억, 2026-07-01. <a href="https://www.unicornfactory.co.kr/article/2026070108414410718" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 유니콘팩토리, 모드픽 시드, 2026-07-07. <a href="https://www.unicornfactory.co.kr/article/2026070709071510239" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 머니투데이, 언엑스 시드, 2026-07-30. <a href="https://www.mt.co.kr/amp/future/2026/07/30/2026073008425567671" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 플래텀, 6펜스 시드 20억, 2026-08. <a href="https://platum.kr/archives/292081" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 와우테일, 액시옴 시드, 2026-08-13. <a href="https://wowtale.net/2026/08/13/262889/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 벤처스퀘어, 인텔리시아 프리A 34억, 2026-09. <a href="https://www.venturesquare.net/1110380/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 벤처스퀘어, 코로로직 시드, 2026-09. <a href="https://www.venturesquare.net/1113760/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 벤처스퀘어, 오큐티 프리A 140억, 2026-10. <a href="https://www.venturesquare.net/1119995/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 와우테일, 홈코 시드 7억, 2025-06-10. <a href="https://wowtale.net/2025/06/10/242209/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 플래텀, 텍트그룹 시드, 2025-01. <a href="https://platum.kr/archives/250918" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 머니투데이·유니콘팩토리, 임지훈 2차 소송 제기, 2026-09-16. <a href="https://www.unicornfactory.co.kr/article/2026091616335881424" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 딜사이트, 2차 소송 개요, 2026-09. <a href="https://dealsite.co.kr/articles/169123" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 블로터, 2018 확인서·카카오벤처스 공문 <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=676916" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 딜사이트, 원고 측 산정 근거(366억 추정), 2026-09. <a href="https://dealsite.co.kr/articles/169268" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 서울경제TV, 임지훈 소송 후속. <a href="https://www.sentv.co.kr/article/view/sentv202611030138" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 블로터, 임지훈 브런치 "180억은 정책자금" <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=677570" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 아이뉴스24, 2차 소송 카카오벤처스 입장, 2026-09-16. <a href="https://m.inews24.com/v/2006391" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> 법률신문, 1차 소송 1심 판결 이유, 2023-11. <a href="https://www.lawtimes.co.kr/news/192955" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-60"><span class="n">[60]</span> 아시아경제, 1차 소송 2심 조정 회부, 2025-01-13. <a href="https://view.asiae.co.kr/article/2025011312343650960" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-61"><span class="n">[61]</span> 디지털데일리, 화해권고결정 확정, 2025-03-12. <a href="https://www.ddaily.co.kr/page/view/2025031223563319543" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-62"><span class="n">[62]</span> 이코노미스트, 1차 소송 제기·성과보수 추산, 2022-03-25. <a href="https://economist.co.kr/article/view/ecn202203250042" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 김치원 부대표를 만난다고 가정했습니다. 소송 질문은 끝부분에 두어 분위기를 해치지 않게 배치했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 펀드레이징·LP</h2></div>
+    <div class="q cat1 must"><p class="qtext">산업안전 분야 GP로 선정됐습니다. <b>400억 결성은 어디까지 왔고, 모태 외 LP는 누구입니까?</b> 시드 중심 하우스가 산업안전이라는 주목적을 어떻게 소화합니까?</p><p class="follow">↳ 펀드를 키워 주목적 비중이 18.75%로 낮아졌다는 '희석' 비판에는 어떻게 답하시겠습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171242" target="_blank" rel="noopener">[22]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">2021년 이후 펀드에 모두 카카오 관계사가 출자했고, 코파일럿 1·2호는 카카오 비중이 60%를 넘습니다. <b>다음 블라인드펀드는 외부 LP 비중을 얼마나 높이는 게 목표입니까?</b></p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164006" target="_blank" rel="noopener">[19]</a> <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">[20]</a> <a href="https://dealsite.co.kr/articles/163442" target="_blank" rel="noopener">[24]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">국민성장펀드는 1차 숏리스트에 못 들었고 2차는 SL인베스트먼트에 밀렸습니다. <b>내부에서는 탈락 이유를 무엇으로 봅니까?</b> 트랙레코드입니까, 펀드 규모입니까, 그룹 이슈입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164006" target="_blank" rel="noopener">[19]</a> <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">[21]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">누적 11개 펀드 4,400억이라는 보도가 있지만 숫자가 엇갈립니다. <b>현재 운용 중인 펀드 수와 AUM</b>을 정확히 알려주실 수 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">[13]</a> <a href="https://www.unicornfactory.co.kr/article/2026012009111257546" target="_blank" rel="noopener">[14]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 투자 전략·포트폴리오</h2></div>
+    <div class="q cat2 must"><p class="qtext">2025년 신규 투자 19건 중 18건이 시드였고 17곳에서 첫 기관투자자였습니다. <b>시장이 후기로 쏠리는데 시드에 집중하는 이유</b>는 무엇이고, 후속 투자 재원은 충분합니까?</p><p class="follow">↳ 후속 라운드를 주도하지 못하면 지분이 희석됩니다. 포트폴리오별 후속 투자 기준이 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.inews24.com/view/1929583" target="_blank" rel="noopener">[13]</a> <a href="https://www.unicornfactory.co.kr/article/2026012009111257546" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">부대표님 영역인 헬스케어에서 최근 탭제로, 액시옴, 코로로직 등 롱제비티와 의료 AI 투자가 이어졌습니다. <b>디지털헬스의 회수 경로가 좁은데</b>, 어떤 출구를 보고 투자합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://medigatenews.com/news/2252965360" target="_blank" rel="noopener">[3]</a> <a href="https://www.unicornfactory.co.kr/article/2026060808462773082" target="_blank" rel="noopener">[41]</a> <a href="https://wowtale.net/2026/08/13/262889/" target="_blank" rel="noopener">[46]</a> <a href="https://www.venturesquare.net/1113760/" target="_blank" rel="noopener">[48]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">미국 시드 투자(올리고스페이스, 패럴랙스 월즈, 자폰 등)가 늘었는데, 아직 미국에서 회수 실적이 없다는 보도가 있습니다. <b>국내 LP 돈으로 미국 초기 기업에 투자하는 논리</b>를 LP에게 어떻게 설명합니까?</p><div class="qmeta"><span class="tag">확인형 압박</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/02/13/2026021113270030730" target="_blank" rel="noopener">[11]</a> <a href="https://www.unicornfactory.co.kr/article/2025052913105847726" target="_blank" rel="noopener">[36]</a> <a href="https://m.news.nate.com/view/20260205n36419" target="_blank" rel="noopener">[39]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">AI 에이전트 투자가 많습니다(자폰, 티냅스, 모드픽, 인텔리시아). 빅테크가 에이전트를 직접 내놓는 상황에서 <b>스타트업이 살아남는 영역</b>은 어디라고 봅니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://byline.network/2025/03/28-443/" target="_blank" rel="noopener">[32]</a> <a href="https://startuprecipe.co.kr/wp-content/uploads/2026/05/260427_weekly_startuprecipe_v001.pdf" target="_blank" rel="noopener">[40]</a> <a href="https://www.unicornfactory.co.kr/article/2026070709071510239" target="_blank" rel="noopener">[43]</a> <a href="https://www.venturesquare.net/1110380/" target="_blank" rel="noopener">[47]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">템프서울은 1인 AI 창업자를 위한 공간입니다. <b>투자와 어떻게 연결</b>되고, 성과는 어떻게 측정합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/09/18/2026091809205774678" target="_blank" rel="noopener">[33]</a> <a href="https://www.venturesquare.net/1115005/" target="_blank" rel="noopener">[34]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 회수·성과</h2></div>
+    <div class="q cat3 must"><p class="qtext">2025년에 구주 매각 등으로 약 1,300억을 회수했습니다. <b>어느 포트폴리오에서 나온 돈이고</b>, 시장 상황을 볼 때 회수를 서두른 겁니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026012009111257546" target="_blank" rel="noopener">[14]</a> <a href="https://www.ajunews.com/view/20260120093519566" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">리벨리온이 국민성장펀드 직접투자로 3.4조 기업가치를 인정받았습니다. <b>보유 지분을 IPO까지 들고 갈 계획</b>입니까, 일부 회수합니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=667630" target="_blank" rel="noopener">[29]</a> <a href="https://www.unicornfactory.co.kr/article/2026033111025632012" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">카카오청년창업펀드가 7월 청산됐습니다. 소송과 별개로 <b>최종 수익률(배수·IRR)</b>은 공개할 수 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/170468" target="_blank" rel="noopener">[8]</a> <a href="https://sateconomy.co.kr/news/view/179591124846785" target="_blank" rel="noopener">[17]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 임지훈 소송·거버넌스</h2></div>
+    <div class="q cat4 must"><p class="qtext">회사 공식 입장은 "지급할 근거가 없다"입니다. 원고 측은 2018년 법인인감이 찍힌 확인서를 내놓았습니다. <b>회사는 그 확인서의 존재와 진위를 인정합니까?</b> 인정한다면 효력이 없는 이유는 무엇입니까?</p><p class="follow">↳ "소송 중이라 답할 수 없다"면: 그럼 1차 화해 때와 달리 이번엔 협상 여지가 전혀 없습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=676916" target="_blank" rel="noopener">[54]</a> <a href="https://m.inews24.com/v/2006391" target="_blank" rel="noopener">[58]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext">청년창업펀드 300억 가운데 180억이 모태펀드 돈입니다. <b>모태펀드 등 정책 LP에게 이 분쟁을 어떻게 설명했고</b>, 출자사업 심사에 영향이 있었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">이해상충</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=677570" target="_blank" rel="noopener">[57]</a> <a href="https://dealsite.co.kr/articles/170468" target="_blank" rel="noopener">[8]</a> <a href="https://dealsite.co.kr/articles/164906" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">1차 소송에서 "주총 결의가 없다"는 절차 문제가 쟁점이 됐습니다. 그 뒤 <b>심사역·임원 성과보수 배분 규정을 정비</b>했습니까? 퇴사자 지급 기준은 어떻게 돼 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.lawtimes.co.kr/news/192955" target="_blank" rel="noopener">[59]</a> <a href="https://www.ddaily.co.kr/page/view/2025031223563319543" target="_blank" rel="noopener">[61]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">김기준 대표 임기가 2026년 3월 끝났습니다. <b>연임됐는지</b>, 부대표님의 역할이 헬스케어를 넘어 넓어졌는지 궁금합니다.</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://byline.network/2024/03/27-336/" target="_blank" rel="noopener">[6]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202405130932136080106219" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[62]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-06</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
