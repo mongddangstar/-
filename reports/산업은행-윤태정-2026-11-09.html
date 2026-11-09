@@ -1,0 +1,325 @@
+<meta charset="utf-8" />
+<title>윤태정 산은 부행장 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1d4f91; --accent-soft: #e4ecf7;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #a3c0ec; --accent-soft: #121c2b;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #a3c0ec; --accent-soft: #121c2b;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #0d1726; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #0d1726; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-09</div>
+    <h1 class="title" style="word-break:keep-all">윤태정 산업은행 부행장 — 벤처금융의 업적과 숙제</h1>
+    <p class="subtitle">산은의 벤처 출자·직접투자·넥스트라운드를 모두 거느린 혁신성장부문장. 30년 벤처금융의 업적 위에서, 국민성장펀드 시대에 산은 벤처 조직의 자리를 다시 정해야 한다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 윤태정 부행장(혁신성장부문장)</span>
+      <span class="meta-chip">질문 16개</span>
+      <span class="meta-chip">출처 59개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에</h2>
+      <ul class="tight">
+        <li><b>누구인가</b>: 산은 혁신성장(금융)부문장 부행장. 2026년 3월에 선임됐습니다. 간접투자 쪽에서 벤처펀드 조성과 GP 선정을 총괄했던 '출자 실무통'이고, 직전에는 뉴욕지점장이었습니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>무엇을 맡나</b>: 간접투융자금융실, 정책펀드금융실, 넥스트라운드실, 벤처금융본부(벤처투자1·2실)를 거느립니다. 산은의 벤처 출자·직접투자·투자유치 플랫폼이 모두 이 부문에 있습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 국민성장펀드 간접투자(정책성펀드 GP 선정) 실무도 산하 정책펀드금융실이 주관한다는 보도가 있습니다 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>산은 벤처 업적의 뼈대</b>: 1998년 벤처 직접투자를 시작해 2024년까지 1,313개사에 약 4.3조를 투자했습니다 <sup class="ref"><a href="#src-15">[15]</a></sup>. 2013년 성장사다리펀드로 한국성장금융의 토대를 놓았고 <sup class="ref"><a href="#src-48">[48]</a></sup>, 2016년 투자유치 플랫폼 넥스트라운드를 출범시켰습니다 <sup class="ref"><a href="#src-16">[16]</a></sup>. 2023년부터는 혁신성장펀드, 2026년부터는 국민성장펀드를 운영합니다 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li><b>지금 부딪힌 질문</b>: 국민성장펀드는 반도체·AI 대형 투자에 쏠린다는 비판을 받고, 창업 7년 이내 기업 공급은 4년 새 53.7% 줄었다는 국감 지적이 나왔습니다 <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-38">[38]</a></sup>. 2027년 계획은 30조로 동결됐습니다 <sup class="ref"><a href="#src-40">[40]</a></sup></li>
+      </ul>
+      <p class="note">산은의 LP 역할, 국민성장펀드 GP 선정 결과, 국감 지적은 앞서 만든 <a href="https://claude.ai/artifact/BAJkw2ARpJbr9nAQKxEAWa" target="_blank" rel="noopener" style="color:var(--accent)">산업은행 LP 브리핑(10.22)</a>에 자세히 있습니다. 이 페이지는 윤 부행장 개인과 산은의 벤처 업적에 집중했습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>윤태정 부행장 프로필</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:24%">항목</th><th>내용</th></tr>
+        <tr><td>출생·학력</td><td>1971년생, 건국대 무역학과. 영국 레딩대 위험관리 석사과정 수료 <sup class="ref"><a href="#src-1">[1]</a></sup></td></tr>
+        <tr><td>경력</td><td>인사부 파트장 → 간접투자금융실 팀장 → 종로지점장 → 2023년 뉴욕지점장 → 2026년 3월 부행장 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup>. 간접투자단장 시절 벤처펀드 조성과 위탁운용사 선정을 총괄했다는 보도 <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td>선임 경위</td><td>2025년 12월 김사남 벤처금융본부장이 먼저 내정됐습니다. 노조가 "부산 이전 실무 주도"를 이유로 반대해 2026년 1월 철회됐고, 2월 윤 부행장으로 바뀌었습니다 <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></td></tr>
+        <tr><td>입행 연도</td><td>확인하지 못함. 직접 물어볼 것</td></tr>
+      </table>
+      </div>
+      <h3>부문장 취임 뒤 공개 발언</h3>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2026.4.22 · 서울국제금융포럼</div><div class="tl-body">자금 흐름을 부동산에서 첨단 벤처산업으로, 대출에서 투자로, 수도권에서 지방으로 옮겨야 한다고 했습니다. "혁신기업은 성장 잠재력은 크지만 불확실성이 높아 장기 자본이 필요하다"며, 이를 보완하는 것이 정책금융의 역할이라는 취지였습니다 <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.5.12 · 넥스트라운드 in 대구</div><div class="tl-body">"산업은행도 넥스트라운드를 비롯한 다양한 지원을 통해 수도권과 지역이 함께 혁신하고 함께 성공할 수 있도록 최선을 다하겠다" <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.8 · 피지컬AI 스페셜라운드</div><div class="tl-body">에이티넘인베스트먼트와 공동 개최한 넥스트라운드에 참석. 라이드플럭스, 디든로보틱스 등이 IR <sup class="ref"><a href="#src-8">[8]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.10.16 · 딜사이트 M&amp;A 포럼</div><div class="tl-body">산은이 2025년 4,600억 규모 M&amp;A펀드를 만들었고, 올해 국민성장펀드 안에 6,000억 규모를 추가로 조성한다고 소개했습니다. "정부와의 긴밀한 협의를 통해 내년 2027년에도 M&amp;A펀드가 확대 조성될 수 있도록 노력하고 있다" <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+      </div>
+      <p class="src">발언을 이으면 키워드는 <b>장기 자본, 지역, 투자로의 전환, M&amp;A 회수</b>입니다. 10월 20일 이후 발언은 찾지 못했습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 조직 — 혁신성장부문과 국민성장펀드부문</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>부문</th><th>책임자</th><th>맡는 일</th></tr>
+        <tr><td><b>혁신성장(금융)부문</b></td><td>윤태정 부행장</td><td>간접투융자금융실(펀드 출자), 정책펀드금융실(정책성펀드 GP 선정), 넥스트라운드실(투자유치 플랫폼), 벤처금융본부(벤처투자1·2실, 직접투자) <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td><b>국민성장펀드부문</b></td><td>신혜숙 부행장</td><td>총괄사무국·대출운용국·투자운용국·심사지원국. 국민성장펀드 운용 전반 <sup class="ref"><a href="#src-11">[11]</a></sup>. 신 부행장은 벤처기술금융실장·간접투자금융실장 출신이고, 신설 당시 혁신성장금융부문장을 겸했음 <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li>박상진 회장은 국민성장펀드부문, 혁신성장금융부문, 자본시장부문을 '국가산업성장지원그룹'으로 묶었습니다 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li>국민성장펀드 간접투자(정책성펀드) 출자사업은 혁신성장부문 소속 정책펀드금융실이 주관한다고 보도됐습니다 <sup class="ref"><a href="#src-12">[12]</a></sup>. 10월 M&amp;A 포럼에서도 정책펀드기획팀장이 블라인드 펀드 성과를 발표했습니다 <sup class="ref"><a href="#src-13">[13]</a></sup>. <b>펀드 재원은 국민성장펀드부문, GP 선정 실무는 윤 부행장 산하</b>라는 구도로 보입니다(추정)</li>
+        <li>딜사이트는 두 부문이 "기능 중복을 피하고 시너지를 극대화"하도록 조율하는 것을 윤 부행장의 핵심 과제로 꼽았습니다 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 산업은행 벤처 업적 연대기</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">1998</div><div class="tl-body"><b>벤처 직접투자 시작.</b> 2024년 8월까지 1,313개사에 약 4.3조 투자 <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2013</div><div class="tl-body"><b>성장사다리펀드</b> 1.85조로 출발. 운용 조직이 한국성장금융이 됐고, 설립 초기 인력 대부분이 산은 출신이었습니다. 성장금융의 누적 모펀드 약정은 12.2조 <sup class="ref"><a href="#src-48">[48]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2016.8</div><div class="tl-body"><b>KDB 넥스트라운드 출범.</b> 3년 만에 180개사가 1조 넘게 유치했습니다 <sup class="ref"><a href="#src-16">[16]</a></sup>. 2023년 말까지 누적 719회 라운드에서 2,681개사가 IR을 했고, 770개사가 약 5.8조를 유치했습니다 <sup class="ref"><a href="#src-17">[17]</a></sup>. 2026년 계획 기준 누적 993개사 8.8조 <sup class="ref"><a href="#src-18">[18]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2019~</div><div class="tl-body"><b>넥스트라이즈</b>(무역협회 공동 스타트업 박람회) 시작 <sup class="ref"><a href="#src-31">[31]</a></sup>. 2026년 8회째 행사의 1:1 상담은 약 4,000건이었습니다 <sup class="ref"><a href="#src-30">[30]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2020</div><div class="tl-body">스케일업금융실이 한 해 4,808억을 공급했습니다(투자 3,588억, 대출 1,220억). 투자한 뷰노와 제주맥주가 상장 <sup class="ref"><a href="#src-34">[34]</a></sup>.</div></div>
+        <div class="tl-item"><div class="tl-date">2021~2022</div><div class="tl-body"><b>정책형 뉴딜펀드</b> 5.6조 결성(목표 4조 초과) <sup class="ref"><a href="#src-23">[23]</a></sup>. 2022년 1차 GP 14곳, 산은 앵커 출자 4,540억 <sup class="ref"><a href="#src-22">[22]</a></sup>. 2021년 11월 <b>KDB 실리콘밸리</b> 현지법인 개소 <sup class="ref"><a href="#src-24">[24]</a></sup>. 테크 스타트업 39곳에 1,034억 투자(NST 협약) <sup class="ref"><a href="#src-35">[35]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2023~2025</div><div class="tl-body"><b>혁신성장펀드</b>(연 3조, 2023~2027 총 15조 계획). 2023년 3.9조, 2025년 3.14조(목표의 104.7%)를 조성했고, 누적 재정 승수는 13.2배 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup>. 2023년 5월 동남권 투자유치 플랫폼 <b>V:Launch</b> 출범. 2026년 4월까지 33개사가 2,653억 유치(산은 직접 473억 포함) <sup class="ref"><a href="#src-19">[19]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-body"><b>국민성장펀드 운영.</b> 첫 비상장 직접투자로 리벨리온 2,500억(산은 본체 500억) <sup class="ref"><a href="#src-26">[26]</a></sup>, 퓨리오사AI 승인 <sup class="ref"><a href="#src-27">[27]</a></sup>. 10월 시리즈D에 산은이 300억 추가 투자 <sup class="ref"><a href="#src-28">[28]</a></sup>. 정책성펀드 GP 18곳 선정 <sup class="ref"><a href="#src-47">[47]</a></sup>. 세컨더리 펀드 4,000억(산은 1,200억) <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-37">[37]</a></sup>. NextONE 광주 개소 <sup class="ref"><a href="#src-32">[32]</a></sup>. 11월 V:Launch 전북 스페셜 개최 <sup class="ref"><a href="#src-46">[46]</a></sup>. 'KDB 넥스트 코리아' 5년 250조 계획 발표 <sup class="ref"><a href="#src-25">[25]</a></sup></div></div>
+      </div>
+      <h3>성공 사례로 꼽을 만한 것</h3>
+      <ul class="tight">
+        <li>넥스트라운드 인 실리콘밸리 참가사 29곳 중 17곳이 1조1,140억 후속투자를 유치했습니다. 리벨리온, 업스테이지, 퓨리오사AI 등입니다 <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+        <li>아이에스티: 2017년 RCPS 20억 투자. 상장 첫날 주가 기준으로 약 7배 수익이 예상된다는 보도(확정 수익 아님) <sup class="ref"><a href="#src-33">[33]</a></sup></li>
+        <li>스케일업금융실 투자처 뷰노·제주맥주 상장(2021) <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+      </ul>
+      <p class="warn">리벨리온·퓨리오사AI의 <b>초기</b> 라운드에 산은 본체가 투자했는지는 확인하지 못했습니다. 확인된 것은 넥스트라운드 참가와 2026년 대형 투자입니다. 컬리, 직방 등 다른 유니콘에 산은이 투자했다는 근거도 찾지 못했으니 기사에 쓰지 마세요. 직접투자 전체 수익률도 공개된 자료가 없습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 지금의 쟁점</h2>
+      <ul class="tight">
+        <li><b>벤처 공급 감소</b>: 창업 7년 이내 기업 공급이 2021년 1조9,139억에서 2025년 8,860억으로 53.7% 줄었습니다(전체 공급의 0.98%). 2026년 8월 말 기준은 4,827억(0.79%)입니다 <sup class="ref"><a href="#src-38">[38]</a></sup>. 산은은 "실제 벤처투자 실적과 다른 지표이고, 벤처투자 규모는 평년 수준"이라고 반박했습니다 <sup class="ref"><a href="#src-39">[39]</a></sup></li>
+        <li><b>펀드 결성 둔화</b>: 2026년 1분기 산은 부문 펀드 결성액이 9.9% 줄었습니다. 같은 기간 모태펀드 부문은 177.9% 늘었습니다 <sup class="ref"><a href="#src-49">[49]</a></sup></li>
+        <li><b>국민성장펀드 국감</b>: 심의 안건 30건이 모두 승인됐고 이해충돌 소지 7건이 지적됐습니다 <sup class="ref"><a href="#src-42">[42]</a></sup>. 반도체·AI 쏠림, 손실보전 구조 <sup class="ref"><a href="#src-43">[43]</a></sup>, GP 선정 공정성 <sup class="ref"><a href="#src-58">[58]</a></sup> 문제도 나왔습니다. 산은은 예비심사 체크리스트를 도입하고 심사기준을 개정하기로 했습니다 <sup class="ref"><a href="#src-44">[44]</a></sup>. 금융위 국감에서도 중소·벤처 자금 위축 우려가 나왔습니다 <sup class="ref"><a href="#src-45">[45]</a></sup></li>
+        <li><b>2027 계획</b>: 정부는 200조·연 40조로 키우겠다고 했지만, 국회에 낸 내년 계획은 30조(간접투자 7조)로 올해와 같습니다. 세부 운용계획은 12월 중순에 확정합니다. 직접투자는 2027년부터 연 5조 이상으로 늘리는 방향입니다 <sup class="ref"><a href="#src-40">[40]</a></sup>. 재정 1조가 편성됐습니다 <sup class="ref"><a href="#src-41">[41]</a></sup></li>
+        <li><b>혁신성장펀드의 앞날</b>: 2023~2027 계획이지만 국민성장펀드가 그 역할을 대체하는 구조라는 보도가 있습니다 <sup class="ref"><a href="#src-12">[12]</a></sup>. 2027년 별도 공고가 나올지는 미확인입니다</li>
+        <li><b>GP와의 관계</b>: 선정된 GP에 2배 펀딩과 병행펀드 출자까지 요구하는 '갑을 역전' <sup class="ref"><a href="#src-54">[54]</a></sup>, 국민연금과의 규약 충돌 <sup class="ref"><a href="#src-55">[55]</a></sup></li>
+        <li><b>그 밖</b>: 산은인베스트먼트 대표 인선이 늦어지면서 통폐합론이 나왔습니다 <sup class="ref"><a href="#src-50">[50]</a></sup>. 기술평가 역량 미흡 <sup class="ref"><a href="#src-51">[51]</a></sup>, IPO에 쏠린 회수 구조 <sup class="ref"><a href="#src-52">[52]</a></sup>, 수도권 집중 <sup class="ref"><a href="#src-53">[53]</a></sup> 지적도 있습니다. 부산 이전을 둘러싼 노조 반발은 이어지고 있습니다 <sup class="ref"><a href="#src-57">[57]</a></sup></li>
+      </ul>
+      <p class="src">모태펀드(한국벤처투자)는 "초기~IPO 단계는 모태"라고 선을 그었습니다 <sup class="ref"><a href="#src-56">[56]</a></sup>. 성장금융 대표 공모에서도 산은 출신은 최종 후보에서 빠졌습니다 <sup class="ref"><a href="#src-59">[59]</a></sup>. 그렇다면 산은 벤처 조직의 고유 영역이 어디인지가 인터뷰의 큰 질문입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했습니다. [23] 뉴딜펀드 결성액, [48] 성장사다리펀드 수치, [49] 1분기 결성액은 출처 기사를 정확히 특정하지 못한 추정 매칭이니 원문을 확인하세요.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 한국금융신문, [프로필] 윤태정 혁신성장부문장, 2026-03-24. <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 딜사이트, 혁신성장금융부문장 윤태정 내정. <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 딜사이트, 김사남 본부장 내정과 노조 반발. <a href="https://dealsite.co.kr/articles/154714" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 딜사이트, 산은 지점장 인사(종로 윤태정), 2021-12. <a href="https://dealsite.co.kr/articles/81994" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 파이낸셜뉴스, FIND·서울국제금융포럼 윤태정 발언, 2026-04-22. <a href="https://www.fnnews.com/news/202604221824576448" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 네이트(뉴스), 서울국제금융포럼 발언, 2026-04-22. <a href="https://m.news.nate.com/view/20260422n31686" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 네이트(뉴스), KDB 넥스트라운드 in 대구 인사말, 2026-05-12. <a href="https://news.nate.com/view/20260512n29697" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 아시아경제, 넥스트라운드 피지컬AI 스페셜라운드, 2026-08. <a href="https://core.asiae.co.kr/article/2026082517350360659" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 2026 M&A 포럼 윤태정 축사, 2026-10-16. <a href="https://dealsite.co.kr/articles/170861" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 한국금융신문, 국가산업성장지원그룹 체계, 2026-02-07. <a href="https://www.fntimes.com/html/view.php?ud=202602072115074455dd55077bc2_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 디지털데일리, 국민성장펀드부문 신설, 2025-12-09. <a href="https://www.ddaily.co.kr/page/view/2025120917141780465" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 더벨, 정책펀드금융실이 국민성장펀드 간접투자 주관, 2026-02-04. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602041455065480108020" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, 국민성장펀드 블라인드 펀드 성과 발표, 2026-10. <a href="https://dealsite.co.kr/articles/170830" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 더팩트, 산은 단장·팀장 인사, 2026-01-21. <a href="https://news.tf.co.kr/read/economy/2284636.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 유니콘팩토리, 산은 직접투자 누적 1,313개사·4.3조, 2024-08-20. <a href="https://www.unicornfactory.co.kr/article/2024082016265583550" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 아주경제, 넥스트라운드 3주년, 2019-08-27. <a href="https://www.ajunews.com/view/20190827155721777" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> SBS Biz, 넥스트라운드 2023년 말 누적. <a href="https://biz.sbs.co.kr/amp/article/20000146970" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 이코노미사이언스, 넥스트라운드 2026 운영계획. <a href="https://www.e-science.co.kr/news/articleView.html?idxno=127193" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> CEO스코어데일리, KDB V:Launch 성과, 2026-04-14. <a href="https://ceoscoredaily.com/page/view/2026041416255839384" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 헤럴드경제, 혁신성장펀드 2025 실적, 2026-01-04. <a href="https://www.heraldk.com/article/2026010417021201105" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 딜사이트, 혁신성장펀드 누적 실적. <a href="https://dealsite.co.kr/articles/153078" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> MTN, 정책형 뉴딜펀드 GP 선정, 2022-03-08. <a href="https://news.mtn.co.kr/news-detail/2022030816440110950" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 쿠키뉴스, 정책형 뉴딜펀드 결성 실적, 2022-01-03. <a href="https://www.kukinews.com/article/view/kuk202201030023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 한경비즈니스, KDB 실리콘밸리 현지법인 개소, 2021-11. <a href="https://magazine.hankyung.com/business/article/202111175983b" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 뉴스토마토, KDB 넥스트 코리아 5년 250조, 2026-02. <a href="https://newstomato.com/ReadNews.aspx?no=1292417" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 헤럴드경제, 국민성장펀드 리벨리온 2,500억 직접투자, 2026-03-26. <a href="https://www.heraldk.com/article/2026032600090039389" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 헤럴드경제, 퓨리오사AI 투자 승인, 2026-05-28. <a href="https://www.heraldk.com/article/2026052814375368285" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> SBS Biz, 퓨리오사AI 시리즈D 산은 300억 참여, 2026-10-29. <a href="https://biz.sbs.co.kr/amp/article/20000342901" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 아시아경제, 넥스트라운드 인 실리콘밸리 후속투자 성과, 2026-04-23. <a href="https://view.asiae.co.kr/article/2026042311201234855" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 머니투데이, 넥스트라이즈 2026, 2026-06-18. <a href="https://www.mt.co.kr/finance/2026/06/18/2026061813454989945" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 아시아경제, 넥스트라이즈(2019~), 2025-04-15. <a href="https://view.asiae.co.kr/article/2025041511111751865" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 뉴시스, NextONE 광주 개소, 2026-07-07. <a href="https://mobile.newsis.com/view/NISX20260707_0003699255" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 뉴스토마토, 산은 아이에스티 투자 회수 전망, 2025-02. <a href="https://newstomato.com/ReadNews.aspx?no=1253877" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 딜사이트, 스케일업금융실 2020 실적. <a href="https://dealsite.co.kr/articles/78483" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 이코노미스트, 산은 NST 협약 투자, 2022-06-22. <a href="https://economist.co.kr/article/view/ecn202206220068" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 딜사이트, 세컨더리 펀드 중형 GP(IMM·LB). <a href="https://dealsite.co.kr/articles/164541" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 이코노미스트, 세컨더리 소형 컴퍼니케이 선정, 2026-08-20. <a href="https://economist.co.kr/article/view/ecn202608200058" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> SBS Biz, 산은 벤처 공급 53.7% 감소. <a href="https://biz.sbs.co.kr/amp/article/20000337414" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 마이데일리, 산은 반박 "벤처투자는 평년 수준", 2026-10-02. <a href="https://www.mydaily.co.kr/page/view/2026100214490124051" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 한국경제, 2027 국민성장펀드 계획 30조 유지, 2026-11-02. <a href="https://www.hankyung.com/article/2026110210651" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 이투데이, 2027 예산 국민성장펀드 재정 1조. <a href="https://www.etoday.co.kr/news/view/2620488" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 아주경제, 심의 30건 전원 승인·제척 7건, 2026-10-08. <a href="https://www.ajunews.com/view/20261008173228237" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 뉴스핌, 국감 반도체·AI 쏠림·손실보전 구조, 2026-10-08. <a href="https://www.newspim.com/news/view/20261008001363" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 뉴스핌, 예비심사 체크리스트·심사기준 개정, 2026-10-22. <a href="https://www.newspim.com/news/view/20261022000115" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 한국금융신문, 금융위 국감 중기·벤처 자금 위축 우려, 2026-10-22. <a href="https://www.fntimes.com/html/view.php?ud=2026102221224737495e6e69892f_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 아시아투데이, KDB V:Launch 전북 스페셜, 2026-11-06. <a href="https://www.asiatoday.co.kr/kn/view.php?key=20261106010002514" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> SBS Biz, 2026 정책성펀드 GP 18곳 선정 완료. <a href="https://biz.sbs.co.kr/amp/article/20000322257" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 딜사이트, 성장사다리펀드·한국성장금융 연혁. <a href="https://dealsite.co.kr/articles/163698" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> IB토마토, 2026년 1분기 산은 펀드 결성액 감소. <a href="https://www.ibtomato.com/ExternalView.aspx?no=18488&type=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 딜사이트, 산은인베스트먼트 대표 인선 지연·통폐합론. <a href="https://dealsite.co.kr/articles/171005" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 뉴스토마토, 정책금융 기술평가 역량 미흡 지적. <a href="https://newstomato.com/ReadNews.aspx?no=1282912" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 뉴스토마토, 회수시장 IPO 의존 지적. <a href="https://newstomato.com/ReadNews.aspx?no=1308775" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 뉴스토마토, 국감 벤처투자 수도권 집중. <a href="https://newstomato.com/ReadNews.aspx?no=1318439" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 인베스트조선, 국민성장펀드 2배 펀딩·병행펀드 요구, 2026-07-16. <a href="https://www.investchosun.com/site/data/html_dir/2026/07/16/2026071680151.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 인베스트조선, 산은·국민연금 규약 충돌, 2026-08-24. <a href="https://www.investchosun.com/site/data/html_dir/2026/08/24/2026082480127.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 유니콘팩토리, 이대희 "초기~IPO는 모태", 2026-04-28. <a href="https://www.unicornfactory.co.kr/article/2026042814283483387" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 디지털데일리, 국책은행 노조 부산 이전 반대 공동집회, 2026-08-11. <a href="https://www.ddaily.co.kr/page/view/2026081111224365969" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 한국금융신문, GP 선정 공정성 국감, 2026-10-11. <a href="https://www.fntimes.com/html/view.php?ud=202610111736175173b4a7c6999c_18" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> 아시아경제, 성장금융 대표 후보 산은 출신 제외, 2026-05-20. <a href="https://view.asiae.co.kr/article/2026052015255028804" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 국민성장펀드 전반은 신혜숙 부행장 소관이니, 윤 부행장에게는 <b>VC 출자·직접투자·넥스트라운드</b>로 좁혀 묻는 편이 답을 받기 쉽습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 부문장의 역할·철학</h2></div>
+    <div class="q cat1 must"><p class="qtext">국민성장펀드부문이 생긴 뒤, 혁신성장부문과 <b>일을 어떻게 나누고 있습니까?</b> 정책성펀드 GP 선정 실무를 정책펀드금융실이 맡는다는 보도가 있는데, 결정 권한은 어디에 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602041455065480108020" target="_blank" rel="noopener">[12]</a> <a href="https://www.ddaily.co.kr/page/view/2025120917141780465" target="_blank" rel="noopener">[11]</a> <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">간접투자단장 시절 벤처펀드 조성과 GP 선정을 총괄하셨습니다. 부문장이 된 지금 <b>GP를 고르는 기준에서 가장 중요하게 보는 것</b>은 무엇이고, 그때와 무엇이 달라졌습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/156047" target="_blank" rel="noopener">[2]</a> <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">직전 뉴욕지점장이셨습니다. <b>미국 VC·LP 시장에서 본 것 중 산은 벤처금융에 가져오고 싶은 것</b>은 무엇입니까? KDB 실리콘밸리 법인은 어떻게 활용합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.fntimes.com/html/view.php?ud=2026032414032228945e6e69892f_18" target="_blank" rel="noopener">[1]</a> <a href="https://magazine.hankyung.com/business/article/202111175983b" target="_blank" rel="noopener">[24]</a> <a href="https://view.asiae.co.kr/article/2026042311201234855" target="_blank" rel="noopener">[29]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">4월 포럼에서 "부동산에서 첨단 벤처로, 대출에서 투자로, 수도권에서 지방으로"를 말씀하셨습니다. 이 가운데 <b>2027년에 숫자로 보여줄 수 있는 것</b>은 무엇입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202604221824576448" target="_blank" rel="noopener">[5]</a> <a href="https://m.news.nate.com/view/20260422n31686" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② VC 출자·국민성장펀드</h2></div>
+    <div class="q cat2 must"><p class="qtext">2027년 국민성장펀드 계획이 30조, 간접투자 7조로 올해와 같습니다. 혁신성장펀드는 국민성장펀드가 대체하는 구조라는 보도도 있습니다. <b>내년 VC 출자 규모는 늘어납니까, 줄어듭니까?</b> 혁신성장펀드 별도 공고는 나옵니까?</p><p class="follow">↳ 12월 중순 세부 계획에서 VC 중소형 리그의 비중은 어떻게 됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.hankyung.com/article/2026110210651" target="_blank" rel="noopener">[40]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202602041455065480108020" target="_blank" rel="noopener">[12]</a> <a href="https://www.heraldk.com/article/2026010417021201105" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">선정된 GP에 2배 펀딩과 병행펀드 출자까지 요구한다는 '갑을 역전' 지적이 있습니다. 국민연금과 규약도 충돌합니다. <b>GP 부담을 줄이기 위해 내년에 바꾸는 것</b>이 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/07/16/2026071680151.html" target="_blank" rel="noopener">[54]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/08/24/2026082480127.html" target="_blank" rel="noopener">[55]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">국감 뒤 예비심사 체크리스트를 도입하고 심사기준을 개정하기로 했습니다. GP 선정에서는 <b>정성평가가 정량평가를 뒤집을 수 있다</b>는 지적이 있었는데, 무엇이 바뀝니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261022000115" target="_blank" rel="noopener">[44]</a> <a href="https://www.fntimes.com/html/view.php?ud=202610111736175173b4a7c6999c_18" target="_blank" rel="noopener">[58]</a> <a href="https://www.ajunews.com/view/20261008173228237" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">M&amp;A펀드를 2025년 4,600억, 올해 국민성장펀드 안에 6,000억으로 키웠고 2027년에도 확대하겠다고 하셨습니다. 세컨더리 4,000억도 만들었습니다. <b>VC 회수시장에서 산은이 가장 부족하다고 보는 고리</b>는 어디입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/170861" target="_blank" rel="noopener">[9]</a> <a href="https://dealsite.co.kr/articles/164541" target="_blank" rel="noopener">[36]</a> <a href="https://economist.co.kr/article/view/ecn202608200058" target="_blank" rel="noopener">[37]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1308775" target="_blank" rel="noopener">[52]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 직접투자·플랫폼</h2></div>
+    <div class="q cat3 must"><p class="qtext">창업 7년 이내 기업 공급이 2021년 1조9,000억에서 2025년 8,860억으로 53.7% 줄었다는 국감 자료에 대해 산은은 "벤처투자는 평년 수준"이라고 반박했습니다. <b>그 근거가 되는 벤처 직접투자 실적 수치</b>를 공개할 수 있습니까?</p><p class="follow">↳ 2026년 1분기 산은 부문 펀드 결성액이 9.9% 줄고 모태는 177.9% 늘었습니다. 산은 벤처 비중이 줄어드는 흐름 아닙니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://biz.sbs.co.kr/amp/article/20000337414" target="_blank" rel="noopener">[38]</a> <a href="https://www.mydaily.co.kr/page/view/2026100214490124051" target="_blank" rel="noopener">[39]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">리벨리온 2,500억, 퓨리오사AI 3,700억처럼 대형 딜이 주목받습니다. 반면 'KDB 넥스트 코리아'는 연 5,000억 수준의 중소·벤처 투자를 후속투자 중심으로 늘린다고 했습니다. <b>시드·시리즈A 기업은 산은에서 멀어지는 것</b> 아닙니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.heraldk.com/article/2026032600090039389" target="_blank" rel="noopener">[26]</a> <a href="https://biz.sbs.co.kr/amp/article/20000342901" target="_blank" rel="noopener">[28]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1292417" target="_blank" rel="noopener">[25]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">1998년 이후 1,313개사에 4.3조를 직접 투자했습니다. <b>지금까지의 회수 실적과 수익률(IRR·배수)</b>은 어느 정도입니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2024082016265583550" target="_blank" rel="noopener">[15]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1253877" target="_blank" rel="noopener">[33]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">넥스트라운드는 10년 동안 누적 993개사가 8.8조를 유치했습니다. 민간 데모데이·IR 행사가 많아진 지금 <b>넥스트라운드만의 역할</b>은 무엇이고, 산은 직접투자와는 얼마나 연결됩니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.e-science.co.kr/news/articleView.html?idxno=127193" target="_blank" rel="noopener">[18]</a> <a href="https://biz.sbs.co.kr/amp/article/20000146970" target="_blank" rel="noopener">[17]</a> <a href="https://view.asiae.co.kr/article/2026042311201234855" target="_blank" rel="noopener">[29]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">대구 넥스트라운드, V:Launch 전북, NextONE 광주 등 지역 행사를 늘리고 있습니다. 그런데 국감에서는 벤처투자 수도권 집중이 지적됐습니다. <b>지역 기업이 실제로 투자받은 성과</b>는 어떻습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.nate.com/view/20260512n29697" target="_blank" rel="noopener">[7]</a> <a href="https://www.asiatoday.co.kr/kn/view.php?key=20261106010002514" target="_blank" rel="noopener">[46]</a> <a href="https://mobile.newsis.com/view/NISX20260707_0003699255" target="_blank" rel="noopener">[32]</a> <a href="https://ceoscoredaily.com/page/view/2026041416255839384" target="_blank" rel="noopener">[19]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1318439" target="_blank" rel="noopener">[53]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 업적과 앞으로</h2></div>
+    <div class="q cat4"><p class="qtext">성장사다리펀드, 넥스트라운드, 뉴딜펀드, 혁신성장펀드까지 산은 벤처금융 30년 가운데 <b>가장 큰 업적 하나와 가장 아쉬운 점 하나</b>를 꼽는다면 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/163698" target="_blank" rel="noopener">[48]</a> <a href="https://www.ajunews.com/view/20190827155721777" target="_blank" rel="noopener">[16]</a> <a href="https://www.kukinews.com/article/view/kuk202201030023" target="_blank" rel="noopener">[23]</a> <a href="https://www.heraldk.com/article/2026010417021201105" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">모태펀드는 "초기~IPO는 모태"라고 말합니다. 성장금융도 산은 출신이 대표 후보에서 빠졌습니다. <b>정책 LP 지형에서 산은 벤처 조직의 고유 영역</b>은 어디라고 보십니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026042814283483387" target="_blank" rel="noopener">[56]</a> <a href="https://view.asiae.co.kr/article/2026052015255028804" target="_blank" rel="noopener">[59]</a> <a href="https://dealsite.co.kr/articles/163698" target="_blank" rel="noopener">[48]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">산은인베스트먼트 대표 인선이 늦어지면서 통폐합론이 나왔습니다. <b>산은 그룹의 VC 운용 기능을 어떻게 재편할 계획</b>입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/171005" target="_blank" rel="noopener">[50]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[59]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-09</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
