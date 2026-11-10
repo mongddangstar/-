@@ -1,0 +1,303 @@
+<meta charset="utf-8" />
+<title>어센트PE 인터뷰 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #5a3d8a; --accent-soft: #efe9f8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #c4aef0; --accent-soft: #1d1629;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #c4aef0; --accent-soft: #1d1629;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #170f24; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #170f24; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-10</div>
+    <h1 class="title" style="word-break:keep-all">어센트PE — 피노 투자와 첫 블라인드펀드</h1>
+    <p class="subtitle">에테르씨티 5.5배로 이름을 알린 7명짜리 중소·중견 바이아웃 하우스. 첫 블라인드 1,300억을 모았지만 경영권 딜은 아직이고, 최근 딜은 중국계 2차전지 소재사의 소수지분 RCPS다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 어센트PE 관계자</span>
+      <span class="meta-chip">질문 15개</span>
+      <span class="meta-chip">출처 32개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에</h2>
+      <ul class="tight">
+        <li><b>어떤 하우스인가</b>: 2018년 ACPC PE로 설립해 2022년 사명을 바꾼 독립계 중소·중견 바이아웃 운용사입니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 이재현 대표는 두산그룹 전략본부 M&amp;A, 에이티넘파트너스 대체투자 총괄, 칼릭스인베스트먼트 대표를 거쳤습니다 <sup class="ref"><a href="#src-3">[3]</a></sup>. 임직원은 7명입니다 <sup class="ref"><a href="#src-1">[1]</a></sup></li>
+        <li><b>최근 딜(추정)</b>: 코스닥 2차전지 소재사 <b>피노</b>의 1,830억 RCPS에 200억을 넣습니다. FI 15곳이 함께하는 클럽딜이고 납입일은 11월 27일입니다 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup>. 최대주주가 중국 CNGR 계열이라 거래소가 우회상장 여부를 심사했고, '해당 없음'으로 거래가 재개됐습니다 <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li><b>올해 가장 큰 일</b>: 설립 8년 만에 첫 블라인드펀드 '어센트밸류업제1호'를 1,300억으로 결성했습니다. 앵커 LP는 새마을금고 400억, 산업은행 350억입니다 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>대표 트랙레코드</b>: 에테르씨티(수소 용기). 2020년 550억에 인수해 2023년 말 덕산하이메탈에 3,050억에 팔았습니다. 멀티플 5.5배입니다 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li><b>민감 이슈</b>: 인터로조 대주주 지분 인수가 무산된 뒤 가압류와 손해배상 소송으로 번졌습니다 <sup class="ref"><a href="#src-24">[24]</a></sup> <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+      </ul>
+      <p class="warn"><b>이름 혼동 주의</b>: 씨앤씨인터내셔널을 2,850억에 인수한 곳은 <b>어센트에쿼티파트너스(어센트EP)</b>로 별개 회사입니다(2025년 12월 PACM으로 사명 변경) <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup>. 일부 기사가 이 건을 '어센트PE'로 적었으니 섞지 마세요 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup>.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 국정근 기자 기사가 다룬 것 vs 남은 것</h2>
+      <p>국정근 기자가 어센트PE만 다룬 기사는 넘버스 「산은 검증 뚫은 어센트PE, 1300억 펀드로 밸류업 '정조준'」(2026년 5월 추정) 한 건으로 확인됩니다 <sup class="ref"><a href="#src-7">[7]</a></sup>. 블로터에는 출자사업 지원사로 이름이 나온 기사만 있습니다 <sup class="ref"><a href="#src-31">[31]</a></sup>.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th style="width:50%">이미 다룬 것</th><th>열려 있는 것(새 질문 거리)</th></tr>
+        <tr><td>
+          · 첫 블라인드 1,300억(목표 1,200억), 멀티 클로징 예정<br>
+          · 앵커 LP 새마을금고 400억·산은 350억, "신생 PE가 산은 앵커는 이례적"<br>
+          · GP커밋 약 60억(약 5%, 통상 2~3%)<br>
+          · 에테르씨티 550억→3,050억, 5.5배, IRR 40%대<br>
+          · AI·반도체·수소·로봇, 기업가치 500억~1,000억 바이아웃, 연내 2곳 목표<br>
+          · 보유 3~4년(최대 5년), '퀄리파이드 IPO' 원칙 <sup class="ref"><a href="#src-7">[7]</a></sup>
+        </td><td>
+          · <b>피노 RCPS 200억</b>: 바이아웃 원칙과 다른 소수지분 메자닌 <sup class="ref"><a href="#src-14">[14]</a></sup><br>
+          · 멀티 클로징 최종 규모, 추가 LP<br>
+          · '연내 2곳' 진척(11월 현재 블라인드로 경영권 인수 보도 없음)<br>
+          · 산은 남부권 펀드의 지역 투자 의무를 어떻게 채울지 <sup class="ref"><a href="#src-10">[10]</a></sup><br>
+          · 하이베러(시크릿데이) 실적과 회수 계획 <sup class="ref"><a href="#src-21">[21]</a></sup> <sup class="ref"><a href="#src-23">[23]</a></sup><br>
+          · 인터로조 소송 <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup><br>
+          · 출자사업 탈락(기후기술·IBK M&amp;A·노란우산) <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-29">[29]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup><br>
+          · 7명 조직, 키맨, 2호 펀드
+        </td></tr>
+      </table>
+      </div>
+      <p class="src">에테르씨티 IRR은 더벨이 '30%대'<sup class="ref"><a href="#src-11">[11]</a></sup>, 넘버스가 '40%대'<sup class="ref"><a href="#src-7">[7]</a></sup>로 썼습니다. 총·순 기준인지, 딜 단위인지 확인하세요.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 최근 딜 — 피노 RCPS 200억</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:26%">항목</th><th>내용</th></tr>
+        <tr><td>발행</td><td>제3자배정 RCPS 약 1,830억. 2,292만3,702주, 주당 7,983원, 납입 예정 11월 27일 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>투자자</td><td>FI 15곳. 원익투자파트너스 약 320억, 큐캐피탈파트너스 200억, <b>어센트PE 200억</b>, KCGI 펀드의 에프앤오홀딩스 100억 등. 주관 SK증권 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>조건</td><td>우선배당 연 0.1%, 2027년 11월 28일부터 보통주 전환 청구 가능, <b>리픽싱 없음, 상환권은 회사 보유</b>, 1년 의무보유 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>자금 용도</td><td>약 1,199억은 씨앤피신소재테크놀로지 LFP 공장 설비, 631억은 타법인 증권 취득 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>지배구조</td><td>최대주주 CNGR 계열 지분율 24.82% → 19.59% <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>거래소</td><td>11월 5일 우회상장 심사로 매매정지, 6일 '우회상장 미해당'으로 재개 <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src"><b>짚을 점</b>: 리픽싱이 없고 상환권이 회사에 있어 투자자 보호 장치가 약한, 사실상 보통주에 가까운 구조입니다. 경영권 50% 이상 바이아웃을 내세운 하우스가 중국계 최대주주 기업의 소수지분에 들어간 이유, 그리고 어느 펀드(1호 블라인드인지 프로젝트펀드인지)로 넣는지가 확인되지 않았습니다. 납입 전이라 거래는 아직 끝나지 않았습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드와 출자사업</h2>
+      <ul class="tight">
+        <li><b>어센트밸류업제1호 PEF</b>: 2025년 9월 산은 남부권 지역성장지원펀드 PE 부문 GP로 선정됐습니다. 조건은 산은 출자 350억, 결성 1,200억 이상입니다 <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup>. 초과 모집을 거쳐 <sup class="ref"><a href="#src-12">[12]</a></sup> 2026년 2~3월 1,300억으로 결성했고, GP 커밋은 60억입니다 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup>. 회사 연혁에는 2026년 3월 설립으로 적혀 있습니다 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>떨어진 출자사업</b>: 은행권 기후기술펀드 중형 리그(4대1 경쟁, 제네시스PE 선정) <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup>, IBK-성장금융 M&amp;A 펀드 소형 <sup class="ref"><a href="#src-29">[29]</a></sup>, 노란우산 2025년 연말 출자 <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+        <li>펀드 수는 4개로 집계되지만 <sup class="ref"><a href="#src-1">[1]</a></sup> 공개 보도로 AUM은 확인되지 않습니다</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>포트폴리오·회수</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>회사</th><th>투자</th><th>현황</th></tr>
+        <tr><td><b>에테르씨티</b><br>수소·초고압 용기</td><td>2020.7 550억 인수(어센트 440억, 엔케이 110억) <sup class="ref"><a href="#src-18">[18]</a></sup></td><td>2023.12 덕산하이메탈에 91.88%를 3,050억에 매각. 5.5배 <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></td></tr>
+        <tr><td><b>하이베러</b>(옛 중원)<br>생리대 '시크릿데이'</td><td>2023 보통주 80%를 920억에 인수 <sup class="ref"><a href="#src-21">[21]</a></sup>. 앞서 모나리자 보유 소수지분 인수 <sup class="ref"><a href="#src-22">[22]</a></sup></td><td>2024 매출 474억 <sup class="ref"><a href="#src-19">[19]</a></sup>. 유동비율 2023년 139.7% → 2025년 102.1% <sup class="ref"><a href="#src-23">[23]</a></sup>. 매각 추진 보도 없음. 보유 3년차</td></tr>
+        <tr><td><b>에스비비테크</b><br>로봇 감속기</td><td>2018 238억 <sup class="ref"><a href="#src-18">[18]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup></td><td>상장 뒤 일부 매각으로 원금 대부분 회수했다는 보도 <sup class="ref"><a href="#src-20">[20]</a></sup></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>인터로조 분쟁 — 질문은 조심스럽게</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025.8</div><div class="tl-body">노시철 회장 일가가 지분을 주당 3만5,000원에 블록딜로 넘기겠다고 밝혔고, 상대방은 어센트PE였습니다. 이후 "거래 상대방의 철회 요청"을 이유로 철회했는데, 실제로는 철회 요청이 없었다는 보도가 있습니다 <sup class="ref"><a href="#src-24">[24]</a></sup>. 매각 주식 수는 보도마다 다릅니다</div></div>
+        <div class="tl-item"><div class="tl-date">2025.12</div><div class="tl-body">법원이 노 회장 등 특수관계인 지분 34.98%에 대해 어센트PE를 채권자로 하는 가압류를 결정 <sup class="ref"><a href="#src-25">[25]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.1~3</div><div class="tl-body">어센트PE가 채무불이행을 이유로 손해배상·약정금 13억을 청구했다는 보도 <sup class="ref"><a href="#src-26">[26]</a></sup>. 위약벌 소송으로 번질 가능성도 거론됨 <sup class="ref"><a href="#src-27">[27]</a></sup>. 이후 '가압류 집행취소' 보도 제목이 있으나 내용은 확인하지 못함</div></div>
+      </div>
+      <p class="src">소송이 진행 중이라 양쪽 주장이 다를 수 있습니다. 인터로조 측 입장은 확인하지 못했습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했고 블로터·넘버스 원문은 직접 열지 못했습니다. 국정근 기자 기사의 날짜는 추정이니 사내 시스템에서 확인하세요. 피노 거래는 납입(11.27) 전입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> THE VC, 어센트프라이빗에쿼티 기업정보. <a href="https://thevc.kr/ascentprivateequity" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 어센트PE 홈페이지, 회사 연혁. <a href="https://ascentpe.co.kr/company/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 어센트PE 홈페이지, 이재현 대표 프로필. <a href="https://ascentpe.co.kr/our_team/%EC%9D%B4%EC%9E%AC%ED%98%84/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> THE VC, 어센트에쿼티파트너스(별개 회사). <a href="https://thevc.kr/ascentequitypartners" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 더벨, 어센트EP 사명 PACM으로 변경, 2025-12. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202512041727462480109089" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 이투데이, 씨앤씨인터내셔널 인수(어센트EP 건을 '어센트PE'로 표기). <a href="https://www.etoday.co.kr/news/view/2501861" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 넘버스, 산은 검증 뚫은 어센트PE, 1300억 펀드로 밸류업 '정조준'(국정근), 2026-05 <span class="own">자사</span>. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 이투데이, 어센트PE 첫 블라인드펀드 1,300억 결성, 2026-03. <a href="https://www.etoday.co.kr/news/view/2563656" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 다음(뉴스), 어센트PE 첫 블라인드펀드 결성, 2026-03-10. <a href="https://v.daum.net/v/20260310104905084?f=p" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 산은 남부권 지원펀드 GP 5곳 선정. <a href="https://dealsite.co.kr/articles/148713" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 더벨, 어센트PE 1,200억 첫 블라인드 연내 결성 가시화, 2025-09. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202509241515304040103476" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 이투데이, 첫 블라인드펀드 초과 모집. <a href="https://www.etoday.co.kr/news/view/2550770" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 뉴스핌, 피노 1,830억 RCPS 발행 조건, 2026-11-06. <a href="https://www.newspim.com/news/view/20261106000158" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, '중국 꼬리표' 피노에 FI 15곳…SK증권 1,830억 RCPS, 2026-11. <a href="https://dealsite.co.kr/articles/172239" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 딜사이트, 피노 RCPS 참여 FI. <a href="https://dealsite.co.kr/articles/172146" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 리드경제, 피노 우회상장 심사 매매정지, 2026-11-05. <a href="https://www.leadeconomy.co.kr/news/articleView.html?idxno=11007" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 디지털투데이, 피노 우회상장 미해당·거래 재개, 2026-11-06. <a href="https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713173" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 스마트투데이, 에테르씨티 인수 구조·에스비비테크. <a href="https://www.smarttoday.co.kr/news/articleView.html?idxno=24826" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 한국M&A경제신문, 에테르씨티 5.5배 회수. <a href="https://www.kmnanews.com/news/articleView.html?idxno=10164" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> g9inside, 에스비비테크 투자·회수. <a href="https://g9inside.com/?p=24103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 더벨, 어센트PE '시크릿데이' 중원 인수 SPA, 2023-06. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202306151348288640107473" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> MarketScreener, 모나리자 보유 중원 소수지분 인수. <a href="https://www.marketscreener.com/quote/stock/MONALISA-CO-LTD-20699470/news/Ascent-Private-Equity-agreed-to-acquire-an-unknown-minority-stake-in-Joongwon-Co-Ltd-from-Monalis-44136461/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> THE VC, 하이베러 재무 정보. <a href="https://thevc.kr/hibetter" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 이투데이, 인터로조 블록딜 철회 경위, 2025-08. <a href="https://www.etoday.co.kr/news/view/2535720" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 딜사이트, 인터로조 대주주 지분 가압류, 2025-12. <a href="https://dealsite.co.kr/articles/154999" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 시대일보, 어센트PE 인터로조 측 손해배상 청구, 2026-01-14. <a href="https://www.sidae.com/article/2026011408432232252" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 아시아경제, 인터로조 분쟁 위약벌 소송 가능성, 2026-03-31. <a href="https://core.asiae.co.kr/article/2026033110583336858" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 딜사이트, 기후기술펀드 중형 제네시스 선정·어센트 탈락. <a href="https://dealsite.co.kr/articles/145666/075023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 딜사이트, IBK-성장금융 M&A 펀드 다올PE 선정. <a href="https://dealsite.co.kr/articles/133395" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 더벨, 노란우산 연말 PE 출자 스톤브릿지·이음 선정, 2025-12. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202512221410523120104228" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 블로터, 성장금융 은행권 기후기술펀드 17개 운용사 도전 <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=639283" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 블로터, 어센트EP 씨앤씨인터내셔널 인수(별개 회사) <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=637239" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, <span class="tag">국정근 기사 후속</span>은 기존 넘버스 기사에서 열려 있던 부분을 이어 묻는 질문입니다. [번호]는 보고서 탭 하단 출처와 같습니다. 관계자의 직급을 모르는 상태라, 숫자 확인 질문은 "회사 차원에서 확인 가능한 범위"로 물어보세요.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 최근 딜 — 피노</h2></div>
+    <div class="q cat1 must"><p class="qtext">피노 RCPS에 200억을 넣으셨습니다. 경영권 50% 이상 바이아웃을 원칙으로 내세웠는데, <b>소수지분 메자닌에 들어간 이유</b>는 무엇입니까? 1호 블라인드펀드에서 나가는 돈입니까, 프로젝트펀드입니까?</p><p class="follow">↳ 블라인드 규약상 소수지분 투자 한도가 있습니까? LP 동의를 받았습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261106000158" target="_blank" rel="noopener">[13]</a> <a href="https://dealsite.co.kr/articles/172239" target="_blank" rel="noopener">[14]</a> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">리픽싱이 없고 상환권도 회사에 있어 <b>사실상 보통주에 가까운 조건</b>입니다. 이 조건을 받아들인 근거, 즉 피노에서 본 가치는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261106000158" target="_blank" rel="noopener">[13]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">최대주주가 중국 CNGR 계열이라 우회상장 심사까지 받았습니다. <b>중국계 지배구조, 미국 FEOC 규제 같은 리스크</b>를 어떻게 따져봤습니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.leadeconomy.co.kr/news/articleView.html?idxno=11007" target="_blank" rel="noopener">[16]</a> <a href="https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713173" target="_blank" rel="noopener">[17]</a> <a href="https://dealsite.co.kr/articles/172239" target="_blank" rel="noopener">[14]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">FI 15곳이 함께 들어간 클럽딜입니다. 원익투자파트너스가 320억으로 가장 많고 어센트는 200억입니다. <b>딜에 어떻게 참여하게 됐고</b>, 투자자들 사이에 이사회 참여나 정보권 같은 별도 약정이 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/172239" target="_blank" rel="noopener">[14]</a> <a href="https://dealsite.co.kr/articles/172146" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">보통주 전환은 2027년 11월부터 가능합니다. <b>회수는 언제, 어떤 방식</b>을 그리고 있습니까? 회사가 상환권을 쓰는 경우는 어떻게 봅니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newspim.com/news/view/20261106000158" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 1호 블라인드펀드 (국정근 기사 후속)</h2></div>
+    <div class="q cat2 must"><p class="qtext">5월에 "멀티 클로징으로 결성액을 더 늘린다"고 하셨습니다. <b>최종 결성액은 얼마이고, 새로 들어온 LP는 누구</b>입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">국정근 기사 후속</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a> <a href="https://www.etoday.co.kr/news/view/2563656" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">"연내 2곳 발굴"이 목표였는데, 11월 현재 블라인드펀드로 경영권을 인수했다는 소식은 없습니다. <b>지금 실사나 협상 중인 딜</b>은 몇 건이고 어느 섹터입니까?</p><p class="follow">↳ 밸류에이션이 맞지 않아서입니까, 경쟁 때문입니까? 로봇 쪽은 거품이라고 보셨는데 지금도 그렇습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">국정근 기사 후속</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">산은 남부권 지역성장지원펀드로 출자를 받았습니다. <b>지역 기업 투자 의무를 어떻게 채울 계획</b>입니까? AI·반도체·수소·로봇 전략과 지역 요건이 잘 맞습니까?</p><div class="qmeta"><span class="tag">국정근 기사 후속</span><span class="tag">트레이드오프</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/148713" target="_blank" rel="noopener">[10]</a> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">에테르씨티 IRR을 더벨은 30%대, 넘버스는 40%대로 썼습니다. <b>정확한 기준</b>(총·순, 딜 단위·펀드 단위)은 무엇입니까?</p><div class="qmeta"><span class="tag">국정근 기사 후속</span><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202509241515304040103476" target="_blank" rel="noopener">[11]</a> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 포트폴리오·회수</h2></div>
+    <div class="q cat3 must"><p class="qtext">하이베러(시크릿데이)를 2023년 920억에 인수해 보유 3년차입니다. <b>실적은 어떻고, 회수는 언제 어떤 방식으로</b> 하실 계획입니까? 퀄리파이드 IPO 원칙에 맞는 상장이 가능하다고 봅니까?</p><p class="follow">↳ 유동비율이 2023년 139.7%에서 2025년 102.1%로 떨어졌습니다. 차입 부담이나 운전자본 문제는 없습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202306151348288640107473" target="_blank" rel="noopener">[21]</a> <a href="https://www.kmnanews.com/news/articleView.html?idxno=10164" target="_blank" rel="noopener">[19]</a> <a href="https://thevc.kr/hibetter" target="_blank" rel="noopener">[23]</a> <a href="https://www.numbers.co.kr/news/articleView.html?idxno=21131" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">에스비비테크는 원금 대부분을 회수했다고 알려졌습니다. <b>남은 지분과 최종 수익률</b>은 어떻습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://g9inside.com/?p=24103" target="_blank" rel="noopener">[20]</a> <a href="https://www.smarttoday.co.kr/news/articleView.html?idxno=24826" target="_blank" rel="noopener">[18]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 인터로조 분쟁</h2></div>
+    <div class="q cat4"><p class="qtext">인터로조 대주주 지분 인수가 무산된 뒤 가압류와 손해배상 청구로 이어졌습니다. <b>지금 소송은 어디까지 왔고</b>, 위약벌 청구까지 갈 계획입니까?</p><p class="follow">↳ "상대방 철회 요청"이라는 공시 사유에 대해 어센트 측 입장은 무엇입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/154999" target="_blank" rel="noopener">[25]</a> <a href="https://www.sidae.com/article/2026011408432232252" target="_blank" rel="noopener">[26]</a> <a href="https://core.asiae.co.kr/article/2026033110583336858" target="_blank" rel="noopener">[27]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">이 일을 겪은 뒤 <b>상장사 대주주 지분을 인수하는 방식</b>(계약금, 위약벌, 공시 시점 등)에서 바꾼 것이 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.etoday.co.kr/news/view/2535720" target="_blank" rel="noopener">[24]</a> <a href="https://core.asiae.co.kr/article/2026033110583336858" target="_blank" rel="noopener">[27]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>⑤ 하우스·조직</h2></div>
+    <div class="q cat4"><p class="qtext">기후기술펀드, IBK M&amp;A, 노란우산 출자사업에서 떨어졌습니다. <b>탈락 원인을 무엇으로 보고</b>, 2027년 출자사업 전략은 어떻게 바꿉니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/145666/075023" target="_blank" rel="noopener">[28]</a> <a href="https://dealsite.co.kr/articles/133395" target="_blank" rel="noopener">[29]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=00&newskey=202512221410523120104228" target="_blank" rel="noopener">[30]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">7명으로 블라인드펀드와 포트폴리오를 함께 운용합니다. <b>인력 충원 계획과 키맨 조항</b>은 어떻게 돼 있습니까? 2호 펀드는 언제쯤 생각하십니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://thevc.kr/ascentprivateequity" target="_blank" rel="noopener">[1]</a> <a href="https://www.etoday.co.kr/news/view/2563656" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[32]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-10</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
