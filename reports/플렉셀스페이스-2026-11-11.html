@@ -1,0 +1,248 @@
+<meta charset="utf-8" />
+<title>플렉셀스페이스 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #a84d14; --accent-soft: #fbeee4;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #f3b183; --accent-soft: #2b1a0f;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #f3b183; --accent-soft: #2b1a0f;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #241005; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #241005; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-11</div>
+    <h1 class="title" style="word-break:keep-all">플렉셀스페이스 — 위성용 차세대 태양전지</h1>
+    <p class="subtitle">한화시스템 사내벤처에서 분사한 우주 태양전지 스타트업. 시리즈A 250억(누적 약 300억)을 받았고, 2027년 양산·2028년 상장을 노린다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 플렉셀스페이스 관계자</span>
+      <span class="meta-chip">질문 13개</span>
+      <span class="meta-chip">출처 21개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한 줄 요약</h2>
+      <p><b>위성에 들어가는 태양전지를 싸고 가볍게 만드는 한화시스템 출신 스타트업.</b> 2026년 7월 시리즈A 250억을 받아 누적 약 300억을 모았고, 2027년 하반기 양산, 2028년 상장을 목표로 합니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup>.</p>
+      <ul class="tight">
+        <li><b>문제</b>: 지금 위성용 태양전지는 갈륨비소(GaAs) 기반이라 비싸고 공급망이 좁습니다 <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>해법</b>: 페로브스카이트와 CIGS(구리·인듐·갈륨·셀레늄)를 겹친 '탠덤' 박막 태양전지 <sup class="ref"><a href="#src-18">[18]</a></sup>. 회사는 비용을 60% 넘게 줄이고 효율 28~30%를 냈다고 밝혔습니다(회사 발표) <sup class="ref"><a href="#src-4">[4]</a></sup>. 말아서 싣고 우주에서 펼치는 롤러블 구조이고 <sup class="ref"><a href="#src-11">[11]</a></sup>, 무게를 90% 줄였다는 보도도 있습니다 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+        <li><b>시장</b>: 저궤도 위성이 10만 기 시대로 가고 우주 데이터센터 논의까지 나오면서 위성 전력 수요가 커집니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 투자 받았나? — 네, 누적 약 300억</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:24%">라운드</th><th>내용</th></tr>
+        <tr><td>초기(시드 등)</td><td>약 50억 규모로 추정(누적 300억 − 시리즈A 250억). 시리즈A 기사에서 <b>기존 투자사</b>로 인터베스트, L&amp;S벤처캐피탈, 쿼드벤처스가 나옵니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 초기 라운드의 시점과 금액은 공개 기사로 확인하지 못했습니다</td></tr>
+        <tr><td><b>시리즈A</b><br>2026.7</td><td>약 250억 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup><br>· 후속: 인터베스트, L&amp;S벤처캐피탈, 쿼드벤처스<br>· 신규: 미래에셋벤처투자·미래에셋캐피탈, IBK기업은행, NH벤처투자, IBK투자증권·서울ZV, 한국투자증권, 신용보증기금 <sup class="ref"><a href="#src-2">[2]</a></sup><br>· 미래에셋은 스페이스X 상장 전 투자 등 우주 투자를 늘려 온 곳 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup></td></tr>
+        <tr><td>정부 과제(비지분)</td><td>한국에너지기술평가원 '저가 고효율 우주용 탠덤 모듈 개발 및 검증' 총괄 주관, 3년 107억 <sup class="ref"><a href="#src-5">[5]</a></sup></td></tr>
+        <tr><td>다음 단계</td><td>4월 CFO 영입 때 시리즈A·B 유치, IPO 준비, 양산 설비투자, 해외 법인·조인트벤처를 과제로 밝힘 <sup class="ref"><a href="#src-6">[6]</a></sup>. 2027 하반기 양산 → 2028 IPO 목표 <sup class="ref"><a href="#src-9">[9]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="warn">기업가치(밸류), 리드 투자사, 투자자별 금액, 한화시스템 지분율은 보도되지 않았습니다. 한화시스템이 <b>지분을 유지한 채 분사</b>했다는 보도만 있습니다 <sup class="ref"><a href="#src-9">[9]</a></sup>. 오늘 직접 물어볼 1순위입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회사 — 사람과 연혁</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2023</div><div class="tl-body">한화시스템 사내벤처로 우주 특화 소재 연구·검증 시작 <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024.6~8</div><div class="tl-body">미국 위성 제조사 테란오비탈에 셀 공급 합의 보도(추정) <sup class="ref"><a href="#src-19">[19]</a></sup>. 에어버스 디펜스앤스페이스와 차세대 모듈 공동개발 의향서(LOI) 체결 <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-15">[15]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2024.9</div><div class="tl-body">독립법인으로 분사. 대표 <b>안태훈</b>은 한화시스템에서 우주사업 개발과 저궤도 위성통신 사업을 맡으며 위성 제조사들의 문제를 보고 창업했습니다 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.11</div><div class="tl-body">누리호 4차에 실린 인하대 큐브위성 'INHARoSAT'에 태양전지를 달아 국내 첫 우주 실증 <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-12">[12]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.3</div><div class="tl-body">노르웨이 콩스버그 계열 NanoAvionics와 한국 국가안보 저궤도 위성용 kW급 태양광 어레이 공급 계약(수백만 유로). NanoAvionics가 어레이를 설계·제작하고 플렉셀은 최종 품질검사·인수시험을 맡음. 한화시스템이 개발하는 위성 사업 <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.4</div><div class="tl-body">한화 17년 경력의 이거산 CFO 영입 <sup class="ref"><a href="#src-6">[6]</a></sup>. 경기 의왕에 5MW 파일럿 라인 <sup class="ref"><a href="#src-9">[9]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.7</div><div class="tl-body">시리즈A 250억 <sup class="ref"><a href="#src-1">[1]</a></sup>, 국책과제 107억 <sup class="ref"><a href="#src-5">[5]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.10</div><div class="tl-body">프랑스 파리 법인 'FLEXELL SPACE FRANCE SAS' 설립. 유럽 고객 계약·양산 협의 대응 <sup class="ref"><a href="#src-7">[7]</a></sup></div></div>
+      </div>
+      <p class="src">NASA 프로그램을 통해 국제우주정거장(ISS) 외부에서 셀을 시험하는 계획도 소개됐습니다 <sup class="ref"><a href="#src-13">[13]</a></sup>. 4월 보도에는 "올 11월 우주정거장 실증"으로 나옵니다(일정 확인 필요) <sup class="ref"><a href="#src-9">[9]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>짚어볼 점</h2>
+      <ul class="tight">
+        <li><b>한화 의존도</b>: 가장 구체적인 계약(NanoAvionics)이 한화시스템의 국가안보 위성 사업에 들어갑니다 <sup class="ref"><a href="#src-17">[17]</a></sup>. 한화시스템은 주주이기도 해서, 상장 심사 때 계열 거래 비중이 쟁점이 될 수 있습니다</li>
+        <li><b>효율 숫자</b>: "28~30%"는 회사 발표입니다 <sup class="ref"><a href="#src-4">[4]</a></sup>. 셀인지 모듈인지, 지상인지 우주 스펙트럼(AM0) 기준인지, 제3자 인증인지 확인이 필요합니다. 한 기사에 나온 23.64%는 한국에너지기술연구원 셀 수치로 보입니다 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>내구성</b>: 페로브스카이트는 오래 방사선을 맞을 때와 미세균열이 생길 때 성능이 떨어지는지 더 검증해야 한다는 지적이 있습니다 <sup class="ref"><a href="#src-4">[4]</a></sup>. 누리호 실증의 구체적 열화 데이터는 공개되지 않았습니다 <sup class="ref"><a href="#src-12">[12]</a></sup></li>
+        <li><b>에어버스</b>: 2024년 LOI 단계입니다 <sup class="ref"><a href="#src-14">[14]</a></sup>. 본계약으로 이어졌는지 확인이 필요합니다</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">급히 정리한 자료라 검색 결과 요약을 바탕으로 했습니다. [19] 테란오비탈 공급과 [13] ISS 실증 일정은 출처가 약하니 오늘 직접 확인하세요. [20][21]은 참고용입니다 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup>.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 머니투데이, 플렉셀스페이스 250억 투자유치…미래에셋 참여, 2026-07-13. <a href="https://www.mt.co.kr/article/2026071309255727964" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 한국경제, 플렉셀스페이스 시리즈A 투자사 명단, 2026-07. <a href="https://www.hankyung.com/article/202607132377O" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 파이낸셜뉴스, 플렉셀스페이스 미래에셋 투자, 2026-07-13. <a href="https://www.fnnews.com/news/202607130900210385" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 유니콘팩토리, 10만 인공위성 시대…위성 태양전지 스타트업에 250억, 2026-07-16. <a href="https://www.unicornfactory.co.kr/article/2026071616212019598" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 유니콘팩토리, 107억 우주용 태양전지 국책과제 주관기관 선정, 2026-07-02. <a href="https://www.unicornfactory.co.kr/article/2026070213382726213" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 유니콘팩토리, 한화 17년 재무·전략통 이거산 CFO 영입, 2026-04-17. <a href="https://www.unicornfactory.co.kr/article/2026041713224459807" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 전자신문, 플렉셀스페이스 프랑스 법인 설립, 2026-10-27. <a href="https://www.etnews.com/20261027000106" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 머니투데이, 우주 데이터센터 에너지 난제…차세대 K-태양전지(창업자 이력), 2026-03. <a href="https://www.mt.co.kr/article/2026031114434432164" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 머니투데이, 우주용 태양전지 가격 낮춘 K-신기술(한화 지분·파일럿 라인·IPO 목표), 2026-04-27. <a href="https://www.mt.co.kr/article/2026042717114796766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 머니투데이, 심우주 탐사 시대…무게 90%↓ 우주용 K-태양전지, 2026-04. <a href="https://www.mt.co.kr/article/2026040817415645596" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 세계일보, 누리호 4차 발사·큐브위성 탑재, 2025-11-27. <a href="https://www.segye.com/newsView/20251127501352" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 헤럴드경제, "극한환경서도 안정적 작동"…우주로 나간 K-태양전지, 2026-05-10. <a href="https://www.heraldk.com/article/2026051018033860341" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> LinkedIn, Flexell 우주 태양전지 ISS 실증 소개(날짜 미상). <a href="https://kr.linkedin.com/in/tae-jung-jun-5ab40bab" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> KED Global, 한화시스템·에어버스 우주 태양전지 공동개발, 2024-08. <a href="https://www.kedglobal.com/aerospace-defense/newsView/ked202408220012" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> Perovskite-Info, Flexell Space·Airbus 탠덤 PV 협력. <a href="https://perovskite-info.com/flexell-space-and-airbus-team-develop-perovskitecigs-tandem-pv-space" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> NanoAvionics, Flexell Space와 수백만 유로 태양광 어레이 공급 계약. <a href="https://nanoavionics.com/news/flexell-space-and-nanoavionics-sign-multi-million-euro-solar-array-supply-contract-for-korean-satellite-programme/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> SatNews, Flexell Space·Kongsberg NanoAvionics 한국 국가안보 위성 협력, 2026-03-18. <a href="https://satnews.com/2026/03/18/flexell-space-and-kongsberg-nanoavionics-partner-on-solar-arrays-for-korean-national-security-program/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> pv magazine, 페로브스카이트-CIGS 탠덤 위성 태양전지 스타트업, 2025-09-04. <a href="https://www.pv-magazine.com/2025/09/04/korean-startup-developing-perovskite-cigs-tandem-solar-technology-for-satellites/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> KED Global, Korean startups(테란오비탈 공급 관련 추정), 2024-06. <a href="https://amp.kedglobal.com/korean-startups/newsView/ked202406280010" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> Perovskite-Info, Flexell Space 시리즈A. <a href="https://www.perovskite-info.com/flexell-space-raises-series-funding-scale-its-perovskite-and-cigs-space-solar" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> THE VC, 플렉셀스페이스. <a href="https://thevc.kr/flexellspace" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 첫 만남이면 ③ 사업 질문으로 시작해 ① 투자 숫자로 좁히는 순서가 자연스럽습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 투자·지분</h2></div>
+    <div class="q cat1 must"><p class="qtext">시리즈A 250억에서 <b>리드 투자사는 어디이고, 기업가치(프리머니)는 어느 정도</b>였습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026071309255727964" target="_blank" rel="noopener">[1]</a> <a href="https://www.hankyung.com/article/202607132377O" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">한화시스템이 지분을 유지한 채 분사했다고 들었습니다. <b>지금 한화시스템 지분율은 얼마이고, 경영 참여는 어디까지</b>입니까?</p><p class="follow">↳ 상장 때 한화시스템이 최대주주로 남습니까? 계열 거래 비중은 어떻게 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026042717114796766" target="_blank" rel="noopener">[9]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">시드 단계 투자자(인터베스트, L&amp;S벤처캐피탈, 쿼드벤처스)는 <b>언제, 얼마나</b> 들어왔습니까? 신용보증기금, 은행 계열이 시리즈A에 들어온 배경은요?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.hankyung.com/article/202607132377O" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">시리즈B는 <b>언제, 어느 규모</b>로 생각합니까? 양산 설비 투자에 얼마가 필요합니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026041713224459807" target="_blank" rel="noopener">[6]</a> <a href="https://www.mt.co.kr/article/2026042717114796766" target="_blank" rel="noopener">[9]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 기술·실증</h2></div>
+    <div class="q cat2 must"><p class="qtext">효율 28~30%는 <b>셀 기준입니까, 모듈 기준입니까?</b> 우주 스펙트럼 기준이고 제3자 인증을 받은 수치입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071616212019598" target="_blank" rel="noopener">[4]</a> <a href="https://www.heraldk.com/article/2026051018033860341" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">누리호 4차 큐브위성 실증에서 <b>실제로 얻은 데이터</b>는 무엇입니까? 출력이 얼마나 떨어졌는지 공개할 수 있습니까?</p><p class="follow">↳ ISS 외부 실증은 언제 하고, 결과는 언제 나옵니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">질 검증</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.segye.com/newsView/20251127501352" target="_blank" rel="noopener">[11]</a> <a href="https://www.heraldk.com/article/2026051018033860341" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">페로브스카이트는 방사선과 미세균열에 따른 장기 열화가 약점으로 꼽힙니다. <b>위성 수명(5~7년 이상) 동안 성능을 어떻게 보장</b>합니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071616212019598" target="_blank" rel="noopener">[4]</a> <a href="https://kr.linkedin.com/in/tae-jung-jun-5ab40bab" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 사업·고객</h2></div>
+    <div class="q cat3 must"><p class="qtext">NanoAvionics와 수백만 유로 계약을 맺었는데, 한화시스템의 국가안보 위성 사업입니다. <b>한화 계열이 아닌 외부 고객 매출</b>은 언제부터 나옵니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://nanoavionics.com/news/flexell-space-and-nanoavionics-sign-multi-million-euro-solar-array-supply-contract-for-korean-satellite-programme/" target="_blank" rel="noopener">[16]</a> <a href="https://satnews.com/2026/03/18/flexell-space-and-kongsberg-nanoavionics-partner-on-solar-arrays-for-korean-national-security-program/" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2024년 에어버스와 LOI를 맺었습니다. <b>본계약으로 이어졌습니까?</b> 프랑스 법인은 어떤 유럽 고객을 겨냥한 겁니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.kedglobal.com/aerospace-defense/newsView/ked202408220012" target="_blank" rel="noopener">[14]</a> <a href="https://perovskite-info.com/flexell-space-and-airbus-team-develop-perovskitecigs-tandem-pv-space" target="_blank" rel="noopener">[15]</a> <a href="https://www.etnews.com/20261027000106" target="_blank" rel="noopener">[7]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">의왕 5MW 파일럿 라인에서 <b>2027년 양산으로 가려면 생산능력을 얼마나</b> 키워야 합니까? 국책과제 107억은 어디에 씁니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026042717114796766" target="_blank" rel="noopener">[9]</a> <a href="https://www.unicornfactory.co.kr/article/2026070213382726213" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">위성 10만 기 시대, 우주 데이터센터까지 이야기됩니다. <b>가격을 60% 낮추면 시장이 실제로 얼마나 열린다</b>고 보십니까? 해외 경쟁사는 누구입니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071616212019598" target="_blank" rel="noopener">[4]</a> <a href="https://www.mt.co.kr/article/2026031114434432164" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ IPO·조직</h2></div>
+    <div class="q cat4"><p class="qtext">2028년 상장이 목표입니다. <b>기술특례로 갑니까?</b> 그때까지 매출 목표는 어느 정도입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026042717114796766" target="_blank" rel="noopener">[9]</a> <a href="https://www.unicornfactory.co.kr/article/2026041713224459807" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">대표와 CFO 모두 한화 출신입니다. <b>대기업 사내벤처에서 독립 스타트업으로</b> 바뀌면서 가장 달라진 점, 가장 어려운 점은 무엇입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026031114434432164" target="_blank" rel="noopener">[8]</a> <a href="https://www.unicornfactory.co.kr/article/2026041713224459807" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[21]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-11</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
