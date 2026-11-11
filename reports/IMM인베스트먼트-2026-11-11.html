@@ -1,0 +1,352 @@
+<meta charset="utf-8" />
+<title>IMM인베스트먼트 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #9b2335; --accent-soft: #f8e6e8;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #f0a3ad; --accent-soft: #2a1417;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #f0a3ad; --accent-soft: #2a1417;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #22080c; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #22080c; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-11</div>
+    <h1 class="title" style="word-break:keep-all">IMM인베스트먼트 — 최근 1년 투자·펀드·출자사업</h1>
+    <p class="subtitle">펀드레이징·드라이파우더 VC 1위 하우스가 방산·AI 데이터센터·LNG까지 대형 딜로 영역을 넓혔다. 무신사·리벨리온 회수와 LIG D&amp;A 유증 재설계가 다음 기사거리다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: IMM인베스트먼트 관계자</span>
+      <span class="meta-chip">질문 19개</span>
+      <span class="meta-chip">출처 67개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <!-- ================= 보고서 탭 ================= -->
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에 — 최근 1년 IMM인베</h2>
+      <ul class="tight">
+        <li><b>규모</b>: 2025년 말 AUM 9조4,887억, 이 중 벤처펀드 1조9,729억 <sup class="ref"><a href="#src-1">[1]</a></sup>. 2025년 펀드레이징 5,880억으로 VC 1위 <sup class="ref"><a href="#src-10">[10]</a></sup>. 2026년 상반기 드라이파우더도 4,000억으로 1위지만 1년 새 31% 넘게 줄었습니다 <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>세대교체</b>: 2025년 12월 창업자와 CEO의 역할을 나눴습니다. 정일부·변재철 대표가 사장으로 승진했고, 창업자들은 이사회 공동의장·부회장으로 물러났습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup>. 정 대표는 "올해 3,000억 투자"를 내걸었습니다 <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>투자 색깔의 변화</b>: 벤처 투자에 더해 <b>대형·컨트롤·인프라 딜</b>이 늘었습니다. LIG D&amp;A 5,000억대 우선주, SK 울산 AI 데이터센터 20%, 보령LNG터미널 36%, 메디컬AI 최대주주 전환이 대표적입니다 <sup class="ref"><a href="#src-38">[38]</a></sup> <sup class="ref"><a href="#src-46">[46]</a></sup> <sup class="ref"><a href="#src-51">[51]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup>. 해외 딥테크(사로닉, Pixxel, 엑시나, 교토퓨저니어링) 투자도 늘었습니다 <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-45">[45]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+        <li><b>회수 대기</b>: 무신사 예심 청구(2026.9), 리벨리온 연내 예심, 구다이글로벌 상장 추진 <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-61">[61]</a></sup> <sup class="ref"><a href="#src-63">[63]</a></sup>. 반면 롯데손보, 피스피스스튜디오, 플랜티팜은 회수에 부담이 있습니다 <sup class="ref"><a href="#src-54">[54]</a></sup> <sup class="ref"><a href="#src-55">[55]</a></sup> <sup class="ref"><a href="#src-57">[57]</a></sup></li>
+      </ul>
+      <p class="warn"><b>자매사 구분</b>: IMM PE(프라이빗에쿼티), IMM크레딧앤솔루션(ICS)은 별개 운용사입니다. 예를 들어 국민성장펀드 1차 코스닥 리그에서 떨어진 곳은 ICS 컨소시엄이었고 <sup class="ref"><a href="#src-27">[27]</a></sup>, 교직원공제회 출자 건은 IMM PE 건입니다. 이 페이지는 IMM인베스트먼트(벤처·그로스·세컨더리·인프라 부문)만 다룹니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 후속 취재 거리 — 기사로 이어 갈 것</h2>
+      <p>결과가 곧 나오거나 보도가 엇갈려 <b>직접 확인하면 기사가 되는 것</b>들입니다. 시점 순서가 아니라 기사 가치 순서로 정리했습니다.</p>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th style="width:20%">사안</th><th style="width:13%">시점</th><th>무엇을 확인하나</th><th style="width:22%">기사 각도(예시)</th></tr>
+        <tr><td><b>LIG D&amp;A 5,300억 유증 재설계</b></td><td>11월 중</td><td>방사청 입찰 제한 처분 뒤 납입이 미뤄지고 발행가도 낮춰졌습니다. 납입일 확정, 국민성장펀드·민간 LP 이탈 여부 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup> <sup class="ref"><a href="#src-40">[40]</a></sup></td><td>"IMM 첫 방산 대형딜, LP 이탈 없이 마무리되나"</td></tr><tr><td><b>무신사 상장예비심사 결과</b></td><td>11~12월(추정)</td><td>9월 7일 코스피 예심 청구. IMM 누적 원금 약 1,600억. 구주매출 여부, FI와 창업자의 상장 조건 <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-60">[60]</a></sup></td><td>"무신사 상장, IMM 회수 3,000억대 차익 현실화"</td></tr><tr><td><b>롯데손보 매각 종결 후 회수액</b></td><td>금융당국 승인 후</td><td>빅튜라 전환우선주 500억. 인베스트조선은 "원금 회수", 딜사이트는 "손실 가능성"으로 정반대 <sup class="ref"><a href="#src-53">[53]</a></sup> <sup class="ref"><a href="#src-54">[54]</a></sup></td><td>"롯데손보 매각, IMM인베 500억의 운명"</td></tr><tr><td><b>세컨더리 7호 클로징</b></td><td>연말~내년 초(추정)</td><td>하드캡 3,000억. 정책자금은 650억(산은·모태) 또는 1,550억(연기금 포함)으로 보도가 엇갈림. 산은 세컨더리는 선정 후 일정 기간 안에 결성해야 함 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup> <sup class="ref"><a href="#src-66">[66]</a></sup></td><td>"IMM 세컨더리 7호, 회수시장 최대 펀드로"</td></tr><tr><td><b>리벨리온 예심 청구</b></td><td>연내</td><td>IMM 600억 프리IPO 지분의 상장 시점 밸류. 코스피 쪽에 무게 <sup class="ref"><a href="#src-61">[61]</a></sup> <sup class="ref"><a href="#src-62">[62]</a></sup> <sup class="ref"><a href="#src-28">[28]</a></sup></td><td>"리벨리온 예심, IMM 팔로우온 성적표"</td></tr><tr><td><b>SK 울산 AI 데이터센터 거래 종결</b></td><td>2027년 1분기 예정</td><td>IMM-스톤브릿지 몫 20% 자금 조달. "1조 못 모은 IMM, 국민성장펀드에 사활" 보도 <sup class="ref"><a href="#src-46">[46]</a></sup> <sup class="ref"><a href="#src-48">[48]</a></sup> <sup class="ref"><a href="#src-47">[47]</a></sup></td><td>"IMM, AI 데이터센터 프로젝트펀드 다 모았나"</td></tr><tr><td><b>메디컬AI 최대주주 전환·상장 재추진</b></td><td>미정</td><td>VC가 최대주주로 올라서는 컨트롤형 딜. 바디프랜드 의존도·경영권 분쟁이 심사 변수 <sup class="ref"><a href="#src-31">[31]</a></sup> <sup class="ref"><a href="#src-64">[64]</a></sup></td><td>"VC에서 바이아웃으로…IMM인베의 컨트롤 딜 확대"</td></tr><tr><td><b>스타트업 2호·인프라 10호 최종 규모</b></td><td>연내</td><td>스타트업 2호는 1,750억/1,890억/2,000억으로 엇갈림. 인프라 10호는 2차 클로징 5,700억, 목표 1.5조 <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-11">[11]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></td><td>"IMM 인프라 10호, 1.5조 목표 어디까지"</td></tr><tr><td><b>구다이글로벌(조선미녀) 예심</b></td><td>연말~1분기(추정)</td><td>IMM CB 1,400억. 상장 시 전환 차익 <sup class="ref"><a href="#src-63">[63]</a></sup></td><td>"조선미녀 상장, IMM CB 1,400억 회수 시나리오"</td></tr><tr><td><b>연말 정기인사·VC 부문 수장</b></td><td>12월</td><td>창업자·CEO 분리 뒤 첫 연말 인사. 이승환 부사장 '차기 수장' 보도 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup></td><td>"IMM인베 세대교체 2막"</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 최근 투자 (2025.11~2026.11)</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>시기</th><th>대상</th><th>분야</th><th>라운드·규모</th><th>IMM 역할</th></tr>
+        <tr><td>2026.11</td><td><b>무빈</b></td><td>모션데이터·피지컬AI</td><td>시리즈A 100억</td><td><b>리드</b> <sup class="ref"><a href="#src-30">[30]</a></sup></td></tr><tr><td>2026.10~11(추정)</td><td><b>메디컬AI</b></td><td>의료AI(바디프랜드 자회사)</td><td>프리IPO, IMM 300억</td><td><b>최대주주 전환 예정</b> <sup class="ref"><a href="#src-31">[31]</a></sup></td></tr><tr><td>2026.09</td><td><b>인핸스</b></td><td>엔터프라이즈 AI</td><td>시리즈C 512억</td><td>참여 <sup class="ref"><a href="#src-32">[32]</a></sup></td></tr><tr><td>2026.09</td><td><b>Pixxel(인도)</b></td><td>초분광 위성</td><td>시리즈C 1억달러</td><td>참여 <sup class="ref"><a href="#src-33">[33]</a></sup></td></tr><tr><td>2026.09</td><td><b>교토퓨저니어링(일본)</b></td><td>핵융합</td><td>시리즈D</td><td><b>IMM 재팬 리드</b> <sup class="ref"><a href="#src-34">[34]</a></sup></td></tr><tr><td>2026.09</td><td><b>삼성물산 미국 ESS·태양광 법인</b></td><td>인프라</td><td>약 2.4억달러</td><td>FI 우선협상대상자 <sup class="ref"><a href="#src-17">[17]</a></sup></td></tr><tr><td>2026.08(추정)</td><td><b>엔닷라이트</b></td><td>로봇 시뮬레이션</td><td>150억</td><td>후속 <sup class="ref"><a href="#src-35">[35]</a></sup></td></tr><tr><td>2026.07</td><td><b>홀리데이로보틱스</b></td><td>휴머노이드</td><td>시리즈A 1,550억(국내 시리즈A 최대)</td><td>참여 <sup class="ref"><a href="#src-36">[36]</a></sup></td></tr><tr><td>2026.07</td><td><b>카본식스</b></td><td>제조 피지컬AI</td><td>시리즈A 4,000만달러</td><td>참여 <sup class="ref"><a href="#src-37">[37]</a></sup></td></tr><tr><td>2026.06</td><td><b>LIG D&amp;A</b></td><td>방산</td><td>우선주 5,319억(정정)</td><td><b>디인베와 공동 GP</b> <sup class="ref"><a href="#src-39">[39]</a></sup></td></tr><tr><td>2026.06</td><td><b>사로닉(미국)</b></td><td>자율 무인수상정</td><td>시리즈D 17.5억달러</td><td>국내 운용사 중 유일 참여 <sup class="ref"><a href="#src-43">[43]</a></sup></td></tr><tr><td>2026.05</td><td><b>엑시나(XCENA)</b></td><td>CXL 메모리 반도체</td><td>시리즈B 1.35억달러</td><td><b>공동리드</b> <sup class="ref"><a href="#src-45">[45]</a></sup></td></tr><tr><td>2026.05</td><td><b>SK 울산 AI 데이터센터</b></td><td>인프라</td><td>지분 49% 약 3조</td><td><b>IMM-스톤브릿지 20%</b> <sup class="ref"><a href="#src-46">[46]</a></sup></td></tr><tr><td>2026.04</td><td><b>톤28</b></td><td>K뷰티</td><td>90억(신주+구주)</td><td>단독 <sup class="ref"><a href="#src-49">[49]</a></sup></td></tr><tr><td>2026.03</td><td><b>리벨리온</b></td><td>AI 반도체</td><td>프리IPO 6,400억</td><td><b>IMM 600억</b>(후속) <sup class="ref"><a href="#src-29">[29]</a></sup></td></tr><tr><td>2026.03</td><td><b>메디웨일</b></td><td>의료AI</td><td>시리즈C 200억</td><td>참여 <sup class="ref"><a href="#src-50">[50]</a></sup></td></tr><tr><td>2025.11~12</td><td><b>보령LNG터미널</b></td><td>인프라</td><td>지분 49.9% 5,590억</td><td><b>IMM 약 36%(약 4,000억)</b> <sup class="ref"><a href="#src-51">[51]</a></sup></td></tr>
+      </table>
+      </div>
+      <h3>짚을 딜</h3>
+      <ul class="tight">
+        <li><b>LIG D&amp;A</b>: 디인베스트먼트와 공동 GP로 SPC '케이디펜스그로쓰1호'를 세워 우선주 약 5,000억(정정 후 5,319억)을 인수하는 구조입니다 <sup class="ref"><a href="#src-38">[38]</a></sup> <sup class="ref"><a href="#src-39">[39]</a></sup>. 국민성장펀드가 1,000억~1,500억 출자를 승인했습니다 <sup class="ref"><a href="#src-40">[40]</a></sup>. 이후 방위사업청이 LIG D&amp;A에 입찰참가자격 24개월 제한 처분을 내렸고, IMM은 LP들에게 납입이 어렵다고 안내했습니다. 유증은 다시 연기됐고 발행가는 약 19% 낮아졌습니다 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup></li>
+        <li><b>SK 울산 AI 데이터센터</b>: KKR 29%, IMM-스톤브릿지 컨소시엄 20%로 지분 49%(약 3조)를 인수합니다 <sup class="ref"><a href="#src-46">[46]</a></sup>. 더벨은 3자 공동인수로 지배구조 셈법이 복잡해졌다고 분석했고 <sup class="ref"><a href="#src-47">[47]</a></sup>, 딜사이트는 IMM이 프로젝트펀드 1조를 다 모으지 못해 국민성장펀드에 기대고 있다고 보도했습니다 <sup class="ref"><a href="#src-48">[48]</a></sup></li>
+        <li><b>리벨리온 600억</b>: 국민성장펀드 직접투자 1호 라운드에 후속 투자했습니다. 더벨은 벤처본부가 먼저 검증하고 그로스 본부가 뒤따르는 '팔로우온 명가' 구조로 평가했습니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+        <li><b>사로닉</b>: 기업가치 약 14조원의 미국 방산 스타트업에 국내 운용사로는 유일하게 참여했습니다 <sup class="ref"><a href="#src-43">[43]</a></sup>. "회수는 시험대"라는 평가가 있습니다 <sup class="ref"><a href="#src-44">[44]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드 결성</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>규모·시점</th><th>LP·상태</th></tr>
+        <tr><td><b>스타트업벤처펀드 2호</b><br>(벤처2본부, 문여정 전무)</td><td>2025.12.30 1차 클로징 1,500억. 멀티클로징으로 2,000억대 목표 <sup class="ref"><a href="#src-8">[8]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></td><td>산은 350억(앵커), 과학기술인공제회 300억, 서울시, KTOA <sup class="ref"><a href="#src-9">[9]</a></sup>. 최종 규모는 1,750억·1,890억으로 엇갈림 <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td>그로스 벤처펀드 2호</td><td>2025.1, 3,815억 <sup class="ref"><a href="#src-10">[10]</a></sup></td><td>2026.4 '제2의2호' 등록(규모 미상) <sup class="ref"><a href="#src-11">[11]</a></sup></td></tr>
+        <tr><td><b>세컨더리 7호</b><br>(이승환 부사장)</td><td>최소 1,500억, 하드캡 3,000억. <b>결성 중</b> <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-13">[13]</a></sup></td><td>산은 450억, 모태 200억 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup>. 8월 보도는 "정책자금 1,550억 확보" <sup class="ref"><a href="#src-14">[14]</a></sup>. 7월 회사는 결성 시점에 대해 "확답 어렵다" <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td>세컨더리 6호</td><td>2024, 1,250억 <sup class="ref"><a href="#src-15">[15]</a></sup></td><td>청산 세컨더리 평균 1.8배, IRR 20.6%. 3호는 1.96배로 2026.6 청산 <sup class="ref"><a href="#src-14">[14]</a></sup></td></tr>
+        <tr><td><b>인프라 10호</b><br>(PE·인프라 부문)</td><td>목표 1.5조. 1차 클로징 계획 약 4,000억(2025 상반기) <sup class="ref"><a href="#src-16">[16]</a></sup></td><td>2차 클로징 5,700억 보도 <sup class="ref"><a href="#src-17">[17]</a></sup>. 최종 클로징 미확인</td></tr>
+        <tr><td>LIG D&amp;A 프로젝트펀드</td><td>약 5,000억, 디인베 공동 GP <sup class="ref"><a href="#src-38">[38]</a></sup></td><td>국민성장펀드 1,000억~1,500억 <sup class="ref"><a href="#src-40">[40]</a></sup>. 납입 연기 <sup class="ref"><a href="#src-42">[42]</a></sup></td></tr>
+        <tr><td>한일융합펀드</td><td>IMM인베 재팬 <sup class="ref"><a href="#src-34">[34]</a></sup></td><td>한일 투자자. 블로터는 해외투자로 글로벌 LP 다변화를 추진한다고 보도 <sup class="ref"><a href="#src-65">[65]</a></sup></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출자사업 성적표</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>시점</th><th>출자사업</th><th>결과</th></tr>
+        <tr><td>2025.10</td><td>성장금융 하나기업성장펀드</td><td><span class="vd ok">선정</span> K2인베와 2곳 <sup class="ref"><a href="#src-18">[18]</a></sup></td></tr>
+        <tr><td>2025.11</td><td>군인공제회 VC 블라인드</td><td><span class="vd ok">선정</span> <sup class="ref"><a href="#src-19">[19]</a></sup></td></tr>
+        <tr><td>2025.12</td><td>노란우산 PE(인프라)</td><td><span class="vd no">탈락</span> 서류 통과 후 최종 탈락 <sup class="ref"><a href="#src-20">[20]</a></sup></td></tr>
+        <tr><td>2026.3</td><td>모태 1차 정시 세컨더리 일반</td><td><span class="vd no">서류 탈락</span> AUM 1조 이상 VC는 모두 탈락, 얼머스인베 단독 선정 <sup class="ref"><a href="#src-21">[21]</a></sup> <sup class="ref"><a href="#src-22">[22]</a></sup></td></tr>
+        <tr><td>2026.5</td><td>모태 수시 세컨더리 일반</td><td><span class="vd ok">단독 선정</span> 200억 <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td>2026.6</td><td>산은 회수시장 세컨더리 중형</td><td><span class="vd ok">선정</span> IMM·LB, 각 450억 출자 <sup class="ref"><a href="#src-23">[23]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup></td></tr>
+        <tr><td>2026.7</td><td>사학연금 VC 블라인드(3년 만에 재개)</td><td><span class="vd ok">선정</span> 5곳, 각 200억 <sup class="ref"><a href="#src-25">[25]</a></sup></td></tr>
+        <tr><td>2026.10</td><td>군인공제회 블라인드</td><td><span class="vd ok">선정</span> VC 10곳, 곳당 약 100억 <sup class="ref"><a href="#src-26">[26]</a></sup></td></tr>
+        <tr><td>2026</td><td>국민성장펀드 간접투자 1·2차</td><td>IMM인베 본체 선정 기록 없음(2차는 65곳 중 7곳 선정) <sup class="ref"><a href="#src-67">[67]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">사학연금·군인공제회 출자금을 어느 펀드에 담을지(신규 블라인드인지) 아직 보도가 없습니다. 국민연금, 교직원공제회, 행정공제회, 새마을금고의 2026년 선정 기록도 찾지 못했습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회수·포트폴리오</h2>
+      <ul class="tight">
+        <li><b>무신사</b>: 2026년 9월 7일 코스피 예심 청구, 내년 상반기 상장 목표. 거론되는 몸값은 8조~10조원입니다. IMM 누적 원금은 약 1,600억이고, 윤원기 전무가 사외이사입니다 <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-60">[60]</a></sup></li>
+        <li><b>롯데손보</b>: 빅튜라 전환우선주 500억. 신한금융이 인수하는 가운데 원금 회수 여부를 두고 보도가 정반대입니다 <sup class="ref"><a href="#src-53">[53]</a></sup> <sup class="ref"><a href="#src-54">[54]</a></sup></li>
+        <li><b>피스피스스튜디오</b>: 2026년 코스닥 상장 한 달 만에 공모가 대비 77% 하락. IMM은 3개 펀드로 25만여 주를 보유했습니다 <sup class="ref"><a href="#src-55">[55]</a></sup> <sup class="ref"><a href="#src-56">[56]</a></sup></li>
+        <li><b>플랜티팜</b>: 2014년 스페셜시츄에이션펀드로 투자. 펀드 만기는 2026년 3월인데 IPO가 지연됐습니다 <sup class="ref"><a href="#src-57">[57]</a></sup></li>
+        <li><b>친데이터 중국 사업부</b>: SK와 만든 펀드로 투자했고, 약 40억달러에 매각됐습니다(실질 매도 주체는 최대주주 베인이라는 해석) <sup class="ref"><a href="#src-52">[52]</a></sup></li>
+        <li><b>인도 포트폴리오 상장</b>: 섀도우팩스 상장 관련 더벨 기사가 있으나 IMM 지분 관계는 확인하지 못했습니다(추정) <sup class="ref"><a href="#src-58">[58]</a></sup></li>
+        <li><b>IPO 대기</b>: 리벨리온(연내 예심, 코스피 무게) <sup class="ref"><a href="#src-61">[61]</a></sup> <sup class="ref"><a href="#src-62">[62]</a></sup>, 구다이글로벌(IMM CB 1,400억) <sup class="ref"><a href="#src-63">[63]</a></sup>, 메디웨일 <sup class="ref"><a href="#src-50">[50]</a></sup>, 메디컬AI <sup class="ref"><a href="#src-64">[64]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>조직·사람</h2>
+      <ul class="tight">
+        <li>정일부·변재철 대표(사장). 창업자 장동우·지성배는 부회장, 송인준은 IMM홀딩스 부회장 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>벤처1본부 윤원기 전무(그로스), 벤처2본부 문여정 전무(스타트업·딥테크) <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li>이승환 부사장: 세컨더리 대표 펀드매니저. "VC 부문 차기 수장"이라는 보도가 있으나 공식 선임 기사는 없습니다 <sup class="ref"><a href="#src-7">[7]</a></sup></li>
+        <li>회사 전체로는 "AUM 10조를 앞둔" 하우스 <sup class="ref"><a href="#src-15">[15]</a></sup>. 2025년 실적과 성과보수는 공개 기사로 확인되지 않았습니다(DART 확인 필요)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했고, 더벨 등 유료 기사 원문은 열지 못했습니다. 기사에 쓸 수치는 원문으로 다시 확인하세요. 특히 [17]은 인프라 10호와 삼성물산 미국 법인 건이 같은 기사인지 확인되지 않았고, [58] 섀도우팩스와 IMM의 관계는 추정입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 더벨, 2025 PE·VC 리그테이블(AUM), 2025-12-31. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202512311638526440106869" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 딜사이트, 2026 상반기 VC 드라이파우더. <a href="https://dealsite.co.kr/articles/164857" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 더벨, 정일부 IMM인베 대표 "올해 3000억 투자, 벤처 육성 선봉", 2026-02. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602021439475280107820" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 더벨, IMM인베 창업자·CEO 역할 분리…'세대교체' 완성, 2025-12. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202512150854144940102169" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 아시아경제, IMM 공동창업자 부회장 승진, 2026-06. <a href="https://view.asiae.co.kr/article/2026062612174810996" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 헤럴드경제, 송인준 IMM홀딩스 부회장, 2025-12. <a href="https://www.heraldk.com/article/2025121118213754824" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> IB토마토(뉴스토마토), 이승환 부사장 VC 부문 차기 수장. <a href="https://www.newstomato.com/ReadNews.aspx?no=1272702" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 더벨, IMM인베 벤처2본부 펀드 결성 임박…1500억 확보, 2025-11. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202511180754020020106696" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, 스타트업벤처펀드 2호 1차 클로징. <a href="https://dealsite.co.kr/articles/154253" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 2025 VC 펀드레이징 순위. <a href="https://dealsite.co.kr/articles/155617" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> THE VC, IMM인베스트먼트 펀드 정보. <a href="https://thevc.kr/IMMInvestment" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> IB토마토, IMM 세컨더리 7호 결성 계획, 2026-07. <a href="https://www.ibtomato.com/ExternalView.aspx?no=18995&type=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 뉴스토마토, IMM 세컨더리 7호 정책자금 650억. <a href="https://newstomato.com/ReadNews.aspx?no=1307979" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 아시아경제, 세컨더리 7호 정책자금 1,550억·청산 IRR 20.6%, 2026-08-18. <a href="https://view.asiae.co.kr/article/2026081814360445269" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 더벨, IMM인베 세컨더리 6호·AUM 10조 앞둬, 2026-03. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202603031117154040109243" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 더벨, IMM인베 인프라 10호 1차 클로징 계획, 2025-04. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202504010959250440109231" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 딜사이트, 인프라10호 2차 클로징·삼성물산 미국 법인 FI 우협. <a href="https://dealsite.co.kr/articles/168331" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 딜사이트, 성장금융 하나기업성장펀드 GP 선정, 2025-10. <a href="https://dealsite.co.kr/articles/150533" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 더벨, 군인공제회 VC 블라인드 GP 선정, 2025-11-06. <a href="https://m.thebell.co.kr/m/newsview.asp?svccode=&newskey=202511060955196800103924" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트, 노란우산 PE 출자 결과(IMM인베 인프라 탈락), 2025-12. <a href="https://dealsite.co.kr/articles/153795" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 더벨, 모태 1차 정시 세컨더리 서류심사 결과, 2026-03-27. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603271517115040107989" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 더벨, 모태 세컨더리 일반 얼머스인베 단독 선정, 2026-04. <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202604300857452800103713" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 한국경제, 산은 세컨더리 숏리스트, 2026-06-19. <a href="https://www.hankyung.com/article/202606197069r" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 딜사이트, 산은 세컨더리 중형 IMM·LB 선정. <a href="https://dealsite.co.kr/articles/164541" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 딜사이트, 사학연금 VC 블라인드 5곳 선정, 2026-07-31. <a href="https://dealsite.co.kr/articles/166370" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 딜사이트, 군인공제회 2026 블라인드 18곳 선정, 2026-10-15. <a href="https://dealsite.co.kr/articles/170778" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 딜사이트, 국민성장펀드 1차 코스닥 리그(ICS 컨소 탈락). <a href="https://dealsite.co.kr/articles/161731" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 더벨, [국민성장펀드 시동] '리벨리온 투자' IMM인베, 팔로우온 명가 면모, 2026-04-08. <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604080831030240107165" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 유니콘팩토리, 리벨리온 6,400억 프리IPO, 2026-03-31. <a href="https://www.unicornfactory.co.kr/article/2026033111025632012" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 와우테일, 무빈 시리즈A 100억(IMM 리드), 2026-11-03. <a href="https://wowtale.net/2026/11/03/267354/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 딜사이트, IMM인베 메디컬AI 300억·최대주주 전환. <a href="https://dealsite.co.kr/articles/172327" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 와우테일, 인핸스 시리즈C 512억, 2026-09-17. <a href="https://wowtale.net/2026/09/17/264891/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> The Next Web, Pixxel 1억달러 시리즈C, 2026-09. <a href="https://thenextweb.com/news/pixxel-100m-series-c-temasek-seraphim" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 한국경제, IMM인베 재팬 교토퓨저니어링 리드, 2026-09-01. <a href="https://www.hankyung.com/article/202609015607r" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 플래텀, 엔닷라이트 150억. <a href="https://platum.kr/archives/292300" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 유니콘팩토리, 홀리데이로보틱스 시리즈A 1,550억, 2026-07-13. <a href="https://www.unicornfactory.co.kr/article/2026071308233216474" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 유니콘팩토리, 카본식스 시리즈A 4,000만달러, 2026-07-02. <a href="https://www.unicornfactory.co.kr/article/2026070210485223023" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> MTN, LIG D&A 우선주 5,000억 유증, 2026-06-26. <a href="https://news.mtn.co.kr/news-detail/2026062615434713266" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 뉴데일리, LIG D&A 유증 정정(5,319억), 2026-09-07. <a href="https://biz.newdaily.co.kr/site/data/html/2026/09/07/2026090700130.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> CEO스코어데일리, LIG D&A 프로젝트펀드 국민성장펀드 출자 승인, 2026-09-03. <a href="https://www.ceoscoredaily.com/page/view/2026090314113373218" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 인베스트조선, LIG D&A 납입 난항, 2026-09-16. <a href="https://www.investchosun.com/site/data/html_dir/2026/09/16/2026091680130.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 인베스트조선, LIG D&A 유증 재연기, 2026-11-05. <a href="https://www.investchosun.com/site/data/html_dir/2026/11/05/2026110580089.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 서울경제, 사로닉 시리즈D(IMM 참여), 2026-06-22. <a href="https://www.sedaily.com/article/20058727" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 뉴스토마토, 사로닉 투자 "회수는 시험대". <a href="https://newstomato.com/ReadNews.aspx?no=1305052" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 와우테일, 엑시나 시리즈B 공동리드, 2026-05-30. <a href="https://wowtale.net/2026/05/30/259381/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 인베스트조선, SK 울산 AI 데이터센터 우협(KKR·IMM-스톤브릿지), 2026-05-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/05/06/2026050680116.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 더벨, '3자 공동인수' SK AI 데이터센터 지배구조 셈법, 2026-03. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603201449279040107946" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 딜사이트, "1조 못 모은 IMM…국민성장펀드에 사활", 2026-07. <a href="https://dealsite.co.kr/articles/164768" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 한국경제TV, 톤28 90억 투자, 2026-04-24. <a href="https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202604240519" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 메디게이트뉴스, 메디웨일 시리즈C·IPO 채비. <a href="https://www.medigatenews.com/news/2333574082" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 헤럴드경제, 보령LNG터미널 지분 인수, 2025-11-20. <a href="https://www.heraldk.com/article/2025112016135244858" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 헤럴드경제, 친데이터 중국 사업부 매각, 2025-12-04. <a href="https://www.heraldk.com/article/2025120418505251554" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 인베스트조선, 롯데손보 매각 "IMM인베·금융사는 원금 건져", 2026-10-13. <a href="https://www.investchosun.com/site/data/html_dir/2026/10/13/2026101380150.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 딜사이트, 롯데손보 "중순위 IMM인베도 손실 가능성". <a href="https://dealsite.co.kr/articles/170621" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 딜사이트, 피스피스스튜디오 상장 후 주가 급락. <a href="https://dealsite.co.kr/articles/164160" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 딜사이트, 피스피스스튜디오 IMM 보유 지분. <a href="https://dealsite.co.kr/articles/165311" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 뉴스토마토, 플랜티팜 IPO 지연·펀드 만기. <a href="https://www.newstomato.com/ReadNews.aspx?no=1287565" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 더벨, 인도 포트폴리오 상장(섀도우팩스 추정), 2026-01-28. <a href="https://www.thebell.co.kr/front/newsview.asp?click=F&key=202601281716351120102179" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> sateconomy.co.kr, 무신사 예심 청구·IMM 투자원금. <a href="https://sateconomy.co.kr/news/view/1065572331864073" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-60"><span class="n">[60]</span> 딜사이트, 무신사 IPO와 FI. <a href="https://dealsite.co.kr/articles/168671" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-61"><span class="n">[61]</span> 다음(뉴스), 리벨리온 예심 청구 연내로 조정, 2026-05-27. <a href="https://v.daum.net/v/20260527171004766" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-62"><span class="n">[62]</span> 한국경제, 리벨리온 코스피 상장 무게, 2026-03. <a href="https://www.hankyung.com/article/2026030519831" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-63"><span class="n">[63]</span> 뉴스토마토, 구다이글로벌 IMM CB 1,400억·상장 목표. <a href="https://newstomato.com/ReadNews.aspx?no=1306641" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-64"><span class="n">[64]</span> 아시아경제, 메디컬AI 코스닥 상장 재추진, 2026-02-24. <a href="https://view.asiae.co.kr/article/2026022411380666819" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-65"><span class="n">[65]</span> 블로터 기획(다음 전재), IMM인베 해외투자·글로벌 LP 다변화 <span class="own">자사</span>. <a href="https://v.daum.net/v/B1r9AHMUld?f=p" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-66"><span class="n">[66]</span> 딜사이트, 산은 세컨더리 소형 재공고(선정 후 9개월 내 결성). <a href="https://dealsite.co.kr/articles/167576" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-67"><span class="n">[67]</span> 유니콘팩토리, 국민성장펀드 2차 GP 7곳, 2026-07-13. <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- ================= 질문지 탭 ================= -->
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 관계자의 소속 본부(벤처·그로스·세컨더리·인프라)에 따라 ①~④ 중 맞는 묶음을 먼저 쓰세요. 후속 취재 거리는 보고서 탭의 표에 시점과 기사 각도까지 정리했습니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 최근 투자</h2></div>
+    <div class="q cat1 must"><p class="qtext">LIG D&amp;A 우선주 유증이 방사청 처분 뒤 다시 연기되고 발행가도 약 19% 낮아졌습니다. <b>새 납입일은 언제이고, 국민성장펀드와 민간 LP는 그대로 남습니까?</b></p><p class="follow">↳ LP에게 "납입이 어렵다"고 안내했을 때 이탈 의사를 밝힌 곳이 있었습니까? 계약상 손해배상 조항은 어떻게 처리됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/11/05/2026110580089.html" target="_blank" rel="noopener">[42]</a> <a href="https://www.investchosun.com/site/data/html_dir/2026/09/16/2026091680130.html" target="_blank" rel="noopener">[41]</a> <a href="https://www.ceoscoredaily.com/page/view/2026090314113373218" target="_blank" rel="noopener">[40]</a></span></div></div>
+    <div class="q cat1 must"><p class="qtext">SK 울산 AI 데이터센터 20%를 맡았습니다. "1조를 다 모으지 못해 국민성장펀드에 기대고 있다"는 보도가 있었는데, <b>지금 프로젝트펀드 조달은 어디까지 왔습니까?</b> 2027년 1분기 종결 일정은 그대로입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/05/06/2026050680116.html" target="_blank" rel="noopener">[46]</a> <a href="https://dealsite.co.kr/articles/164768" target="_blank" rel="noopener">[48]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603201449279040107946" target="_blank" rel="noopener">[47]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">메디컬AI에 300억을 넣고 최대주주가 된다는 보도가 있습니다. LIG D&amp;A, 보령LNG까지 보면 <b>벤처 하우스가 컨트롤·인프라 딜을 늘리는 이유</b>는 무엇입니까?</p><p class="follow">↳ 메디컬AI는 바디프랜드 의존도와 경영권 분쟁이 상장 심사 변수인데, 어떻게 풀 계획입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/172327" target="_blank" rel="noopener">[31]</a> <a href="https://www.heraldk.com/article/2025112016135244858" target="_blank" rel="noopener">[51]</a> <a href="https://news.mtn.co.kr/news-detail/2026062615434713266" target="_blank" rel="noopener">[38]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">정일부 대표가 "올해 3,000억 투자"를 내걸었습니다. <b>11월 현재 집행률</b>은 어느 정도이고, 남은 기간 어디에 쓸 계획입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202602021439475280107820" target="_blank" rel="noopener">[3]</a> <a href="https://dealsite.co.kr/articles/164857" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">홀리데이로보틱스 시리즈A 1,550억, 카본식스, 무빈, 엔닷라이트까지 피지컬AI·로봇 투자가 많습니다. <b>밸류에이션 과열 우려</b>는 어떻게 보십니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071308233216474" target="_blank" rel="noopener">[36]</a> <a href="https://www.unicornfactory.co.kr/article/2026070210485223023" target="_blank" rel="noopener">[37]</a> <a href="https://wowtale.net/2026/11/03/267354/" target="_blank" rel="noopener">[30]</a> <a href="https://platum.kr/archives/292300" target="_blank" rel="noopener">[35]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">사로닉, Pixxel, 엑시나, 교토퓨저니어링까지 해외 딥테크 투자가 늘었습니다. 사로닉은 "회수는 시험대"라는 평가도 받았는데, <b>해외 투자의 회수 경로</b>는 어떻게 그리고 계십니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.sedaily.com/article/20058727" target="_blank" rel="noopener">[43]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1305052" target="_blank" rel="noopener">[44]</a> <a href="https://thenextweb.com/news/pixxel-100m-series-c-temasek-seraphim" target="_blank" rel="noopener">[33]</a> <a href="https://wowtale.net/2026/05/30/259381/" target="_blank" rel="noopener">[45]</a> <a href="https://www.hankyung.com/article/202609015607r" target="_blank" rel="noopener">[34]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 펀드 결성</h2></div>
+    <div class="q cat2 must"><p class="qtext">세컨더리 7호는 하드캡 3,000억입니다. 정책자금을 650억으로 쓴 기사와 1,550억으로 쓴 기사가 있습니다. <b>지금 확보액과 1차 클로징 시점</b>은 어떻게 됩니까? 민간 LP는 누구입니까?</p><p class="follow">↳ 산은 세컨더리는 선정 후 일정 기간 안에 결성해야 합니다. 기한 안에 마칠 수 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://newstomato.com/ReadNews.aspx?no=1307979" target="_blank" rel="noopener">[13]</a> <a href="https://view.asiae.co.kr/article/2026081814360445269" target="_blank" rel="noopener">[14]</a> <a href="https://www.ibtomato.com/ExternalView.aspx?no=18995&type=1" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">스타트업벤처펀드 2호의 <b>최종 규모</b>는 얼마입니까? 1,750억, 1,890억, 2,000억대로 보도가 엇갈립니다.</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/154253" target="_blank" rel="noopener">[9]</a> <a href="https://thevc.kr/IMMInvestment" target="_blank" rel="noopener">[11]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202511180754020020106696" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">사학연금, 군인공제회에서 출자를 받았습니다. <b>이 돈을 담을 새 블라인드펀드</b>(그로스 3호 등)를 준비하고 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/166370" target="_blank" rel="noopener">[25]</a> <a href="https://dealsite.co.kr/articles/170778" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">인프라 10호는 목표 1.5조에 2차 클로징 5,700억이라는 보도가 있습니다. <b>최종 클로징은 언제, 어느 규모</b>로 예상합니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202504010959250440109231" target="_blank" rel="noopener">[16]</a> <a href="https://dealsite.co.kr/articles/168331" target="_blank" rel="noopener">[17]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">드라이파우더가 1년 새 31% 넘게 줄었습니다. 투자를 빨리 집행한 결과입니까, 펀드레이징이 둔해진 결과입니까? <b>내년 펀드레이징 계획</b>은 무엇입니까?</p><div class="qmeta"><span class="tag">모순 병치</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164857" target="_blank" rel="noopener">[2]</a> <a href="https://dealsite.co.kr/articles/155617" target="_blank" rel="noopener">[10]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 출자사업</h2></div>
+    <div class="q cat3 must"><p class="qtext">3월 모태 세컨더리 정시에서는 서류에서 떨어졌다가 5월 수시에서 단독으로 선정됐습니다. <b>무엇이 달라졌습니까?</b> AUM 1조 이상 VC가 정시에서 모두 떨어진 건 대형 VC를 배제하는 흐름으로 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">모순 병치</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thebell.co.kr/front/newsview.asp?key=202603271517115040107989" target="_blank" rel="noopener">[21]</a> <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202604300857452800103713" target="_blank" rel="noopener">[22]</a> <a href="https://www.ibtomato.com/ExternalView.aspx?no=18995&type=1" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">국민성장펀드 간접투자 1·2차에서 IMM인베 본체가 GP로 뽑힌 기록이 없습니다. <b>지원하지 않은 겁니까, 떨어진 겁니까?</b> 대신 직접투자 매칭(리벨리온, LIG D&amp;A)으로 국민성장펀드와 협업하는 전략입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071315464142594" target="_blank" rel="noopener">[67]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?code=00&key=202604080831030240107165" target="_blank" rel="noopener">[28]</a> <a href="https://www.ceoscoredaily.com/page/view/2026090314113373218" target="_blank" rel="noopener">[40]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">노란우산 PE 출자에서는 인프라 부문으로 지원해 최종 탈락했습니다. <b>인프라 부문 LP 확보 전략</b>은 어떻게 바꿉니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/153795" target="_blank" rel="noopener">[20]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202504010959250440109231" target="_blank" rel="noopener">[16]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ 회수·포트폴리오</h2></div>
+    <div class="q cat4 must"><p class="qtext">무신사가 9월 예심을 청구했습니다. 누적 원금이 약 1,600억입니다. <b>상장 때 구주매출에 참여합니까?</b> 기업가치 눈높이를 두고 창업자와 이견은 없습니까?</p><p class="follow">↳ 특별세무조사와 창업자 지분담보가 심사 변수로 꼽히는데, FI로서 어떻게 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://sateconomy.co.kr/news/view/1065572331864073" target="_blank" rel="noopener">[59]</a> <a href="https://dealsite.co.kr/articles/168671" target="_blank" rel="noopener">[60]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext">롯데손보 빅튜라 전환우선주 500억을 두고 "원금 회수"와 "손실 가능성" 보도가 정반대입니다. <b>실제 회수 예상액은 어느 정도입니까?</b></p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/10/13/2026101380150.html" target="_blank" rel="noopener">[53]</a> <a href="https://dealsite.co.kr/articles/170621" target="_blank" rel="noopener">[54]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">피스피스스튜디오는 상장 한 달 만에 공모가 대비 77% 떨어졌습니다. <b>보호예수가 풀린 뒤 지분을 어떻게 처리</b>하셨습니까? 공모가 산정에 문제는 없었다고 보십니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/164160" target="_blank" rel="noopener">[55]</a> <a href="https://dealsite.co.kr/articles/165311" target="_blank" rel="noopener">[56]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">플랜티팜은 펀드 만기가 2026년 3월이었는데 IPO가 지연됐습니다. <b>만기 연장, 세컨더리 매각, 현물 분배 중 어떻게 처리</b>했습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.newstomato.com/ReadNews.aspx?no=1287565" target="_blank" rel="noopener">[57]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>⑤ 조직</h2></div>
+    <div class="q cat4"><p class="qtext">창업자와 CEO의 역할을 나눈 지 1년이 됩니다. <b>투자 의사결정 구조는 실제로 어떻게 바뀌었습니까?</b> 연말 인사에서 VC 부문 수장이 바뀌는 등의 변화가 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202512150854144940102169" target="_blank" rel="noopener">[4]</a> <a href="https://view.asiae.co.kr/article/2026062612174810996" target="_blank" rel="noopener">[5]</a> <a href="https://www.newstomato.com/ReadNews.aspx?no=1272702" target="_blank" rel="noopener">[7]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[67]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-11</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
