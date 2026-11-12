@@ -1,0 +1,334 @@
+<meta charset="utf-8" />
+<title>남우진 한화투자증권 VC</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #c0500f; --accent-soft: #fcebdd;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #f5ad78; --accent-soft: #2c1a0d;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #f5ad78; --accent-soft: #2c1a0d;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #261204; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #261204; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-12</div>
+    <h1 class="title" style="word-break:keep-all">남우진 한화투자증권 VC팀장</h1>
+    <p class="subtitle">한화인베스트먼트에서 시작해 증권 VC팀을 이끄는 초장기펀드 대표펀드매니저. 라이온로보틱스 건은 한화시스템 쪽이고, 토닥은 2020년부터 키워 온 장기 기술투자다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 남우진 VC팀장</span>
+      <span class="meta-chip">질문 18개</span>
+      <span class="meta-chip">출처 64개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에 — 세 가지 질문에 대한 답</h2>
+      <ul class="tight">
+        <li><b>① 라이온로보틱스와 한화투자증권은 관련 있나?</b> → <b>공개 자료로는 없습니다.</b> 회사 이름은 '라이언'이 아니라 <b>라이온로보틱스</b>(Raion Robotics, KAIST 교원창업, 사족보행 로봇 '라이보')입니다. 11월 보도에 따르면 한화그룹이 이 회사 시리즈B(약 1,000억)에 약 700억을 넣는 방안을 협상 중이고, 투자 주체로는 <b>한화시스템</b>이 거론됩니다. 김동관 부회장이 라이보 시연을 직접 봤다는 전언도 있습니다 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup> <sup class="ref"><a href="#src-43">[43]</a></sup>. 시드와 시리즈A 투자자 명단에 한화 금융계열사는 없습니다 <sup class="ref"><a href="#src-49">[49]</a></sup> <sup class="ref"><a href="#src-40">[40]</a></sup></li>
+        <li><b>② 토닥</b>: 32채널 인공와우(인공달팽이관) '설리번'을 만드는 회사입니다 <sup class="ref"><a href="#src-35">[35]</a></sup>. 블로터 인터뷰에 따르면 한화의 첫 투자는 <b>2020년 시제품 단계</b>였고, <b>남 팀장이 한화투자증권에 합류하기 전</b>이었습니다. 조직이 증권으로 옮긴 뒤에도 후속 투자를 이어갔고, 초장기펀드 GP 심사에서 기업가치를 끌어올린 사례로 내놓았습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 토닥은 2028년 IPO를 준비하고 있습니다 <sup class="ref"><a href="#src-37">[37]</a></sup></li>
+        <li><b>③ 남 팀장의 지금</b>: 한화투자증권 VC팀장으로 국민성장펀드 <b>초장기기술투자펀드(소형, 800억)</b>의 대표펀드매니저입니다. 다른 증권사들은 공동운용(Co-GP)으로 지원했지만 한화는 단독으로 지원해 선정됐고, 12월 말까지 민간 LP를 모아야 합니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup> <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+      </ul>
+      <p class="warn"><b>경력 시점 확인 필요</b>: 말씀하신 대로 2018년 한화인베스트먼트에서 시작했다면 시간 순서가 조금 엇갈립니다. 한화투자증권은 2017년에 한화인베스트먼트의 VC사업을 135억에 양수했습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup>. 그런데 남 팀장은 "기존 투자자산을 이관받은 뒤 블라인드펀드 운용을 이어왔다"고 말했습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 2025년 7월 기사에는 VC팀장이 '김도형 팀장'으로 나옵니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 언제 증권으로 옮겼고 언제 팀장이 됐는지 첫 질문으로 확인하세요.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 라이온로보틱스 — 한화가 왜 관심을 갖나</h2>
+      <div class="tbl-wrap">
+      <table class="rt" style="min-width:0">
+        <tr><th style="width:24%">항목</th><th>내용</th></tr>
+        <tr><td>회사</td><td>KAIST 기계공학과 황보제민 교수가 2023년 세운 교원창업 기업(대표 겸임), 대전 본사. 강화학습 보행 제어, 감속기·모터 자체 개발 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-40">[40]</a></sup>. 라이보2가 2024년 마라톤을 완주했고 <sup class="ref"><a href="#src-50">[50]</a></sup>, 2025 육군 AI드론봇 챌린지에서 최우수상을 받았습니다 <sup class="ref"><a href="#src-47">[47]</a></sup></td></tr>
+        <tr><td>투자 이력</td><td>시드(2024.4): 컴퍼니케이·퓨처플레이 <sup class="ref"><a href="#src-49">[49]</a></sup>. 시리즈A 230억(2025.9): SBVA 리드, 산은캐피탈·IBK 등 <sup class="ref"><a href="#src-40">[40]</a></sup></td></tr>
+        <tr><td><b>시리즈B</b></td><td>10월에는 "최소 1,500억 추진" <sup class="ref"><a href="#src-45">[45]</a></sup>, 11월에는 1,000억 규모로 보도. 투자 전 기업가치는 약 6,000억으로, 시리즈A 때(약 1,000억)의 6배 수준 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-43">[43]</a></sup></td></tr>
+        <tr><td><b>한화</b></td><td>약 700억(지분 약 10%) 투자 방안 협상 중, 투자 주체로 한화시스템 유력. 조건은 확정되지 않았고 한화는 확인을 거부 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup> <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-44">[44]</a></sup></td></tr>
+        <tr><td>해석</td><td>로봇 사업이 3형제에게 나뉘면서 한화로보틱스는 김동선 부사장 쪽으로 갔습니다. 김동관 부회장 쪽 방산(지상 무인전력)에 비어 있던 '보행형 로봇'을 채우려는 소수지분 전략투자라는 해석입니다. 국내 방산업체 사이의 '사족로봇 삼파전'이라는 보도도 있습니다 <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-43">[43]</a></sup></td></tr>
+        <tr><td>리스크</td><td>2025년 매출은 약 10억(채용 사이트 기준, 추정). 녹색경제신문은 SBVA 포트폴리오의 '아픈 손가락'으로 꼽고 적자 부담을 다뤘습니다 <sup class="ref"><a href="#src-46">[46]</a></sup>. 2028년 코스닥 상장이 목표입니다 <sup class="ref"><a href="#src-48">[48]</a></sup></td></tr>
+      </table>
+      </div>
+      <p class="src">한화그룹 금융계열사의 로봇 투자로는 한화자산운용이 RLWRLD(로봇 AI) 시드2에 참여한 기록이 있습니다 <sup class="ref"><a href="#src-51">[51]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>토닥 — 오래 기다린 기술투자</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2015</div><div class="tl-body">삼성종합기술원 연구원 출신 민규식 대표가 창업 <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2017~2018</div><div class="tl-body">시리즈A <sup class="ref"><a href="#src-38">[38]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2020</div><div class="tl-body">"아무도 투자하지 않겠다"는 위기를 투자 연계 정부과제로 넘김 <sup class="ref"><a href="#src-36">[36]</a></sup>. <b>한화가 시제품 단계에서 첫 투자</b>. 핵심부품을 자동화해 생산하면 생산성과 가격경쟁력이 생긴다고 판단 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2020~2023</div><div class="tl-body">시리즈B 여러 차례 <sup class="ref"><a href="#src-38">[38]</a></sup>. 한화는 증권으로 옮긴 뒤에도 후속 투자 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-body">2월 시리즈C 100억(스톤브릿지벤처스·IBK 등), 누적 민간투자 244억, 환자 10명 이식. 하나증권 대표주관으로 2028 IPO 준비 <sup class="ref"><a href="#src-37">[37]</a></sup> <sup class="ref"><a href="#src-38">[38]</a></sup>. 9월 조달청 혁신제품 지정 <sup class="ref"><a href="#src-39">[39]</a></sup></div></div>
+      </div>
+      <p class="src">해외 인공와우는 12~22채널, 토닥 '설리번'은 32채널입니다 <sup class="ref"><a href="#src-35">[35]</a></sup>. 반도체 공정으로 자동화해 원가를 낮추는 것이 핵심입니다 <sup class="ref"><a href="#src-36">[36]</a></sup>. 한화의 투자 금액과 지분율, 시리즈C 참여 여부는 공개되지 않았습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한화투자증권 VC 부문</h2>
+      <h3>연혁·조직</h3>
+      <ul class="tight">
+        <li>2016년 신기술사업금융업 등록, 2017년 한화인베스트먼트 VC사업을 135억에 양수 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup>. 2024년에는 '신기술금융본부'로 블라인드펀드 8개, AUM 4,150억 <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li>지금은 'IB부문 VC팀'입니다. 2026년 3월 IB1·2부문 통합 뒤 IB부문 직속이 됐고, 김도형 팀장을 포함해 10명이라는 보도가 있습니다 <sup class="ref"><a href="#src-3">[3]</a></sup>. 본부에서 팀으로 바뀐 경위는 확인되지 않습니다</li>
+        <li>VC팀 과장~차장급 경력자를 6~7월과 10~11월 두 차례 모집했습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup></li>
+        <li>2026년 6월 말 조합 23개, 결성액 5,840억(2025년 말보다 10.2% 증가) <sup class="ref"><a href="#src-4">[4]</a></sup>. 청산한 충남-한화중소기업육성펀드는 2.16배, IRR 20.7% <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+      </ul>
+      <h3>펀드·출자사업</h3>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>시점</th><th>건</th><th>결과·상태</th></tr>
+        <tr><td>2026.10</td><td><b>국민성장펀드 초장기기술투자펀드 소형</b></td><td><span class="vd ok">선정</span> 800억. 소형 리그 3곳(지앤텍, 타임폴리오 Co-GP, 한화) <sup class="ref"><a href="#src-9">[9]</a></sup> <sup class="ref"><a href="#src-10">[10]</a></sup>. 경쟁률 13.7대 1. 12월 말 결성 기한, 2027년 3월까지 추가 모집 가능 <sup class="ref"><a href="#src-10">[10]</a></sup>. 결성에 실패하면 최대 3년 출자 제한, 민간 몫의 90%만 채워도 결성 인정 <sup class="ref"><a href="#src-11">[11]</a></sup>. 기한 연장 가능성 거론 <sup class="ref"><a href="#src-13">[13]</a></sup></td></tr>
+        <tr><td>2026.9</td><td>국민성장펀드 제안</td><td>중기특화 증권사 가운데 한화는 단독 제안 <sup class="ref"><a href="#src-14">[14]</a></sup>. 초장기 건과 같은 건인지 확인 필요</td></tr>
+        <tr><td>2025.7</td><td>모태 '미래환경 스케일업'</td><td><span class="vd ok">선정</span> 경쟁률 7대 1, 모태 280억, 목표 약 500억 <sup class="ref"><a href="#src-2">[2]</a></sup>. <b>결성을 마쳤다는 보도 없음</b></td></tr>
+        <tr><td>2025.7</td><td>은행권 기후기술펀드 2호 중형</td><td><span class="vd no">탈락</span> 제네시스PE 선정 <sup class="ref"><a href="#src-15">[15]</a></sup></td></tr>
+        <tr><td>2024.3</td><td>한화-원익 K방산 기술혁신 투자조합</td><td>성장금융 방산 2호, 원익투자파트너스와 Co-GP. 규모는 425억~500억으로 보도가 엇갈림 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></td></tr>
+        <tr><td>2022</td><td>스마트한화 KDB경기탄소중립 ESG펀드</td><td>1,030억. 한화그룹·산은·모태 등 <sup class="ref"><a href="#src-16">[16]</a></sup></td></tr>
+      </table>
+      </div>
+      <h3>투자 사례</h3>
+      <ul class="tight">
+        <li>로가(식물성 콜라겐) 시리즈A 110억 참여(2025.9) <sup class="ref"><a href="#src-17">[17]</a></sup>, 스페이스애드 시리즈C(2023.9) <sup class="ref"><a href="#src-18">[18]</a></sup>. 누적 투자 103건, 89개사 <sup class="ref"><a href="#src-19">[19]</a></sup></li>
+        <li>회사 본계정 투자는 VC팀과 별개로 보입니다(추정). 한국디지털에셋 <sup class="ref"><a href="#src-20">[20]</a></sup>, 해외·디지털자산 <sup class="ref"><a href="#src-21">[21]</a></sup>, 두나무 지분을 9.84%로 확대(5,978억) <sup class="ref"><a href="#src-22">[22]</a></sup></li>
+      </ul>
+      <h3>회사 상황</h3>
+      <ul class="tight">
+        <li>2026년 9월 30일 5,000억 유상증자 결의. 한화자산운용과 한화생명이 2,500억씩 내고, 자기자본 3조를 넘겨 종투사가 되는 것이 목표입니다 <sup class="ref"><a href="#src-23">[23]</a></sup> <sup class="ref"><a href="#src-24">[24]</a></sup>. 한화자산운용은 출자금의 80%를 차입으로 마련했습니다 <sup class="ref"><a href="#src-25">[25]</a></sup></li>
+        <li>종투사 모험자본 공급 의무(2026년 10% → 2028년 25%)에는 VC·신기사 펀드 투자도 포함됩니다 <sup class="ref"><a href="#src-26">[26]</a></sup>. 다만 한화에게 IMA는 아직 먼 문턱이라는 분석이 있습니다 <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+        <li>장병호 대표(한화생명 출신, 2025.9 선임)는 PF 위주에서 해외 기업금융 중심으로 체질을 바꾸려 한다는 평가입니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+        <li>그룹 안에서 한화자산운용도 따로 VC투자그룹을 운영합니다. 'Hanwha VC Connect'를 열었고 해외 AI·방산에 투자합니다 <sup class="ref"><a href="#src-30">[30]</a></sup>. 한화자산운용은 한화투자증권의 주요 주주입니다 <sup class="ref"><a href="#src-31">[31]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>요즘 VC 업계 이슈 (2026년 10~11월)</h2>
+      <ol class="tight" style="padding-left:20px;font-size:14.5px">
+        <li><b>국민성장펀드 국감 후폭풍</b>: 자금 쏠림, 심사 불투명, 투자심의위원회 위원의 잇단 회피·제척 <sup class="ref"><a href="#src-52">[52]</a></sup> <sup class="ref"><a href="#src-53">[53]</a></sup></li>
+        <li><b>모태펀드 GP 결성 지연</b>: 1차 정시 GP의 약 70%가 기한 안에 결성 못 함 <sup class="ref"><a href="#src-54">[54]</a></sup></li>
+        <li><b>2027 모태 예산 1.3조(역대 최대)</b>: 다만 2026년 예산이 국회에서 깎인 전례가 있음 <sup class="ref"><a href="#src-55">[55]</a></sup> <sup class="ref"><a href="#src-56">[56]</a></sup></li>
+        <li><b>국민성장펀드 200조 확대 구상</b> <sup class="ref"><a href="#src-57">[57]</a></sup></li>
+        <li><b>초장기펀드 민간 매칭</b>: 8,800억 중 민간 2,000억. 연말 결성을 앞두고 흥행을 걱정하는 목소리 <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-58">[58]</a></sup>. <b>남 팀장에게 직접 해당하는 이슈</b></li>
+        <li><b>증권사 BDC·모험자본</b>: 금투협이 증권사 BDC 운용 허용을 다시 요구 <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-60">[60]</a></sup></li>
+        <li><b>회수난</b>: 코스닥 상장폐지 기준 강화, 기술기업 상장 문턱 재설계 요구, 프리IPO 쏠림 <sup class="ref"><a href="#src-61">[61]</a></sup> <sup class="ref"><a href="#src-62">[62]</a></sup></li>
+        <li><b>피지컬AI·로봇 밸류 과열 논쟁</b>: 1년 새 10배 가까이 뛴 사례도 있음 <sup class="ref"><a href="#src-63">[63]</a></sup> <sup class="ref"><a href="#src-64">[64]</a></sup>. 라이온로보틱스 6,000억 밸류도 같은 맥락</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했습니다. 블로터 인터뷰 [1]은 자사 기사이니 원문을 직접 확인하세요. 라이온로보틱스 투자 협상은 한화가 확인하지 않은 보도 단계입니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 블로터, 남우진 한화투자증권 VC팀장 인터뷰(초장기펀드·토닥), 2026-10~11 <span class="own">자사</span>. <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 아시아경제, 한화투자증권 모태 미래환경 스케일업 GP 선정·VC 운용 현황, 2025-07-02. <a href="https://core.asiae.co.kr/article/2025070209353547854" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> FETV, 한화투자증권 IB부문 통합·VC팀 10명. <a href="https://www.fetv.co.kr/news/articleView.html?idxno=195950" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> sateconomy.co.kr, 한화투자증권 VC 연혁·조합 결성액 5,840억·채용, 2026-11. <a href="https://sateconomy.co.kr/news/view/1065584271992403" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 딜사이트, 한화투자증권 신기술금융 연혁. <a href="https://dealsite.co.kr/articles/142683" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 메트로서울, 한화-원익 K방산 펀드 결성·신기술금융본부, 2024-04-01. <a href="https://www.metroseoul.co.kr/article/20240401500372" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, 방산기술혁신펀드 2호 GP. <a href="https://dealsite.co.kr/articles/111631" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 딜사이트, 한화-원익 방산 펀드. <a href="https://dealsite.co.kr/articles/157580" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 넘버스, 초장기기술투자펀드 GP 선정, 2026-10 <span class="own">자사</span>. <a href="https://www.numbers.co.kr/news/articleView.html?idxno=22980" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, 초장기펀드 소형 리그 3곳·결성 기한. <a href="https://dealsite.co.kr/articles/170697" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 딜사이트, 초장기펀드 결성 실패 페널티·보완책. <a href="https://dealsite.co.kr/articles/168213" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> sateconomy.co.kr, 초장기펀드 정책자금 77%·민간 2,000억. <a href="https://sateconomy.co.kr/news/view/1065565050819464" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 네이트(뉴스), 초장기펀드 결성 기한 연장 가능성, 2026-11-09. <a href="https://m.news.nate.com/view/20261109n36257" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> IB토마토, 중기특화 증권사 국민성장펀드 제안(한화 단독), 2026-09. <a href="https://www.ibtomato.com/View.aspx?no=18927&type=1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 딜사이트, 은행권 기후기술펀드 2호 중형 리그 결과. <a href="https://dealsite.co.kr/articles/143748" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> MTN, 스마트한화 KDB경기탄소중립 ESG펀드 1,030억, 2022-07. <a href="https://news.mtn.co.kr/news-detail/2022071809075775368" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 유니콘팩토리, 로가 110억 시리즈A, 2025-09. <a href="https://www.unicornfactory.co.kr/article/2025091111164337432" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 유니콘팩토리, 스페이스애드 시리즈C, 2023-09. <a href="https://www.unicornfactory.co.kr/article/2023091309161538331" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> THE VC, 한화투자증권 포트폴리오 집계. <a href="https://thevc.kr/hanwhainvestmentnsecurities/portfolios" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 헤럴드경제, 한국디지털에셋 시리즈A, 2025-11-25. <a href="https://www.heraldk.com/article/2025112517563447020" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 인사이트, 한화투자증권 해외·디지털자산 투자. <a href="https://www.insight.co.kr/news/577485" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 디지털데일리, 한화투자증권 두나무 지분 확대, 2026-05-20. <a href="https://www.ddaily.co.kr/page/view/2026052017465031973" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 파이낸셜뉴스, 한화투자증권 5,000억 유상증자, 2026-10-01. <a href="https://www.fnnews.com/news/202610011106093537" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> sateconomy.co.kr, 한화투자증권 증자·종투사 목표. <a href="https://sateconomy.co.kr/news/view/1065601093666282" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 뉴스토마토, 한화자산운용 증자 자금 차입. <a href="https://newstomato.com/ReadNews.aspx?no=1319005" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 헤럴드경제, 종투사 모험자본 공급 의무. <a href="https://heraldk.com/?p=2532376" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 이코노미스트, 중형 증권사와 IMA 문턱, 2025-11. <a href="https://economist.co.kr/article/view/ecn202511050082" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> CEO스코어데일리, 장병호 한화투자증권 대표 내정, 2025-07-17. <a href="https://www.ceoscoredaily.com/page/view/2025071716070918280" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 데일리안, 장병호 대표 체제. <a href="https://www.dailian.co.kr/news/view/1521815" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 아시아경제, 한화자산운용 Hanwha VC Connect Vol.1, 2026-05-22. <a href="https://view.asiae.co.kr/article/2026052208482716607" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> CEO스코어데일리, 한화자산운용 한화투자증권 지분 인수, 2021-08. <a href="https://www.ceoscoredaily.com/page/view/2021083116054396981" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 인크루트, 한화투자증권 VC팀 경력 채용 공고, 2026-10. <a href="https://job.incruit.com/entry/jobpost.asp?job=2610260003850" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> THE VC, 토닥. <a href="https://thevc.kr/todoc" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 벤처스퀘어, 토닥 민규식 대표. <a href="https://www.venturesquare.net/724930/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 뉴스1, 32채널 인공와우 설리번. <a href="https://www.news1.kr/amp/bio/healthcare/6185794" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 메디게이트뉴스, 토닥 자동화 생산·2020년 투자 위기. <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 프레스나인, 토닥 시리즈C 100억·2028 IPO 준비, 2026-09. <a href="http://www.press9.kr/news/articleView.html?idxno=82786" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> THE VC, 토닥 투자 이력. <a href="https://thevc.kr/todoc/fundings" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 알파경제, 토닥 조달청 혁신제품 지정. <a href="https://www.alphabiz.co.kr/news/articleView.html?idxno=195498" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 바이라인네트워크, 라이온로보틱스 시리즈A 230억, 2025-09-16. <a href="https://byline.network/2025/09/16-558/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 더퍼블릭, 한화 라이온로보틱스 700억 투자 협상·김동관 시연 참관. <a href="https://www.thepublic.kr/news/articleView.html?idxno=325610" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> FETV, 한화 라이온로보틱스 투자 검토. <a href="https://www.fetv.co.kr/news/articleView.html?idxno=313322" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 글로벌이코노믹, 사족로봇 삼파전·시리즈B, 2026-11-10. <a href="https://www.g-enews.com/article/Global-Biz/2026/11/202611101354144863fbbec65dfb_1" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> A3(Automate), Hanwha's robot dog bet. <a href="https://www.automate.org/robotics/industry-insights/hanwhas-50-million-robot-dog-bet-intensifies-south-korea-s-defense-robotics-race" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 딜사이트, 라이온로보틱스 시리즈B 최소 1,500억 추진, 2026-10. <a href="https://dealsite.co.kr/articles/170108" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 녹색경제신문, SBVA 딥테크 '아픈 손가락' 라이온로보틱스. <a href="https://www.greened.kr/news/articleView.html?idxno=348696" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 헤럴드경제, 육군 AI드론봇 챌린지 최우수상, 2025-10-20. <a href="https://www.heraldk.com/article/2025102016144529211" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 아이뉴스24, 라이온로보틱스 2028 코스닥 상장 목표. <a href="https://www.inews24.com/view/1903676" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 와우테일(영문), 라이온로보틱스 시드, 2024-04. <a href="https://en.wowtale.net/2024/04/03/74664" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 서울경제(영문), 마라톤 완주 사족로봇, 2026-05-13. <a href="https://en.sedaily.com/technology/2026/05/13/quadruped-robot-that-ran-worlds-first-marathon-targets" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> Crowdfund Insider, RLWRLD 투자(한화자산운용 참여), 2026-02. <a href="https://www.crowdfundinsider.com/2026/02/264497-south-koreas-rlwrld-raises-26m-funding-to-scale-industrial-robotics-ai/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 뉴스토마토, 국민성장펀드 국감 지적, 2026-10. <a href="https://newstomato.com/ReadNews.aspx?no=1318286" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 데일리안, 국민성장펀드 투심위 잇단 회피, 2026. <a href="https://www.dailian.co.kr/news/view/1649337/150%EC%A1%B0-%EA%B5%AD%EB%AF%BC%EC%84%B1%EC%9E%A5%ED%8E%80%EB%93%9C-%ED%88%AC%EC%8B%AC%EC%9C%84-%EC%9E%87%EB%8B%A8-%ED%9A%8C-2026" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 머니투데이, 모태 1차 정시 70% 기한 내 미결성, 2026-10-02. <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 와우테일, 2027 모태펀드 예산 1.3조, 2026-09-01. <a href="https://wowtale.net/2026/09/01/263826/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 브런치(벤처 다이제스트), 2026 모태 예산 국회 삭감 경과. <a href="https://brunch.co.kr/@venture-digest/184" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 노컷뉴스, 국민성장펀드 200조 확대 구상. <a href="https://nocutnews.co.kr/news/6547761" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> MTN, 초장기펀드 흥행 우려, 2026-07-20. <a href="https://news.mtn.co.kr/news-detail/2026072018091121166" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> 머니투데이, 금투협 증권사 BDC 허용 요구, 2026-10-20. <a href="https://www.mt.co.kr/article/2026102015542090140" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-60"><span class="n">[60]</span> 머니투데이, BDC 세미나, 2026-11-05. <a href="https://www.mt.co.kr/article/2026110509585941380" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-61"><span class="n">[61]</span> 전자신문, 기술기업 상장 문턱 재설계 요구, 2026-10-28. <a href="https://www.etnews.com/20261028000209" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-62"><span class="n">[62]</span> 뉴스토마토, 회수난·프리IPO 쏠림. <a href="https://newstomato.com/ReadNews.aspx?no=1315328" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-63"><span class="n">[63]</span> 딜사이트, 로봇 기업가치 과열 논쟁. <a href="https://dealsite.co.kr/articles/169837" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-64"><span class="n">[64]</span> 뉴스토마토, 피지컬AI 밸류 경계론. <a href="https://newstomato.com/ReadNews.aspx?no=1315774" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 편한 이야기(② 커리어·토닥)로 시작해 ③ 한투증 VC → ① 라이온로보틱스 → ④ 업계 이슈 순서를 권합니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>② 커리어·토닥 (워밍업)</h2></div>
+    <div class="q cat2 must"><p class="qtext">2018년 한화인베스트먼트에서 시작하셨다고 들었습니다. <b>언제, 어떤 계기로 한화투자증권으로 옮기셨고 팀장은 언제 맡으셨습니까?</b> "기존 투자자산을 이관받았다"는 게 어떤 과정이었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">[1]</a> <a href="https://sateconomy.co.kr/news/view/1065584271992403" target="_blank" rel="noopener">[4]</a> <a href="https://core.asiae.co.kr/article/2025070209353547854" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">토닥은 2020년 시제품 단계에 처음 투자했습니다. "아무도 투자하지 않겠다"던 시기였는데요. <b>그때 무엇을 보고 확신하셨습니까?</b> 첫 투자는 팀장님이 직접 하신 겁니까?</p><p class="follow">↳ 후속 투자는 몇 번, 얼마나 하셨습니까? 2026년 시리즈C에도 참여했습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">개방·심층</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">[1]</a> <a href="https://medigatenews.com/news/1036368143" target="_blank" rel="noopener">[36]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">인공와우는 허가, 임상, 보험까지 시간이 오래 걸립니다. 토닥이 <b>2028년 IPO를 하면 투자 후 8년</b>입니다. 이 경험이 15년짜리 초장기펀드에 지원한 논리와 이어집니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="http://www.press9.kr/news/articleView.html?idxno=82786" target="_blank" rel="noopener">[37]</a> <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">심사역으로서 <b>"안목이 생겼다"고 느낀 순간이나 딜</b>은 언제였습니까? 반대로 가장 뼈아팠던 딜과 그 교훈은요?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">[1]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>③ 한화투자증권 VC 부문</h2></div>
+    <div class="q cat3 must"><p class="qtext">초장기펀드 800억 가운데 <b>민간 몫을 12월 말까지 어떻게 채우실 계획입니까?</b> 그룹 계열 LP나 본계정이 얼마나 들어갑니까?</p><p class="follow">↳ 기한 연장 가능성이 거론되는데, 연장 없이 결성할 수 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/170697" target="_blank" rel="noopener">[10]</a> <a href="https://dealsite.co.kr/articles/168213" target="_blank" rel="noopener">[11]</a> <a href="https://sateconomy.co.kr/news/view/1065565050819464" target="_blank" rel="noopener">[12]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">다른 증권사는 공동운용으로 지원했는데 한화는 단독으로 갔습니다. <b>결성 실패 시 최대 3년 출자 제한이라는 페널티</b>를 감수한 이유는 무엇입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">트레이드오프</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.bloter.net/news/articleView.html?idxno=676660" target="_blank" rel="noopener">[1]</a> <a href="https://dealsite.co.kr/articles/168213" target="_blank" rel="noopener">[11]</a></span></div></div>
+    <div class="q cat3 must"><p class="qtext">5,000억 유상증자로 종투사를 노립니다. <b>증자 뒤 VC 펀드 출자, GP 커밋에 쓸 수 있는 자본이 얼마나 늘어납니까?</b> 모험자본 공급 의무와 VC팀의 역할은 어떻게 연결됩니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">시나리오</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610011106093537" target="_blank" rel="noopener">[23]</a> <a href="https://sateconomy.co.kr/news/view/1065601093666282" target="_blank" rel="noopener">[24]</a> <a href="https://heraldk.com/?p=2532376" target="_blank" rel="noopener">[26]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2025년 7월 선정된 모태 '미래환경 스케일업' 펀드(목표 500억)는 <b>결성을 마쳤습니까?</b> 기후기술펀드 2호에서 떨어진 이유는 어떻게 분석하셨습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://core.asiae.co.kr/article/2025070209353547854" target="_blank" rel="noopener">[2]</a> <a href="https://dealsite.co.kr/articles/143748" target="_blank" rel="noopener">[15]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2024년에는 '신기술금융본부'였는데 지금은 'IB부문 VC팀'입니다. <b>조직이 축소된 겁니까, 재편된 겁니까?</b> 올해 두 번 경력직을 뽑은 이유는요?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.metroseoul.co.kr/article/20240401500372" target="_blank" rel="noopener">[6]</a> <a href="https://www.fetv.co.kr/news/articleView.html?idxno=195950" target="_blank" rel="noopener">[3]</a> <a href="https://sateconomy.co.kr/news/view/1065584271992403" target="_blank" rel="noopener">[4]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">조합 결성액이 5,840억입니다. <b>청산 펀드의 DPI·IRR</b>은 어느 정도입니까? 충남-한화 펀드(2.16배) 이후 대표 회수 사례가 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://sateconomy.co.kr/news/view/1065584271992403" target="_blank" rel="noopener">[4]</a> <a href="https://www.metroseoul.co.kr/article/20240401500372" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">한화자산운용도 VC투자그룹을 운영합니다. <b>두 조직은 투자 영역과 LP를 어떻게 나눕니까?</b> 딜이 겹친 적은 없습니까?</p><div class="qmeta"><span class="tag">이해상충</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://view.asiae.co.kr/article/2026052208482716607" target="_blank" rel="noopener">[30]</a> <a href="https://www.ceoscoredaily.com/page/view/2021083116054396981" target="_blank" rel="noopener">[31]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">한화-원익 방산 펀드는 <b>한화에어로스페이스·한화시스템과 기술검증, 딜 공유를 어떻게</b> 합니까? 남은 투자 여력은 얼마입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.metroseoul.co.kr/article/20240401500372" target="_blank" rel="noopener">[6]</a> <a href="https://dealsite.co.kr/articles/157580" target="_blank" rel="noopener">[8]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>① 라이온로보틱스·그룹 시너지</h2></div>
+    <div class="q cat1 must"><p class="qtext">한화시스템이 라이온로보틱스 시리즈B에 약 700억을 넣는 방안을 협상 중이라는 보도가 나왔습니다. <b>한화투자증권 VC팀이나 방산 펀드도 함께 들어가는 걸 검토했습니까?</b></p><p class="follow">↳ 그룹 사업회사의 전략투자와 증권 VC의 재무투자가 같은 딜에 들어갈 때 정보 공유·이해상충은 어떻게 관리합니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.thepublic.kr/news/articleView.html?idxno=325610" target="_blank" rel="noopener">[41]</a> <a href="https://www.fetv.co.kr/news/articleView.html?idxno=313322" target="_blank" rel="noopener">[42]</a> <a href="https://www.g-enews.com/article/Global-Biz/2026/11/202611101354144863fbbec65dfb_1" target="_blank" rel="noopener">[43]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">시리즈A 1,000억에서 1년 만에 6,000억이 거론됩니다. 매출은 아직 작습니다. <b>VC로서 이 밸류를 어떻게 보십니까?</b> 피지컬AI 과열 논쟁과 같은 맥락입니까?</p><div class="qmeta"><span class="tag">반론 정면</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thepublic.kr/news/articleView.html?idxno=325610" target="_blank" rel="noopener">[41]</a> <a href="https://www.greened.kr/news/articleView.html?idxno=348696" target="_blank" rel="noopener">[46]</a> <a href="https://dealsite.co.kr/articles/169837" target="_blank" rel="noopener">[63]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1315774" target="_blank" rel="noopener">[64]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">그룹 차원에서 방산·우주·로봇 투자가 늘고 있습니다. <b>그룹 안에서 증권 VC팀의 역할</b>은 무엇입니까? 계열사가 투자하기 전 단계(초기)를 맡는 겁니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.thepublic.kr/news/articleView.html?idxno=325610" target="_blank" rel="noopener">[41]</a> <a href="https://view.asiae.co.kr/article/2026052208482716607" target="_blank" rel="noopener">[30]</a> <a href="https://www.metroseoul.co.kr/article/20240401500372" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>④ VC 업계 이슈</h2></div>
+    <div class="q cat4"><p class="qtext">국민성장펀드로 돈이 쏠리면서 모태 정시 GP의 약 70%가 기한 안에 결성하지 못했다고 합니다. <b>현장에서 LP 모집이 실제로 얼마나 어렵습니까?</b></p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/future/2026/10/02/2026100114503573063" target="_blank" rel="noopener">[54]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1318286" target="_blank" rel="noopener">[52]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">금투협이 증권사 BDC 운용 허용을 다시 요구하고 있습니다. <b>증권사 VC 입장에서 BDC가 허용되면 무엇이 달라집니까?</b></p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026102015542090140" target="_blank" rel="noopener">[59]</a> <a href="https://www.mt.co.kr/article/2026110509585941380" target="_blank" rel="noopener">[60]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">코스닥 상장폐지 기준이 강화되면서 회수가 어려워졌다는 말이 많습니다. <b>포트폴리오 회수 전략을 바꾸고 계십니까?</b> M&amp;A나 세컨더리 비중을 늘립니까?</p><div class="qmeta"><span class="tag">시나리오</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.etnews.com/20261028000209" target="_blank" rel="noopener">[61]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1315328" target="_blank" rel="noopener">[62]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[64]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-12</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
