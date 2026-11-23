@@ -1,0 +1,307 @@
+<meta charset="utf-8" />
+<title>VC협회 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #1e5f74; --accent-soft: #e1eff3;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #8fcfe0; --accent-soft: #0f1f25;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #8fcfe0; --accent-soft: #0f1f25;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #081a20; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #081a20; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-23</div>
+    <h1 class="title" style="word-break:keep-all">한국벤처캐피탈협회 — 양진우 과장</h1>
+    <p class="subtitle">'해킹'으로 알려진 사고의 실체는 회원사 메일 오발송에 따른 개인정보 유출이었다. 김학균 회장은 30조 코스닥펀드와 회수시장 개선에 꽂혀 있고, 임기는 2027년 2월까지다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: 양진우 과장(회원소통팀)</span>
+      <span class="meta-chip">질문 12개</span>
+      <span class="meta-chip">출처 58개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에</h2>
+      <ul class="tight">
+        <li><b>'해킹'이 아니라 이메일 오발송입니다.</b> 10월 28일 협회가 회원사 임직원 186명에게 보낸 'PHP 보안 취약점 현황 파악' 메일에 개인정보가 담긴 엑셀 파일이 잘못 첨부됐습니다. 언론은 "외부 해킹이 아닌 직원 업무 과실"로 정리했습니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></li>
+        <li><b>업계에서 실제로 해킹당한 곳은 미라파트너스입니다.</b> 국내 1호 벤처펀드 사무수탁사로, 8월 펀드관리 솔루션 '미라판'이 공격을 받았습니다. 고객 GP는 800여 곳입니다 <sup class="ref"><a href="#src-6">[6]</a></sup>. 협회 건과는 별개입니다</li>
+        <li><b>협회장의 '꽂힌 주제'</b>: 김학균 회장(퀀텀벤처스코리아, 임기 2027년 2월까지)은 <b>30조 코스닥 활성화 펀드</b>를 2025년 4월부터 최소 8차례 말했습니다. 그다음이 회수시장(락업·중복상장·세컨더리), 퇴직연금·법정기금의 벤처투자, 코스닥 1·2부 개편 반대입니다 <sup class="ref"><a href="#src-24">[24]</a></sup> <sup class="ref"><a href="#src-38">[38]</a></sup> <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+      </ul>
+      <p class="warn"><b>양진우 과장과 오발송</b>: 양 과장은 <b>회원소통팀</b> 소속으로 확인되고 <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup>, 문제의 메일도 회원소통팀 명의로 나갔습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 본인이 관련됐는지는 확인되지 않았습니다. 책임을 묻기보다 "후속 조치가 어떻게 돼 가느냐"는 식으로 묻는 편이 낫습니다.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 개인정보 유출 사고 (2026.10.28)</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">10.28 오전 10:18</div><div class="tl-body">회원소통팀이 회원사 보안 점검용으로 'PHP 보안 취약점 현황 파악 회신양식' 메일을 186명에게 발송. 개인정보가 담긴 엑셀 파일이 잘못 첨부됨 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">10.28 오후 2:45</div><div class="tl-body">한 회원사의 제보로 협회가 알게 됨. 약 4시간 30분 동안 노출 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">10.28~29</div><div class="tl-body">수신자 전원에게 삭제 요청, 재전송·저장 금지 안내, 삭제 확인서 회수, 내부 서버 다운로드 차단. 개인정보보호위원회와 KISA에 자진 신고, 중기부에 보고 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">10.30</div><div class="tl-body">개인정보보호법 제34조에 따라 정보주체에게 통지하고 공식 사과. 배포용 양식과 원자료 분리, 발송 전 검수 절차 도입을 약속 <sup class="ref"><a href="#src-1">[1]</a></sup></div></div>
+      </div>
+      <ul class="tight">
+        <li><b>유출 항목</b>: 성명, 생년월일, 이메일·휴대전화, 학력·경력. 주주 내역 같은 운용사 내부 정보도 들어 있었다는 보도가 있습니다 <sup class="ref"><a href="#src-1">[1]</a></sup>. 186명은 수신자 수이고, <b>파일에 담긴 정보주체 수는 공개되지 않았습니다</b></li>
+        <li><b>회원사 반응</b>: 비밀유지 확약서 회신 기한이 당일 오전이라 무리했다는 지적이 있었고, 협회는 강제성이 없다고 해명했습니다. 협회의 전화 안내를 해킹 메일로 착각한 사례도 있었습니다 <sup class="ref"><a href="#src-2">[2]</a></sup>. 협회 홈페이지에서 통지문을 찾지 못했다는 지적도 있습니다(추정) <sup class="ref"><a href="#src-3">[3]</a></sup></li>
+        <li><b>규제</b>: 개인정보위 조사 착수나 과징금 여부는 확인되지 않았습니다</li>
+        <li><b>배경(추정)</b>: 10월 하순 PHP 원격코드실행 취약점 경보가 나왔고, 협회의 점검 메일도 이 때문이었을 가능성이 있습니다 <sup class="ref"><a href="#src-4">[4]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 김학균 협회장이 꽂힌 주제 (빈도순)</h2>
+      <p>김학균 퀀텀벤처스코리아 대표는 협회 설립 이래 첫 경선에서 송은강 캡스톤파트너스 대표를 21대 19로 이기고 2025년 2월 제16대 회장이 됐습니다. 임기는 2027년 2월까지이고 무보수 명예직입니다 <sup class="ref"><a href="#src-24">[24]</a></sup> <sup class="ref"><a href="#src-25">[25]</a></sup> <sup class="ref"><a href="#src-26">[26]</a></sup> <sup class="ref"><a href="#src-27">[27]</a></sup>.</p>
+      <h3>① 30조 코스닥 활성화 펀드 (최소 8차례)</h3>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025.3~4</div><div class="tl-body">첫 간담회에서 코스닥 기관 비중 확대를 주장했고 <sup class="ref"><a href="#src-28">[28]</a></sup>, 이어 코스닥 시총(333조)의 10%인 30조 펀드를 처음 제안(추정) <sup class="ref"><a href="#src-29">[29]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2025.7~8</div><div class="tl-body">VC협회·벤처기업협회·코스닥협회 합동 기자회견. 국민연금 코스닥 3% 투자 법제화도 요구 <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup>. 연 10조씩 3년, 정부 모펀드에 민간 자펀드를 매칭하는 구조 <sup class="ref"><a href="#src-32">[32]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.1~3</div><div class="tl-body">신년사에서 '코스닥 전용 펀드' 본격 추진 <sup class="ref"><a href="#src-33">[33]</a></sup>. 정기총회 사업계획으로 의결 <sup class="ref"><a href="#src-34">[34]</a></sup>. 취임 1주년에 "국민성장펀드 연계, 연간 30조"를 말하며 '테슬라 키운 나스닥처럼' 체질을 바꾸자고 함 <sup class="ref"><a href="#src-35">[35]</a></sup> <sup class="ref"><a href="#src-36">[36]</a></sup></div></div>
+        <div class="tl-item"><div class="tl-date">2026.7~10</div><div class="tl-body">"국민성장펀드 연계 30조 상당 펀드" <sup class="ref"><a href="#src-37">[37]</a></sup>. 10월 인터뷰에서 신주·구주 모두에 투자하는 30조 펀드를 제시. "리벨리온·퓨리오사AI 같은 기업이 상장 후에도 자금을 조달할 수 있어야" <sup class="ref"><a href="#src-38">[38]</a></sup></div></div>
+      </div>
+      <p class="src"><b>현황과 비판</b>: 정부가 그대로 채택했다는 기사는 없습니다. 이미 국민성장펀드 안에 '코스닥 리그'가 있습니다 <sup class="ref"><a href="#src-39">[39]</a></sup>. '3년간 총 30조'와 '연간 30조'처럼 규모 표현이 계속 바뀌었습니다. 공적자금에 기대는 관제펀드가 될 수 있다는 우려 <sup class="ref"><a href="#src-40">[40]</a></sup>, '코스닥 3000' 구호가 거품을 만든다는 경고 <sup class="ref"><a href="#src-41">[41]</a></sup>도 나옵니다. VC의 회수 출구를 공적자금으로 받쳐주자는 것이라 이해상충 지적이 나올 수 있습니다.</p>
+      <h3>② 회수시장 — 락업·중복상장·세컨더리</h3>
+      <ul class="tight">
+        <li>정기총회와 1주년 간담회에서 VC 락업 완화, 세컨더리 활성화, 기술특례상장 확대를 내걸었습니다. "1년에 100개 안팎 상장으로는 40조 벤처투자 목표를 이룰 수 없다" <sup class="ref"><a href="#src-34">[34]</a></sup> <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li>9월 LP-GP 교류회에서 정부·거래소의 중복상장 규제를 가장 세게 비판했습니다. 이대로면 VC가 사업을 접어야 할 수 있다는 취지였습니다 <sup class="ref"><a href="#src-42">[42]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup></li>
+        <li>10월 인터뷰에서는 2028년부터 펀드 만기가 몰려온다며 세컨더리로 시간을 벌자고 했습니다 <sup class="ref"><a href="#src-38">[38]</a></sup></li>
+      </ul>
+      <h3>③ 민간 LP 확충 — 퇴직연금·법정기금</h3>
+      <ul class="tight">
+        <li>첫 간담회부터 "퇴직연금 VC 출자 허용"을 요구했습니다 <sup class="ref"><a href="#src-28">[28]</a></sup>. 법정기금 여유자금의 5~10%를 벤처에 넣자는 '68혁명'도 지지했습니다 <sup class="ref"><a href="#src-32">[32]</a></sup>. 2026년에도 중기부·금융위·기재부·국회에 건의하겠다고 밝혔습니다 <sup class="ref"><a href="#src-43">[43]</a></sup></li>
+        <li>현황: 벤처투자가 가능한 법정기금은 44개에서 67개로 늘었지만 <sup class="ref"><a href="#src-44">[44]</a></sup>, 의무화 법안은 없습니다. 퇴직연금은 노동부가 반대합니다 <sup class="ref"><a href="#src-45">[45]</a></sup>. 기금형 퇴직연금 개편안에 벤처투자 허용이 들어갔다는 확인은 없습니다 <sup class="ref"><a href="#src-46">[46]</a></sup></li>
+      </ul>
+      <h3>④ 코스닥 1·2부 개편 반대</h3>
+      <p>개편하면 기관 자금이 1부로 쏠려 2부가 소외된다는 주장입니다 <sup class="ref"><a href="#src-35">[35]</a></sup>. 6월 벤처 3단체가 '원점 재검토'를 요구했고 <sup class="ref"><a href="#src-47">[47]</a></sup> <sup class="ref"><a href="#src-48">[48]</a></sup>, 이소영 중기부 장관은 '속도조절'을 언급했습니다 <sup class="ref"><a href="#src-49">[49]</a></sup>.</p>
+      <h3>⑤ 그 밖</h3>
+      <ul class="tight">
+        <li>모태펀드 예산 감액 우려(2026년 예산은 1.1조 편성 → 8,200억 확정 보도) <sup class="ref"><a href="#src-50">[50]</a></sup> <sup class="ref"><a href="#src-51">[51]</a></sup> <sup class="ref"><a href="#src-17">[17]</a></sup></li>
+        <li>BDC·STO 활용(BDC 규정 2026년 3월 시행) <sup class="ref"><a href="#src-34">[34]</a></sup> <sup class="ref"><a href="#src-52">[52]</a></sup>, 한국·대만 크로스보더 펀드 <sup class="ref"><a href="#src-53">[53]</a></sup>, RSU 세제 지원 요구 <sup class="ref"><a href="#src-54">[54]</a></sup></li>
+        <li>AI는 별도 의제라기보다 설명용 수사로 쓰입니다 <sup class="ref"><a href="#src-55">[55]</a></sup></li>
+      </ul>
+      <p class="src">배경 숫자: 2025년 벤처투자는 13조6,244억으로 역대 2위 <sup class="ref"><a href="#src-56">[56]</a></sup>, 2026년 1~3분기 누적 12조6,248억으로 역대 최대입니다(3분기만 보면 감소) <sup class="ref"><a href="#src-57">[57]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup>. 정부의 '벤처 4대 강국' 대책은 연 40조 투자가 목표입니다 <sup class="ref"><a href="#src-58">[58]</a></sup>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>협회 운영 이슈</h2>
+      <ul class="tight">
+        <li><b>상근부회장 연임 논란</b>: 이준희 상근부회장(중기부 기획조정실장 출신, 2022년 9월 취임)의 임기를 1년 더 늘리는 쪽으로 의견을 모은다는 보도. '4연임 시도'라는 표현과 관료 독식 비판, 공모제 요구가 함께 나왔습니다. 최종 결정은 미확인입니다 <sup class="ref"><a href="#src-7">[7]</a></sup> <sup class="ref"><a href="#src-8">[8]</a></sup></li>
+        <li><b>임원 인사(2026년 8월)</b>: 정지영 상무, 이기백 이사(정책사업본부장) 승진 <sup class="ref"><a href="#src-9">[9]</a></sup></li>
+        <li><b>정기총회</b>: 2026년 2월 정회원사 212곳 중 약 40곳 참석 <sup class="ref"><a href="#src-10">[10]</a></sup>. 2025년 인터뷰에서는 회원사를 약 230곳으로 소개했습니다 <sup class="ref"><a href="#src-11">[11]</a></sup></li>
+        <li><b>국제</b>: 대만·베트남 협회 MOU(7월) <sup class="ref"><a href="#src-12">[12]</a></sup>, 싱가포르거래소 IPO 컨퍼런스 <sup class="ref"><a href="#src-13">[13]</a></sup>, 홍콩거래소 IPO 세미나(양진우 과장이 문의처) <sup class="ref"><a href="#src-20">[20]</a></sup></li>
+        <li><b>사업</b>: DIVA 공시시스템 위탁 운영 <sup class="ref"><a href="#src-18">[18]</a></sup>, 심사역 자격시험 <sup class="ref"><a href="#src-15">[15]</a></sup>, 스케일업 팁스 그로우스랩 <sup class="ref"><a href="#src-16">[16]</a></sup></li>
+      </ul>
+      <h3>양진우 과장</h3>
+      <p>회원소통팀 소속으로 홍보·국제사업 담당으로 보입니다(추정) <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-21">[21]</a></sup>. 조직도 페이지에는 같은 번호로 '전략기획본부 대외협력팀 팀장'으로 적혀 있어 서로 맞지 않습니다(개편 시차 추정) <sup class="ref"><a href="#src-22">[22]</a></sup>. 회원서비스 담당자 명단에는 이름이 없습니다 <sup class="ref"><a href="#src-23">[23]</a></sup>. 기고나 언론 인용은 찾지 못했습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했습니다. [3]·[29]는 출처 매칭이 추정입니다. 30조 펀드 관련 날짜와 표현은 원문으로 확인하세요.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 유니콘팩토리, VC협회 이메일 오발송 개인정보 유출, 2026-10-31. <a href="https://www.unicornfactory.co.kr/article/2026103109573829581" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 딜사이트, VC협회 개인정보 유출 대응·회원사 반응. <a href="https://dealsite.co.kr/articles/171817" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> datalaw.kr, 유출 통지 게시 현황(추정). <a href="https://datalaw.kr/breach-notices/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 코리안센터, PHP 원격코드실행 취약점 경보. <a href="https://www.koreancenter.or.kr/news/articleView.html?idxno=1428255" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 안랩 ASEC, PHP 취약점 분석. <a href="https://asec.ahnlab.com/ko/96689/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 머니투데이, 미라파트너스 펀드관리 솔루션 해킹, 2026-08-26. <a href="https://www.mt.co.kr/future/2026/08/26/2026082611144818028" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 딜사이트, VC협회 상근부회장 연임 논란. <a href="https://dealsite.co.kr/articles/162610" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 딜사이트, 상근부회장 '4연임' 시도·관료 독식 비판. <a href="https://dealsite.co.kr/articles/162688" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, VC협회 임원 인사, 2026-08. <a href="https://dealsite.co.kr/articles/166643" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 딜사이트, VC협회 정기총회, 2026-02-27. <a href="https://dealsite.co.kr/articles/157633" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> MTN, VC협회 회원사 약 230곳, 2025-09-22. <a href="https://news.mtn.co.kr/news-detail/2025092210563930227" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 유니콘팩토리, VC협회 대만·베트남 협회 MOU, 2026-07-15. <a href="https://www.unicornfactory.co.kr/article/2026071510212231736" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 딜사이트, VC협회·싱가포르거래소 IPO 컨퍼런스. <a href="https://dealsite.co.kr/articles/162241" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 딜사이트, LP-GP 교류회, 2026-09-08. <a href="https://dealsite.co.kr/articles/168643" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> 아시아경제, 제9회 벤처투자 심사역 자격시험, 2026-09-30. <a href="https://view.asiae.co.kr/en/article/2026093008153994318" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 한국경제, 스케일업 팁스 그로우스랩, 2026-07-29. <a href="https://www.hankyung.com/article/202607292185r" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 유니콘팩토리, VC협회 모태 예산 축소 우려, 2025-11-18. <a href="https://www.unicornfactory.co.kr/article/2025111814222297187" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 딜사이트, VC협회 DIVA 공시시스템 운영. <a href="https://dealsite.co.kr/articles/122775" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 대한민국 정책브리핑, 2026년 1~3분기 벤처투자 동향, 2026-11-18. <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148975903" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 벤처확인종합관리시스템, HKEX IPO 세미나 안내(문의: 회원소통팀 양진우 과장), 2026-02. <a href="https://www.vcs.go.kr/web/portal/bbs/notice/130004" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 한국벤처캐피탈협회, 홍보/국제사업 담당자. <a href="http://www.kvca.or.kr/contents/business/publicity.html?sm=1_5" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 한국벤처캐피탈협회, 조직도. <a href="https://www.kvca.or.kr/contents/association/organization.html?sm=6_4" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 한국벤처캐피탈협회, 회원서비스 담당자. <a href="https://www.kvca.or.kr/contents/business/member_service.html?sm=1_3" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 유니콘팩토리, 김학균 제16대 회장 선임, 2025-02-25. <a href="https://www.unicornfactory.co.kr/article/2025022510200592166" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 뉴스1, VC협회 첫 경선 결과. <a href="https://www.news1.kr/amp/industry/sb-founded/5701034" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 딜사이트, 김학균 회장 선출. <a href="https://dealsite.co.kr/articles/135756" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 파이낸셜뉴스, VC협회장 경선 21대 19, 2025-02-20. <a href="https://www.fnnews.com/news/202502201338563391" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 뉴데일리, 김학균 회장 첫 기자간담회, 2025-03-11. <a href="https://biz.newdaily.co.kr/site/data/html/2025/03/11/2025031100166.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 딜사이트, 코스닥 시총 10% 30조 펀드 첫 제안, 2025-04(추정). <a href="https://dealsite.co.kr/articles/139563" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 아시아경제, 3단체 합동 기자회견 30조 코스닥펀드, 2025-07-30. <a href="https://core.asiae.co.kr/article/2025073015165875464" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 머니투데이, 3단체 코스닥 활성화 제안, 2025-07-30. <a href="https://www.mt.co.kr/stock/2025/07/30/2025073012175445577" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 뉴스토마토, 연 10조×3년 30조 펀드·68혁명, 2025-08. <a href="https://www.newstomato.com/ReadNews.aspx?inflow=N&no=1270397" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> 딜사이트, 김학균 회장 2026 신년사. <a href="https://dealsite.co.kr/articles/154421" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 아시아경제, VC협회 2026 정기총회 사업계획, 2026-02-27. <a href="https://core.asiae.co.kr/article/2026022716023318870" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 머니투데이, 김학균 회장 취임 1주년 간담회, 2026-03-13. <a href="https://www.mt.co.kr/future/2026/03/13/2026031313261078374" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 뉴스1, 취임 1주년 "국민성장펀드 연계 30조". <a href="https://www.news1.kr/industry/sb-founded/6100463" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 뉴시스, "국민성장펀드 연계 30조 상당 펀드 조성해야", 2026-07-28. <a href="https://www.newsis.com/view/NISX20260728_0003726198" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> 머니투데이, 김학균 회장 인터뷰 30조 코스닥펀드·만기 도래, 2026-10. <a href="https://www.mt.co.kr/article/2026102015142233426" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 뉴스토마토, 국민성장펀드 코스닥 리그·정부 코스닥 투자 목표. <a href="https://www.newstomato.com/readnews.aspx?no=1306499" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 다음(뉴스), 공적자금 의존·관제펀드 우려, 2026-05-27. <a href="https://v.daum.net/v/20260527210303804" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 다음(뉴스), 오기형 의원 "코스닥 3000 거품" 경고. <a href="https://v.daum.net/v/2jVMKbJ6Mp" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 딜사이트, 김학균 회장 중복상장 규제 비판(LP-GP 교류회), 2026-09. <a href="https://dealsite.co.kr/articles/168645" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 뉴스1, 퇴직연금·법정기금 벤처투자 건의. <a href="https://www.news1.kr/industry/sb-founded/6099596" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> 벤처스퀘어, 벤처투자 가능 법정기금 44개→67개. <a href="https://www.venturesquare.net/1018846" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 딜사이트, 퇴직연금 벤처투자 노동부 반대. <a href="https://dealsite.co.kr/articles/132496" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 한국경제, 기금형 퇴직연금 개편안, 2026-03. <a href="https://www.hankyung.com/article/2026031146171" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 전자신문, 벤처 3단체 코스닥 개편 원점 재검토 요구, 2026-06-15. <a href="https://www.etnews.com/20260615000385" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 머니투데이, 벤처 3단체 5대 정책과제, 2026-06-15. <a href="https://www.mt.co.kr/future/2026/06/15/2026061515301765047" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 전자신문, 이소영 중기부 장관 코스닥 개편 "속도조절", 2026-09-10. <a href="https://www.etnews.com/20260910000265" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 아시아경제, VC협회 모태 예산 감액 우려, 2025-11-18. <a href="https://www.asiae.co.kr/en/article/2025111814154792077" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 브런치(벤처 다이제스트), 2026 모태 예산 삭감 경과. <a href="https://brunch.co.kr/@venture-digest/184" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 금융위원회, BDC 규정 시행, 2026-03. <a href="https://fsc.go.kr/eng/pr010101/86401" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 딜사이트, 한국·대만 크로스보더 펀드 구상. <a href="https://dealsite.co.kr/articles/162230" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 와우테일, VC협회 세제개편안 환영·RSU 세제 요구, 2026-08-07. <a href="https://wowtale.net/2026/08/07/262595/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 머니투데이, "벤처생태계 살아야 AI 전쟁 승리", 2025-03. <a href="https://www.mt.co.kr/future/2025/03/03/2025022811033281832" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 뉴시스, 2025년 벤처투자 13.6조 역대 2위, 2026-02-13. <a href="https://www.newsis.com/view/NISX20260213_0003514626" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 와우테일, 2026 1~3분기 벤처투자 역대 최대, 2026-11-17. <a href="https://wowtale.net/2026/11/17/268197/" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> 뉴시스, 정부 벤처 4대 강국 종합대책(연 40조), 2025-12-18. <a href="https://mobile.newsis.com/view/NISX20251218_0003445861" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 실무자(과장)라 정책 판단보다 <b>진행 상황·숫자·일정</b>을 묻는 게 답을 받기 쉽습니다. 본인 담당인 국제·홍보 질문으로 시작하는 순서를 권합니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>① 국제·홍보 (본인 담당, 워밍업)</h2></div>
+    <div class="q cat4"><p class="qtext">대만·베트남 협회와 MOU를 맺었습니다. <b>크로스보더 펀드는 어디까지 진행됐습니까?</b> 내년에 일본·싱가포르 등 다른 나라로도 넓힙니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026071510212231736" target="_blank" rel="noopener">[12]</a> <a href="https://dealsite.co.kr/articles/162230" target="_blank" rel="noopener">[53]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">홍콩·싱가포르 거래소 IPO 세미나를 열었습니다. <b>회원사가 얼마나 참여했고, 실제 해외 상장 검토로 이어진 사례</b>가 있습니까?</p><div class="qmeta"><span class="tag">질 검증</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.vcs.go.kr/web/portal/bbs/notice/130004" target="_blank" rel="noopener">[20]</a> <a href="https://dealsite.co.kr/articles/162241" target="_blank" rel="noopener">[13]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>② 개인정보 유출 후속 조치</h2></div>
+    <div class="q cat1 must"><p class="qtext">10월 28일 오발송 이후 <b>삭제 확인서는 모두 회수됐습니까?</b> 파일에 담긴 정보주체는 모두 몇 명이었습니까?</p><p class="follow">↳ 개인정보보호위원회·KISA 신고 뒤 조사나 자료 요청이 있었습니까? 지금 어느 단계입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026103109573829581" target="_blank" rel="noopener">[1]</a> <a href="https://dealsite.co.kr/articles/171817" target="_blank" rel="noopener">[2]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">재발 방지책으로 '양식과 원자료 분리', '발송 전 검수'를 약속했습니다. <b>지금 실제로 어떻게 운영되고 있습니까?</b></p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026103109573829581" target="_blank" rel="noopener">[1]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">PHP 취약점 점검을 회원사 대상으로 하던 중이었습니다. <b>점검 결과 취약한 회원사가 있었습니까?</b> 미라파트너스 해킹 이후 회원사 보안 지원 방안이 있습니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2026103109573829581" target="_blank" rel="noopener">[1]</a> <a href="https://www.koreancenter.or.kr/news/articleView.html?idxno=1428255" target="_blank" rel="noopener">[4]</a> <a href="https://www.mt.co.kr/future/2026/08/26/2026082611144818028" target="_blank" rel="noopener">[6]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>③ 협회장 의제</h2></div>
+    <div class="q cat2 must"><p class="qtext">30조 코스닥 펀드는 '3년간 총 30조', '연간 30조' 등 표현이 바뀌어 왔습니다. <b>지금 확정안의 규모·기간·공공 대 민간 매칭 비율</b>은 무엇입니까? 이미 있는 국민성장펀드 '코스닥 리그'와는 어떻게 다릅니까?</p><p class="follow">↳ 금융위·중기부에 공식 정책건의서로 냈습니까? 정부와 협의 일정이 있습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.newstomato.com/ReadNews.aspx?inflow=N&no=1270397" target="_blank" rel="noopener">[32]</a> <a href="https://www.mt.co.kr/future/2026/03/13/2026031313261078374" target="_blank" rel="noopener">[35]</a> <a href="https://www.mt.co.kr/article/2026102015142233426" target="_blank" rel="noopener">[38]</a> <a href="https://www.newstomato.com/readnews.aspx?no=1306499" target="_blank" rel="noopener">[39]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">협회장이 2028년부터 펀드 만기가 몰려온다고 했습니다. <b>협회가 추산한 연도별 만기 도래 규모</b>가 있습니까? 세컨더리 재원은 어디서 마련하자는 겁니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026102015142233426" target="_blank" rel="noopener">[38]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">9월 LP-GP 교류회에서 중복상장 규제를 강하게 비판했습니다. <b>락업 완화는 구체적으로 몇 개월을 몇 개월로 줄이자는 겁니까?</b> 거래소나 금융위에서 반응이 있었습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/168645" target="_blank" rel="noopener">[42]</a> <a href="https://core.asiae.co.kr/article/2026022716023318870" target="_blank" rel="noopener">[34]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">퇴직연금 벤처투자는 노동부가 반대하고 있습니다. <b>지금 어느 단계이고</b>, 법정기금 투자 의무화 입법은 계속 추진합니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.news1.kr/industry/sb-founded/6099596" target="_blank" rel="noopener">[43]</a> <a href="https://www.venturesquare.net/1018846" target="_blank" rel="noopener">[44]</a> <a href="https://dealsite.co.kr/articles/132496" target="_blank" rel="noopener">[45]</a> <a href="https://www.hankyung.com/article/2026031146171" target="_blank" rel="noopener">[46]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">6월 코스닥 1·2부 개편 '원점 재검토'를 요구했습니다. 장관도 속도조절을 말했는데, <b>금융위와 협의는 어떻게 되고 있습니까?</b></p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.etnews.com/20260615000385" target="_blank" rel="noopener">[47]</a> <a href="https://www.mt.co.kr/future/2026/06/15/2026061515301765047" target="_blank" rel="noopener">[48]</a> <a href="https://www.etnews.com/20260910000265" target="_blank" rel="noopener">[49]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>④ 협회 운영</h2></div>
+    <div class="q cat3"><p class="qtext">김학균 회장 임기가 2027년 2월에 끝납니다. <b>차기 회장 선거 일정과 방식</b>은 어떻게 되고, 이번에도 경선이 될까요? 이준희 상근부회장 임기 연장은 최종 결정됐습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.unicornfactory.co.kr/article/2025022510200592166" target="_blank" rel="noopener">[24]</a> <a href="https://dealsite.co.kr/articles/162610" target="_blank" rel="noopener">[7]</a> <a href="https://dealsite.co.kr/articles/162688" target="_blank" rel="noopener">[8]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">2026년 정기총회에 정회원사 212곳 중 약 40곳이 참석했습니다. <b>회원사 참여를 늘리기 위해 무엇을 하고 있습니까?</b></p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/157633" target="_blank" rel="noopener">[10]</a> <a href="https://news.mtn.co.kr/news-detail/2025092210563930227" target="_blank" rel="noopener">[11]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[58]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-23</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
