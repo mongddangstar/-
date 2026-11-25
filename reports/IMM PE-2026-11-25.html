@@ -1,0 +1,342 @@
+<meta charset="utf-8" />
+<title>IMM PE 취재 브리핑</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1d21; --muted: #5b6470;
+    --line: #e5e8ec; --accent: #2f5d50; --accent-soft: #e4f1ec;
+    --chip: #eef1f5; --chip-text: #47505c;
+    --c1: #d64545; --c2: #2f8f5b; --c3: #b9791f; --c4: #6b46c1;
+    --pri: #d64545;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+      --line: #2b313a; --accent: #9fd3c2; --accent-soft: #11211c;
+      --chip: #262c35; --chip-text: #aab4c1;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171b; --card: #1c2026; --text: #e9edf2; --muted: #9aa4b1;
+    --line: #2b313a; --accent: #9fd3c2; --accent-soft: #11211c;
+    --chip: #262c35; --chip-text: #aab4c1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    line-height: 1.6; -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+  header.hero { padding: 20px 2px 16px; background: linear-gradient(180deg, var(--accent-soft), transparent); }
+  .kicker { font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 700; }
+  h1.title { font-size: 22px; margin: 6px 0 4px; line-height: 1.3; }
+  .subtitle { font-size: 14px; color: var(--muted); margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .meta-chip { font-size: 12px; background: var(--chip); color: var(--chip-text); padding: 4px 10px; border-radius: 999px; }
+  .tabs {
+    position: sticky; top: 0; z-index: 20; display: flex; gap: 6px;
+    padding: 10px 0; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .tab-btn {
+    flex: 1; appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--muted); font-weight: 700; font-size: 15px; padding: 11px 8px;
+    border-radius: 12px; cursor: pointer; transition: .15s;
+  }
+  .tab-btn[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  :root[data-theme="dark"] .tab-btn[aria-selected="true"] { color: #0b1a15; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab-btn[aria-selected="true"] { color: #0b1a15; } }
+  section.panel { display: none; padding: 16px 0 0; }
+  section.panel.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; margin-bottom: 14px; }
+  .card.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card h2 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .dot { width: 9px; height: 9px; border-radius: 3px; background: var(--accent); flex: none; }
+  .card h3 { font-size: 13.5px; margin: 13px 0 5px; color: var(--accent); font-weight: 700; }
+  .card p { margin: 6px 0; font-size: 14.5px; }
+  ul.tight { margin: 6px 0; padding-left: 18px; }
+  ul.tight li { margin: 5px 0; font-size: 14.5px; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  sup.ref a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 12px; display: inline-block; padding: 1px 5px; }
+  .flag { color: var(--c3); font-weight: 700; font-size: 12px; }
+  .own { font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--chip-text); margin-left: 4px; }
+  .def { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  .warn { background: #fbe9e7; border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 13.5px; color: #7a2318; }
+  :root[data-theme="dark"] .warn { background: #2c1512; color: #f0b9ae; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { background: #2c1512; color: #f0b9ae; } }
+  .vd { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; color: #fff; white-space: nowrap; }
+  .vd.no { background: #c0392b; }
+  .vd.part { background: #b9791f; }
+  .vd.ok { background: #2f8f5b; }
+  .timeline { position: relative; margin: 4px 0 0; padding-left: 16px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding: 0 0 12px 4px; }
+  .tl-item::before { content: ""; position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+  .tl-body { font-size: 14px; }
+  .qcat-head { display: flex; align-items: center; gap: 8px; margin: 20px 2px 8px; }
+  .qcat-head .bar { width: 4px; height: 18px; border-radius: 2px; flex: none; }
+  .qcat-head h2 { font-size: 15px; margin: 0; }
+  .q { background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 12px; padding: 12px 13px; margin-bottom: 10px; }
+  .q.must { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .q .qtext { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .q .follow { font-size: 13px; color: var(--muted); margin: -2px 0 8px; }
+  .q .qmeta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .tag { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag.req { background: var(--accent); color: #fff; }
+  .pri { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; color: #fff; }
+  .pri.high { background: var(--pri); }
+  .pri.mid { background: #b9791f; }
+  .basis { font-size: 12px; color: var(--muted); }
+  .basis a { color: var(--accent); text-decoration: none; display: inline-block; padding: 2px 7px; margin: -2px 0; }
+  .cat1 { border-left-color: var(--c1); }
+  .cat2 { border-left-color: var(--c2); }
+  .cat3 { border-left-color: var(--c3); }
+  .cat4 { border-left-color: var(--c4); }
+  .note { font-size: 12.5px; color: var(--muted); background: var(--chip); border-radius: 10px; padding: 10px 12px; margin: 10px 0 0; }
+  .srclist { list-style: none; padding: 0; margin: 6px 0 0; }
+  .srclist li { font-size: 12.5px; margin: 8px 0; padding-left: 32px; position: relative; }
+  .srclist li .n { position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  .srclist li a { color: var(--accent); text-decoration: none; word-break: break-all; display: inline-block; padding: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+  table.rt { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 8px 0 2px; min-width: 520px; }
+  table.rt th, table.rt td { border: 1px solid var(--line); padding: 6px 7px; text-align: left; vertical-align: top; }
+  table.rt th { background: var(--chip); color: var(--chip-text); font-weight: 700; }
+  .tbl-wrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">취재 브리핑 · 2026-11-25</div>
+    <h1 class="title" style="word-break:keep-all">IMM PE — 컨티뉴에이션 펀드와 회수 숙제</h1>
+    <p class="subtitle">창업자가 물러나고 공동대표 체제가 된 첫해. 국내 첫 컨티뉴에이션 펀드(에어퍼스트, 약 3조)와 소재 딜로 존재감을 키웠지만, 한샘·하나투어 회수는 여전히 막혀 있다</p>
+    <div class="meta-row">
+      <span class="meta-chip">취재원: IMM PE 관계자</span>
+      <span class="meta-chip">질문 15개</span>
+      <span class="meta-chip">출처 82개</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn" id="tab-report" role="tab" aria-selected="true" aria-controls="panel-report" onclick="showTab('report')">📋 보고서</button>
+    <button class="tab-btn" id="tab-questions" role="tab" aria-selected="false" aria-controls="panel-questions" onclick="showTab('questions')">❓ 질문지</button>
+  </nav>
+
+  <section class="panel active" id="panel-report" role="tabpanel" aria-labelledby="tab-report">
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 한눈에</h2>
+      <ul class="tight">
+        <li><b>지배구조</b>: 2025년 12월 창업자 송인준 대표가 IMM홀딩스 부회장 겸 IMM PE 이사회 의장으로 올라갔습니다. 손동한 CIO와 김영호 수석부사장이 사장으로 승진해 공동대표를 맡고, CIO는 유헌석 부사장이 이어받았습니다 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-2">[2]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-4">[4]</a></sup></li>
+        <li><b>펀드</b>: 로즈골드 5호(2조, 2024년 말 결성)를 약 40% 소진했고 투자기간은 2027년 10월까지입니다 <sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-19">[19]</a></sup>. 6호 펀드레이징 착수 보도는 아직 없습니다</li>
+        <li><b>올해 가장 큰 이벤트</b>: 국내 PE 최초의 <b>컨티뉴에이션 펀드</b> '프로젝트 에버그린'입니다. 로즈골드 3·4호가 보유한 에어퍼스트 지분을 기업가치 약 4.2조 기준으로 새 펀드에 넘기는 약 3조 거래이고, 연내 클로징이 목표입니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-31">[31]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup></li>
+        <li><b>올해 딜</b>: 이화다이아몬드공업 65%(약 4,000억) SPA <sup class="ref"><a href="#src-40">[40]</a></sup>, 코오롱인더스트리 소재사업 구속력 MOU <sup class="ref"><a href="#src-44">[44]</a></sup>. 시지바이오는 우선협상까지 갔다가 결렬됐습니다 <sup class="ref"><a href="#src-48">[48]</a></sup>. 인수금융 대신 LP 공동투자로 돈을 대는 전략이 특징입니다 <sup class="ref"><a href="#src-35">[35]</a></sup></li>
+        <li><b>회수 숙제</b>: 한샘(인수금융 PIK 이자, 실적 급감), 하나투어(매각 정체, 대표 교체), 에이블씨엔씨, 펫프렌즈 <sup class="ref"><a href="#src-66">[66]</a></sup> <sup class="ref"><a href="#src-67">[67]</a></sup> <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-71">[71]</a></sup> <sup class="ref"><a href="#src-73">[73]</a></sup></li>
+      </ul>
+      <p class="warn"><b>혼동 주의</b>: ① <b>에어프레미아</b>(항공사)는 IMM PE 포트폴리오가 아닙니다. 산업가스 회사 <b>에어퍼스트</b>와 헷갈리지 마세요 <sup class="ref"><a href="#src-80">[80]</a></sup>. ② 대한전선·태림포장·제뉴원사이언스는 이미 회수가 끝났습니다 <sup class="ref"><a href="#src-81">[81]</a></sup> <sup class="ref"><a href="#src-82">[82]</a></sup> <sup class="ref"><a href="#src-79">[79]</a></sup>. ③ IMM인베스트먼트·IMM크레딧앤솔루션(ICS)은 별도 회사입니다 <sup class="ref"><a href="#src-9">[9]</a></sup>. 더벨의 'AUM 9.5조'는 IMM인베 수치이고 <sup class="ref"><a href="#src-11">[11]</a></sup>, 교직원공제회 2025 출자에 뽑힌 곳은 ICS입니다 <sup class="ref"><a href="#src-25">[25]</a></sup>.</p>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 후속 취재 거리</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th style="width:20%">사안</th><th style="width:14%">시점</th><th>확인할 것</th><th style="width:24%">기사 각도(예시)</th></tr>
+        <tr><td><b>에어퍼스트 CV 클로징</b></td><td>11월 말~12월</td><td>최종 LP(해외 리드 Coller 보도, 국내 금융사 LOI), 기존 LP 롤오버 비율, 로즈골드 3·4호 확정 수익 <sup class="ref"><a href="#src-30">[30]</a></sup> <sup class="ref"><a href="#src-32">[32]</a></sup> <sup class="ref"><a href="#src-33">[33]</a></sup> <sup class="ref"><a href="#src-34">[34]</a></sup></td><td>"국내 PE 첫 컨티뉴에이션 펀드, 3조 클로징"</td></tr><tr><td><b>코오롱인더 소재사업 본계약</b></td><td>연말~2027년 1분기(추정)</td><td>7월 구속력 MOU 뒤 본계약이 늦는 이유, 가격, 이화다이아와 묶는 소재 플랫폼 구상 <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-44">[44]</a></sup> <sup class="ref"><a href="#src-40">[40]</a></sup></td><td>"IMM PE, 이화다이아 이어 코오롱 소재 품었다"</td></tr><tr><td><b>현대LNG해운 거래 종결</b></td><td>연내(추정)</td><td>잔금 납입 시점, IMM PE 몫 회수 배수(IMM인베 컨소시엄) <sup class="ref"><a href="#src-53">[53]</a></sup> <sup class="ref"><a href="#src-54">[54]</a></sup></td><td>"현대LNG해운 매각 종결…IMM 회수 성적표"</td></tr><tr><td><b>한샘 인수금융·엑시트</b></td><td>2027</td><td>변경약정 뒤 PIK 누적, LTV, 매각 재개 시점, 로즈골드 3호 연장 <sup class="ref"><a href="#src-66">[66]</a></sup> <sup class="ref"><a href="#src-67">[67]</a></sup> <sup class="ref"><a href="#src-70">[70]</a></sup></td><td>"한샘 인수금융 PIK 쌓이는데…IMM의 출구는"</td></tr><tr><td><b>하나투어 매각 재개</b></td><td>2027년 상반기(추정)</td><td>조좌진 체제 실적, 결산 배당, 매각 재공고 <sup class="ref"><a href="#src-59">[59]</a></sup> <sup class="ref"><a href="#src-60">[60]</a></sup> <sup class="ref"><a href="#src-62">[62]</a></sup></td><td>"하나투어 새 대표 체제, IMM 엑시트 재시동"</td></tr><tr><td><b>로즈골드 6호 착수</b></td><td>2027년(추정)</td><td>5호 소진율(약 40%), 투자기간 2027년 10월까지, 시지바이오 무산 영향 <sup class="ref"><a href="#src-19">[19]</a></sup> <sup class="ref"><a href="#src-20">[20]</a></sup> <sup class="ref"><a href="#src-48">[48]</a></sup></td><td>"IMM PE, 6호 펀드레이징 언제"</td></tr><tr><td><b>공동대표 체제 1년·연말 인사</b></td><td>12월</td><td>김영호·손동한 역할 분담, 파트너 승진, 송인준 부회장 역할 <sup class="ref"><a href="#src-1">[1]</a></sup> <sup class="ref"><a href="#src-3">[3]</a></sup> <sup class="ref"><a href="#src-5">[5]</a></sup></td><td>"IMM PE 세대교체 1년"</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card hl">
+      <h2><span class="dot"></span>⭐ 프로젝트 에버그린 — 에어퍼스트 컨티뉴에이션 펀드</h2>
+      <ul class="tight">
+        <li><b>구조</b>: 에어퍼스트 지분 100%의 가치를 약 4.2조로 보고, 로즈골드 3·4호 몫 65%를 새 펀드에 약 3조에 넘깁니다. 에쿼티 약 1.8조, 인수금융 1조 이상. 블랙록이 가진 30%는 빠집니다 <sup class="ref"><a href="#src-28">[28]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup>. 영문 기사는 '94% 이전'으로 적어 비율 표현이 다릅니다 <sup class="ref"><a href="#src-29">[29]</a></sup></li>
+        <li><b>투자자</b>: 해외 리드 LP로 Coller(발행일 미확인) <sup class="ref"><a href="#src-33">[33]</a></sup>, 신한은행·국민은행·한국투자증권·KB증권의 출자 의향서(LOI) 보도(추정) <sup class="ref"><a href="#src-34">[34]</a></sup></li>
+        <li><b>일정</b>: 처음엔 10월, 이후 11월 클로징 목표로 보도됐고, 클로징 완료 보도는 아직 없습니다 <sup class="ref"><a href="#src-32">[32]</a></sup> <sup class="ref"><a href="#src-30">[30]</a></sup></li>
+        <li><b>배경</b>: 2023년 블랙록에 30%를 팔아 원금의 3.5배를 회수했습니다 <sup class="ref"><a href="#src-39">[39]</a></sup>. 로즈골드 4호의 IRR은 2023년 8월 15.5%였고 20%대를 노린다는 보도입니다 <sup class="ref"><a href="#src-38">[38]</a></sup></li>
+      </ul>
+      <p class="src">컨티뉴에이션 펀드는 같은 GP가 파는 쪽(기존 펀드)과 사는 쪽(새 펀드)을 모두 대표합니다. 그래서 가격 산정의 공정성(LP자문위원회 승인, 외부 가치평가)이 핵심 쟁점입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>펀드와 LP</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>펀드</th><th>결성·규모</th><th>메모</th></tr>
+        <tr><td>로즈골드 1호</td><td>2008, 약 3,125억</td><td>최종 수익률 5.32%로 허들(8%) 미달, 성과보수 없음(추정) <sup class="ref"><a href="#src-12">[12]</a></sup> <sup class="ref"><a href="#src-36">[36]</a></sup> <sup class="ref"><a href="#src-37">[37]</a></sup></td></tr>
+        <tr><td>로즈골드 2호</td><td>2012, 약 7,600억</td><td>만기를 두 차례 연장, 미청산 <sup class="ref"><a href="#src-12">[12]</a></sup></td></tr>
+        <tr><td>로즈골드 3호</td><td>2016년 전후(추정)</td><td>우리금융·W컨셉 등에 투자 <sup class="ref"><a href="#src-13">[13]</a></sup> <sup class="ref"><a href="#src-14">[14]</a></sup>. 1년 연장 가능 입장 <sup class="ref"><a href="#src-70">[70]</a></sup></td></tr>
+        <tr><td>로즈골드 4호</td><td>2020, 18억달러</td><td><sup class="ref"><a href="#src-15">[15]</a></sup> <sup class="ref"><a href="#src-16">[16]</a></sup>. IRR 15.5%(2023.8), 20%대 목표 <sup class="ref"><a href="#src-38">[38]</a></sup></td></tr>
+        <tr><td><b>로즈골드 5호</b></td><td>2024년 말, 2조(목표 2.6조)</td><td><sup class="ref"><a href="#src-17">[17]</a></sup> <sup class="ref"><a href="#src-18">[18]</a></sup>. 소진율 약 40%, 드라이파우더 1조 이상 <sup class="ref"><a href="#src-19">[19]</a></sup>. 업계에선 60%를 넘어야 차기 펀드를 결성한다는 기준이 거론됨(추정) <sup class="ref"><a href="#src-20">[20]</a></sup></td></tr>
+      </table>
+      </div>
+      <ul class="tight">
+        <li><b>국민연금</b>: 2023년 위탁운용사 선정 <sup class="ref"><a href="#src-21">[21]</a></sup>. 2025년 사업은 축소됐고 IMM PE 포함 여부는 미확인 <sup class="ref"><a href="#src-22">[22]</a></sup>. 국민연금의 'IMM 계열' 투자잔액은 5,444억으로 8.3% 감소 <sup class="ref"><a href="#src-23">[23]</a></sup></li>
+        <li><b>교직원공제회</b>: IMM PE 리업 선정은 2022년만 확인됩니다 <sup class="ref"><a href="#src-24">[24]</a></sup>. 2026년 사업은 중·소형 리그만 있어 대상이 아닌 것으로 보입니다 <sup class="ref"><a href="#src-26">[26]</a></sup></li>
+        <li><b>국민성장펀드</b>: 한앤코·IMM PE·VIG 같은 대형 바이아웃 하우스는 적극 참여하지 않았다는 보도(추정) <sup class="ref"><a href="#src-27">[27]</a></sup></li>
+        <li><b>조직</b>: 2023년 김유진(전 한샘 대표)·유헌석이 '2세대 파트너' 부사장으로 승진 <sup class="ref"><a href="#src-7">[7]</a></sup>. 김영호 대표를 창업 1세대로 보는 매체도 있습니다 <sup class="ref"><a href="#src-8">[8]</a></sup>. 헤럴드는 개편을 '세대교체'로 정리했습니다 <sup class="ref"><a href="#src-5">[5]</a></sup>. 창업자 지분 구조 보도는 시점이 불명확합니다 <sup class="ref"><a href="#src-10">[10]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>2026 딜</h2>
+      <ul class="tight">
+        <li><b>이화다이아몬드공업</b>(다이아몬드 공구, 국내 1위·세계 3위): 5월 65%를 약 4,000억에 인수하는 SPA 체결. 공정위 신고를 거쳐 3분기 잔금 예정이었고, 종결은 미확인 <sup class="ref"><a href="#src-40">[40]</a></sup> <sup class="ref"><a href="#src-41">[41]</a></sup> <sup class="ref"><a href="#src-42">[42]</a></sup></li>
+        <li><b>코오롱인더스트리 반도체·디스플레이 소재사업</b>(합산 매출 2,000억대): 6월 30일 우선협상대상자, 7월 13일 구속력 MOU. 본계약과 가격은 미확인 <sup class="ref"><a href="#src-43">[43]</a></sup> <sup class="ref"><a href="#src-44">[44]</a></sup> <sup class="ref"><a href="#src-45">[45]</a></sup> <sup class="ref"><a href="#src-6">[6]</a></sup></li>
+        <li><b>시지바이오</b>(대웅 계열): 3월 우선협상. 51%를 5,610억에, 실적 조건 충족 시 최대 1조1,220억까지 사는 구조였고 <sup class="ref"><a href="#src-46">[46]</a></sup> <sup class="ref"><a href="#src-47">[47]</a></sup>, 인수금융 없이 에쿼티와 공동투자로 조달할 계획이었습니다 <sup class="ref"><a href="#src-35">[35]</a></sup>. 경업금지 조항 갈등으로 결렬돼 우선협상자가 TA어소시에이츠로 바뀌었고 <sup class="ref"><a href="#src-48">[48]</a></sup> <sup class="ref"><a href="#src-49">[49]</a></sup>, 그 협상도 무산됐다는 보도가 있습니다(추정) <sup class="ref"><a href="#src-50">[50]</a></sup>. 제뉴원사이언스 성공 공식을 적용하려던 딜입니다 <sup class="ref"><a href="#src-78">[78]</a></sup></li>
+        <li><b>코엔텍</b>: IMM PE는 6,000억대를 제시했지만 매도자가 8,000억을 고수해 다른 곳으로 넘어갔습니다 <sup class="ref"><a href="#src-51">[51]</a></sup> <sup class="ref"><a href="#src-52">[52]</a></sup></li>
+        <li>헤럴드는 '딜 가뭄 속 순항', '연승 비결'로 평가했습니다 <sup class="ref"><a href="#src-6">[6]</a></sup> <sup class="ref"><a href="#src-75">[75]</a></sup>. B2C에서 B2B로 옮겨가는 흐름 <sup class="ref"><a href="#src-77">[77]</a></sup>, '안 팔고 더 키운다'는 장기보유 기조도 다뤄졌습니다 <sup class="ref"><a href="#src-76">[76]</a></sup></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>회수·포트폴리오</h2>
+      <div class="tbl-wrap">
+      <table class="rt">
+        <tr><th>포트폴리오</th><th>상태</th></tr>
+        <tr><td><b>현대LNG해운</b><br>(IMM인베 컨소시엄)</td><td>2025년 11월 인도네시아 시나르마스 계열에 매각 SPA <sup class="ref"><a href="#src-53">[53]</a></sup>. 국가핵심기술 해외 매각 논란 끝에 7월 산업기술보호위원회 승인 <sup class="ref"><a href="#src-54">[54]</a></sup> <sup class="ref"><a href="#src-55">[55]</a></sup> <sup class="ref"><a href="#src-56">[56]</a></sup>. 거래 종결은 미확인</td></tr>
+        <tr><td><b>한샘</b></td><td>인수금융 8,550억 변경약정(만기 연장, 이자는 PIK로 누적), 담보 주식 가치 약 3,336억 <sup class="ref"><a href="#src-66">[66]</a></sup>. 3분기 매출 -19%, 영업이익 -76.5% <sup class="ref"><a href="#src-67">[67]</a></sup> <sup class="ref"><a href="#src-68">[68]</a></sup>. 넥서스 합병이 대주단 연장 명분이 될 수 있다는 분석 <sup class="ref"><a href="#src-69">[69]</a></sup>. IMM PE는 조기 엑시트설을 일축 <sup class="ref"><a href="#src-70">[70]</a></sup></td></tr>
+        <tr><td><b>하나투어</b></td><td>2025년 5월 매각 공시 후 1년 넘게 매수자 없음 <sup class="ref"><a href="#src-59">[59]</a></sup>. 매각을 멈추고 조좌진 대표 체제로 재정비 <sup class="ref"><a href="#src-60">[60]</a></sup> <sup class="ref"><a href="#src-65">[65]</a></sup>. 지분 약 17%, 평균단가 5만4,314원 <sup class="ref"><a href="#src-61">[61]</a></sup>. 고배당 최대 수혜자는 IMM PE라는 분석, 연평균 수익률 2.6% 수준(추정) <sup class="ref"><a href="#src-62">[62]</a></sup>. 10월 397억 자사주 소각 <sup class="ref"><a href="#src-63">[63]</a></sup>. 3분기 영업이익 감소(추정) <sup class="ref"><a href="#src-64">[64]</a></sup></td></tr>
+        <tr><td><b>메가존클라우드</b></td><td>2022년 MBK와 함께 4,500억 투자, 올해 1월 풋옵션 행사. 모회사가 구주를 매입했고 IMM PE는 일부 지분을 남김 <sup class="ref"><a href="#src-57">[57]</a></sup> <sup class="ref"><a href="#src-58">[58]</a></sup></td></tr>
+        <tr><td>에이블씨엔씨</td><td>2024년 통매각 실패, 2025년 '어퓨' 분리 매각 철회 후 밸류업 <sup class="ref"><a href="#src-71">[71]</a></sup>. 순이익을 넘는 배당으로 소액주주 반발 <sup class="ref"><a href="#src-72">[72]</a></sup></td></tr>
+        <tr><td>펫프렌즈</td><td>매각 주관사 라자드 <sup class="ref"><a href="#src-73">[73]</a></sup></td></tr>
+        <tr><td>베어로보틱스</td><td>LG전자 지분 56.9%, 나스닥 상장을 전제로 투자 유치 중. IMM PE 지분 처분은 미확인 <sup class="ref"><a href="#src-74">[74]</a></sup></td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">조사는 검색 결과 요약을 바탕으로 했고, 더벨 유료 기사는 거의 열지 못했습니다. (추정) 표시 출처는 기사 매칭이 불확실합니다. IMM PE 단독 AUM과 인원은 공개 자료로 확인하지 못했습니다.</p>
+      <ol class="srclist">
+        <li id="src-1"><span class="n">[1]</span> 헤럴드경제, IMM 지배구조 개편·손동한 대표 선임, 2025-12-11. <a href="https://www.heraldk.com/article/2025121118213754824" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-2"><span class="n">[2]</span> 더팩트, IMM PE 인사. <a href="https://news.tf.co.kr/read/economy/2259912.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-3"><span class="n">[3]</span> 아시아경제, IMM 공동창업자 부회장 승진·공동 CEO, 2026-06. <a href="https://view.asiae.co.kr/en/article/2026062612174810996" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-4"><span class="n">[4]</span> 서울경제(영문), IMM 창업자 부회장 승진, 2025-12-12. <a href="https://en.sedaily.com/finance/2025/12/12/imm-investment-co-ceos-jang-ji-promoted-to-vice-chairmen-of" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-5"><span class="n">[5]</span> 헤럴드경제, IMM 세대교체·거버넌스 개편, 2026-10. <a href="https://biz.heraldcorp.com/article/10917295" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-6"><span class="n">[6]</span> 헤럴드경제, IMM PE 딜 가뭄 속 순항, 2026-09-25. <a href="https://mbiz.heraldcorp.com/article/10883537" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-7"><span class="n">[7]</span> 아시아경제, IMM PE 2세대 파트너 승진, 2023-12. <a href="https://www.asiae.co.kr/en/article/2023120807545193330" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-8"><span class="n">[8]</span> 딜사이트, IMM 1세대·2세대 구분. <a href="https://dealsite.co.kr/articles/168331/080057" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-9"><span class="n">[9]</span> 딜사이트, "IMM PE와 IMM인베는 별도 지주사". <a href="https://dealsite.co.kr/articles/140344" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-10"><span class="n">[10]</span> 더팩트, IMM PE 지분 구조(시점 불명확). <a href="https://news.tf.co.kr/read/ogmeta/1881259.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-11"><span class="n">[11]</span> 더벨, 2025 리그테이블(IMM인베 AUM 9.5조, PE 단독 아님). <a href="http://wwwdev.thebell.co.kr/free/content/ArticleView.asp?key=202512310911215660105636&lcode=00" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-12"><span class="n">[12]</span> 딜사이트, 로즈골드 1·2호 결성·청산. <a href="https://dealsite.co.kr/articles/136556" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-13"><span class="n">[13]</span> 인베스트조선, 우리금융 지분 투자, 2024-07-30. <a href="https://www.investchosun.com/site/data/html_dir/2024/07/30/2024073080253.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-14"><span class="n">[14]</span> 인베스트조선, W컨셉 인수, 2017-10. <a href="https://www.investchosun.com/site/data/html_dir/2017/10/16/2017101686008.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-15"><span class="n">[15]</span> KED Global, 로즈골드 4호 18억달러 최종 결성, 2020-12. <a href="https://www.kedglobal.com/newsView/ked202012240002" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-16"><span class="n">[16]</span> 머니투데이, 로즈골드 4호 목표 초과, 2020-02. <a href="https://www.mt.co.kr/stock/2020/02/19/2020021913260067617" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-17"><span class="n">[17]</span> 인베스트조선, 로즈골드 5호 2조 결성, 2025-01-22. <a href="https://www.investchosun.com/site/data/html_dir/2025/01/22/2025012280127.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-18"><span class="n">[18]</span> 아시아경제, 로즈골드 5호 1.7조 모집, 2024-09. <a href="https://www.asiae.co.kr/en/article/2024090411121262180" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-19"><span class="n">[19]</span> 더벨, 로즈골드 5호 소진 현황, 2026-01. <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601061344396960103619" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-20"><span class="n">[20]</span> 딜사이트, 차기 펀드 결성 소진율 기준(추정). <a href="https://dealsite.co.kr/articles/111546" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-21"><span class="n">[21]</span> 아시아경제, 국민연금 2023 PEF 위탁운용사 선정, 2023-06. <a href="https://www.asiae.co.kr/en/article/2023063017271947721" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-22"><span class="n">[22]</span> 딜사이트, 국민연금 2025 PE 출자 축소. <a href="https://dealsite.co.kr/articles/147178" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-23"><span class="n">[23]</span> 머니투데이, 국민연금 IMM 계열 투자잔액 감소, 2026-09-07. <a href="https://www.mt.co.kr/article/2026090716532721550" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-24"><span class="n">[24]</span> 딜사이트, 교직원공제회 2022 리업 출자(추정). <a href="https://dealsite.co.kr/articles/89138" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-25"><span class="n">[25]</span> 인베스트조선, 교직원공제회 2025 출자(ICS 선정), 2025-05. <a href="https://www.investchosun.com/site/data/html_dir/2025/05/13/2025051380176.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-26"><span class="n">[26]</span> 이투데이, 교직원공제회 2026 출자 중·소형 리그. <a href="https://www.etoday.co.kr/news/view/2621981" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-27"><span class="n">[27]</span> 딜사이트, 대형 바이아웃 하우스 국민성장펀드 미참여(추정). <a href="https://dealsite.co.kr/articles/162658/075033" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-28"><span class="n">[28]</span> 인베스트조선, 에어퍼스트 컨티뉴에이션 펀드 추진, 2026-04-28. <a href="https://www.investchosun.com/site/data/html_dir/2026/04/28/2026042880063.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-29"><span class="n">[29]</span> 아시아경제, 에어퍼스트 CV 지분 이전, 2026-05-04. <a href="https://www.asiae.co.kr/en/article/2026050410104772103" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-30"><span class="n">[30]</span> 파이낸셜뉴스, 에어퍼스트 CV 3조 구조·11월 클로징 목표, 2026-10-06. <a href="https://www.fnnews.com/news/202610061814040462" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-31"><span class="n">[31]</span> 파이낸셜뉴스, 에어퍼스트 CV, 2026-10-06. <a href="https://www.fnnews.com/news/202610061110089191" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-32"><span class="n">[32]</span> 딜사이트, 프로젝트 에버그린 클로징 일정. <a href="https://dealsite.co.kr/articles/170117" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-33"><span class="n">[33]</span> Alpha Maven, IMM PE Airfirst fund draws investors(Coller). <a href="https://alpha-maven.com/story/private-equity/imm-pes-airfirst-fund-draws-investors" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-34"><span class="n">[34]</span> 딜사이트, 국내 금융사 CV 출자 LOI(추정). <a href="https://dealsite.co.kr/articles/165094" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-35"><span class="n">[35]</span> 딜사이트, IMM PE 인수금융 대신 LP 공동투자 조달. <a href="https://dealsite.co.kr/articles/162427" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-36"><span class="n">[36]</span> 딜사이트, 로즈골드 1호 성과(추정). <a href="https://dealsite.co.kr/articles/155167" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-37"><span class="n">[37]</span> 더팩트, 로즈골드 1호 수익률·성과보수. <a href="https://news.tf.co.kr/read/ogmeta/1883559.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-38"><span class="n">[38]</span> IB토마토, 로즈골드 4호 수익률 20% 넘본다. <a href="https://newstomato.com/ReadNews.aspx?no=1291376" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-39"><span class="n">[39]</span> 아시아경제, 에어퍼스트 지분 30% 블랙록 매각(3.5배), 2023-06. <a href="https://www.asiae.co.kr/en/article/2023060815134811310" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-40"><span class="n">[40]</span> 아시아경제, 이화다이아몬드공업 65% 인수 SPA, 2026-05-13. <a href="https://www.asiae.co.kr/en/article/2026051309332989916" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-41"><span class="n">[41]</span> 헤럴드경제, 이화다이아몬드 인수, 2026-05-12. <a href="https://www.heraldk.com/article/2026051217344261467" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-42"><span class="n">[42]</span> 다음(뉴스), 이화다이아 기업결합신고·3분기 잔금, 2026-07-04. <a href="https://v.daum.net/v/20260704054119199" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-43"><span class="n">[43]</span> 한국경제, 코오롱인더 소재사업 IMM PE 우협, 2026-06-30. <a href="https://www.hankyung.com/article/2026063074781" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-44"><span class="n">[44]</span> MTN, 코오롱인더 소재사업 구속력 MOU, 2026-07-13. <a href="https://news.mtn.co.kr/news-detail/2026071315473733427" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-45"><span class="n">[45]</span> 아시아경제, 코오롱인더 MOU, 2026-07-13. <a href="https://view.asiae.co.kr/en/article/2026071315233310808" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-46"><span class="n">[46]</span> 인베스트조선, 시지바이오 IMM PE 우협, 2026-03-06. <a href="https://www.investchosun.com/site/data/html_dir/2026/03/06/2026030680056.html" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-47"><span class="n">[47]</span> 데일리팜, 시지바이오 인수 구조(최대 1조1,220억). <a href="https://dailypharm.com/user/news/339598" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-48"><span class="n">[48]</span> 다음(뉴스), 시지바이오 경업금지 갈등 결렬, 2026-07-08. <a href="https://v.daum.net/v/20260708100222140" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-49"><span class="n">[49]</span> 데일리팜, 시지바이오 우협 TA어소시에이츠로 변경. <a href="https://dailypharm.com/user/news/340242" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-50"><span class="n">[50]</span> 딜사이트, 시지바이오 TA 협상 무산(추정). <a href="https://dealsite.co.kr/articles/170209" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-51"><span class="n">[51]</span> 딜사이트, 코엔텍 인수전 가격 괴리. <a href="https://dealsite.co.kr/articles/152915" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-52"><span class="n">[52]</span> 딜사이트, 코엔텍 인수전 결과. <a href="https://dealsite.co.kr/articles/153453" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-53"><span class="n">[53]</span> 헤럴드경제, 현대LNG해운 매각 SPA(IMM PE·IMM인베), 2025-11-26. <a href="https://www.heraldk.com/article/2025112614190047398" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-54"><span class="n">[54]</span> 한국경제, 현대LNG해운 매각 산기위 승인, 2026-07. <a href="https://www.hankyung.com/article/2026071201801" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-55"><span class="n">[55]</span> 파이낸셜뉴스, 현대LNG해운 해외 매각 반대 여론, 2025-12-30. <a href="https://www.fnnews.com/news/202512301836277478" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-56"><span class="n">[56]</span> 아주경제, 현대LNG해운 매각 논란, 2026-04-29. <a href="https://www.ajunews.com/view/20260429155405313" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-57"><span class="n">[57]</span> 딜사이트, 메가존클라우드 풋옵션·구주 매입. <a href="https://dealsite.co.kr/articles/168540" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-58"><span class="n">[58]</span> IB토마토, 메가존 FI 원금 회수. <a href="https://newstomato.com/ReadNews.aspx?no=1303528" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-59"><span class="n">[59]</span> 뉴스토마토, 하나투어 매각 1년 넘게 정체. <a href="https://newstomato.com/ReadNews.aspx?no=1284740" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-60"><span class="n">[60]</span> 스포츠경향, 하나투어 대표 교체(조좌진), 2026-07-07. <a href="https://sports.khan.co.kr/article/202607071703003" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-61"><span class="n">[61]</span> 딜사이트, 하나투어 IMM PE 지분·평균단가. <a href="https://dealsite.co.kr/articles/160334" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-62"><span class="n">[62]</span> 딜사이트, 하나투어 고배당·연평균 수익률. <a href="https://dealsite.co.kr/articles/160257" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-63"><span class="n">[63]</span> CEO스코어데일리, 하나투어 자사주 소각, 2026-10. <a href="https://ceoscoredaily.com/page/view/2026100715571704350" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-64"><span class="n">[64]</span> 뉴스토마토, 하나투어 3분기 실적·재무본부장 퇴사(추정). <a href="https://www.newstomato.com/ReadNews.aspx?no=1319746" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-65"><span class="n">[65]</span> 디지털데일리, 하나투어 매각 중단·조좌진 체제, 2026-07-07. <a href="https://www.ddaily.co.kr/page/view/2026070714375023512" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-66"><span class="n">[66]</span> 딜사이트, 한샘 인수금융 변경약정(PIK). <a href="https://dealsite.co.kr/articles/170650" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-67"><span class="n">[67]</span> 딜사이트, 한샘 3분기 실적. <a href="https://dealsite.co.kr/articles/172739" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-68"><span class="n">[68]</span> 위키트리, 한샘 3분기 실적. <a href="https://www.wikitree.co.kr/articles/1173429" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-69"><span class="n">[69]</span> 뉴스토마토, 한샘 넥서스 합병과 대주단 연장. <a href="https://newstomato.com/ReadNews.aspx?no=1301184" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-70"><span class="n">[70]</span> 더팩트, 한샘 조기 엑시트설 일축·로즈골드 3호 연장, 2025-10. <a href="https://news.tf.co.kr/read/economy/2256605.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-71"><span class="n">[71]</span> 더팩트, 에이블씨엔씨 분리 매각 철회. <a href="https://news.tf.co.kr/read/economy/2227809.htm" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-72"><span class="n">[72]</span> 뉴스토마토, 에이블씨엔씨 고배당 논란. <a href="https://www.newstomato.com/ReadNews.aspx?no=1202275" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-73"><span class="n">[73]</span> 딜사이트, 펫프렌즈 매각 주관사 라자드. <a href="https://dealsite.co.kr/articles/137085" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-74"><span class="n">[74]</span> 한국경제, 베어로보틱스 LG전자 지분·나스닥 상장 추진, 2026-09. <a href="https://www.hankyung.com/article/2026090668751" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-75"><span class="n">[75]</span> 헤럴드경제, 이화다이아 이어 코오롱 소재까지 연승 비결, 2026-07-05. <a href="https://www.heraldk.com/article/2026070519470772175" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-76"><span class="n">[76]</span> 헤럴드경제, PE업계 '안 팔고 더 키운다', 2026-05-17. <a href="https://www.heraldk.com/article/2026051717594963517" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-77"><span class="n">[77]</span> 뉴스토마토, IMM PE B2C에서 B2B로. <a href="https://newstomato.com/ReadNews.aspx?no=1227237" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-78"><span class="n">[78]</span> 헤럴드경제, 제뉴원 성공 공식 시지바이오에, 2026-04-06. <a href="https://www.heraldk.com/article/2026040618110644961" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-79"><span class="n">[79]</span> 아시아경제, 제뉴원사이언스 맥쿼리 매각, 2024-07. <a href="https://www.asiae.co.kr/en/article/2024071708050185371" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-80"><span class="n">[80]</span> 뉴시스, 에어프레미아 주주 구성(IMM PE 아님), 2024-10-16. <a href="https://www.newsis.com/view/NISX20241016_0002922636" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-81"><span class="n">[81]</span> 파이낸셜뉴스, 대한전선 호반 매각, 2021-03-29. <a href="https://www.fnnews.com/news/202103291819106620" target="_blank" rel="noopener">링크</a></li>
+        <li id="src-82"><span class="n">[82]</span> 머니투데이, 태림포장 세아상역 매각, 2019-09-18. <a href="https://www.mt.co.kr/stock/2019/09/18/2019091813190434476" target="_blank" rel="noopener">링크</a></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <p class="note"><span class="tag req">핵심</span>은 꼭 물을 것, [번호]는 근거 기사(보고서 탭 하단과 같은 번호)입니다. ↳ 줄은 답변에 이어 던질 질문입니다. 관계자의 직급·담당 딜에 맞춰 골라 쓰세요. 성과가 좋은 에어퍼스트·신규 딜로 시작해 한샘·하나투어로 넘어가는 순서를 권합니다.</p>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c2)"></span><h2>① 에어퍼스트 컨티뉴에이션 펀드</h2></div>
+    <div class="q cat2 must"><p class="qtext">'프로젝트 에버그린'은 <b>언제 클로징됩니까? 최종 LP 구성과 기존 LP의 롤오버 비율</b>은 어떻게 됩니까?</p><p class="follow">↳ 로즈골드 3·4호 LP 입장에서 이번 거래로 확정되는 수익(배수·IRR)은 어느 정도입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.fnnews.com/news/202610061814040462" target="_blank" rel="noopener">[30]</a> <a href="https://dealsite.co.kr/articles/170117" target="_blank" rel="noopener">[32]</a> <a href="https://alpha-maven.com/story/private-equity/imm-pes-airfirst-fund-draws-investors" target="_blank" rel="noopener">[33]</a> <a href="https://dealsite.co.kr/articles/165094" target="_blank" rel="noopener">[34]</a></span></div></div>
+    <div class="q cat2 must"><p class="qtext">GP가 파는 쪽과 사는 쪽을 모두 대표하는 구조입니다. <b>가격 공정성은 어떻게 담보했습니까?</b> LP자문위원회 승인, 외부 가치평가, 제3자 리드 LP의 가격 검증 절차가 있었습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">이해상충</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/04/28/2026042880063.html" target="_blank" rel="noopener">[28]</a> <a href="https://www.fnnews.com/news/202610061814040462" target="_blank" rel="noopener">[30]</a> <a href="https://alpha-maven.com/story/private-equity/imm-pes-airfirst-fund-draws-investors" target="_blank" rel="noopener">[33]</a></span></div></div>
+    <div class="q cat2"><p class="qtext">국내 첫 컨티뉴에이션 펀드입니다. <b>국내 LP들이 이 구조를 받아들이는 데 가장 큰 장벽</b>은 무엇이었고, 앞으로 다른 포트폴리오에도 쓸 계획입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2026/04/28/2026042880063.html" target="_blank" rel="noopener">[28]</a> <a href="https://dealsite.co.kr/articles/165094" target="_blank" rel="noopener">[34]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c3)"></span><h2>② 신규 딜·투자 전략</h2></div>
+    <div class="q cat3 must"><p class="qtext">코오롱인더스트리 소재사업은 7월 구속력 MOU 뒤 본계약 소식이 없습니다. <b>본계약은 언제이고, 늦어지는 이유</b>는 무엇입니까?</p><p class="follow">↳ 이화다이아몬드와 묶어 소재 플랫폼을 만들 구상입니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://news.mtn.co.kr/news-detail/2026071315473733427" target="_blank" rel="noopener">[44]</a> <a href="https://view.asiae.co.kr/en/article/2026071315233310808" target="_blank" rel="noopener">[45]</a> <a href="https://mbiz.heraldcorp.com/article/10883537" target="_blank" rel="noopener">[6]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">이화다이아몬드공업 인수는 <b>거래를 마쳤습니까?</b> 인수 후 100일 동안 무엇을 바꿨습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.asiae.co.kr/en/article/2026051309332989916" target="_blank" rel="noopener">[40]</a> <a href="https://v.daum.net/v/20260704054119199" target="_blank" rel="noopener">[42]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">시지바이오는 우선협상까지 갔다가 경업금지 조항으로 결렬됐습니다. <b>어떤 조건에서 갈렸습니까?</b> 다시 협상할 여지가 있습니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://v.daum.net/v/20260708100222140" target="_blank" rel="noopener">[48]</a> <a href="https://dailypharm.com/user/news/340242" target="_blank" rel="noopener">[49]</a> <a href="https://dealsite.co.kr/articles/170209" target="_blank" rel="noopener">[50]</a> <a href="https://dailypharm.com/user/news/339598" target="_blank" rel="noopener">[47]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">시지바이오에서 인수금융 없이 에쿼티와 LP 공동투자로 조달하려 했습니다. <b>인수금융을 줄이는 이유</b>는 무엇이고, 이게 IMM PE의 새 원칙입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/162427" target="_blank" rel="noopener">[35]</a></span></div></div>
+    <div class="q cat3"><p class="qtext">코엔텍에서는 6,000억대를 써서 8,000억을 원한 매도자와 맞지 않았습니다. <b>지금 매도자와 매수자의 가격 눈높이 차이</b>는 어느 정도라고 보십니까?</p><div class="qmeta"><span class="tag">비교·벤치마크</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/152915" target="_blank" rel="noopener">[51]</a> <a href="https://dealsite.co.kr/articles/153453" target="_blank" rel="noopener">[52]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c4)"></span><h2>③ 회수·포트폴리오</h2></div>
+    <div class="q cat4 must"><p class="qtext">한샘 인수금융을 변경약정으로 연장하면서 이자를 PIK로 쌓고 있습니다. 3분기 영업이익은 76.5% 줄었습니다. <b>한샘의 회수 계획과 시점</b>은 어떻게 됩니까?</p><p class="follow">↳ 로즈골드 3호 연장 범위 안에서 엑시트가 가능하다고 보십니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형 압박</span><span class="pri high">상</span><span class="basis">근거: <a href="https://dealsite.co.kr/articles/170650" target="_blank" rel="noopener">[66]</a> <a href="https://dealsite.co.kr/articles/172739" target="_blank" rel="noopener">[67]</a> <a href="https://newstomato.com/ReadNews.aspx?no=1301184" target="_blank" rel="noopener">[69]</a> <a href="https://news.tf.co.kr/read/economy/2256605.htm" target="_blank" rel="noopener">[70]</a></span></div></div>
+    <div class="q cat4 must"><p class="qtext">하나투어는 1년 넘게 매수자를 찾지 못했고 대표가 바뀌었습니다. <b>매각은 언제 다시 시작합니까?</b> 지금까지 배당과 자사주 소각으로 얼마나 회수했습니까?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://newstomato.com/ReadNews.aspx?no=1284740" target="_blank" rel="noopener">[59]</a> <a href="https://sports.khan.co.kr/article/202607071703003" target="_blank" rel="noopener">[60]</a> <a href="https://dealsite.co.kr/articles/160257" target="_blank" rel="noopener">[62]</a> <a href="https://ceoscoredaily.com/page/view/2026100715571704350" target="_blank" rel="noopener">[63]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">현대LNG해운 매각은 산업기술보호위원회 승인까지 받았습니다. <b>잔금 납입과 거래 종결은 언제</b>이고, IMM PE 몫의 회수 배수는 어느 정도입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.heraldk.com/article/2025112614190047398" target="_blank" rel="noopener">[53]</a> <a href="https://www.hankyung.com/article/2026071201801" target="_blank" rel="noopener">[54]</a></span></div></div>
+    <div class="q cat4"><p class="qtext">에이블씨엔씨는 통매각과 분리 매각이 모두 무산됐고, 펫프렌즈는 라자드를 주관사로 매각을 추진했습니다. <b>두 회사의 지금 엑시트 전략</b>은 무엇입니까?</p><div class="qmeta"><span class="tag">확인형</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://news.tf.co.kr/read/economy/2227809.htm" target="_blank" rel="noopener">[71]</a> <a href="https://dealsite.co.kr/articles/137085" target="_blank" rel="noopener">[73]</a></span></div></div>
+
+    <div class="qcat-head"><span class="bar" style="background:var(--c1)"></span><h2>④ 조직·펀드</h2></div>
+    <div class="q cat1 must"><p class="qtext">로즈골드 5호는 약 40%를 소진했고 투자기간은 2027년 10월까지입니다. <b>6호 펀드레이징은 언제 시작합니까?</b> 목표 규모는요?</p><div class="qmeta"><span class="tag req">핵심</span><span class="tag">확인형</span><span class="pri high">상</span><span class="basis">근거: <a href="https://www.investchosun.com/site/data/html_dir/2025/01/22/2025012280127.html" target="_blank" rel="noopener">[17]</a> <a href="https://www.thebell.co.kr/front/newsview.asp?key=202601061344396960103619" target="_blank" rel="noopener">[19]</a> <a href="https://dealsite.co.kr/articles/111546" target="_blank" rel="noopener">[20]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">김영호·손동한 공동대표 체제가 1년이 됩니다. <b>두 분의 역할 분담</b>은 어떻게 되고, 송인준 부회장은 투자 의사결정에 얼마나 관여합니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.heraldk.com/article/2025121118213754824" target="_blank" rel="noopener">[1]</a> <a href="https://view.asiae.co.kr/en/article/2026062612174810996" target="_blank" rel="noopener">[3]</a> <a href="https://biz.heraldcorp.com/article/10917295" target="_blank" rel="noopener">[5]</a></span></div></div>
+    <div class="q cat1"><p class="qtext">국민연금의 IMM 계열 투자잔액이 줄었고, 대형 바이아웃 하우스는 국민성장펀드에 적극 참여하지 않았다는 보도가 있습니다. <b>국내 LP 출자 환경</b>을 어떻게 보시고, 해외 LP 비중을 늘릴 계획입니까?</p><div class="qmeta"><span class="tag">개방·심층</span><span class="pri mid">중</span><span class="basis">근거: <a href="https://www.mt.co.kr/article/2026090716532721550" target="_blank" rel="noopener">[23]</a> <a href="https://dealsite.co.kr/articles/162658/075033" target="_blank" rel="noopener">[27]</a> <a href="https://alpha-maven.com/story/private-equity/imm-pes-airfirst-fund-draws-investors" target="_blank" rel="noopener">[33]</a></span></div></div>
+
+    <div class="card" style="margin-top:20px;">
+      <h2><span class="dot"></span>출처</h2>
+      <p class="src" style="margin-top:0;">질문 근거 링크는 각 질문 아래에 있습니다. 전체 출처 [1]~[82]은 보고서 탭 하단에 있습니다.</p>
+    </div>
+  </section>
+
+  <p class="foot">취재원 인터뷰 준비 도구 · 공개 자료 기반 · 2026-11-25</p>
+</div>
+
+<script>
+  function showTab(which) {
+    var isReport = which === 'report';
+    document.getElementById('panel-report').classList.toggle('active', isReport);
+    document.getElementById('panel-questions').classList.toggle('active', !isReport);
+    document.getElementById('tab-report').setAttribute('aria-selected', isReport);
+    document.getElementById('tab-questions').setAttribute('aria-selected', !isReport);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
